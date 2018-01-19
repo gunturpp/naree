@@ -3,17 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Dashboard;
+use App\Homestay;
+use App\Booking;
+use App\Souvenir;
+use App\User;
+use DB;
+use Auth;
 class AdminController extends Controller
 {
+    
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+        //$this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+		if($user->role=='daerah'){
+            $users = DB::table('users')->count();
+            $homestays = DB::table('homestays')->count();
+            $bookings = DB::table('bookings')->count();
+            // $bookings = DB::table('bookings')->where('')->count();
+            $souvenirs = DB::table('souvenirs')->count();
+        }
+        else {
+            // return 'salah';
+            
+        }
+        return view('dashboard', compact('users','homestays','bookings','souvenirs'));        
     }
 
     /**
@@ -23,7 +53,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        // return view('admins.create');
     }
 
     /**
@@ -80,5 +110,5 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
-    }
+    }    
 }
