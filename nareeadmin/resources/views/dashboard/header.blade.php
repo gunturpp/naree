@@ -114,17 +114,6 @@
     </form>
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
-    <ul class="sidebar-menu" data-widget="tree">
-      <li class="header">MAIN NAVIGATION</li>
-      <li>
-        <a href="{{ url('homestays') }}">
-          <i class="fa fa-th"></i> <span>Homestay</span>
-          <!-- <span class="pull-right-container">
-            <small class="label pull-right bg-green">new</small>
-          </span> -->
-        </a>
-      </li>
-
       <li>
         <a href="{{ url('event') }}">
           <i class="fa fa-th"></i> <span>Event</span>
@@ -134,32 +123,7 @@
         </a>
       </li>
 
-      <li>
-        <a href="{{ url('explore') }}">
-          <i class="fa fa-th"></i> <span>Explore</span>
-          <!-- <span class="pull-right-container">
-            <small class="label pull-right bg-green">new</small>
-          </span> -->
-        </a>
-      </li>
-
-      <li>
-        <a href="{{ url('news') }}">
-          <i class="fa fa-th"></i> <span>News</span>
-          <!-- <span class="pull-right-container">
-            <small class="label pull-right bg-green">new</small>
-          </span> -->
-        </a>
-      </li>
-      <li>
-        <a href="{{ url('souvenir') }}">
-          <i class="fa fa-th"></i> <span>Souvenir</span>
-          <!-- <span class="pull-right-container">
-            <small class="label pull-right bg-green">new</small>
-          </span> -->
-        </a>
-      </li>
-
+{{--  
       <li>
         <a href="{{ url('cruds') }}">
           <i class="fa fa-th"></i> <span>Crud</span>
@@ -167,7 +131,8 @@
             <small class="label pull-right bg-green">new</small>
           </span> -->
         </a>
-      </li>
+      </li>  --}}
+      
   </section>
   <!-- /.sidebar -->
 </aside>
