@@ -6,7 +6,7 @@
 -->
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title>
+        <ion-title justify-content-center>
             <ion-icon name="icon-icon-event"></ion-icon>
         </ion-title>
         <ion-buttons end>
@@ -19,16 +19,106 @@
 
 
 <ion-content padding>
-    <!-- Float the icon left -->
-    <button ion-button icon-left>
-  <ion-icon name="home"></ion-icon>
-  Left Icon
-</button>
 
-    <!-- Float the icon right -->
-    <button ion-button icon-right>
-  Right Icon
-  <ion-icon name="home"></ion-icon>
-</button>
+    <ion-row>
+        <ion-col>
+            <ion-item color="primary">
+                <ion-label color="light">Category</ion-label>
+                <ion-select [(ngModel)]="toppings">
+                    <ion-option>Bacon</ion-option>
+                    <ion-option>Black Olives</ion-option>
+                    <ion-option>Extra Cheese</ion-option>
+                    <ion-option>Mushrooms</ion-option>
+                    <ion-option>Pepperoni</ion-option>
+                    <ion-option>Sausage</ion-option>
+                </ion-select>
+            </ion-item>
+            <!--<ion-item color="primary">
+                <ion-select [(ngModel)]="checkup" (ionChange)="logChosen()">
+                    <ion-option *ngFor="let checkup of checkups()">{{checkup}}</ion-option>
+                </ion-select>
+            </ion-item>-->
+        </ion-col>
+
+        <ion-col>
+            <ion-item color="primary">
+                <ion-label color="light">Area</ion-label>
+                <ion-select [(ngModel)]="gender" interface="popover">
+                    <ion-option value="f">Female</ion-option>
+                    <ion-option value="m">Male</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-col>
+    </ion-row>
+    <ion-card>
+        <ion-grid>
+            <ion-row>
+
+                <ion-col align-items: stretch>
+                    <img src="assets/imgs/welcome.jpg" />
+                </ion-col>
+
+                <ion-col>
+                    <p>coba dulu ya</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+    <ion-card>
+        <ion-grid>
+            <ion-row>
+
+                <ion-col align-items: stretch>
+                    <img src="assets/imgs/welcome.jpg" />
+                </ion-col>
+
+                <ion-col>
+                    <p>coba dulu ya</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+    <ion-card>
+        <ion-grid>
+            <ion-row>
+
+                <ion-col align-items: stretch>
+                    <img src="assets/imgs/welcome.jpg" />
+                </ion-col>
+
+                <ion-col>
+                    <p>coba dulu ya</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+    <ion-card>
+        <ion-grid>
+            <ion-row>
+
+                <ion-col align-items: stretch>
+                    <img src="assets/imgs/welcome.jpg" />
+                </ion-col>
+
+                <ion-col>
+                    <p>coba dulu ya</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+    <ion-card>
+        <ion-grid>
+            <ion-row>
+
+                <ion-col align-items: stretch>
+                    <img src="assets/imgs/welcome.jpg" />
+                </ion-col>
+
+                <ion-col>
+                    <p>coba dulu ya</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
 </ion-content>
 <!--justify-content-center-->
