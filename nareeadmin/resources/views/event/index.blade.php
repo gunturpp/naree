@@ -37,7 +37,6 @@
                 <tr>
                     <th>No</th>
                     <th>Nama Event</th>
-                    {{--  <th>Writter</th>  --}}
                     <th>Foto</th>
                     <th>Deskripsi Event</th>
                     <th>Latitude</th>
@@ -47,9 +46,9 @@
             @foreach($events as $event)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $event->judul}}</td>
-                <td><img src="{{ $event -> foto_1 }}" style="height:50px;width:50px;text-align:center"></td>
-                <td>{{ $event->deskripsi}}</td>
+                <td>{{ $event->name_event}}</td>
+                <td><img src="{{ $event -> poster }}" style="height:50px;width:50px;text-align:center"></td>
+                <td>{{ $event->description}}</td>
                 <td>{{ $event->lat}}</td>
                 <td>{{ $event->long}}</td>
                 <td>

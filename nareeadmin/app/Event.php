@@ -13,19 +13,16 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'admin',
-        'judul',
-        'date_start',
-        'date_end',
-        'deskripsi',
-        'id_line',
-        'id_ig',
-        'web',
-        'lat',
+        'name_event',
+        'description',
+        'date_event',
+        'province',
+        'organizer',
+        'dance_type',
+        'poster',
+        'duration',
         'long',
-        'foto_1',
-        'foto_2',
-        'foto_3',
+        'lat',
     ];
 
     /**
@@ -34,6 +31,6 @@ class Event extends Model
      * @var array
      */
     protected $hidden = [
-        // 'remember_token',
+        'remember_token',
     ];
 }

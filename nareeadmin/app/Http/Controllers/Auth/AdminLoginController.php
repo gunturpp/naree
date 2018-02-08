@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use app\Admin;
 class AdminLoginController extends Controller
 {
   protected $redirectTo = '/dashboard';

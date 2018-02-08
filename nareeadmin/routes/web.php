@@ -56,13 +56,13 @@ Route::prefix('admin')->group(function() {
 // Route::get('news/edit', 'NewsController@edit');
 
 // // Event
-// Route::get('/event', 'EventController@index');
-// Route::get('event/create', 'EventController@create');
-// Route::post('event/store', 'EventController@store');
-// Route::delete('event/destroy', 'EventController@destroy');
-// Route::put('event/update', 'EventController@update');
-// Route::get('event/show', 'EventController@show');
-// Route::get('event/edit', 'EventController@edit');
+Route::get('/event', 'EventController@index');
+Route::get('event/create', 'EventController@create');
+Route::post('event/store', 'EventController@store');
+Route::delete('event/destroy', 'EventController@destroy');
+Route::put('event/update', 'EventController@update');
+Route::get('event/show', 'EventController@show');
+Route::get('event/edit', 'EventController@edit');
 
 // // Explore
 // Route::get('/explore', 'ExploreController@index');
@@ -86,6 +86,6 @@ Route::prefix('admin')->group(function() {
 // Route::resource('cruds','CrudController');
 // Route::resource('homestays','HomestayController');
 // Route::resource('news','NewsController');
-// Route::resource('event','EventController');
+Route::resource('event','EventController');
 // Route::resource('explore','ExploreController');
 // Route::resource('souvenir','SouvenirController');

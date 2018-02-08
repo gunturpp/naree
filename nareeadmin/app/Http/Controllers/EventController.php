@@ -25,14 +25,14 @@ class EventController extends Controller
     public function index()
     {	
         $user = Auth::user();
-		if($user->cakupan=='daerah'){
+		if($user->role=='Admin'){
 			$events = DB::table('events')->count();
         }
         else {
             return 'salah';
         }
         // $newss = News::latest()->paginate(5);
-        $events = DB::table('events')->where('admin', $user->email)->latest()->paginate(5);
+        $events = DB::table('events')->latest()->paginate(5);
         return view('event.index',compact('events', 'admins'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
@@ -58,30 +58,27 @@ class EventController extends Controller
     {
         $user = Auth::user();
         request()->validate([
-            'judul' => 'required',
-            'date_start' => 'required',
-            'date_end' => 'required',
-            'deskripsi' => 'required',
-            'id_line' => 'nullable',
-            'id_ig' => 'nullable',
-            'web' => 'nullable',
-            'lat' => 'required',
+            'name_event' => 'required',
+            'description' => 'required',
+            'date_event' => 'required',
+            'province' => 'required',
+            'organizer' => 'required',
+            'poster' => 'required|mimes:jpeg,png,jpg|max:15000',
+            'duration' => 'required',
             'long' => 'required',
-            'foto_1' => 'required|mimes:jpeg,png,jpg|max:15000',
-            'foto_2' => 'nullable|mimes:jpeg,png,jpg|max:15000',
-            'foto_3' => 'nullable|mimes:jpeg,png,jpg|max:15000',
+            'lat' => 'required',
             ]);
-            $data = $request->only('judul', 'date_start', 'date_end', 'deskripsi', 'id_line', 'id_ig', 'web', 'lat', 'long', 'foto_1', 'foto_2', 'foto_3');
+            $data = $request->only('name_event', 'description', 'date_event','province', 'organizer', 'dance_type', 'poster', 'duration', 'long', 'lat');
             
             // $data = $request->except(['image']);
-            $photo1 = "";
-            if ($request->hasFile('foto_1')){ //has file itu meminta nama databasenya bukan classnya
+            $poster = "";
+            if ($request->hasFile('poster')){ //has file itu meminta nama databasenya bukan classnya
                 $ip = request()->ip();
-                $file = $request->foto_1;
+                $file = $request->poster;
                 $fileName = str_random(40) . '.' . $file->guessClientExtension();;
                 $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
                 $destinationPath = "images/event";
-                $data['foto_1'] = '../'. $destinationPath . '/' . $fileName;
+                $data['poster'] = '../'. $destinationPath . '/' . $fileName;
                 $file -> move($destinationPath, $getPath,$fileName);
                 $photo1 = $fileName;
                 $data['admin'] = $user->email;
@@ -90,37 +87,6 @@ class EventController extends Controller
     
             }
 
-            $photo2 = "";
-            if ($request->hasFile('foto_2')){ //has file itu meminta nama databasenya bukan classnya
-                $ip = request()->ip();
-                $file = $request->foto_2;
-                $fileName = str_random(40) . '.' . $file->guessClientExtension();;
-                $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
-                $destinationPath = "images/event";
-                $data['foto_2'] = '../'. $destinationPath . '/' . $fileName;
-                $file -> move($destinationPath, $getPath,$fileName);
-                $photo2 = $fileName;
-                $data['admin'] = $user->email;
-                // return $getPath;
-
-    
-            }
-
-            $photo3 = "";
-            if ($request->hasFile('foto_3')){ //has file itu meminta nama databasenya bukan classnya
-                $ip = request()->ip();
-                $file = $request->foto_3;
-                $fileName = str_random(40) . '.' . $file->guessClientExtension();;
-                $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
-                $destinationPath = "images/event";
-                $data['foto_3'] = '../'. $destinationPath . '/' . $fileName;
-                $file -> move($destinationPath, $getPath,$fileName);
-                $photo3 = $fileName;
-                $data['admin'] = $user->email;
-                // return $getPath;
-
-    
-            }
 
         Event::create($data);
         return redirect()->route('event.index')
@@ -161,30 +127,26 @@ class EventController extends Controller
     {
         $user = Auth::user();
         request()->validate([
-            'judul' => 'required',
-            'date_start' => 'required',
-            'date_end' => 'required',
-            'deskripsi' => 'required',
-            'id_line' => 'nullable',
-            'id_ig' => 'nullable',
-            'web' => 'nullable',
-            'lat' => 'required',
+            'name_event' => 'required',
+            'description' => 'required',
+            'date_event' => 'required',
+            'organizer' => 'required',
+            'poster' => 'required|mimes:jpeg,png,jpg|max:15000',
+            'duration' => 'required',
             'long' => 'required',
-            'foto_1' => 'required|mimes:jpeg,png,jpg|max:15000',
-            'foto_2' => 'nullable|mimes:jpeg,png,jpg|max:15000',
-            'foto_3' => 'nullable|mimes:jpeg,png,jpg|max:15000',
+            'lat' => 'required',
             ]);
-            $data = $request->only('judul', 'date_start', 'date_end', 'deskripsi', 'id_line', 'id_ig', 'web', 'lat', 'long', 'foto_1', 'foto_2', 'foto_3');
+            $data = $request->only('judul', 'date_start', 'date_end', 'deskripsi', 'id_line', 'id_ig', 'web', 'lat', 'long', 'poster');
             
             // $data = $request->except(['image']);
-            $photo1 = "";
-            if ($request->hasFile('foto_1')){ //has file itu meminta nama databasenya bukan classnya
+            $poster = "";
+            if ($request->hasFile('poster')){ //has file itu meminta nama databasenya bukan classnya
                 $ip = request()->ip();
-                $file = $request->foto_1;
+                $file = $request->poster;
                 $fileName = str_random(40) . '.' . $file->guessClientExtension();;
                 $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
                 $destinationPath = "images/event";
-                $data['foto_1'] = '../'. $destinationPath . '/' . $fileName;
+                $data['poster'] = '../'. $destinationPath . '/' . $fileName;
                 $file -> move($destinationPath, $getPath,$fileName);
                 $photo1 = $fileName;
                 $data['admin'] = $user->email;
@@ -193,37 +155,6 @@ class EventController extends Controller
     
             }
 
-            $photo2 = "";
-            if ($request->hasFile('foto_2')){ //has file itu meminta nama databasenya bukan classnya
-                $ip = request()->ip();
-                $file = $request->foto_2;
-                $fileName = str_random(40) . '.' . $file->guessClientExtension();;
-                $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
-                $destinationPath = "images/event";
-                $data['foto_2'] = '../'. $destinationPath . '/' . $fileName;
-                $file -> move($destinationPath, $getPath,$fileName);
-                $photo2 = $fileName;
-                $data['admin'] = $user->email;
-                // return $getPath;
-
-    
-            }
-
-            $photo3 = "";
-            if ($request->hasFile('foto_3')){ //has file itu meminta nama databasenya bukan classnya
-                $ip = request()->ip();
-                $file = $request->foto_3;
-                $fileName = str_random(40) . '.' . $file->guessClientExtension();;
-                $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
-                $destinationPath = "images/event";
-                $data['foto_3'] = '../'. $destinationPath . '/' . $fileName;
-                $file -> move($destinationPath, $getPath,$fileName);
-                $photo3 = $fileName;
-                $data['admin'] = $user->email;
-                // return $getPath;
-
-    
-            }
 
         Event::find($id)->update($data);
         return redirect()->route('event.index')

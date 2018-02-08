@@ -15,10 +15,11 @@ class CreateEventsTable extends Migration
     {
         Schema::defaultStringLength(191);        
         Schema::create('Events', function (Blueprint $table) {
-            $table->increments('id_event');
+            $table->increments('id');
             $table->string('name_event', 30);
             $table->text('description');
             $table->date('date_event');
+            $table->string('province', 30);
             $table->string('organizer', 256);
             $table->string('dance_type', 30);
             $table->string('poster');

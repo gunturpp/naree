@@ -24,89 +24,66 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Nama Event:</strong>
-                        {{ $events->judul}}
+                        <strong>Event name :</strong>
+                        {{ $events->name_event}}
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Date Start:</strong>
-                        {{ $events->date_start}}
+                        <strong>Description :</strong>
+                        {{ $events->description}}
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Date End:</strong>
-                        {{ $events->date_end}}
+                        <strong>Event date :</strong>
+                        {{ $events->date_event}}
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Deskripsi:</strong>
-                        {{ $events->deskripsi}}
+                        <strong>Organizer :</strong>
+                        {{ $events->organizer}}
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Id Line:</strong>
-                        {{ $events->id_line}}
+                        <strong>Dance Type :</strong>
+                        {{ $events->dance_type}}
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Id Instagram:</strong>
-                        {{ $events->id_ig}}
+                        <strong>Poster :</strong>
+                        <img src="{{ $events -> poster }}" style="height:50px;width:50px;text-align:center">
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>web:</strong>
-                        {{ $events->web}}
+                        <strong>Duration :</strong>
+                        {{ $events->duration}}
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Latitude:</strong>
-                        {{ $events->lat}}
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Longitude:</strong>
+                        <strong>Longitude :</strong>
                         {{ $events->long}}
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Foto 1:</strong>
-                        {{--  {{ $newss->handphone_number}}  --}}
-                        <img src="{{ $events -> foto_1 }}" style="height:50px;width:50px;text-align:center">
-                    </div>
-                </div>
-                
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Foto 2:</strong>
-                        {{--  {{ $newss->handphone_number}}  --}}
-                        <img src="{{ $events -> foto_2 }}" style="height:50px;width:50px;text-align:center">
-                    </div>
-                </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Foto 3:</strong>
-                        {{--  {{ $newss->handphone_number}}  --}}
-                        <img src="{{ $events -> foto_3 }}" style="height:50px;width:50px;text-align:center">
+                        <strong>Latitude :</strong>
+                        {{ $events->lat}}
                     </div>
-                </div>
+                </div>       
 
             </div>
         </table>

@@ -41,12 +41,13 @@ class PassportController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'gender' => 'required',
-            'c_password' => 'required|same:password',
-            'hp' => 'required|min:10|max:13',
+			'name' => 'required',
+            'email' =>'required',
+			'password' => 'required',
+			'c_password' => 'required|same:password',
+			'gender' => 'required',
+			'birthdate' => 'required',
+			'occupation' => 'required',
         ]);
 
         if($validator->fails()){
@@ -130,10 +131,10 @@ class PassportController extends Controller
 			$token = $request->header('Api-key');
 			$user = Auth::user();
 			if($string!=null)
-				$events = Event::Where('judul','like','%'.$string.'%')->orderBy('id', 'deskripsi')->get();
+				$events = Event::Where('name_event','like','%'.$string.'%')->orderBy('id', 'description')->get();
 			else
 
-				$events = Event::orderBy('id', 'deskripsi')->get();
+				$events = Event::orderBy('id', 'description')->get();
 			$status=true;
 			return compact('status','events');
     }
