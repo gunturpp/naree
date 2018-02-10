@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
 import { RewardPage } from '../pages/reward/reward';
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -21,6 +22,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     RewardPage,
     LoginPage,
+    SignupPage,
     ProfilePage
   ],
   imports: [
@@ -35,6 +37,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     LoginPage,
     ProfilePage,
+    SignupPage,
     TabsPage
   ],
   providers: [

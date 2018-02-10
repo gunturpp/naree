@@ -9,7 +9,7 @@
 <ion-header>
     <ion-navbar color="primary" item-height="50px">
         <ion-title>
-            <img class="card" src="assets/imgs/logo2.png" />
+            <img class="card" src="assets/imgs/logobkg-36.jpg" />
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -19,23 +19,28 @@
         <ion-list>
 
             <ion-item>
+                <!--<ion-icon name="md-person" [ngClass]="{'hide': true }"></ion-icon>-->
                 <ion-input type="text" placeholder="Username">
                 </ion-input>
             </ion-item>
-
+            <!--<style>
+                .hide {
+                    display: none;
+                }
+            </style>-->
             <ion-item>
                 <ion-input type="password" placeholder="Password"></ion-input>
             </ion-item>
             <ion-item>
                 <p item-start></p>
-                <button ion-button item-end clear color="dark">Forgot password?</button>
+                <button ion-button item-end clear color="dark" (click)="login()">Forgot password?</button>
             </ion-item>
         </ion-list>
         <div padding>
-            <button ion-button color="primary" block round>Sign In</button>
+            <button ion-button color="primary" block round (click)="login()">Sign In</button>
         </div>
         <ion-item>
             <p item-start>Don`t have an account ? </p>
-            <button ion-button item-end clear color="dark">Sign up</button>
+            <button ion-button item-end clear color="dark" (click)="signup()">Sign up</button>
         </ion-item>
     </ion-content>
