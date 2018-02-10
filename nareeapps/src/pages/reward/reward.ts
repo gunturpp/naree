@@ -13,7 +13,7 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'reward.html',
 })
 export class RewardPage {
-
+  pet: string = "level";
   constructor(public navCtrl: NavController) {
   }
 

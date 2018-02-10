@@ -7,37 +7,40 @@
 </ion-header>
 
 
-<ion-content padding>
-    <div>
+<ion-content padding class="back">
+    <div class="seg">
         <ion-segment [(ngModel)]="pet">
-            <ion-segment-button value="kittens">
+            <ion-segment-button value="level">
                 Level Progress
             </ion-segment-button>
-            <ion-segment-button value="puppies">
+            <ion-segment-button value="check-in">
                 Daily Check-In
             </ion-segment-button>
         </ion-segment>
     </div>
-
     <div [ngSwitch]="pet">
-        <ion-list *ngSwitchCase="'puppies'">
+        <ion-list *ngSwitchCase="'check-in'">
             <ion-item>
-                <ion-thumbnail item-start>
-                    <img src="img/thumbnail-puppy-1.jpg">
-                </ion-thumbnail>
-                <h2>Ruby</h2>
+
             </ion-item>
-            ...
+
         </ion-list>
 
-        <ion-list *ngSwitchCase="'kittens'">
-            <ion-item>
-                <ion-thumbnail item-start>
-                    <img src="img/thumbnail-kitten-1.jpg">
-                </ion-thumbnail>
-                <h2>Luna</h2>
-            </ion-item>
-            ...
+        <ion-list *ngSwitchCase="'level'">
+            <ion-card>
+                <img src="assets/imgs/star.jpg" align-items: stretch />
+                <div class="card-title"> 27 </div>
+                <div> asdasdjasdjasjd</div>
+            </ion-card>
+            <ion-card>
+                <h2 class="judul">Exp History</h2>
+                <ion-item>
+                    <p item-start> tanggal</p>
+                    <p>Checkin event </p>
+                    <p item-end> 50xp</p>
+                </ion-item>
+
+            </ion-card>
         </ion-list>
     </div>
 </ion-content>

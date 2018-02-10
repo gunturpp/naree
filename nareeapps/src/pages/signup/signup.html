@@ -7,7 +7,7 @@
 >
 
 <ion-header>
-    <ion-navbar color="primary" item-height="50px">
+    <ion-navbar color="primary" item-height="50px" hideBackButton>
         <ion-title>
             <img class="card" src="assets/imgs/logobkg-36.jpg" />
         </ion-title>
@@ -20,7 +20,7 @@
 
             <ion-item>
                 <!--<ion-icon name="md-person" [ngClass]="{'hide': true }"></ion-icon>-->
-                <ion-input type="text" placeholder="Username">
+                <ion-input type="text" placeholder="Username" value="" [(ngModel)]="userData.name">
                 </ion-input>
             </ion-item>
             <!--<style>
@@ -29,13 +29,13 @@
                 }
             </style>-->
             <ion-item>
-                <ion-input type="email" placeholder="Email"></ion-input>
+                <ion-input type="email" placeholder="Email" value="" [(ngModel)]="userData.email"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input type="password" placeholder="Password"></ion-input>
+                <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input type="password" placeholder="Confirm Password"></ion-input>
+                <ion-input type="password" placeholder="Confirm Password" [(ngModel)]="userData.c_password"></ion-input>
             </ion-item>
         </ion-list>
         <div padding>

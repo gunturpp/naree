@@ -1,1 +1,8 @@
-page-event {}
+page-event {
+    .back {
+        background-color: #e8e9ea;
+    }
+    .no-padding {
+        padding: 00% !important;
+    }
+}
