@@ -1,9 +1,11 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title></ion-title>
+        <ion-title class="ikon">
+            <ion-icon name="ai-profile"></ion-icon>
+        </ion-title>
         <ion-buttons end>
             <button ion-button large icon-only>
-      <ion-icon name='md-more'></ion-icon>
+      <ion-icon name='md-more' ></ion-icon>
     </button>
         </ion-buttons>
     </ion-navbar>
@@ -12,18 +14,19 @@
 <ion-content class="back">
     <ion-card class="foto">
         <img src="assets/imgs/foto.jpg" align-items: stretch />
+        <div class="card-title"> Denny Spooky</div>
     </ion-card>
     <ion-grid>
         <ion-row>
             <ion-col>
-                <ion-item class="kartu">
+                <ion-item no-padding class="kartu">
                     <ion-img item-start width="53" height="50" src="assets/imgs/level.jpg"></ion-img>
                     <h2 class="judul"> Level 5 </h2>
                 </ion-item>
             </ion-col>
 
             <ion-col>
-                <ion-card ion-item class="kartu">
+                <ion-card no-padding ion-item class="kartu">
                     <ion-img item-start width="53" height="50" src="assets/imgs/breaking.jpg"></ion-img>
                     <h2 item-end class="judul" end> Breaking </h2>
                 </ion-card>

@@ -1,8 +1,4 @@
 page-profile {
-    .icon {
-        font-size: 20px; //Preferred size here
-        size: 20px;
-    }
     .back {
         background-color: #e8e9ea;
     }
@@ -32,14 +28,27 @@ page-profile {
         padding-block-start: 10px;
         padding-block-end: 10px;
     }
-    .ikon {
-        left: 20%;
-    }
     .about {
         text-align: center;
+        margin-block-start: 0px;
     }
     .about-p {
         padding-block-start: 0.25px;
         padding-block-end: 0.25px;
+    }
+    .ikon {
+        margin-inline-start: 48%;
+    }
+    ion-icon {
+        font-size: 30px; //Preferred size her
+    }
+    .card-title {
+        position: absolute;
+        top: 33%;
+        font-size: 1.5em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
     }
 }
