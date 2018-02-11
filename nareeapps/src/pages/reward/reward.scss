@@ -10,6 +10,7 @@ page-reward {
         color: #95171A;
         text-align: center;
         padding-block-start: 10px;
+        font-weight: bold;
     }
     ion-card {
         position: relative;
@@ -17,7 +18,7 @@ page-reward {
     }
     .card-title {
         position: absolute;
-        top: 31.5%;
+        top: 34%;
         font-size: 1.5em;
         width: 100%;
         font-weight: bold;
@@ -29,5 +30,17 @@ page-reward {
         top: 52%;
         width: 100%;
         color: #fff;
+    }
+    .no {
+        margin: 0px;
+    }
+    .batas {
+        margin: 25px;
+    }
+    ion-icon {
+        font-size: 30px; //Preferred size here
+    }
+    .ikon {
+        margin-inline-start: 43%;
     }
 }

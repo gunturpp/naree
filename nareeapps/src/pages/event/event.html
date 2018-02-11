@@ -6,8 +6,8 @@
 -->
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title justify-content-center>
-            <ion-icon name="icon-icon-event"></ion-icon>
+        <ion-title class="ikon">
+            <ion-icon large name="ai-event"></ion-icon>
         </ion-title>
         <ion-buttons end>
             <button ion-button icon-only>
@@ -18,19 +18,22 @@
 </ion-header>
 
 
-<ion-content padding class="back">
+<ion-content class="back">
 
     <ion-row class="no-padding">
         <ion-col>
             <ion-item color="primary">
-                <ion-label color="light">Category</ion-label>
-                <ion-select [(ngModel)]="toppings">
-                    <ion-option>Bacon</ion-option>
-                    <ion-option>Black Olives</ion-option>
-                    <ion-option>Extra Cheese</ion-option>
-                    <ion-option>Mushrooms</ion-option>
-                    <ion-option>Pepperoni</ion-option>
-                    <ion-option>Sausage</ion-option>
+                <ion-label color="light">Select Category</ion-label>
+                <ion-select [(ngModel)]="category" interface="popover">
+                    <ion-option>Ballet</ion-option>
+                    <ion-option>Breaking Battle</ion-option>
+                    <ion-option>Cover Dance</ion-option>
+                    <ion-option>Dance Workshop</ion-option>
+                    <ion-option>Modern Dance</ion-option>
+                    <ion-option>Open Style Battle</ion-option>
+                    <ion-option>Zumba</ion-option>
+                    <ion-option>Traditional Dance</ion-option>
+
                 </ion-select>
             </ion-item>
             <!--<ion-item color="primary">
@@ -42,83 +45,68 @@
 
         <ion-col>
             <ion-item color="primary">
-                <ion-label color="light">Area</ion-label>
-                <ion-select [(ngModel)]="gender" interface="popover">
-                    <ion-option value="f">Female</ion-option>
-                    <ion-option value="m">Male</ion-option>
+                <ion-label color="light">Select Area</ion-label>
+                <ion-select [(ngModel)]="area" interface="popover">
+                    <ion-option value="f">Aceh</ion-option>
+                    <ion-option value="m">Bali</ion-option>
+                    <ion-option>Banten</ion-option>
+                    <ion-option>Bengkulu</ion-option>
+                    <ion-option>Gorontalo</ion-option>
+                    <ion-option>Jakarta</ion-option>
+                    <ion-option>Jambi</ion-option>
+                    <ion-option>Jawa Barat</ion-option>
+                    <ion-option>Jawa Timur</ion-option>
+                    <ion-option>Kalimantan Barat</ion-option>
+                    <ion-option>Kalimantan Selatan</ion-option>
+                    <ion-option>Kalimantan Tengah</ion-option>
                 </ion-select>
             </ion-item>
         </ion-col>
     </ion-row>
-    <ion-card>
-        <ion-grid>
-            <ion-row>
-
-                <ion-col align-items: stretch>
-                    <img src="assets/imgs/welcome.jpg" />
-                </ion-col>
-
-                <ion-col>
-                    <p>coba dulu ya</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card>
-    <ion-card>
-        <ion-grid>
-            <ion-row>
-
-                <ion-col align-items: stretch>
-                    <img src="assets/imgs/welcome.jpg" />
-                </ion-col>
-
-                <ion-col>
-                    <p>coba dulu ya</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card>
-    <ion-card>
-        <ion-grid>
-            <ion-row>
-
-                <ion-col align-items: stretch>
-                    <img src="assets/imgs/welcome.jpg" />
-                </ion-col>
-
-                <ion-col>
-                    <p>coba dulu ya</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card>
-    <ion-card>
-        <ion-grid>
-            <ion-row>
-
-                <ion-col align-items: stretch>
-                    <img src="assets/imgs/welcome.jpg" />
-                </ion-col>
-
-                <ion-col>
-                    <p>coba dulu ya</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card>
-    <ion-card>
-        <ion-grid>
-            <ion-row>
-
-                <ion-col align-items: stretch>
-                    <img src="assets/imgs/welcome.jpg" />
-                </ion-col>
-
-                <ion-col>
-                    <p>coba dulu ya</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card>
+    <<ion-card>
+        <ion-item no-padding class="gambar">
+            <img item-start style="width: 100px; height: 100px; " src="assets/imgs/welcome.jpg" />
+            <h2 class="judul"> Dawnsquad Battleground</h2>
+            <button ion-button color="primary">Bboy Battle</button>
+            <p>trans, Bandung</p>
+            <p>14 januari 2018</p>
+        </ion-item>
+        </ion-card>
+        <ion-card>
+            <ion-item no-padding class="gambar">
+                <img item-start style="width: 100px; height: 100px; " src="assets/imgs/welcome.jpg" />
+                <h2 class="judul"> Bandung Street Fighter</h2>
+                <button ion-button color="primary">Dance Workshop</button>
+                <p>trans, Bandung</p>
+                <p>14 januari 2018</p>
+            </ion-item>
+        </ion-card>
+        <ion-card>
+            <ion-item no-padding class="gambar">
+                <img item-start style="width: 100px; height: 100px; " src="assets/imgs/welcome.jpg" />
+                <h2 class="judul"> Dawnsquad Battleground</h2>
+                <button ion-button color="primary">Dance Competition</button>
+                <p>trans, Bandung</p>
+                <p>14 januari 2018</p>
+            </ion-item>
+        </ion-card>
+        <ion-card>
+            <ion-item no-padding class="gambar">
+                <img item-start style="width: 100px; height: 100px; " src="assets/imgs/welcome.jpg" />
+                <h2 class="judul"> Dawnsquad Battleground</h2>
+                <button ion-button color="primary">Bboy Battle</button>
+                <p>trans, Bandung</p>
+                <p>14 januari 2018</p>
+            </ion-item>
+        </ion-card>
+        <ion-card>
+            <ion-item no-padding class="gambar">
+                <img item-start style="width: 100px; height: 100px; " src="assets/imgs/welcome.jpg" />
+                <h2 class="judul"> Dawnsquad Battleground</h2>
+                <button ion-button color="primary">Bboy Battle</button>
+                <p>trans, Bandung</p>
+                <p>14 januari 2018</p>
+            </ion-item>
+        </ion-card>
 </ion-content>
 <!--justify-content-center-->

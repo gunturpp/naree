@@ -1,13 +1,13 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title justify-content-center>
-            <ion-icon name="icon-icon-award"></ion-icon>
+        <ion-title class="ikon">
+            <ion-icon name="ai-reward"></ion-icon>
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 
-<ion-content padding class="back">
+<ion-content class="back">
     <div class="seg">
         <ion-segment [(ngModel)]="pet">
             <ion-segment-button value="level">
@@ -20,17 +20,19 @@
     </div>
     <div [ngSwitch]="pet">
         <ion-list *ngSwitchCase="'check-in'">
-            <ion-item>
-
-            </ion-item>
-
+            <ion-card>
+                <img src="assets/imgs/daily.jpg" align-items: stretch />
+                <h3 class="batas">Lakukan Daily Check-In setiap hari dan dapatkan Daily EXP Reward!</h3>
+                <div padding>
+                    <button ion-button color="primary" block large>Check In</button>
+                </div>
+            </ion-card>
         </ion-list>
 
         <ion-list *ngSwitchCase="'level'">
             <ion-card>
                 <img src="assets/imgs/star.jpg" align-items: stretch />
                 <div class="card-title"> 27 </div>
-                <div> asdasdjasdjasjd</div>
             </ion-card>
             <ion-card>
                 <h2 class="judul">Exp History</h2>
@@ -39,7 +41,31 @@
                     <p>Checkin event </p>
                     <p item-end> 50xp</p>
                 </ion-item>
-
+                <ion-item>
+                    <p item-start> tanggal</p>
+                    <p>Checkin event </p>
+                    <p item-end> 50xp</p>
+                </ion-item>
+                <ion-item>
+                    <p item-start> tanggal</p>
+                    <p>Checkin event </p>
+                    <p item-end> 50xp</p>
+                </ion-item>
+                <ion-item>
+                    <p item-start> tanggal</p>
+                    <p>Checkin event </p>
+                    <p item-end> 50xp</p>
+                </ion-item>
+                <ion-item>
+                    <p item-start> tanggal</p>
+                    <p>Checkin event </p>
+                    <p item-end> 50xp</p>
+                </ion-item>
+                <ion-item>
+                    <p item-start> tanggal</p>
+                    <p>Checkin event </p>
+                    <p item-end> 50xp</p>
+                </ion-item>
             </ion-card>
         </ion-list>
     </div>

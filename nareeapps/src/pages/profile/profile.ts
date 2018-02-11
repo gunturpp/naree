@@ -13,7 +13,6 @@ import { NavController } from 'ionic-angular';
 })
 export class ProfilePage {
   constructor(public navCtrl: NavController) {
-
   }
   // constructor(public navCtrl: NavController, public navParams: NavParams) {
   // }
