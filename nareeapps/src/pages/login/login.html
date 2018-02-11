@@ -16,29 +16,32 @@
 
 <ion-content padding>
     <ion-content>
-        <ion-list>
-
-            <ion-item>
-                <!--<ion-icon name="md-person" [ngClass]="{'hide': true }"></ion-icon>-->
-                <ion-input type="text" placeholder="Username">
-                </ion-input>
-            </ion-item>
-            <!--<style>
+        <form #LoginForm="ngForm" novalidate>
+            <ion-list>
+                <ion-item>
+                    <!--<ion-icon name="md-person" [ngClass]="{'hide': true }"></ion-icon>-->
+                    <!-- <ion-input [(ngModel)]="user.email" type="text"  #email="ngModel" name="email" required></ion-input> -->
+                    <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="user.email"></ion-input>
+                </ion-item>
+                <!--<style>
                 .hide {
                     display: none;
                 }
             </style>-->
-            <ion-item>
-                <ion-input type="password" placeholder="Password"></ion-input>
-            </ion-item>
-            <ion-item>
+                <ion-item>
+                    <ion-input type="password" name="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>
+                </ion-item>
+            </ion-list>
+            <div padding>
+                    <button ion-button block (click)='onLogin(LoginForm)'>Sign In</button>
+                </div>
+        
+        </form>
+        <ion-item>
                 <p item-start></p>
-                <button ion-button item-end clear color="dark" (click)="login()">Forgot password?</button>
+                <button ion-button item-end clear color="dark" (click)="forgotPassword()">Forgot password?</button>
             </ion-item>
-        </ion-list>
-        <div padding>
-            <button ion-button color="primary" block round (click)="login()">Sign In</button>
-        </div>
+
         <ion-item>
             <p item-start>Don`t have an account ? </p>
             <button ion-button item-end clear color="dark" (click)="signup()">Sign up</button>

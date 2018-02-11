@@ -17,29 +17,49 @@
 <ion-content padding>
     <ion-content>
         <ion-list>
+            <form #signupForm="ngForm" novalidate>
 
-            <ion-item>
-                <!--<ion-icon name="md-person" [ngClass]="{'hide': true }"></ion-icon>-->
-                <ion-input type="text" placeholder="Username" value="" [(ngModel)]="userData.name">
-                </ion-input>
-            </ion-item>
-            <!--<style>
+                <ion-item>
+                    <!--<ion-icon name="md-person" [ngClass]="{'hide': true }"></ion-icon>-->
+                    <!-- <ion-input type="text" placeholder="Username" value="" [(ngModel)]="userData.name">
+                </ion-input> -->
+                </ion-item>
+                <!--<style>
                 .hide {
                     display: none;
                 }
             </style>-->
+                <ion-item>
+                    <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="user.email"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="user.password"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input type="text" placeholder="occupation" name="occupation" [(ngModel)]="user.occupation"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-input type="text" placeholder="gender" name="gender" [(ngModel)]="user.gender"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-input type="text" placeholder="Name" name="name" [(ngModel)]="user.name"></ion-input>
+                </ion-item>
+
+                <!-- <ion-item>
+                    <ion-input type="password" placeholder="Confirm Password" [(ngModel)]="user.c_password"></ion-input>
+                </ion-item> -->
+            </form>
             <ion-item>
-                <ion-input type="email" placeholder="Email" value="" [(ngModel)]="userData.email"></ion-input>
+                <ion-input type="text" placeholder="Birthdate" value="" [(ngModel)]="user.birthdate"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input type="password" placeholder="Confirm Password" [(ngModel)]="userData.c_password"></ion-input>
-            </ion-item>
+
         </ion-list>
         <div padding>
-            <button ion-button color="primary" block round (click)="login()">Sign Up</button>
+            <button ion-button color="primary" block round type="submit" (click)='onSignup(signupForm)'>
+                <p class="HeadButton">Daftar</p>
+            </button>
+            <!-- <button ion-button color="primary" block round (click)="signup()">Sign Up</button> -->
         </div>
-
     </ion-content>

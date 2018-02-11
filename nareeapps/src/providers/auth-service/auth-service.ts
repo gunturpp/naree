@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-let apiUrl = "http://127.0.0.1:8000/api/";
+import { Events } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
 /*
   Generated class for the AuthServiceProvider provider.
 
@@ -10,25 +12,25 @@ let apiUrl = "http://127.0.0.1:8000/api/";
 */
 @Injectable()
 export class AuthServiceProvider {
-
-  constructor(public http: HttpClient) {
-    console.log('Hello AuthServiceProvider Provider');
+  HAS_LOGGED_IN = 'hasLoggedIn';
+  public loginState = false;
+  constructor(public events: Events, public storage: Storage, public http: HttpClient) {}
+  login(email, token, name) {
+    this.storage.set(this.HAS_LOGGED_IN, true);
+    this.storage.set('name', name);
+    this.storage.set('email', email);
+    // this.storage.set('domisili',domisili);
+    // this.storage.set('gender',gender);
+    // this.storage.set('hp',hp);
+    // this.storage.set('status',status);
+    // this.storage.set('birthdate',birthdate);
+    // this.storage.set('role',role);
+    this.events.publish('user:login');
+    this.loginState = true;
   }
-postData(credentials, type){
-
-    return new Promise((resolve, reject) =>{
-      let headers = new Headers();
-      this.http.post(apiUrl+type, JSON.stringify(credentials), {headers: Headers}).
-      subscribe(res =>{
-        resolve(res.json());
-      }, (err) =>{
-        reject(err);
-      });
-
-    });
-
+  signup(email) {
+    this.storage.set(this.HAS_LOGGED_IN, true);
+    this.storage.set('email',email);
+    this.events.publish('user:signup');
   }
-
-
-
 }
