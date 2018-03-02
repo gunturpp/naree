@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar color="primary" item-height="50px">
+      <ion-title>
+          <img class="card" src="assets/imgs/logobkg-36.jpg" />
+      </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-content>
+      <form #LoginForm="ngForm" novalidate>
+          <ion-list>
+              <ion-item>
+                  <!--<ion-icon name="md-person" [ngClass]="{'hide': true }"></ion-icon>-->
+                  <!-- <ion-input [(ngModel)]="user.email" type="text"  #email="ngModel" name="email" required></ion-input> -->
+                  <ion-input type="text" placeholder="4 digit code" name="otpstr" [(ngModel)]="user.otpstr"></ion-input>
+              </ion-item>
+              <!--<style>
+              .hide {
+                  display: none;
+              }
+          </style>-->
+          </ion-list>
+          <div padding>
+              <!-- <button ion-button block (click)='putSomething()'>Sign In</button> -->
+              <button ion-button block (click)='onLogin(LoginForm)'>Verification</button>
+          </div>
+      </form>
+  </ion-content>

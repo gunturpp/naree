@@ -14,9 +14,14 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { TesapiPage } from '../pages/tesapi/tesapi';
+import { SmsotpPage } from '../pages/smsotp/smsotp';
+import { VerifcodePage } from '../pages/verifcode/verifcode';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { ApiProvider } from '../providers/api/api';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,10 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     RewardPage,
     LoginPage,
     SignupPage,
-    ProfilePage
+    ProfilePage,
+    TesapiPage,
+    SmsotpPage,
+    VerifcodePage
   ],
   imports: [
     BrowserModule,HttpModule,HttpClientModule,
@@ -44,13 +52,17 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     LoginPage,
     ProfilePage,
     SignupPage,
-    TabsPage
+    TabsPage,
+    TesapiPage,
+    SmsotpPage,
+    VerifcodePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider
+    AuthServiceProvider,
+    ApiProvider
   ]
 })
 export class AppModule {}

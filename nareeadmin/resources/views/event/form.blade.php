@@ -22,6 +22,13 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+            <strong>Location :</strong>
+            {!! Form::text('location', null, array('placeholder' => 'Jl.Mampang','class' => 'form-control')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
             <strong>Province :</strong>
             {!! Form::text('province', null, array('placeholder' => 'Example : DKI Jakarta','class' => 'form-control')) !!}
         </div>

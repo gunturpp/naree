@@ -61,6 +61,7 @@ class EventController extends Controller
             'name_event' => 'required',
             'description' => 'required',
             'date_event' => 'required',
+            'location' => 'required',
             'province' => 'required',
             'organizer' => 'required',
             'poster' => 'required|mimes:jpeg,png,jpg|max:15000',
@@ -68,7 +69,7 @@ class EventController extends Controller
             'long' => 'required',
             'lat' => 'required',
             ]);
-            $data = $request->only('name_event', 'description', 'date_event','province', 'organizer', 'dance_type', 'poster', 'duration', 'long', 'lat');
+            $data = $request->only('name_event', 'description', 'date_event','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'long', 'lat');
             
             // $data = $request->except(['image']);
             $poster = "";
@@ -130,13 +131,15 @@ class EventController extends Controller
             'name_event' => 'required',
             'description' => 'required',
             'date_event' => 'required',
+            'location' => 'required',
+            'province' => 'required',
             'organizer' => 'required',
             'poster' => 'required|mimes:jpeg,png,jpg|max:15000',
             'duration' => 'required',
             'long' => 'required',
             'lat' => 'required',
             ]);
-            $data = $request->only('judul', 'date_start', 'date_end', 'deskripsi', 'id_line', 'id_ig', 'web', 'lat', 'long', 'poster');
+            $data = $request->only('name_event', 'description', 'date_event','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'long', 'lat');
             
             // $data = $request->except(['image']);
             $poster = "";

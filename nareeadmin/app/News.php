@@ -6,17 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    protected $table = 'newss';
+    protected $table = 'news';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'judul',
-        'foto',
-        'deskripsi',
-        'admin',
+        'judul_news',
+        'description',
+        'image',
     ];
 
     /**
@@ -25,6 +24,6 @@ class News extends Model
      * @var array
      */
     protected $hidden = [
-        // 'remember_token',
+        'remember_token',
     ];
 }

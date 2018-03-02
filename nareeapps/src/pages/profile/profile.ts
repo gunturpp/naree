@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Http, Headers,RequestOptions } from '@angular/http';
+
+let getApiEvent = "http://127.0.0.1:8000/api/get-users";
 
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-  constructor(public navCtrl: NavController) {
+  userss: any;
+  constructor(private http:Http,public navCtrl: NavController) {
 
   }
-  // constructor(public navCtrl: NavController, public navParams: NavParams) {
-  // }
-
+  ionViewDidLoad() {
+    this.http.get(getApiEvent).subscribe(users =>{
+      let response = users.json();
+      this.userss = response.users;
+      console.log(this.userss);
+    })
+  }
 }

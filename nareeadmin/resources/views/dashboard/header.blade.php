@@ -123,15 +123,15 @@
         </a>
       </li>
 
-{{--  
+
       <li>
-        <a href="{{ url('cruds') }}">
-          <i class="fa fa-th"></i> <span>Crud</span>
+        <a href="{{ url('news') }}">
+          <i class="fa fa-th"></i> <span>News</span>
           <!-- <span class="pull-right-container">
             <small class="label pull-right bg-green">new</small>
           </span> -->
         </a>
-      </li>  --}}
+      </li>
       
   </section>
   <!-- /.sidebar -->

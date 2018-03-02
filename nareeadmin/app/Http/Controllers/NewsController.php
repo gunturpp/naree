@@ -25,15 +25,15 @@ class NewsController extends Controller
     public function index()
     {	
         $user = Auth::user();
-		if($user->cakupan=='daerah' || $user->cakupan=='pusat' ){
-			$newss = DB::table('newss')->count();
+		if($user->role=='Admin'){
+			$news = DB::table('news')->count();
         }
         else {
             return 'salah';
         }
-        // $newss = News::latest()->paginate(5);
-        $newss = DB::table('newss')->where('admin', $user->email)->latest()->paginate(5);
-        return view('news.index',compact('newss', 'admins'))
+        // $news = News::latest()->paginate(5);
+        $news = DB::table('news')->latest()->paginate(5);
+        return view('news.index',compact('news', 'admins'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
@@ -58,26 +58,29 @@ class NewsController extends Controller
     {
         $user = Auth::user();
         request()->validate([
-            'judul' => 'required|max:20',
-            'deskripsi' => 'required|max:255',
-            'foto' => 'required|mimes:jpeg,png,jpg|max:15000',
+            'judul_news' => 'required',
+            'description' => 'required',
+            'image' => 'required|mimes:jpeg,png,jpg|max:5000',
             ]);
-            $data = $request->only('judul','deskripsi', 'foto', 'admin');
+            $data = $request->only('judul_news', 'description', 'image');
             
             // $data = $request->except(['image']);
-            $photo1 = "";
-            if ($request->hasFile('foto')){ //has file itu meminta nama databasenya bukan classnya
+            $image = "";
+            if ($request->hasFile('image')){ //has file itu meminta nama databasenya bukan classnya
                 $ip = request()->ip();
-                $file = $request->foto;
+                $file = $request->image;
                 $fileName = str_random(40) . '.' . $file->guessClientExtension();;
                 $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
                 $destinationPath = "images/news";
-                $data['foto'] = '../'. $destinationPath . '/' . $fileName;
+                $data['image'] = '../'. $destinationPath . '/' . $fileName;
                 $file -> move($destinationPath, $getPath,$fileName);
                 $photo1 = $fileName;
                 $data['admin'] = $user->email;
                 // return $getPath;
+
+    
             }
+
 
         News::create($data);
         return redirect()->route('news.index')
@@ -91,8 +94,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $newss = News::find($id);
-        return view('news.show',compact('newss'));
+        $news = News::find($id);
+        return view('news.show',compact('news'));
     }
 
     /**
@@ -103,8 +106,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $newss = News::find($id);
-        return view('news.edit',compact('newss'));
+        $news = News::find($id);
+        return view('news.edit',compact('news'));
     }
 
     /**
@@ -118,21 +121,21 @@ class NewsController extends Controller
     {
         $user = Auth::user();
         request()->validate([
-            'judul' => 'required|max:20',
-            'deskripsi' => 'required|max:255',
-            'foto' => 'required|mimes:jpeg,png,jpg|max:15000',
+            'judul_news' => 'required',
+            'description' => 'required',
+            'image' => 'required|mimes:jpeg,png,jpg|max:5000',
             ]);
-            $data = $request->only('judul','deskripsi', 'foto');
+            $data = $request->only('judul_news', 'description', 'image');
             
             // $data = $request->except(['image']);
-            $photo1 = "";
-            if ($request->hasFile('foto')){ //has file itu meminta nama databasenya bukan classnya
+            $image = "";
+            if ($request->hasFile('image')){ //has file itu meminta nama databasenya bukan classnya
                 $ip = request()->ip();
-                $file = $request->foto;
+                $file = $request->image;
                 $fileName = str_random(40) . '.' . $file->guessClientExtension();;
                 $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
                 $destinationPath = "images/news";
-                $data['foto'] = '../'. $destinationPath . '/' . $fileName;
+                $data['image'] = '../'. $destinationPath . '/' . $fileName;
                 $file -> move($destinationPath, $getPath,$fileName);
                 $photo1 = $fileName;
                 $data['admin'] = $user->email;
@@ -140,7 +143,6 @@ class NewsController extends Controller
 
     
             }
-
         News::find($id)->update($data);
         return redirect()->route('news.index')
             ->with('success','New news has been created successfully');

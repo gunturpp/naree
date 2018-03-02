@@ -4,7 +4,7 @@ import { NavController, NavParams, LoadingController, ToastController } from 'io
 import { LoginPage } from '../login/login';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { NgForm } from '@angular/forms';
-import { Http } from '@angular/http';
+import { Http, RequestOptionsArgs } from '@angular/http';
 
 import { TabsPage } from '../tabs/tabs';
 
@@ -56,7 +56,7 @@ export class SignupPage {
         // status: this.user.role="tourist"
       });
 
-      this.http.post("http://127.0.0.1:8000/api/register", input, contentHeaders).subscribe(data => {
+      this.http.post("http://127.0.0.1:8000/api/register", input).subscribe(data => {
 
         // this.storage.set(this.HAS_LOGGED_IN, true); 
         // this.loginState = true;        

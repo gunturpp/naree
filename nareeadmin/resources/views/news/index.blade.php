@@ -44,18 +44,18 @@
                     <th>Foto</th>
                     <th width="280px">Action</th>
                 </tr>
-            @foreach($newss as $news)
+            @foreach($news as $newss)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $news->judul}}</td>
-                <td>{{ $news->admin}}</td>
+                <td>{{ $newss->judul_news}}</td>
+                <td>{{ $newss->description}}</td>
                 {{--  <td>{{ $news->foto}}</td>  --}}
-                <td>{{ $news->deskripsi}}</td>
-                <td><img src="{{ $news -> foto }}" style="height:50px;width:50px;text-align:center"></td>
+                <td>{{ $newss->created_at}}</td>
+                <td><img src="{{ $newss -> image }}" style="height:50px;width:50px;text-align:center"></td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('news.show',$news->id) }}">Show</a>
-                    <a class="btn btn-primary" href="{{ route('news.edit',$news->id) }}">Edit</a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['news.destroy', $news->id],'style'=>'display:inline']) !!}
+                    <a class="btn btn-info" href="{{ route('news.show',$newss->id) }}">Show</a>
+                    <a class="btn btn-primary" href="{{ route('news.edit',$newss->id) }}">Edit</a>
+                    {!! Form::open(['method' => 'DELETE','route' => ['news.destroy', $newss->id],'style'=>'display:inline']) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                     {!! Form::close() !!}
                 </td>
@@ -63,7 +63,7 @@
             @endforeach
             </table>
             
-            {!! $newss->links() !!}
+            {!! $news->links() !!}
     </section>
 </div>
 

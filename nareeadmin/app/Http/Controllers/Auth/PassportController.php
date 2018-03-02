@@ -83,12 +83,12 @@ class PassportController extends Controller
 			$token = $request->header('Api-key');
 			$user = Auth::user();
 			if($string!=null)
-				$newss = News::Where('judul','like','%'.$string.'%')->orderBy('id', 'deskripsi')->get();
+				$news = News::Where('judul_news','like','%'.$string.'%')->orderBy('id', 'description')->get();
 			else
 
-				$newss = News::orderBy('id', 'deskripsi')->get();
+				$news = News::orderBy('id', 'description')->get();
 			$status=true;
-			return compact('status','newss');
+			return compact('status','news');
     }
     public function getExplores(Request $request,  $string=null)
 	{

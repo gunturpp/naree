@@ -5,13 +5,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
+// import { TesapiPage } from '../pages/tesapi/tesapi';
+// import { SmsotpPage } from '../pages/smsotp/smsotp';
+import { HomePage } from '../pages/home/home';
+
+import { VerifcodePage } from '../pages/verifcode/verifcode';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
-// rootPage:any = TabsPage; 
+  // rootPage:any = HomePage;
+rootPage:any = TabsPage; 
 // ini yang default
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Judul Berita:</strong>
-            {!! Form::text('judul', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+            <strong>Title :</strong>
+            {!! Form::text('judul_news', null, array('placeholder' => 'Judul Berita','class' => 'form-control')) !!}
         </div>
     </div>
     {{--  <div class="col-xs-12 col-sm-12 col-md-12">
@@ -13,22 +13,22 @@
     </div>  --}}
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Deskripsi:</strong>
-            {!! Form::textarea('deskripsi', null, array('placeholder' => 'deskripsi','class' => 'form-control')) !!}
+            <strong>Description:</strong>
+            {!! Form::textarea('description', null, array('placeholder' => 'deskripsi','class' => 'form-control')) !!}
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group {!! $errors->has('foto') ? 'has-error' : '' !!}">
-            <strong>Foto:</strong>
-            {!! Form::file('foto') !!}
-            {!! Form::label('foto', 'Gambar Harus Memiliki Format ( jpg,jpeg,png )*') !!}
+        <div class="form-group {!! $errors->has('image') ? 'has-error' : '' !!}">
+            <strong>image:</strong>
+            {!! Form::file('image') !!}
+            {!! Form::label('image', 'Gambar Harus Memiliki Format ( jpg,jpeg,png )*') !!}
         </div>
     </div>
     <!-- <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Foto:</strong>
-            {!! Form::file('foto', null) !!}
+            <strong>image:</strong>
+            {!! Form::file('image', null) !!}
         </div>
     </div> -->
 

@@ -19,8 +19,9 @@ class CreateEventsTable extends Migration
             $table->string('name_event', 30);
             $table->text('description');
             $table->date('date_event');
+            $table->date('location',50);
             $table->string('province', 30);
-            $table->string('organizer', 256);
+            $table->string('organizer', 30);
             $table->string('dance_type', 30);
             $table->string('poster');
             $table->string('duration');

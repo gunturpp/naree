@@ -13,42 +13,17 @@
 <ion-content class="back">
     <img src="assets/imgs/welcome32.jpg" align-items: stretch />
     <!--width="80" height="80"-->
-    <ion-card>
-        <ion-grid>
+    <ion-card *ngFor="let newss of news">
+        <!-- <ion-card> -->
+            <ion-grid>
             <ion-row>
 
-                <ion-col align-items: stretch>
-                    <img src="assets/imgs/welcome.jpg" />
+                <ion-col col-4>
+                    <img class="image-news" src="http://127.0.0.1:8000/{{newss.image}}" />
                 </ion-col>
                 <ion-col>
-                    <p>coba dulu ya</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card>
-    <ion-card>
-        <ion-grid>
-            <ion-row>
-
-                <ion-col align-items: stretch>
-                    <img src="assets/imgs/welcome.jpg" />
-                </ion-col>
-                <ion-col>
-                    <p>coba dulu ya</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card>
-    <ion-card>
-        <ion-grid>
-            <ion-row>
-
-                <ion-col align-items: stretch>
-                    <img src="assets/imgs/welcome.jpg" />
-                </ion-col>
-
-                <ion-col>
-                    <p>coba dulu ya</p>
+                    <p>{{newss.judul_news}}</p>
+                    <p>{{newss.created_at}}</p>
                 </ion-col>
             </ion-row>
         </ion-grid>
