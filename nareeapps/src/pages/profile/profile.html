@@ -1,17 +1,69 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title>
-
+        <ion-title class="ikon">
+            <ion-icon name="ai-profile"></ion-icon>
         </ion-title>
+        <ion-buttons end>
+            <button ion-button large icon-only>
+      <ion-icon name='md-more' ></ion-icon>
+    </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
-<ion-content>
-    <ion-list>
-        <ion-list-header>Follow us on Twitter</ion-list-header>
+<ion-content class="back">
+    <ion-card class="foto">
+        <img src="assets/imgs/foto.jpg" align-items: stretch />
+        <div class="card-title"> Denny Spooky</div>
+    </ion-card>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-item no-padding class="kartu">
+                    <ion-img item-start width="53" height="50" src="assets/imgs/level.jpg"></ion-img>
+                    <h2 class="judul"> Level 5 </h2>
+                </ion-item>
+            </ion-col>
+
+            <ion-col>
+                <ion-card no-padding ion-item class="kartu">
+                    <ion-img item-start width="53" height="50" src="assets/imgs/breaking.jpg"></ion-img>
+                    <h2 item-end class="judul" end> Breaking </h2>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-card class="about">
+        <h2 class="judul-card"> About Me </h2>
+        <p class="about-p"> Hello! Im Denny Fadli Fitrianto </p>
+        <p class="about-p"> im a breakdancer form Padang, Indonesia</p>
+        <p class="about-p"> I havce jsadaskdaskdak </p>
+    </ion-card>
+    <ion-card>
+        <h2 class="judul-card"> Achievement </h2>
         <ion-item>
-            <ion-icon name="ionic" item-start></ion-icon>
-            @ionicframework
+            <p item-start> tanggal</p>
+            <p>Checkin event </p>
+            <p item-end> 50xp</p>
         </ion-item>
-    </ion-list>
+    </ion-card>
+    <!--<ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <img item-start src="assets/imgs/level.jpg" />
+                    <p item-end>lwasdasdlwlwlwl</p>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item>
+                    Right Icon Button
+                    <button ion-button item-end outline icon-end>
+                    Right Icon
+                    <ion-icon name='star'></ion-icon>
+                     </button>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>-->
 </ion-content>

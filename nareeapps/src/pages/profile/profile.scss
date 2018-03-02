@@ -1,3 +1,54 @@
 page-profile {
-
+    .back {
+        background-color: #e8e9ea;
+    }
+    .kartu {
+        height: 50px;
+        width: 165px;
+        margin-inline-end: 0px;
+        margin-inline-start: 0px;
+        margin-block-start: 0px;
+    }
+    .foto {
+        margin-block-end: 0px;
+    }
+    .judul {
+        size: 12px;
+        color: #95171A;
+        text-align: center;
+        padding-inline-start: 10px;
+        font-weight: bold;
+    }
+    .judul-card {
+        size: 12px;
+        color: #95171A;
+        text-align: center;
+        padding-inline-start: 10px;
+        font-weight: bold;
+        padding-block-start: 10px;
+        padding-block-end: 10px;
+    }
+    .about {
+        text-align: center;
+        margin-block-start: 0px;
+    }
+    .about-p {
+        padding-block-start: 0.25px;
+        padding-block-end: 0.25px;
+    }
+    .ikon {
+        margin-inline-start: 48%;
+    }
+    ion-icon {
+        font-size: 30px; //Preferred size her
+    }
+    .card-title {
+        position: absolute;
+        top: 33%;
+        font-size: 1.5em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+    }
 }

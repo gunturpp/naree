@@ -6,8 +6,8 @@
 -->
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title justify-content-center>
-            <ion-icon name="icon-icon-event"></ion-icon>
+        <ion-title class="ikon">
+            <ion-icon large name="ai-event"></ion-icon>
         </ion-title>
         <ion-buttons end>
             <button ion-button icon-only>
@@ -18,19 +18,22 @@
 </ion-header>
 
 
-<ion-content padding class="back">
+<ion-content class="back">
 
     <ion-row class="no-padding">
         <ion-col>
             <ion-item color="primary">
-                <ion-label color="light">Category</ion-label>
-                <ion-select [(ngModel)]="toppings">
-                    <ion-option>Bacon</ion-option>
-                    <ion-option>Black Olives</ion-option>
-                    <ion-option>Extra Cheese</ion-option>
-                    <ion-option>Mushrooms</ion-option>
-                    <ion-option>Pepperoni</ion-option>
-                    <ion-option>Sausage</ion-option>
+                <ion-label color="light">Select Category</ion-label>
+                <ion-select [(ngModel)]="category" interface="popover">
+                    <ion-option>Ballet</ion-option>
+                    <ion-option>Breaking Battle</ion-option>
+                    <ion-option>Cover Dance</ion-option>
+                    <ion-option>Dance Workshop</ion-option>
+                    <ion-option>Modern Dance</ion-option>
+                    <ion-option>Open Style Battle</ion-option>
+                    <ion-option>Zumba</ion-option>
+                    <ion-option>Traditional Dance</ion-option>
+
                 </ion-select>
             </ion-item>
             <!--<ion-item color="primary">
@@ -42,10 +45,20 @@
 
         <ion-col>
             <ion-item color="primary">
-                <ion-label color="light">Area</ion-label>
-                <ion-select [(ngModel)]="gender" interface="popover">
-                    <ion-option value="f">Female</ion-option>
-                    <ion-option value="m">Male</ion-option>
+                <ion-label color="light">Select Area</ion-label>
+                <ion-select [(ngModel)]="area" interface="popover">
+                    <ion-option value="f">Aceh</ion-option>
+                    <ion-option value="m">Bali</ion-option>
+                    <ion-option>Banten</ion-option>
+                    <ion-option>Bengkulu</ion-option>
+                    <ion-option>Gorontalo</ion-option>
+                    <ion-option>Jakarta</ion-option>
+                    <ion-option>Jambi</ion-option>
+                    <ion-option>Jawa Barat</ion-option>
+                    <ion-option>Jawa Timur</ion-option>
+                    <ion-option>Kalimantan Barat</ion-option>
+                    <ion-option>Kalimantan Selatan</ion-option>
+                    <ion-option>Kalimantan Tengah</ion-option>
                 </ion-select>
             </ion-item>
         </ion-col>
@@ -59,7 +72,7 @@
                 </ion-col>
 
                 <ion-col>
-                    <p>{{event.name_event}}</p>
+                    <p class="judul">{{event.name_event}}</p>
                     <p>{{event.dance_type}}</p>
                     <p>{{event.location}},{{event.province}}</p>
                     <p>{{event.date_event}}</p>

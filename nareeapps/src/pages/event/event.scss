@@ -9,4 +9,23 @@ page-event {
         height:100px;
         width: 100px;
     }
+
+    .ikon {
+        margin-inline-start: 48%;
+    }
+    ion-icon {
+        font-size: 30px; //Preferred size here
+    }
+    .judul {
+        color: #95171A;
+        text-align: initial;
+        padding-block-start: 0px;
+        padding-inline-start: 0px;
+        left: 10%;
+        font-weight: bold;
+    }
+    .gambar {
+        padding-inline-end: 10px;
+        padding-inline-start: 10px;
+    }
 }
