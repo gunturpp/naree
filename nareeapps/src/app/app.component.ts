@@ -8,7 +8,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 // import { TesapiPage } from '../pages/tesapi/tesapi';
 // import { SmsotpPage } from '../pages/smsotp/smsotp';
 import { HomePage } from '../pages/home/home';
-
 import { VerifcodePage } from '../pages/verifcode/verifcode';
 
 @Component({
