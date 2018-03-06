@@ -21,17 +21,4 @@ export class EventPage {
       console.log(this.events);
     })
   }
-  checkups(): string[] {
-    return [
-      "Region",
-      "bar",
-      "baz"
-    ];
-  }
-
-  checkup: string = "Region";
-
-  logChosen(): void {
-    console.log(this.checkup);
-  }
 };

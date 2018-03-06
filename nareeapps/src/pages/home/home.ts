@@ -9,6 +9,7 @@ let getApiNews = "http://127.0.0.1:8000/api/get-news";
   templateUrl: 'home.html'
 })
 export class HomePage {
+  profile: string;
   news: any;
 
   constructor(private http:Http, public navCtrl: NavController) {
@@ -20,6 +21,9 @@ export class HomePage {
       this.news =  response.news;
       console.log("news" + response.news);
     })
+    this.profile = localStorage.getItem('currentUser');
+    console.log("curr", localStorage.getItem('currentUser'));
+    console.log("cu", this.profile);
   }
 
 }
