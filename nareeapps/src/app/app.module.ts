@@ -13,7 +13,8 @@ import { RewardPage } from '../pages/reward/reward';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
-
+import { NewsPage } from '../pages/news/news';
+import { ShoweventPage } from '../pages/showevent/showevent';
 import { TesapiPage } from '../pages/tesapi/tesapi';
 import { SmsotpPage } from '../pages/smsotp/smsotp';
 import { VerifcodePage } from '../pages/verifcode/verifcode';
@@ -34,6 +35,8 @@ import { ApiProvider } from '../providers/api/api';
     SignupPage,
     ProfilePage,
     TesapiPage,
+    NewsPage,
+    ShoweventPage,
     SmsotpPage,
     VerifcodePage
   ],
@@ -50,6 +53,8 @@ import { ApiProvider } from '../providers/api/api';
     RewardPage,
     HomePage,
     LoginPage,
+    NewsPage,
+    ShoweventPage,
     ProfilePage,
     SignupPage,
     TabsPage,

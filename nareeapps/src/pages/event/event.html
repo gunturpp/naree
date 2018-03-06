@@ -10,7 +10,7 @@
             <ion-icon large name="ai-event"></ion-icon>
         </ion-title>
         <ion-buttons end>
-            <button ion-button icon-only>
+            <button ion-button icon-only (click)="showLongToast()">
         <ion-icon name="md-add-circle"></ion-icon>
       </button>
         </ion-buttons>
@@ -80,6 +80,22 @@
             </ion-row>
         </ion-grid>
     </ion-card>
-   
+    <ion-card (click)="openModal()">
+        <ion-grid>
+            <ion-row>
+
+                <ion-col col-4>
+                    <img class="poster-event" src="" />
+                </ion-col>
+
+                <ion-col>
+                    <p class="judul">aisdasd</p>
+                    <p>asfasfasfa</p>
+                    <p>asfasasdasd</p>
+                    <p>asfasdfasda</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
 </ion-content>
 <!--justify-content-center-->

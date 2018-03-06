@@ -1,0 +1,45 @@
+        page-showevent {
+            .ikon {
+                margin-inline-start: 48%;
+            }
+            .poster {
+                height: 91vw;
+                width: 91vw;
+                padding: 0;
+                margin: 0;
+                margin-block-end: 10px;
+            }
+            .judul {
+                size: 14px;
+                color: white;
+                text-align: center;
+                padding-block-start: 10px;
+                font-weight: bold;
+            }
+            .bintang {
+                text-align: center;
+                padding-block-end: 10px;
+                color: yellow;
+            }
+            .backcard {
+                width: 91vw;
+                margin: 0;
+            }
+            .backcard-ket {
+                width: 91vw;
+                margin: 0;
+                margin-block-start: 10px;
+                padding-block-start: 10px;
+            }
+            .back {
+                background-color: #e8e9ea;
+            }
+            .judul-about {
+                color: #95171A;
+                text-align: initial;
+                padding-block-start: 0px;
+                padding-inline-start: 0px;
+                font-weight: bold;
+                text-align: center;
+            }
+        }
