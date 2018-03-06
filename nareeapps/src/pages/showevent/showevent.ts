@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
+
 /**
  * Generated class for the ShoweventPage page.
  *
@@ -14,7 +15,8 @@ import { ModalController, Platform, NavParams, ViewController } from 'ionic-angu
 })
 export class ShoweventPage {
 
-  constructor(public navCtrl: NavController,public viewCtrl : ViewController) {
+  constructor(public navCtrl: NavController,public viewCtrl : ViewController ) {
+  
   }
 
   ionViewDidLoad() {
