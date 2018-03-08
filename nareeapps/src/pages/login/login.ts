@@ -25,15 +25,11 @@ export class LoginPage {
   user: { email?: string; password?: string } = {};
   submitted = false;
 
-  constructor(
-    public navCtrl: NavController,
-    public toastCtrl: ToastController,
-    public loadCtrl: LoadingController,
-    public storage: Storage,
-    public http: Http,
-    public viewCtrl: ViewController
-  ) {
-    console.log("userrr", localStorage.getItem("userReturn"));
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController,public loadCtrl: LoadingController,public storage: Storage,public http: Http,public viewCtrl: ViewController)
+  {
+    if(localStorage.getItem("token") != null){
+      this.navCtrl.push(TabsPage);
+    }
   }
 
   ionViewDidLoad() {
@@ -48,9 +44,7 @@ export class LoginPage {
 
     if (form.valid) {
       loading.present();
-      let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
-      });
+      let contentheaders = new Headers({"Content-Type": "application/x-www-form-urlencoded"});
       let input = {
         email: this.user.email,
         password: this.user.password
@@ -58,18 +52,20 @@ export class LoginPage {
       this.storage.set("password", this.user.password);
       this.storage.set("email", this.user.email);
       // console.log(this.user.password);
-      this.http.post("http://localhost:8000/api/login", input,headers).subscribe(data => {
+      this.http.post("http://127.0.0.1:8000/api/login", input).subscribe(data => {
             let response = data.json();
             loading.dismiss();
             // login berhasil
             if (response.status == 200) {
-              localStorage.setItem("currentUser",JSON.stringify(response.data));
-              let user = response.data;
-              console.log(user);
+              // save profile in localstorage   
+              localStorage.setItem("currentUser",JSON.stringify(response.currentuser));
+              // save token in localstorage   
+              localStorage.setItem("token",JSON.stringify(response.token));
               this.navCtrl.setRoot(TabsPage);
-              this.viewCtrl.dismiss();    
+              // this.viewCtrl.dismiss(); 
             } else {
-              this.showAlert(response.message);
+              // this.showAlert(response.message);
+              // console.log(response.message);
               console.log("password salah");
             }
           },
@@ -87,7 +83,7 @@ export class LoginPage {
       ? this.showAlert(
           "Tidak ada koneksi. Cek kembali sambungan Internet perangkat Anda"
         )
-      : this.showAlert("lololol");
+      : this.showAlert("Email atau password salah");
   }
   showAlert(val) {
     let toast = this.toastCtrl.create({

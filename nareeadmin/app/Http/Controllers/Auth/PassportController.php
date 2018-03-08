@@ -28,13 +28,13 @@ class PassportController extends Controller
         => request('password')]))
         {
             $user = Auth::user();
-            $success['token'] = $user->createToken('MyApp')->accessToken;
-            return response()->json(['success' => $success],
+            $token = $user->createToken('MyApp')->accessToken;
+            return response()->json(['currentuser'=>$user, 'status' => $this->successStatus,'token'=>$token],
             $this->successStatus);
         }
         else{
-            return response()->json(['error'=>'Unauthorised'],
-            401);
+			$message = "Masukkan email dan password";
+            return response()->json(['error'=>'Wrong email or password'],401);
         }
     }
 

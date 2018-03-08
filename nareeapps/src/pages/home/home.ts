@@ -11,6 +11,7 @@ let getApiNews = "http://127.0.0.1:8000/api/get-news";
   templateUrl: 'home.html'
 })
 export class HomePage {
+  token: string;
   profile: string;
   news: any;
 
@@ -24,8 +25,9 @@ export class HomePage {
       console.log("news" + response.news);
     })
     this.profile = localStorage.getItem('currentUser');
-    console.log("curr", localStorage.getItem('currentUser'));
-    console.log("cu", this.profile);
+    console.log("current user :",this.profile);
+    this.token = localStorage.getItem('token');
+    console.log("token :",this.token);
   }
   openModal() {
     const modal = this.modalCtrl.create(NewsPage);

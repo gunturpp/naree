@@ -13,8 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('login', 'Auth\PassportController@login');
-Route::post('register', 'Auth\PassportController@register');
 Route::post('post-bookings', 'Auth\PassportController@postBookings');
 Route::post('post-ratings', 'Auth\PassportController@postRatings');
 
@@ -30,11 +28,17 @@ Route::get('get-bookings', 'Auth\PassportController@getBookings');
 Route::get('get-ratings', 'Auth\PassportController@getRatings');
 
 // Route::group(['middleware' => 'auth:api'], function(){
-//     Route::post('get-details', 'Auth\PassportController@getDetails');
+//     Route::post('login', 'Auth\PassportController@login'){
+//         return $userss;
+//     }
 // });
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    
+   
+});
+Route::post('register', 'Auth\PassportController@register');
+
+Route::post('login', 'Auth\PassportController@login');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
