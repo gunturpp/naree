@@ -11,7 +11,7 @@ import { SignupPage } from "../signup/signup";
 import { Http, Headers } from "@angular/http";
 import { NgForm } from "@angular/forms";
 import { Storage } from "@ionic/storage";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+
 @Component({
   selector: "page-login",
   templateUrl: "login.html"
@@ -27,6 +27,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public toastCtrl: ToastController,public loadCtrl: LoadingController,public storage: Storage,public http: Http,public viewCtrl: ViewController)
   {
+    // kalo tokennya gak expired, langsung push tabspage
     if(localStorage.getItem("token") != null){
       this.navCtrl.push(TabsPage);
     }
@@ -52,11 +53,7 @@ export class LoginPage {
       this.storage.set("password", this.user.password);
       this.storage.set("email", this.user.email);
       // console.log(this.user.password);
-<<<<<<< HEAD
       this.http.post("http://127.0.0.1:8000/api/login", input).subscribe(data => {
-=======
-      this.http.post("http://localhost:8100/api/login", input,headers).subscribe(data => {
->>>>>>> b7229bec0bddaf8ac795a2ee379a344ebd0537ea
             let response = data.json();
             loading.dismiss();
             // login berhasil
