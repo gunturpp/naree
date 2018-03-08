@@ -1,35 +1,47 @@
 page-aboutus {
-    page-pengaturan {
-        .judul {
-            size: 12px;
-            color: #95171A;
-            // padding-inline-start: 20px;
-            padding-inline-end: 5px;
-            font-weight: bold;
-        }
-        .back {
-            padding-block-start: 10px;
-            // padding-block-end: 15px;
-            margin-block-start: 10px;
-            margin-block-end: 10px;
-        }
-        .back-kategori {
-            padding-block-start: 10px;
-            // padding-block-end: 15px;
-            margin-block-start: 1px;
-            margin-block-end: 10px;
-        }
-        .background {
-            background-color: #e8e9ea;
-        }
-        .back-card {
-            padding-block-start: 10px;
-            // padding-block-end: 10px;
-            margin-block-start: 1px;
-            margin-block-end: 1px;
-        }
-        .posisi {
-            text-align: justify;
-        }
+    .judul {
+        size: 15px;
+        color: #95171A;
+        text-align: center;
+        padding-inline-start: 10px;
+        font-weight: bold;
+        padding-block-start: 20px;
+        padding-block-end: 20px;
+    }
+    .back {
+        padding-block-start: 10px;
+        // padding-block-end: 15px;
+        margin-block-start: 10px;
+        margin-block-end: 10px;
+    }
+    .back-kategori {
+        padding-block-start: 10px;
+        // padding-block-end: 15px;
+        margin-block-start: 1px;
+        margin-block-end: 10px;
+    }
+    .background {
+        background-color: #e8e9ea;
+    }
+    .back-card {
+        padding-block-start: 10px;
+        // padding-block-end: 10px;
+        margin-block-start: 1px;
+        margin-block-end: 1px;
+    }
+    .posisi {
+        text-align: justify;
+    }
+    .keterangan {
+        text-align: center;
+        padding-inline-start: 23px;
+        padding-inline-end: 23px;
+    }
+    .moto {
+        text-align: center;
+        padding-inline-start: 25px;
+        padding-inline-end: 25px;
+        padding-block-start: 15px;
+        padding-block-end: 15px;
     }
 }
