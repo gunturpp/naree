@@ -14,8 +14,8 @@ import { VerifcodePage } from '../pages/verifcode/verifcode';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
-// rootPage:any = TabsPage; 
+  // rootPage:any = LoginPage;
+rootPage:any = TabsPage; 
 // ini yang default
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

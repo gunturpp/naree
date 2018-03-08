@@ -11,7 +11,7 @@ import { SignupPage } from "../signup/signup";
 import { Http, Headers } from "@angular/http";
 import { NgForm } from "@angular/forms";
 import { Storage } from "@ionic/storage";
-
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 @Component({
   selector: "page-login",
   templateUrl: "login.html"
@@ -58,7 +58,7 @@ export class LoginPage {
       this.storage.set("password", this.user.password);
       this.storage.set("email", this.user.email);
       // console.log(this.user.password);
-      this.http.post("http://localhost:8000/api/login", input,headers).subscribe(data => {
+      this.http.post("http://localhost:8100/api/login", input,headers).subscribe(data => {
             let response = data.json();
             loading.dismiss();
             // login berhasil

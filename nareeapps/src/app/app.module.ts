@@ -11,9 +11,15 @@ import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
 import { RewardPage } from '../pages/reward/reward';
 import { LoginPage } from '../pages/login/login';
+import { NewsPage } from '../pages/news/news';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
-import { NewsPage } from '../pages/news/news';
+import { AboutusPage } from '../pages/aboutus/aboutus';
+import { AchievementPage } from '../pages/achievement/achievement';
+import { ContactusPage } from '../pages/contactus/contactus';
+import { EditprofilePage } from '../pages/editprofile/editprofile';
+import { MorePage } from '../pages/more/more';
+import { PengaturanPage } from '../pages/pengaturan/pengaturan';
 import { ShoweventPage } from '../pages/showevent/showevent';
 import { TesapiPage } from '../pages/tesapi/tesapi';
 import { SmsotpPage } from '../pages/smsotp/smsotp';
@@ -27,6 +33,12 @@ import { ApiProvider } from '../providers/api/api';
 @NgModule({
   declarations: [
     MyApp,
+    AboutusPage,
+    AchievementPage,
+    ContactusPage,
+    EditprofilePage,
+    MorePage,
+    PengaturanPage,
     EventPage,
     HomePage,
     TabsPage,
@@ -49,6 +61,12 @@ import { ApiProvider } from '../providers/api/api';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    AboutusPage,
+    AchievementPage,
+    ContactusPage,
+    EditprofilePage,
+    MorePage,
+    PengaturanPage,
     EventPage,
     RewardPage,
     HomePage,
