@@ -14,11 +14,11 @@ export class ProfilePage {
   profile: any;
   constructor(private http:Http,public navCtrl: NavController) {
     this.profiles = JSON.parse(localStorage.getItem('currentUser'));
-    this.profile = JSON.stringify(this.profiles.currentuser);
-    this.profil = JSON.parse(this.profile);
+    // this.profile = JSON.stringify(this.profiles.currentuser);
+    // this.profil = JSON.parse(this.profile);
   }
   ionViewDidLoad() {
-    console.log(this.profil);
+    console.log(this.profiles);
   //   manggil semua user
   //   this.http.get(getApiEvent).subscribe(users =>{
   //     let response = users.json();
