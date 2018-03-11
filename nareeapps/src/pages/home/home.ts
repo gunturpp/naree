@@ -14,15 +14,14 @@ export class HomePage {
   token: string;
   profile: string;
   news: any;
-
   constructor(private http:Http, public navCtrl: NavController,public modalCtrl: ModalController) {
     
   }
   ionViewDidLoad() {
     this.http.get(getApiNews).subscribe(newss =>{
       let response = newss.json();
-      this.news =  response.news;
-      console.log("news" + response.news);
+      this.news = response.news;
+      console.log("news" + JSON.stringify(this.news));
     })
     this.profile = localStorage.getItem('currentUser');
     console.log("current user :",this.profile);

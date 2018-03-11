@@ -13,20 +13,13 @@
 <ion-content class="back">
     <img src="assets/imgs/welcome32.jpg" align-items: stretch />
     <!--width="80" height="80"-->
-    <ion-card *ngFor="let newss of news" no-padding (click)="openModal()">
-        <!-- <ion-card no-padding (click)="openModal()"> -->
-        <ion-grid>
-            <ion-row>
-
-                <ion-col col-4>
-                    <img class="image-news" src="http://127.0.0.1:8000/{{newss.image}}" />
-                    <!-- <img class="image-news" src="assets/imgs/welcome.jpg" /> -->
-                </ion-col>
-                <ion-col>
-                    <p class="judul"> {{newss.judul_news}}</p>
-                    <p> {{newss.created_at}}</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card>
+    <ion-card *ngFor="let newss of news" (click)="openModal()">
+        <img class="image-news" src="http://127.0.0.1:8000/{{newss.image}}" />
+        <ion-card-content>
+          <ion-card-title class="judul">
+            {{newss.judul_news}}
+            </ion-card-title>
+            <p displayFormat="MM/DD/YYYY"> {{newss.created_at}}</p>
+        </ion-card-content>
+      </ion-card>
 </ion-content>

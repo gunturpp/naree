@@ -1,10 +1,15 @@
 page-home {
+    .card{
+        background-color: #ffffff;
+    }
     .back {
         background-color: #e8e9ea;
     }
     .image-news {
-        height:100px;
-        width: 100px;
+        height:150px;
+        width: 170px;
+        float: left;
+        margin-right:10px;
     }
     .gambar {
         padding: 0px !important;
@@ -12,6 +17,7 @@ page-home {
         height: 110px;
     }
     .judul {
+        word-wrap: break-word;
         size: 12px;
         color: #95171A;
         text-align: initial;
