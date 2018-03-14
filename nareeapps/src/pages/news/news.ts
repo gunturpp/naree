@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
+import { Http, Headers,RequestOptions } from '@angular/http';
+let getApiNews = "http://127.0.0.1:8000/api/get-news";
 /**
  * Generated class for the NewsPage page.
  *
@@ -14,13 +16,32 @@ import { ModalController, Platform, NavParams, ViewController } from 'ionic-angu
 })
 export class NewsPage {
 
-  constructor(public navCtrl: NavController,public viewCtrl : ViewController) {
+    postId: number;
+    token: string;
+    profile: string;
+    news: any;
+    datanews: any;
+   data: any;
+   judul : any;
+   tgl : any;
+   isi : any;
+   foto : any;
+  constructor(private http:Http,public navCtrl: NavController,public viewCtrl : ViewController,public navParams : NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NewsPage');
+    
+    
+    this.data = this.navParams.get('newss');
+    this.judul = this.data.judul_news;
+    this.isi = this.data.description;
+    this.foto = this.data.image;
+    this.tgl = this.data.updated_at;
+    console.log(this.data);
+    
   }
   closeModal(){
     this.viewCtrl.dismiss();
    }
+
 }

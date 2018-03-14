@@ -29,6 +29,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { ApiProvider } from '../providers/api/api';
+import { DataProvider } from '../providers/data/data';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ApiProvider } from '../providers/api/api';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
-    ApiProvider
+    ApiProvider,
+    DataProvider
   ]
 })
 export class AppModule {}

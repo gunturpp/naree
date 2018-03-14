@@ -34,11 +34,15 @@
 <ion-content class="back">
 
     <ion-card color='primary' class="gambar">
+        <img src="http://127.0.0.1:8000/{{foto}}" />
 
     </ion-card>
     <ion-card class="text">
-        <h1 class="judul"> 5 jenis tarian topeng Cirebon yang kian langka</h1>
-        <p class="tanggal"> tanggal </p>
-        <p class='detail'>kwkwwkkwwamdlakmdlasmkdlaksdmsalkddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd </p>
+        <h1 class="judul">{{judul}}</h1>
+        <p class="tanggal" displayFormat="MM/DD/YYYY">{{tgl}} </p>
+        <p class='detail'>{{isi}} </p>
     </ion-card>
 </ion-content>
+<!-- {{newss.judul_news}}
+{{newss.description}}
+{{newss.created_at}}  -->
