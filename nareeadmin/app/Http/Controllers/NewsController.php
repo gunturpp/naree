@@ -25,7 +25,7 @@ class NewsController extends Controller
     public function index()
     {	
         $user = Auth::user();
-		if($user->role=='Admin'){
+		if($user->role=='admin'){
 			$news = DB::table('news')->count();
         }
         else {
@@ -60,7 +60,7 @@ class NewsController extends Controller
         request()->validate([
             'judul_news' => 'required',
             'description' => 'required',
-            'image' => 'required|mimes:jpeg,png,jpg|max:5000',
+            'image' => 'mimes:jpeg,png,jpg|max:50000',
             ]);
             $data = $request->only('judul_news', 'description', 'image');
             

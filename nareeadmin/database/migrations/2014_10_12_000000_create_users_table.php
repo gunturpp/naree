@@ -18,15 +18,15 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name',30);
             $table->string('email',30)->unique();
-            $table->string('password',16);
+            $table->string('password');
             $table->string('gender', 6);
             $table->date('birthdate');
             $table->string('occupation', 30);
-            $table->string('photo');
-            $table->string('about_me');
-            $table->string('team', 30);
-            $table->integer('exp');
-            $table->string('dance_type', 30);
+            $table->string('photo')->nullable();
+            $table->string('about_me')->nullable();
+            $table->string('team', 30)->nullable();
+            $table->integer('exp')->nullable();
+            $table->string('dance_type', 30)->nullable();
             
             $table->rememberToken();
             $table->timestamps();

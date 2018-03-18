@@ -1,20 +1,7 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('/auth/admin-login');
-    // return view('/dashboard/index');
-    
+    // return view('/dashboard/index');  
 });
 Auth::routes();
 
@@ -24,7 +11,8 @@ Route::prefix('admin')->group(function() {
     Route::get('/', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/', 'Auth\AdminLoginController@login')->name('admin.login.submit');
   });
-  Route::get('/dashboard', 'AdminController@index');
+
+ Route::get('/dashboard', 'AdminController@index');
 
 // cruds
 // Route::get('cruds/index', 'CrudsController@index');
@@ -64,14 +52,14 @@ Route::put('event/update', 'EventController@update');
 Route::get('event/show', 'EventController@show');
 Route::get('event/edit', 'EventController@edit');
 
-// // Explore
-// Route::get('/explore', 'ExploreController@index');
-// Route::get('explore/create', 'ExploreController@create');
-// Route::post('explore/store', 'ExploreController@store');
-// Route::delete('explore/destroy', 'ExploreController@destroy');
-// Route::put('explore/update', 'ExploreController@update');
-// Route::get('explore/show', 'ExploreController@show');
-// Route::get('explore/edit', 'ExploreController@edit');
+// // Advertisement
+Route::get('/advertisement', 'AdvertisementController@index');
+Route::get('advertisement/create', 'AdvertisementController@create');
+Route::post('advertisement/store', 'AdvertisementController@store');
+Route::delete('advertisement/destroy', 'AdvertisementController@destroy');
+Route::put('advertisement/update', 'AdvertisementController@update');
+Route::get('advertisement/show', 'AdvertisementController@show');
+Route::get('advertisement/edit', 'AdvertisementController@edit');
 
 // // Souvenir
 // Route::get('/souvenir', 'SouvenirController@index');
@@ -87,5 +75,6 @@ Route::get('event/edit', 'EventController@edit');
 // Route::resource('homestays','HomestayController');
 Route::resource('news','NewsController');
 Route::resource('event','EventController');
+Route::resource('advertisement','AdvertisementController');
 // Route::resource('explore','ExploreController');
 // Route::resource('souvenir','SouvenirController');

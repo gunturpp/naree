@@ -13,9 +13,9 @@ use App\Event;
 class EventController extends Controller
 {
     public function __construct()
-    {
+    {   
+        // harus role admin
         $this->middleware('auth:admin');
-        //$this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class EventController extends Controller
     public function index()
     {	
         $user = Auth::user();
-		if($user->role=='Admin'){
+		if($user->role=='admin'){
 			$events = DB::table('events')->count();
         }
         else {
@@ -61,6 +61,7 @@ class EventController extends Controller
             'name_event' => 'required',
             'description' => 'required',
             'date_event' => 'required',
+            'ticket_price' => 'required',
             'location' => 'required',
             'province' => 'required',
             'organizer' => 'required',
@@ -131,6 +132,7 @@ class EventController extends Controller
             'name_event' => 'required',
             'description' => 'required',
             'date_event' => 'required',
+            'ticket_price' => 'required',
             'location' => 'required',
             'province' => 'required',
             'organizer' => 'required',

@@ -22,6 +22,13 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+            <strong>Ticket Price :</strong>
+            {!! Form::number('ticket_price', null, array('placeholder' => '100000','class' => 'form-control')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
             <strong>Location :</strong>
             {!! Form::text('location', null, array('placeholder' => 'Jl.Mampang','class' => 'form-control')) !!}
         </div>

@@ -18,8 +18,9 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('name_event', 30);
             $table->text('description');
+            $table->integer('ticket_price')->nullable();
             $table->date('date_event');
-            $table->date('location',50);
+            $table->string('location',50);
             $table->string('province', 30);
             $table->string('organizer', 30);
             $table->string('dance_type', 30);
@@ -28,6 +29,7 @@ class CreateEventsTable extends Migration
             $table->decimal('long',10,7);
             $table->decimal('lat',10,7);
             $table->timestamps();
+            
         });
     }
 

@@ -123,10 +123,27 @@
         </a>
       </li>
 
-
       <li>
         <a href="{{ url('news') }}">
           <i class="fa fa-th"></i> <span>News</span>
+          <!-- <span class="pull-right-container">
+            <small class="label pull-right bg-green">new</small>
+          </span> -->
+        </a>
+      </li>
+      
+      <li>
+        <a href="{{ url('advertisement') }}">
+          <i class="fa fa-th"></i> <span>Advertisement</span>
+          <!-- <span class="pull-right-container">
+            <small class="label pull-right bg-green">new</small>
+          </span> -->
+        </a>
+      </li>
+
+      <li>
+        <a href="{{ url('feedback') }}">
+          <i class="fa fa-th"></i> <span>Feedback</span>
           <!-- <span class="pull-right-container">
             <small class="label pull-right bg-green">new</small>
           </span> -->
