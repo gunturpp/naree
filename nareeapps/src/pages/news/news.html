@@ -17,25 +17,37 @@
         </ion-buttons>
     </ion-navbar>
 </ion-header> -->
-<ion-header>
+<!-- <ion-header>
     <ion-navbar color="primary">
         <ion-buttons start (click)="closeModal()">
-            <button ion-button large icon-only>
+        <button ion-button large icon-only>
                   <ion-icon name='ios-undo' ></ion-icon>
             </button>
         </ion-buttons>
-        <ion-title class="ikon" no-padding>
+        <ion-title justify-content-center class="ikon" no-padding>
             <img src="assets/imgs/naree-07.png">
         </ion-title>
 
     </ion-navbar>
 
+</ion-header> -->
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title class="ikon">
+            <img src="assets/imgs/naree-07.png">
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button large icon-only (click)="closeModal()">
+                <ion-icon name='ios-undo' ></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
+
 <ion-content class="back">
 
     <ion-card color='primary' class="gambar">
-        <img src="http://127.0.0.1:8000/{{foto}}" />
-
+        <img style="width:100%;height:100%;" src="http://127.0.0.1:8000/{{foto}}" />
     </ion-card>
     <ion-card class="text">
         <h1 class="judul">{{judul}}</h1>

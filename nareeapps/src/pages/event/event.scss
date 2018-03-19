@@ -6,10 +6,9 @@ page-event {
         padding: 00% !important;
     }
     .poster-event {
-        height:100px;
+        height: 100px;
         width: 100px;
     }
-
     .ikon {
         margin-inline-start: 48%;
     }
@@ -20,9 +19,12 @@ page-event {
         color: #95171A;
         text-align: initial;
         padding-block-start: 0px;
+        margin-block-end: 0px;
+        padding-block-end: 0px;
         padding-inline-start: 0px;
         left: 10%;
         font-weight: bold;
+        font-size: 15px;
     }
     .gambar {
         padding-inline-end: 10px;

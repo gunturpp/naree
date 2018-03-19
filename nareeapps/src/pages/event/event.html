@@ -20,7 +20,7 @@
 
 <ion-content class="back">
 
-    <ion-row class="no-padding">
+    <!-- <ion-row class="no-padding">
         <ion-col>
             <ion-item color="primary">
                 <ion-label color="light">Select Category</ion-label>
@@ -40,7 +40,7 @@
                 <ion-select [(ngModel)]="checkup" (ionChange)="logChosen()">
                     <ion-option *ngFor="let checkup of checkups()">{{checkup}}</ion-option>
                 </ion-select>
-            </ion-item>-->
+            </ion-item>
         </ion-col>
 
         <ion-col>
@@ -62,7 +62,7 @@
                 </ion-select>
             </ion-item>
         </ion-col>
-    </ion-row>
+    </ion-row> -->
     <ion-card *ngFor="let event of events" (click)="openModal(event)">
         <ion-grid>
             <ion-row>
@@ -73,7 +73,7 @@
 
                 <ion-col>
                     <p class="judul">{{event.name_event}}</p>
-                    <p>{{event.dance_type}}</p>
+                    <button ion-button color="primary" small style="font-size:12px;">{{event.dance_type}}</button>
                     <p>{{event.location}},{{event.province}}</p>
                     <p>{{event.date_event}}</p>
                 </ion-col>
@@ -81,4 +81,3 @@
         </ion-grid>
     </ion-card>
 </ion-content>
-<!--justify-content-center-->

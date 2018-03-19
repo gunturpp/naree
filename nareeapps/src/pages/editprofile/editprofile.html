@@ -21,51 +21,61 @@
 
 
 <ion-content padding class="background">
-    <ion-card class="back-card">
-        <ion-item>
-            <h2 class="judul" item-start>Full Name</h2>
-            Denny Spooky
-        </ion-item>
-    </ion-card>
-    <ion-card class="back-card">
-        <ion-item>
-            <h2 class="judul" item-start> Username</h2>
-            Denny
-        </ion-item>
-    </ion-card>
-    <ion-card class="back-kategori">
-        <ion-item>
-            <h2 class="judul" item-start> Category</h2>
-        </ion-item>
-    </ion-card>
-    <ion-card class="back-card">
-        <ion-item>
-            <h2 class="judul" item-start> Birthdate</h2>
-        </ion-item>
-    </ion-card>
-    <ion-card class="back-card">
-        <ion-item>
-            <h2 class="judul" item-start>Gender</h2>
-        </ion-item>
-    </ion-card>
-    <ion-card class="back-card">
-        <ion-item>
-            <h2 class="judul" item-start>Email</h2>
-        </ion-item>
-    </ion-card>
-    <ion-card class="back-card">
-        <ion-item>
-            <h2 class="judul" item-start>Phone</h2>
-        </ion-item>
-    </ion-card>
-    <ion-card class="back-card">
-        <ion-item>
-            <h2 class="judul" item-start>About Me</h2>
-        </ion-item>
-    </ion-card>
-    <ion-card class="back">
-        <ion-item>
-            <h2 class="judul" item-start>Achievement</h2>
-        </ion-item>
-    </ion-card>
+    <form #signupForm="ngForm" novalidate>
+        <ion-card class="back-card">
+            <ion-item>
+                <h2 class="judul" item-start>Full Name</h2>
+                <ion-input class="input" [(ngModel)]="profiles.name" type="text" placeholder={{profiles.name}} name="username"></ion-input>
+            </ion-item>
+        </ion-card>
+        <ion-card class="back-card">
+            <ion-item>
+                <h2 class="judul" item-start> Username</h2>
+                <ion-input class="input" type="text" placeholder={{profiles.name}}></ion-input>
+            </ion-item>
+        </ion-card>
+        <ion-card class="back-kategori">
+            <ion-item>
+                <h2 class="judul" item-start> Category</h2>
+                <ion-input class="inputa" [(ngModel)]="profiles.dance_type" type="text" placeholder={{profiles.dance_type}} name="dance_type"></ion-input>
+            </ion-item>
+        </ion-card>
+        <ion-card class="back-card">
+            <ion-item>
+                <h2 class="judul" item-start> Birthdate</h2>
+                <ion-input class="inputi" [(ngModel)]="profiles.birthdate" type="text" placeholder={{profiles.birthdate}} name="birthdate"></ion-input>
+            </ion-item>
+        </ion-card>
+        <ion-card class="back-card">
+            <ion-item>
+                <h2 class="judul" item-start>Gender</h2>
+                <ion-input class="inputu" [(ngModel)]="profiles.gender" type="text" placeholder={{profiles.gender}} name="gender"></ion-input>
+            </ion-item>
+        </ion-card>
+        <ion-card class="back-card">
+            <ion-item>
+                <h2 class="judul" item-start>Email</h2>
+                <ion-input class="inpute" [(ngModel)]="profiles.email" type="text" placeholder={{profiles.email}} name="email"></ion-input>
+            </ion-item>
+        </ion-card>
+        <ion-card class="back-card">
+            <ion-item>
+                <h2 class="judul" item-start>Phone</h2>
+                <ion-input class="inputo" type="text" placeholder={{profiles.name}}></ion-input>
+            </ion-item>
+        </ion-card>
+        <ion-card class="back-card">
+            <ion-item>
+                <h2 class="judul" item-start>About Me</h2>
+                <ion-input class="inputb" [(ngModel)]="profiles.about_me" type="text" placeholder={{profiles.about_me}} name="about_me"></ion-input>
+            </ion-item>
+        </ion-card>
+        <ion-card class="back">
+            <ion-item>
+                <h2 class="judul" item-start>Achievement</h2>
+            </ion-item>
+        </ion-card>
+        <button ion-button (click)="onSignup(signupForm)" type="submit" block>Update Akun</button>
+    </form>
+
 </ion-content>

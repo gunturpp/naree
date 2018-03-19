@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-
+import { NavController,ModalController } from 'ionic-angular';
+import { CheckinDailyPage } from '../checkin-daily/checkin-daily';
 /**
  * Generated class for the RewardPage page.
  *
@@ -14,7 +14,13 @@ import { NavController } from 'ionic-angular';
 })
 export class RewardPage {
   pet: string = "level";
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,public modalCtrl: ModalController) {
   }
-
+  // checkin() {
+  //   this.navCtrl.push(CheckinDailyPage);
+  // }
+  openModal() {
+    const modal = this.modalCtrl.create(CheckinDailyPage);
+    modal.present();
+  }
 }

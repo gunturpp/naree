@@ -6,6 +6,40 @@ page-editprofile {
         padding-inline-end: 5px;
         font-weight: bold;
     }
+    .input {
+        size: 12px;
+        padding-block-end: 10px;
+    }
+    .inputa {
+        size: 12px;
+        padding-block-end: 10px;
+        margin-inline-start: 9px;
+    }
+    .inputi {
+        size: 12px;
+        padding-block-end: 10px;
+        margin-inline-start: 8px;
+    }
+    .inputu {
+        size: 12px;
+        padding-block-end: 10px;
+        margin-inline-start: 24px;
+    }
+    .inpute {
+        size: 12px;
+        padding-block-end: 10px;
+        margin-inline-start: 34px;
+    }
+    .inputo {
+        size: 12px;
+        padding-block-end: 10px;
+        margin-inline-start: 30px;
+    }
+    .inputb {
+        size: 12px;
+        padding-block-end: 10px;
+        margin-inline-start: 7px;
+    }
     .back {
         padding-block-start: 10px;
         // padding-block-end: 15px;
@@ -13,7 +47,7 @@ page-editprofile {
         margin-block-end: 10px;
     }
     .back-kategori {
-        padding-block-start: 10px;
+        padding-block-start: 5px;
         // padding-block-end: 15px;
         margin-block-start: 1px;
         margin-block-end: 10px;
@@ -22,7 +56,7 @@ page-editprofile {
         background-color: #e8e9ea;
     }
     .back-card {
-        padding-block-start: 10px;
+        padding-block-start: 5px;
         // padding-block-end: 10px;
         margin-block-start: 1px;
         margin-block-end: 1px;

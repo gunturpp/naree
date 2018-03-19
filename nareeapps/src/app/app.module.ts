@@ -24,6 +24,8 @@ import { ShoweventPage } from '../pages/showevent/showevent';
 import { TesapiPage } from '../pages/tesapi/tesapi';
 import { SmsotpPage } from '../pages/smsotp/smsotp';
 import { VerifcodePage } from '../pages/verifcode/verifcode';
+import { CheckinDailyPage } from '../pages/checkin-daily/checkin-daily';
+import { CheckinEventPage } from '../pages/checkin-event/checkin-event';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,6 +50,8 @@ import { DataProvider } from '../providers/data/data';
     SignupPage,
     ProfilePage,
     TesapiPage,
+    CheckinDailyPage,
+    CheckinEventPage,
     NewsPage,
     ShoweventPage,
     SmsotpPage,
@@ -66,6 +70,8 @@ import { DataProvider } from '../providers/data/data';
     AchievementPage,
     ContactusPage,
     EditprofilePage,
+    CheckinDailyPage,
+    CheckinEventPage,
     MorePage,
     PengaturanPage,
     EventPage,

@@ -23,16 +23,18 @@ export class EventPage {
       console.log(this.events);
     })
   }
-  openModal() {
-    const modal = this.modalCtrl.create(ShoweventPage);
+  openModal(event) {
+    const modal = this.modalCtrl.create(ShoweventPage,{event});
     modal.present();
+    console.log(event);
   }
   doAlert() {
     let alert = this.alerCtrl.create({
       title: 'New Friend!',
-      message: 'Your friend, Obi wan Kenobi, just approved your friend request!',
+      message: 'WTFFFFFF ADDD MEEEEEE' ,
       buttons: ['Ok']
     });
     alert.present()
   }
 };
+// <img src="assets/imgs/welcome32.jpg">
