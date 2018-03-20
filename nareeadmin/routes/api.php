@@ -4,11 +4,13 @@ use Illuminate\Http\Request;
 
 
 Route::post('post-feedback', 'Auth\PassportController@postFeedback');
+Route::post('post-achievement', 'Auth\PassportController@postAchievement');
 
 Route::get('get-users', 'Auth\PassportController@getUsers');
 Route::get('get-news', 'Auth\PassportController@getNews');
 Route::get('get-events', 'Auth\PassportController@getEvents');
 Route::get('get-advertisements', 'Auth\PassportController@getAdvertisement');
+Route::get('get-achievement', 'Auth\PassportController@getAchievement');
 
 // Route::group(['middleware' => 'auth:api'], function(){
 //     Route::post('login', 'Auth\PassportController@login'){

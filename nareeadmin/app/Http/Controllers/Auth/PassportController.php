@@ -10,6 +10,7 @@ use App\News;
 use App\Event;
 use App\Advertisement;
 use App\Feedback;
+use App\Achievement;
 
 
 use Validator;
@@ -38,7 +39,8 @@ class PassportController extends Controller
     {
         $validator = Validator::make($request->all(),[
 			'name' => 'required',
-            'email' =>'required',
+			'email' =>'required|unique',
+			'username' =>'required|unique',
 			'password' => 'required',
 			'c_password' => 'required|same:password',
 			'gender' => 'required',
@@ -110,6 +112,18 @@ class PassportController extends Controller
 		$status=true;
 		return compact('status','advertisements');
 	}
+	public function getAchievement(Request $request,  $string=null)
+	{
+		$token = $request->header('Api-key');
+		$user = Auth::user();
+		if($string!=null)
+			$achievements = Achievement::Where('title','like','%'.$string.'%')->orderBy('id', 'year')->get();
+		else
+
+			$achievements = Achievement::orderBy('id', 'year')->get();
+		$status=true;
+		return compact('status','achievements');
+	}
 	
 	// POST
 	public function postFeedback(Request $request)
@@ -125,5 +139,21 @@ class PassportController extends Controller
         $feedbacks = Feedback::create($data);
         $success = $feedbacks;
         return response()->json(['success'=>$success], $this->successStatus);
+	}
+	public function postAchievement(Request $request)
+	{
+		$user = Auth::user();
+		$data = $request->only(
+			'id_user','title','scope','month','year','exp'
+		);
+		$data['id_user'] = $request->id_user;
+		$data['title'] = $request->title;
+		$data['scope'] = $request->scope;
+		$data['month'] = $request->month;
+		$data['year'] = $request->year;
+		$data['exp'] = $request->exp;
+		$achievements = Achievement::create($data);
+		$success = $achievements;
+		return response()->json(['success'=>$success], $this->successStatus);
 	}
 }

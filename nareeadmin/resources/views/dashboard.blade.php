@@ -91,7 +91,15 @@
             </div>
             <br>
             <div class="inner" style="text-align:center">
+                <a class="btn btn-success" href="{{ route('event.create') }}"> Create New News</a>
+            </div>
+            <br>
+            <div class="inner" style="text-align:center">
                 <a class="btn btn-success" href="{{ route('event.create') }}"> Create New Advertise</a>
+            </div>
+            <br>
+            <div class="inner" style="text-align:center">
+                <a class="btn btn-success" href="{{ route('event.create') }}"> Look Feedback</a>
             </div>
 
       <!-- /.row (main row) -->
