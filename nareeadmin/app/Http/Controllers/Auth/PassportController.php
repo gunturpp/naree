@@ -34,7 +34,27 @@ class PassportController extends Controller
             return response()->json(['error'=>'Wrong email or password'],401);
         }
     }
+	// UPDATE
+	public function editUser(User $user, $id)
+    {   
+		$user = Auth::findOrFail($id);
+		return response()->json(['currentuser'=>$user], compact('users'));
+    }
 
+    public function update(User $user)
+    { 
+        $this->validate(request(), [
+            'name' => 'required',
+        ]);
+
+        $user->name = request('name');
+        $user->password = bcrypt(request('password'));
+
+        $user->save();
+
+        return back();
+	}
+	// ===========================================================
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -124,8 +144,9 @@ class PassportController extends Controller
 		$status=true;
 		return compact('status','achievements');
 	}
-	
+
 	// POST
+	
 	public function postFeedback(Request $request)
 	{
 		$user = Auth::user();
