@@ -17,7 +17,7 @@ import { TabsPage } from '../tabs/tabs';
 export class SignupPage {
   resposeData: any;
   submitted: any;
-  user: { name?: string, email?: string, password?: string, gender?: string, birthdate?: string, occupation?: string } = {};
+  user: { name?: string, email?: string,username?: string, password?: string, gender?: string, birthdate?: string, occupation?: string } = {};
   c_password: string;
   // userData = { "name": "", "email": "", "password": "", "c_password": "", "gender": "male", "birthdate": "2017/06/23", "occupation": "student" };
   constructor(
@@ -47,6 +47,7 @@ export class SignupPage {
       let input = ({
         name: this.user.name,
         email: this.user.email,
+        username: this.user.username,
         password: this.user.password,
         c_password: this.c_password,
         gender: this.user.gender = "male",
