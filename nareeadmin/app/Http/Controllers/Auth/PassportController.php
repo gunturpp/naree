@@ -11,7 +11,7 @@ use App\Event;
 use App\Advertisement;
 use App\Feedback;
 use App\Achievement;
-
+use App\History;
 
 use Validator;
 use DB;
@@ -145,6 +145,18 @@ class PassportController extends Controller
 		$status=true;
 		return compact('status','achievements');
 	}
+	public function getHistories(Request $request,  $string=null)
+	{
+		$token = $request->header('Api-key');
+		$user = Auth::user();
+		if($string!=null)
+			$histories = History::Where('judul','like','%'.$string.'%')->orderBy('id', 'created_at')->get();
+		else
+
+			$histories = History::orderBy('id', 'created_at')->get();
+		$status=true;
+		return compact('status','histories');
+	}
 
 	// POST
 	
@@ -176,6 +188,19 @@ class PassportController extends Controller
 		$data['exp'] = $request->exp;
 		$achievements = Achievement::create($data);
 		$success = $achievements;
+		return response()->json(['success'=>$success], $this->successStatus);
+	}
+	public function postHistories(Request $request)
+	{
+		$user = Auth::user();
+		$data = $request->only(
+			'id_user','comment','judul'
+		);
+		$data['id_user'] = $request->id_user;
+		$data['exp'] = $request->exp;
+		$data['judul'] = $request->judul;
+		$histories = History::create($data);
+		$success = $histories;
 		return response()->json(['success'=>$success], $this->successStatus);
 	}
 }
