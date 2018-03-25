@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->date('birthdate');
             $table->string('occupation', 30);
             $table->string('photo')->nullable();
+            $table->integer('no_hp')->nullable();
             $table->string('about_me')->nullable();
             $table->string('team', 30)->nullable();
             $table->integer('exp')->nullable();
