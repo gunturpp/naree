@@ -16,6 +16,7 @@ export class RewardPage {
   pet: string = "level";
   constructor(public navCtrl: NavController,public modalCtrl: ModalController) {
   }
+  
   // checkin() {
   //   this.navCtrl.push(CheckinDailyPage);
   // }

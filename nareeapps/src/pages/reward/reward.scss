@@ -43,4 +43,25 @@ page-reward {
     .ikon {
         margin-inline-start: 43%;
     }
+    .card-title {
+        position: absolute;
+        top: 34%;
+        font-size: 1.8em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+    }
+    .card-subtitle {
+        font-size: 1.0em;
+        position: absolute;
+        top: 80%;
+        width: 100%;
+        color: #fff;
+    }
+    .card-loading {
+        position: absolute;
+        top: 71%;
+        width: 100%;
+        left: 10%;
+    }
 }

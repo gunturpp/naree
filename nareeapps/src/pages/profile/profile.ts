@@ -13,7 +13,7 @@ export class ProfilePage {
   profiles: any;
   profile: any;
   constructor(private http:Http,public navCtrl: NavController) {
-    this.profiles = JSON.parse(localStorage.getItem('currentUser'));
+    // this.profiles = JSON.parse(localStorage.getItem('currentUser'));
     // this.profile = JSON.stringify(this.profiles.currentuser);
     // this.profil = JSON.parse(this.profile);
   }

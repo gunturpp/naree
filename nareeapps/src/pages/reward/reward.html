@@ -8,6 +8,7 @@
 
 
 <ion-content class="back">
+    <ng-progress></ng-progress>
     <div class="seg">
         <ion-segment [(ngModel)]="pet">
             <ion-segment-button value="level">
@@ -31,8 +32,10 @@
 
         <ion-list *ngSwitchCase="'level'">
             <ion-card>
-                <img src="assets/imgs/star.jpg" align-items: stretch />
-                <div class="card-title"> 27 </div>
+                <img src="assets/imgs/star.jpg" />
+                <div class="card-title">27</div>
+                <progress-bar class="card-loading" [progress]="53"></progress-bar>
+                <div class="card-subtitle"> exp 85 of 160 </div>
             </ion-card>
             <ion-card>
                 <h2 class="judul">Exp History</h2>

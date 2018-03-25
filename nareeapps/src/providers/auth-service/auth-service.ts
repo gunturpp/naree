@@ -33,4 +33,10 @@ export class AuthServiceProvider {
     this.storage.set('email',email);
     this.events.publish('user:signup');
   }
+  logout() {
+    this.storage.remove(this.HAS_LOGGED_IN);
+    this.storage.remove('name');
+    this.storage.remove('email');
+    this.loginState = false;
+  };
 }

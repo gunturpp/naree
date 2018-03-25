@@ -1,0 +1,21 @@
+progress-bar {
+    .progress-outer {
+        width: 80%;
+        // margin: 10px 2%;
+        // padding: 1px;
+        text-align: center;
+        // background-color: rgba($color: yellowgreen, $alpha: 0.1)(244, 244, 244, 1);
+        border: 1px solid yellow;
+        color: #fff;
+        border-radius: 20px;
+        font-size: 0.00000000001px;
+    }
+    .progress-inner {
+        min-width: 15%;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 4px;
+        border-radius: 20px;
+        background-color: map-get($colors, loading);
+    }
+}

@@ -8,7 +8,8 @@ import { ContactusPage } from '../contactus/contactus';
 import { Http, Headers } from "@angular/http";
 import { NgForm } from "@angular/forms";
 import { Storage } from "@ionic/storage";
-
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { LoginPage } from '../login/login';
 @Component({
   selector: 'page-more',
   templateUrl: 'more.html',
@@ -16,7 +17,7 @@ import { Storage } from "@ionic/storage";
 export class MorePage {
   token: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage : Storage) {
+  constructor(public authServiceProvider: AuthServiceProvider , public navCtrl: NavController, public navParams: NavParams, private storage : Storage) {
   }
 
   ionViewDidLoad() {
@@ -35,8 +36,10 @@ export class MorePage {
     this.navCtrl.push(ContactusPage);
   }
   signOut(){
-    if(localStorage.getItem("token") !=null){
-      
+    this.authServiceProvider.logout();
+    localStorage.removeItem('token');
+    if(localStorage.getItem('token') == null ) {
+      this.navCtrl.push(LoginPage);
     }
   }
 }

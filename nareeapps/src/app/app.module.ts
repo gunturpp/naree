@@ -26,12 +26,14 @@ import { SmsotpPage } from '../pages/smsotp/smsotp';
 import { VerifcodePage } from '../pages/verifcode/verifcode';
 import { CheckinDailyPage } from '../pages/checkin-daily/checkin-daily';
 import { CheckinEventPage } from '../pages/checkin-event/checkin-event';
+import { NgProgressModule} from 'ng2-progressbar';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { ApiProvider } from '../providers/api/api';
 import { DataProvider } from '../providers/data/data';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 @NgModule({
   declarations: [
@@ -55,12 +57,14 @@ import { DataProvider } from '../providers/data/data';
     NewsPage,
     ShoweventPage,
     SmsotpPage,
-    VerifcodePage
+    VerifcodePage,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,HttpModule,HttpClientModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    NgProgressModule,
 
   ],
   bootstrap: [IonicApp],
