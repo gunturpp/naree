@@ -50,8 +50,6 @@ export class LoginPage {
         email: this.user.email,
         password: this.user.password
       };
-      this.storage.set("password", this.user.password);
-      this.storage.set("email", this.user.email);
       // console.log(this.user.password);
       this.http.post("http://127.0.0.1:8000/api/login", input).subscribe(data => {
             let response = data.json();

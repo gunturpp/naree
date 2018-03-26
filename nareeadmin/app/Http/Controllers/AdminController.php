@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Dashboard;
-use App\Homestay;
-use App\Booking;
-use App\Souvenir;
+use App\Advertisement;
+use App\Event;
+use App\News;
+use App\Feedback;
 use App\User;
 use DB;
 use Auth;
@@ -32,18 +33,18 @@ class AdminController extends Controller
     public function index()
     {
         $user = Auth::user();
-		if($user->role=='daerah'){
+		if($user->role=='admin'){
             $users = DB::table('users')->count();
-            $homestays = DB::table('homestays')->count();
-            $bookings = DB::table('bookings')->count();
-            // $bookings = DB::table('bookings')->where('')->count();
-            $souvenirs = DB::table('souvenirs')->count();
+            $events = DB::table('events')->count();
+            $news = DB::table('news')->count();
+            $advertisements = DB::table('advertisements')->count();
+            $feedbacks = DB::table('feedbacks')->count();
         }
         else {
-            // return 'salah';
+            return 'kamu bukan admin :p';
             
         }
-        return view('dashboard', compact('users','homestays','bookings','souvenirs'));        
+        return view('dashboard', compact('users','events','news','advertisements','feedbacks'));        
     }
 
     /**

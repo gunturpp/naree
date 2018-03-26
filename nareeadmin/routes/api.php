@@ -2,10 +2,16 @@
 
 use Illuminate\Http\Request;
 
-
+Route::post('register', 'Auth\PassportController@register');
+Route::post('login', 'Auth\PassportController@login');
 Route::post('post-history', 'Auth\PassportController@postHistories');
 Route::post('post-feedback', 'Auth\PassportController@postFeedback');
 Route::post('post-achievement', 'Auth\PassportController@postAchievement');
+
+Route::get('users/{id}/edit', 'Auth\PassportController@editUser');
+Route::put('users/{id}/update', 'Auth\PassportController@updateUser');
+
+
 
 Route::get('get-users', 'Auth\PassportController@getUsers');
 Route::get('get-news', 'Auth\PassportController@getNews');
@@ -23,13 +29,10 @@ Route::middleware('auth:api')->group(function () {
     Route::get('get-events', 'Auth\PassportController@getEvents');
 
     // test edit profile
-    Route::get('edit/{id}', 'Auth\PassportController@editUser');
-    Route::patch('users/{user}/update', 'Auth\PassportController@updateUser');
+    // Route::get('edit/{id}', 'Auth\PassportController@editUser');
+    // Route::patch('users/{user}/update', 'Auth\PassportController@updateUser');
 
 });
-Route::post('register', 'Auth\PassportController@register');
-Route::post('login', 'Auth\PassportController@login');
-
 
 // Route::get('/home', 'HomeController@index')->name('home');
 

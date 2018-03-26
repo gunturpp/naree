@@ -36,25 +36,29 @@ class PassportController extends Controller
         }
     }
 	// UPDATE
-	public function editUser(User $user, $id)
-    {   
-		$user = Auth::findOrFail($id);
-		return response()->json(['currentuser'=>$user], compact('users'));
+    public function editUser($id)
+    {
+        $users = User::find($id);
+		$user = Auth::user();
+		return response()->json(['currentuser'=>$users]);
     }
-
-    public function update(User $user)
-    { 
-        $this->validate(request(), [
-            'name' => 'required',
-        ]);
-
-        $user->name = request('name');
-        $user->password = bcrypt(request('password'));
-
-        $user->save();
-
-        return back();
-	}
+    public function updateUser(Request $request , $id)
+    {
+        $user = Auth::user();
+        request()->validate([
+			'name' =>'max:30',
+			'occupation'=>'max:30',
+			'photo'=> 'mimes:jpeg,png,jpg|max:15000',
+			'no_hp'=> 'min:10|max:13',
+			'about_me'=>'max:200',
+			'team'=> 'max:30',
+			'dance_type'=>'max:30',
+			
+		]);
+		$data = $request->only('name','occupation','photo','no_hp','about_me','team','dance_type');
+		User::find($id)->update($data);
+        return $message = ('Selamat, profile berhasil diubah');
+    }
 	// ===========================================================
     public function register(Request $request)
     {

@@ -24,9 +24,9 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-            <h3>1</h3>
+            <h3>{{$users}}</h3>
 
-              <p>All Users</p>
+              <p>Total Pengguna</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -39,10 +39,10 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-            <h3>2</h3>
+            <h3>{{$events}}</h3>
             <!-- <h3>53<sup style="font-size: 20px">%</sup></h3> -->
             
-              <p>All Homestays</p>
+              <p>Total Event</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -55,9 +55,9 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>66</h3>
+              <h3>{{$news}}</h3>
 
-              <p>All Booking</p>
+              <p>Total Berita</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -70,9 +70,9 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3>{{$advertisements}}</h3>
 
-              <p>All Transactions</p>
+              <p>Total Iklan</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -81,6 +81,22 @@
           </div>
         </div>
         <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>{{$feedbacks}}</h3>
+
+              <p>Total Komentar</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+
       </div>
       <!-- /.row -->
       <!-- Main row -->
