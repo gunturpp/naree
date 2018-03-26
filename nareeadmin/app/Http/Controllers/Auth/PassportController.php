@@ -53,9 +53,10 @@ class PassportController extends Controller
 			'about_me'=>'max:200',
 			'team'=> 'max:30',
 			'dance_type'=>'max:30',
+			'exp' => 'max:191'
 			
 		]);
-		$data = $request->only('name','occupation','photo','no_hp','about_me','team','dance_type');
+		$data = $request->only('name','occupation','photo','no_hp','about_me','team','dance_type','exp');
 		User::find($id)->update($data);
         return $message = ('Selamat, profile berhasil diubah');
     }
