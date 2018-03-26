@@ -91,15 +91,15 @@
             </div>
             <br>
             <div class="inner" style="text-align:center">
-                <a class="btn btn-success" href="{{ route('event.create') }}"> Create New News</a>
+                <a class="btn btn-success" href="{{ route('news.create') }}"> Create New News</a>
             </div>
             <br>
             <div class="inner" style="text-align:center">
-                <a class="btn btn-success" href="{{ route('event.create') }}"> Create New Advertise</a>
+                <a class="btn btn-success" href="{{ route('advertisement.create') }}"> Create New Advertise</a>
             </div>
             <br>
             <div class="inner" style="text-align:center">
-                <a class="btn btn-success" href="{{ route('event.create') }}"> Look Feedback</a>
+              <a class="btn btn-success" href="{{ url('feedback') }}"> Look Feedback</a>
             </div>
 
       <!-- /.row (main row) -->
