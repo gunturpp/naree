@@ -25,49 +25,49 @@
         <ion-card class="back-card">
             <ion-item>
                 <h2 class="judul" item-start>Full Name</h2>
-                <ion-input class="input" [(ngModel)]="profiles.name" type="text" placeholder={{profiles.name}} name="username"></ion-input>
+                <ion-input class="input" [(ngModel)]="nama" type="text" placeholder={{nama}} name="nama"></ion-input>
             </ion-item>
         </ion-card>
         <ion-card class="back-card">
             <ion-item>
                 <h2 class="judul" item-start> Username</h2>
-                <ion-input class="input" type="text" placeholder={{profiles.name}}></ion-input>
+                <ion-input class="input" [(ngModel)]="usrname" type="text" placeholder={{usrname}} name="usrname"></ion-input>
             </ion-item>
         </ion-card>
         <ion-card class="back-kategori">
             <ion-item>
                 <h2 class="judul" item-start> Category</h2>
-                <ion-input class="inputa" [(ngModel)]="profiles.dance_type" type="text" placeholder={{profiles.dance_type}} name="dance_type"></ion-input>
+                <ion-input class="inputa" [(ngModel)]="kategori" type="text" placeholder={{kategori}} name="kategori"></ion-input>
             </ion-item>
         </ion-card>
         <ion-card class="back-card">
             <ion-item>
                 <h2 class="judul" item-start> Birthdate</h2>
-                <ion-input class="inputi" [(ngModel)]="profiles.birthdate" type="text" placeholder={{profiles.birthdate}} name="birthdate"></ion-input>
+                <ion-input class="inputi" [(ngModel)]="tgl" type="text" placeholder={{tgl}} name="tgl"></ion-input>
             </ion-item>
         </ion-card>
         <ion-card class="back-card">
             <ion-item>
                 <h2 class="judul" item-start>Gender</h2>
-                <ion-input class="inputu" [(ngModel)]="profiles.gender" type="text" placeholder={{profiles.gender}} name="gender"></ion-input>
+                <ion-input class="inputu" [(ngModel)]="gender" type="text" placeholder={{gender}} name="gender"></ion-input>
             </ion-item>
         </ion-card>
         <ion-card class="back-card">
             <ion-item>
                 <h2 class="judul" item-start>Email</h2>
-                <ion-input class="inpute" [(ngModel)]="profiles.email" type="text" placeholder={{profiles.email}} name="email"></ion-input>
+                <ion-input class="inpute" [(ngModel)]="email" type="text" placeholder={{email}} name="email"></ion-input>
             </ion-item>
         </ion-card>
         <ion-card class="back-card">
             <ion-item>
                 <h2 class="judul" item-start>Phone</h2>
-                <ion-input class="inputo" type="text" placeholder={{profiles.name}}></ion-input>
+                <ion-input class="inputo" [(ngModel)]="hp " type="text" placeholder={{hp}} name="hp"></ion-input>
             </ion-item>
         </ion-card>
         <ion-card class="back-card">
             <ion-item>
                 <h2 class="judul" item-start>About Me</h2>
-                <ion-input class="inputb" [(ngModel)]="profiles.about_me" type="text" placeholder={{profiles.about_me}} name="about_me"></ion-input>
+                <ion-input class="inputb" [(ngModel)]="about" type="text" placeholder={{about}} name="about"></ion-input>
             </ion-item>
         </ion-card>
         <ion-card class="back">
@@ -75,7 +75,7 @@
                 <h2 class="judul" item-start>Achievement</h2>
             </ion-item>
         </ion-card>
-        <button ion-button (click)="onSignup(signupForm)" type="submit" block>Update Akun</button>
+        <button ion-button (click)="editProfil()" type="submit" block>Update Akun</button>
     </form>
 
 </ion-content>

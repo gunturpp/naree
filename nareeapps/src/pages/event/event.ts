@@ -4,6 +4,8 @@ import { Http, Headers,RequestOptions } from '@angular/http';
 import{ ShoweventPage } from '../showevent/showevent';
 import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import { DataProvider } from '../../providers/data/data';
 let getApiEvent = "http://127.0.0.1:8000/api/get-events";
 
 @Component({
@@ -12,7 +14,9 @@ let getApiEvent = "http://127.0.0.1:8000/api/get-events";
 })
 export class EventPage {
   events: any;
-
+  token: string;
+  profile: string;
+  data :any;
   constructor(private http:Http, public navCtrl: NavController,public modalCtrl: ModalController, public alerCtrl: AlertController) {
 
   }
@@ -20,8 +24,13 @@ export class EventPage {
     this.http.get(getApiEvent).subscribe(event =>{
       let response = event.json();
       this.events = response.events;
+      this.data = this.events[0];
       console.log(this.events);
     })
+    this.profile = localStorage.getItem('currentUser');
+    console.log("current user :",this.profile);
+    this.token = localStorage.getItem('token');
+    console.log("token :",this.token);
   }
   openModal(event) {
     const modal = this.modalCtrl.create(ShoweventPage,{event});
@@ -30,8 +39,8 @@ export class EventPage {
   }
   doAlert() {
     let alert = this.alerCtrl.create({
-      title: 'New Friend!',
-      message: 'WTFFFFFF ADDD MEEEEEE' ,
+      title: 'TAMBAH EVENT',
+      message: 'hubungi kami melalui line@: naree.app' ,
       buttons: ['Ok']
     });
     alert.present()
