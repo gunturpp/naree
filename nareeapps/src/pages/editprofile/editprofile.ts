@@ -93,7 +93,8 @@ export class EditprofilePage {
       });
         this.http.put("http://127.0.0.1:8000/api/users/"+this.profiles.id +"/update",input).subscribe(user => {
         let response = user.text;
-        // console.log(response);
+        localStorage.setItem("currentUser",JSON.stringify(input));
+        console.log(response);
         
 	  if(response.name =="Selamat, profile berhasil diubah"){
        // this.data.login(response.data);
@@ -119,5 +120,6 @@ export class EditprofilePage {
            }
 
       });
-    
-  }}
+      this.navCtrl.push(MorePage);
+  }
+}

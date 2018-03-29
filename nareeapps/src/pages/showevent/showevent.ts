@@ -1,6 +1,6 @@
 import { Component,ViewChild,ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
+import { ModalController,ToastController, AlertController,  ActionSheetController , Platform, NavParams, ViewController } from 'ionic-angular';
 import { Http, Headers,RequestOptions } from '@angular/http';
 import { CheckinEventPage } from '../checkin-event/checkin-event';
 declare var google: any;
@@ -32,9 +32,15 @@ foto_poster:any;
 duration:any;
 longtitude:any;
 lattitude:any;
+profiles:any;
+exp:any;
 @ViewChild('map') mapRef: ElementRef;
-  constructor(private http:Http,public navCtrl: NavController,public viewCtrl : ViewController,public navParams : NavParams) {
-  
+  constructor(private http:Http,
+    public toastCtrl: ToastController,
+    public alertCtrl: AlertController,
+    public actionSheetCtrl: ActionSheetController,
+    public navCtrl: NavController,public viewCtrl : ViewController,public navParams : NavParams) {
+      this.profiles = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ionViewDidLoad() {
@@ -52,6 +58,7 @@ this.foto_poster = this.data.poster;
 this.duration = this.data.duration;
 this.longtitude =this.data.long;
 this.lattitude =this.data.lat;
+this.exp =this.data.exp;
 this.showMap(this.longtitude,this.lattitude);
 console.log(this.data);
   }
@@ -77,6 +84,17 @@ console.log(this.data);
      })
    }
    checkin() {
+    let contentHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let input = ({
+      id_user:this.profiles.id,
+      judul:this.nama,
+      exp:this.exp,
+    });
+      this.http.post("http://127.0.0.1:8000/api/post-history",input).subscribe(data => {
+        let response = data.json();
+      console.log(response);  
+    });
     this.navCtrl.push(CheckinEventPage);
   }
+  
 }
