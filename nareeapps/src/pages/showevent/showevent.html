@@ -47,20 +47,20 @@
     <ion-card class="backcard-ket" padding>
         <p icon-start>
             <ion-icon color='primary' name="calendar"></ion-icon>
-            {{tanggal}}-</p>
+            {{tanggal|date: 'EEEE, MMMM dd'}}</p>
         <p icon-start>
             <ion-icon color='primary' name="pin"></ion-icon>
             {{location}}, {{province}}</p>
         <p icon-start>
             <ion-icon color='primary' name="cash"></ion-icon>
-            Free Entry for Naree User</p>
+            {{tiket| currency:"Rp"}}</p>
         <p icon-start>
             <ion-icon color='primary' name="people"></ion-icon>
-            {{org}}</p>
+            by {{org}}</p>
     </ion-card>
     <ion-card class="backcard-ket">
         <p class="judul-about"> About</p>
-        <p> {{isi}}</p>
+        <p class="isi"> {{isi}}</p>
     </ion-card>
     <ion-card #map id="map" class="backcard-ket">
 

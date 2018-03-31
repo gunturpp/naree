@@ -38,6 +38,7 @@ export class MorePage {
   signOut(){
     this.authServiceProvider.logout();
     localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
     if(localStorage.getItem('token') == null ) {
       this.navCtrl.push(LoginPage);
     }

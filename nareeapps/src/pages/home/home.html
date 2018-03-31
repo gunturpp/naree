@@ -17,9 +17,10 @@
         <img class="image-news" src="http://127.0.0.1:8000/{{newss.image}}" />
         <ion-card-content>
             <ion-card-title class="judul">
-                {{newss.judul_news}} - {{newss.id}}
+                <!-- {{newss.judul_news}} -->5 Jenis tarian topeng Cirebon yang kian langka
             </ion-card-title>
-            <p displayFormat="MM/DD/YYYY"> {{newss.created_at}}</p>
+            <p displayFormat="MM/DD/YYYY"> {{newss.created_at|date: 'dd MMMM yyyy'}}</p>
+            <!-- <ion-datetime color="primary" disabled displayFormat="MM/DD/YYYY" [(ngModel)]="newss.created_at"></ion-datetime> -->
         </ion-card-content>
     </ion-card>
 </ion-content>

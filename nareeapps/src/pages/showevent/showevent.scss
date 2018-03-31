@@ -41,6 +41,9 @@
                 padding-inline-start: 0px;
                 font-weight: bold;
                 text-align: center;
+                text-transform: uppercase;
+                font-size: 18px;
+                margin-block-end: 0px;
             }
             .gambar {
                 width: 100%;
@@ -51,5 +54,12 @@
             }
             #map {
                 height: 50%;
+            }
+            .isi {
+                text-align: justify;
+                margin: 10px;
+                padding: 15px;
+                margin-block-start: 0px;
+                padding-block-end: 0px;
             }
         }
