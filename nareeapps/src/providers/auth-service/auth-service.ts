@@ -37,6 +37,7 @@ export class AuthServiceProvider {
     this.storage.remove(this.HAS_LOGGED_IN);
     this.storage.remove('name');
     this.storage.remove('email');
+    this.storage.remove('token');
     this.loginState = false;
   };
 }

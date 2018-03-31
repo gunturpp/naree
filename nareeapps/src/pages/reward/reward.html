@@ -34,40 +34,16 @@
             <ion-card>
                 <img src="assets/imgs/star.jpg" />
                 <div class="card-title">27</div>
-                <progress-bar class="card-loading" [progress]="53"></progress-bar>
-                <div class="card-subtitle"> exp 85 of 160 </div>
+                <progress-bar class="card-loading" [progress]="persentase"></progress-bar>
+                <div class="card-subtitle"> exp {{jumlah}} of 1500 </div>
             </ion-card>
             <ion-card>
                 <h2 class="judul">Exp History</h2>
-                <ion-item>
-                    <p item-start> tanggal</p>
-                    <p>Checkin event </p>
-                    <p item-end> 50xp</p>
-                </ion-item>
-                <ion-item no-margin>
-                    <p item-start> tanggal</p>
-                    <p>Checkin event </p>
-                    <p item-end> 50xp</p>
-                </ion-item>
-                <ion-item no-margin>
-                    <p item-start> tanggal</p>
-                    <p>Checkin event </p>
-                    <p item-end> 50xp</p>
-                </ion-item>
-                <ion-item>
-                    <p item-start> tanggal</p>
-                    <p>Checkin event </p>
-                    <p item-end> 50xp</p>
-                </ion-item>
-                <ion-item>
-                    <p item-start> tanggal</p>
-                    <p>Checkin event </p>
-                    <p item-end> 50xp</p>
-                </ion-item>
-                <ion-item>
-                    <p item-start> tanggal</p>
-                    <p>Checkin event </p>
-                    <p item-end> 50xp</p>
+                <ion-item no-margin *ngFor="let history of riwayat">
+                    <!-- *ngFor="let history of riwayat" -->
+                    <p item-start> {{history.updated_at}}</p>
+                    <p> {{history.judul}} </p>
+                    <p item-end> {{history.exp}}</p>
                 </ion-item>
             </ion-card>
         </ion-list>
