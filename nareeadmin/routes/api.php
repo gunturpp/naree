@@ -18,6 +18,7 @@ Route::get('get-news', 'Auth\PassportController@getNews');
 Route::get('get-advertisements', 'Auth\PassportController@getAdvertisement');
 Route::get('get-achievement', 'Auth\PassportController@getAchievement');
 Route::get('get-history', 'Auth\PassportController@getHistories');
+Route::get('get-events', 'Auth\PassportController@getEvents');
 
 // Route::group(['middleware' => 'auth:api'], function(){
 //     Route::post('login', 'Auth\PassportController@login'){
@@ -25,13 +26,12 @@ Route::get('get-history', 'Auth\PassportController@getHistories');
 //     }
 // });
 Route::middleware('auth:api')->group(function () {
-    // jadi harus pake token dan harus login
-    Route::get('get-events', 'Auth\PassportController@getEvents');
-
+    // jadi h arus pake token dan harus login
+    
     // test edit profile
     // Route::get('edit/{id}', 'Auth\PassportController@editUser');
     // Route::patch('users/{user}/update', 'Auth\PassportController@updateUser');
-
+    
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');
