@@ -22,6 +22,7 @@ class CreateAchievementsTable extends Migration
             $table->string('month',10)->nullable();
             $table->date('year')->nullable();
             $table->string('exp');
+            $table->string('poster');
             $table->timestamps();
         });
     }

@@ -18,7 +18,8 @@ class Achievement extends Model
         'scope',
         'month',
         'year',
-        'exp'
+        'exp',
+        'poster'
     ];
 
     /**
