@@ -30,6 +30,10 @@ export class ProfilePage {
   //     console.log(this.userss);
   //   })
   }
+  ionViewWillEnter(){
+  
+    this.profiles = JSON.parse(localStorage.getItem('currentUser'));
+  }
   gotoNextPage(){
     this.navCtrl.push(MorePage)
   }

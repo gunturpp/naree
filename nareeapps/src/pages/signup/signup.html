@@ -30,7 +30,7 @@
                 }
             </style>-->
                 <ion-item>
-                    <ion-input type="username" placeholder="username" name="username" [(ngModel)]="user.username"></ion-input>
+                    <ion-input type="username" placeholder="Username" name="username" [(ngModel)]="user.username"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="user.email"></ion-input>
@@ -39,11 +39,15 @@
                     <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="user.password"></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-input type="text" placeholder="occupation" name="occupation" [(ngModel)]="user.occupation"></ion-input>
+                    <ion-input type="text" placeholder="Occupation" name="occupation" [(ngModel)]="user.occupation"></ion-input>
                 </ion-item>
 
                 <ion-item>
-                    <ion-input type="text" placeholder="gender" name="gender" [(ngModel)]="user.gender"></ion-input>
+                    <ion-label>Gender</ion-label>
+                    <ion-select name="gender" [(ngModel)]="user.gender">
+                        <ion-option value="Female">Female</ion-option>
+                        <ion-option value="Male">Male</ion-option>
+                    </ion-select>
                 </ion-item>
 
                 <ion-item>
@@ -55,10 +59,11 @@
                 </ion-item> -->
             </form>
             <ion-item>
-                <ion-input type="text" placeholder="Birthdate" value="" [(ngModel)]="user.birthdate"></ion-input>
+                <ion-label>Birthdate</ion-label>
+                <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="user.birthdate"></ion-datetime>
             </ion-item>
-            
-      
+
+
         </ion-list>
         <div padding>
             <button ion-button color="primary" block round type="submit" (click)='onSignup(signupForm)'>

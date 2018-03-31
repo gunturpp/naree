@@ -17,6 +17,7 @@ export class HomePage {
   profile: string;
   news: any;
   data: any;
+  tanggal:any;
   // posts: Observable<Array<Post>>;
   constructor(private http:Http, public navCtrl: NavController,public modalCtrl: ModalController) {
     
@@ -25,7 +26,7 @@ export class HomePage {
     this.http.get(getApiNews).subscribe(newss =>{
       let response = newss.json();
       this.news = response.news;
-      this.data = this.news[0];
+      // this.data = this.news[0];
       console.log("news" + JSON.stringify(this.news));
     })
     this.profile = localStorage.getItem('currentUser');

@@ -8,6 +8,8 @@ import { IonicPage } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { DataProvider } from '../../providers/data/data';
+import{ ProfilePage }from '../profile/profile';
+
 /**
  * Generated class for the EditprofilePage page.
  *
@@ -120,6 +122,6 @@ export class EditprofilePage {
            }
 
       });
-      this.navCtrl.push(MorePage);
+      this.navCtrl.push(ProfilePage);
   }
 }

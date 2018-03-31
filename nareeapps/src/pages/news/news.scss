@@ -18,7 +18,7 @@ page-news {
     .text {
         padding-block-start: 0px;
         width: 95%;
-        height: 50%;
+        // height: 100%;
         margin-block-start: 0px;
     }
     .judul {
@@ -37,5 +37,6 @@ page-news {
     .detail {
         padding-inline-start: 10px;
         padding-inline-end: 10px;
+        text-align: justify;
     }
 }

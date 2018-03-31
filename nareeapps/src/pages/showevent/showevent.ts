@@ -30,6 +30,7 @@ isi:any;
 org:any;
 foto_poster:any;
 duration:any;
+tiket:any;
 longtitude:any;
 lattitude:any;
 profiles:any;
@@ -59,6 +60,7 @@ this.duration = this.data.duration;
 this.longtitude =this.data.long;
 this.lattitude =this.data.lat;
 this.exp =this.data.exp;
+this.tiket=this.data.ticket_price;
 this.showMap(this.longtitude,this.lattitude);
 console.log(this.data);
   }
