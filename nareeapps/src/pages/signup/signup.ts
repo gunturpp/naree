@@ -17,7 +17,7 @@ import { TabsPage } from '../tabs/tabs';
 export class SignupPage {
   resposeData: any;
   submitted: any;
-  user: { name?: string, email?: string,username?: string, password?: string, gender?: string, birthdate?: string, occupation?: string } = {};
+  user: { name?: string, email?: string,username?: string, password?: string, gender?: string, birthdate?: string, occupation?: string, level?: number } = {};
   c_password: string;
   // userData = { "name": "", "email": "", "password": "", "c_password": "", "gender": "male", "birthdate": "2017/06/23", "occupation": "student" };
   constructor(
@@ -50,9 +50,10 @@ export class SignupPage {
         username: this.user.username,
         password: this.user.password,
         c_password: this.c_password,
-        gender: this.user.gender = "male",
-        birthdate: this.user.birthdate ="2017/06/23",
-        occupation: this.user.occupation = "student",
+        gender: this.user.gender,
+        birthdate: this.user.birthdate,
+        occupation: this.user.occupation,
+        level: this.user.level = 0
         // birthdate: this.user.hp,
         // status: this.user.role="tourist"
       });

@@ -8,6 +8,12 @@
 
 
 <ion-content class="back">
+    <!-- popup when level up -->
+    <div *ngIf="showPopup" class="center">
+        <img class="popUpCssLevel" src="../assets/imgs/levelupBG.png">
+        <button class="z10" (click)="takeLevel()" ion-button rounded>Continue</button>
+    </div><!-- close popup when level up -->
+
     <ng-progress></ng-progress>
     <div class="seg">
         <ion-segment [(ngModel)]="pet">
