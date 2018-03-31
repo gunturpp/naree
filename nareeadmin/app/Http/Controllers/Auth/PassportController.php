@@ -12,6 +12,7 @@ use App\Advertisement;
 use App\Feedback;
 use App\Achievement;
 use App\History;
+use App\Exp;
 
 use Validator;
 use DB;
@@ -72,6 +73,7 @@ class PassportController extends Controller
 			'gender' => 'required',
 			'birthdate' => 'required',
 			'occupation' => 'required',
+			'level' => 'required',
         ]);
 
         if($validator->fails()){
@@ -88,7 +90,19 @@ class PassportController extends Controller
 
         return response()->json(['success'=>$success], $this->successStatus);
 
-    }
+	}
+	public function getExp(Request $request,  $string=null) {
+		$token = $request->header('Api-key');
+		$user = Auth::user();
+		if($string!=null)
+			$exps = Exp::Where('level','like','%'.$string.'%')->orderBy('id')->get();
+		else
+
+			$exps = Exp::orderBy('level')->get();
+		$status=true;
+		return compact('status','exps');
+	}
+
 	public function getUsers(Request $request,  $string=null) {
 		$token = $request->header('Api-key');
 		$user = Auth::user();

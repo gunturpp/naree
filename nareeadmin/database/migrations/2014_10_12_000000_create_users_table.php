@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('team', 30)->nullable();
             $table->integer('exp')->nullable();
             $table->string('dance_type', 30)->nullable();
-            
+            $table->integer('level');
             $table->rememberToken();
             $table->timestamps();
         });

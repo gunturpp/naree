@@ -19,6 +19,7 @@ Route::get('get-advertisements', 'Auth\PassportController@getAdvertisement');
 Route::get('get-achievement', 'Auth\PassportController@getAchievement');
 Route::get('get-history', 'Auth\PassportController@getHistories');
 Route::get('get-events', 'Auth\PassportController@getEvents');
+Route::get('get-exps', 'Auth\PassportController@getExp');
 
 // Route::group(['middleware' => 'auth:api'], function(){
 //     Route::post('login', 'Auth\PassportController@login'){
