@@ -59,7 +59,7 @@ class NewsController extends Controller
         $user = Auth::user();
         request()->validate([
             'judul_news' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:10000|string',
             'image' => 'mimes:jpeg,png,jpg|max:50000',
             ]);
             $data = $request->only('judul_news', 'description', 'image');
@@ -122,7 +122,7 @@ class NewsController extends Controller
         $user = Auth::user();
         request()->validate([
             'judul_news' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:10000|string',
             'image' => 'required|mimes:jpeg,png,jpg|max:5000',
             ]);
             $data = $request->only('judul_news', 'description', 'image');
