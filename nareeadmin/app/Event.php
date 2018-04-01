@@ -27,6 +27,7 @@ class Event extends Model
         'duration',
         'long',
         'lat',
+        'exp',
     ];
 
     /**

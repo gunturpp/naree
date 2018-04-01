@@ -59,7 +59,7 @@ class EventController extends Controller
         $user = Auth::user();
         request()->validate([
             'name_event' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:10000|string',
             'date_event' => 'required',
             'ticket_price' => 'required',
             'location' => 'required',
@@ -67,10 +67,11 @@ class EventController extends Controller
             'organizer' => 'required',
             'poster' => 'required|mimes:jpeg,png,jpg|max:15000',
             'duration' => 'required',
+            'exp' => 'required',
             'long' => 'required',
             'lat' => 'required',
             ]);
-            $data = $request->only('name_event', 'description', 'date_event','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'long', 'lat');
+            $data = $request->only('name_event', 'description', 'date_event','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'exp', 'long', 'lat');
             
             // $data = $request->except(['image']);
             $poster = "";
@@ -130,7 +131,7 @@ class EventController extends Controller
         $user = Auth::user();
         request()->validate([
             'name_event' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:10000|string',
             'date_event' => 'required',
             'ticket_price' => 'required',
             'location' => 'required',
@@ -138,10 +139,11 @@ class EventController extends Controller
             'organizer' => 'required',
             'poster' => 'required|mimes:jpeg,png,jpg|max:15000',
             'duration' => 'required',
+            'exp' => 'required',
             'long' => 'required',
             'lat' => 'required',
             ]);
-            $data = $request->only('name_event', 'description', 'date_event','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'long', 'lat');
+            $data = $request->only('name_event', 'description', 'date_event','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'exp', 'long', 'lat');
             
             // $data = $request->except(['image']);
             $poster = "";

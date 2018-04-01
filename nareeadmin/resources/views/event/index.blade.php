@@ -38,6 +38,7 @@
                     <th>No</th>
                     <th>Nama Event</th>
                     <th>Foto</th>
+                    <th>Exp</th>
                     <th>Deskripsi Event</th>
                     <th>Latitude</th>
                     <th>Latitude</th>
@@ -48,6 +49,7 @@
                 <td>{{ ++$i }}</td>
                 <td>{{ $event->name_event}}</td>
                 <td><img src="{{ $event -> poster }}" style="height:50px;width:50px;text-align:center"></td>
+                <td>{{ $event->exp}}</td>
                 <td>{{ $event->description}}</td>
                 <td>{{ $event->lat}}</td>
                 <td>{{ $event->long}}</td>
