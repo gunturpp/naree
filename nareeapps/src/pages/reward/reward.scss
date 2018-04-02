@@ -1,22 +1,24 @@
 page-reward {
     div img.popUpCssLevel {
-        height: 80%;
-        width: 80%;
+        height: 100%;
+        width: 100%;
         position: fixed;
         z-index: 10;
-        left: 10%;
+        padding-inline-start: 0px;
+        left: 0%;
     }
     button.z10 {
         z-index: 11;
-        float:left;
         position: fixed;
-        top:80%;
-        left: 30%;
+        top: 80%;
+        margin-inline-start: 10%;
+        width: 80%;
+        height: 45px;
+        // text-transform: none;
     }
     .center {
         // text-align:center;
     }
-
     .back {
         background-color: #e8e9ea;
     }

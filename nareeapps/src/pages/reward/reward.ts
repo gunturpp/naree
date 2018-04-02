@@ -18,6 +18,7 @@ import { Http, Headers, RequestOptions } from "@angular/http";
 })
 export class RewardPage {
   showPopup: boolean = false;
+  showHeader: boolean= false;
   pet: string = "level";
   profiles: any;
   history: any;
@@ -26,7 +27,12 @@ export class RewardPage {
   jumlah: any;
   persentase: any;
   nama: any;
-  exp: any;
+  dailyExp: any;
+  experience:any;
+  exp:any;
+  levels:any;
+  levelId:any;
+  MaxExp:any;
   constructor(
     public http: Http,
     public navCtrl: NavController,
@@ -37,32 +43,42 @@ export class RewardPage {
     this.jumlah = 0;
     this.persentase = 0;
     this.nama = "Daily Check-in";
-    this.exp = 5;
+    this.dailyExp = 5;
   }
   ionViewDidLoad() {
-    this.http
-      .get("http://127.0.0.1:8000/api/get-history")
-      .subscribe(histories => {
-        let response = histories.json();
-        this.history = response.histories;
-        this.panjang = this.history.length;
-        console.log(this.panjang);
-        console.log(this.profiles.id);
-        for (var i = 0, j = 0; i < this.panjang; i++) {
-          if (this.history[i].id_user == this.profiles.id) {
-            this.riwayat[j] = this.history[i];
+    // this.http.get("http://127.0.0.1:8000/api/get-history").subscribe(histories => {
+    //     let response = histories.json();
+    //     this.history = response.histories;
+    //     this.panjang = this.history.length;
+    //     console.log(this.panjang);
+    //     console.log(this.profiles.id);
+    //     for (var i = 0, j = 0; i < this.panjang; i++) {
+    //       if (this.history[i].id_user == this.profiles.id) {
+    //         this.riwayat[j] = this.history[i];
+    //         this.jumlah = 15;
+    //         this.persentase=(this.jumlah/this.MaxExp)*100;
+    //         j++;
+    //       }
+    //     }
+    //     console.log(this.persentase);
+    //   }); this.http.get("http://127.0.0.1:8000/api/get-exps").subscribe(exps => {
+    //     let response = exps.json();
+    //     this.experience=response.exps;
+    //     console.log("experience:",this.experience[0].level);
+    //     console.log("level user :",this.profiles.level);
+    //     for (var i = 0; i < this.experience.length; i++) {
+    //       console.log("level exp: ",this.experience[5].level);
 
-            j++;
-          }
-        }
-        console.log(this.persentase);
-      });
-  }
+    //       if (this.experience[i].level == 1) {
+    //         this.levels = this.experience[i].level;
+    //         this.MaxExp = this.experience[i].maxExp;
+    //                   }
+    //     }
+    //   }); 
+   }
   ionViewWillEnter() {
     this.jumlah = 0;
-    this.http
-      .get("http://127.0.0.1:8000/api/get-history")
-      .subscribe(histories => {
+    this.http.get("http://127.0.0.1:8000/api/get-history").subscribe(histories => {
         let response = histories.json();
         this.history = response.histories;
         this.panjang = this.history.length;
@@ -73,25 +89,39 @@ export class RewardPage {
             this.riwayat[j] = this.history[i];
             // this.jumlah += this.history[i].exp;
             // tinggal comment baris 76 dan uncomment baris 74
-            this.jumlah = 1500;
-             this.persentase=(this.jumlah/1500)*100;
-
+            this.jumlah = 15;
+             this.persentase=(this.jumlah/this.MaxExp)*100;
             j++;
           }
         }
         console.log("persentase", this.persentase);
         // show popup when levelup
-        if(this.persentase == 100){
+        if(this.persentase >= 100){
           this.showPopup = true;
+          this.showHeader = false;
         }
         else {
           this.showPopup = false;
+          this.showHeader = true;
         }
     
+      });
+      this.http.get("http://127.0.0.1:8000/api/get-exps").subscribe(exps => {
+        let response = exps.json();
+        this.experience=response.exps;
+        console.log("exp :",this.profiles.level);
+        for (var i = 0; i < this.experience.length; i++) {
+          if (this.experience[i].level == this.profiles.level) {
+            this.levels = this.experience[i].level;
+            this.MaxExp = this.experience[i].maxExp;
+            console.log("experience: ",this.experience[i].level);
+          }
+        }
       });
   }
   takeLevel(){
       this.showPopup = false;
+      this.showHeader = true;
   }
   // checkin() {
   //   this.navCtrl.push(CheckinDailyPage);

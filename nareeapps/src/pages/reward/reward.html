@@ -1,4 +1,5 @@
-<ion-header>
+<!-- close popup when level up -->
+<ion-header *ngIf="showHeader">
     <ion-navbar color="primary">
         <ion-title class="ikon">
             <ion-icon name="ai-reward"></ion-icon>
@@ -11,9 +12,8 @@
     <!-- popup when level up -->
     <div *ngIf="showPopup" class="center">
         <img class="popUpCssLevel" src="../assets/imgs/levelupBG.png">
-        <button class="z10" (click)="takeLevel()" ion-button rounded>Continue</button>
-    </div><!-- close popup when level up -->
-
+        <button color="light" large block round class="z10" (click)="takeLevel()" ion-button><a ion-text color="primary">Continue</a></button>
+    </div>
     <ng-progress></ng-progress>
     <div class="seg">
         <ion-segment [(ngModel)]="pet">
@@ -30,18 +30,20 @@
             <ion-card>
                 <img src="assets/imgs/daily.jpg" align-items: stretch />
                 <h3 class="batas">Lakukan Daily Check-In setiap hari dan dapatkan Daily EXP Reward!</h3>
-                <div padding>
-                    <button ion-button color="primary" block large (click)="openModal()">Check In</button>
-                </div>
+
             </ion-card>
+            <button>Continue</button>
         </ion-list>
+        <!-- <div padding>
+            <button color="primary" large block (click)="openModal()">Check In</button>
+        </div> -->
 
         <ion-list *ngSwitchCase="'level'">
             <ion-card>
                 <img src="assets/imgs/star.jpg" />
-                <div class="card-title">27</div>
+                <div class="card-title">{{levels}}</div>
                 <progress-bar class="card-loading" [progress]="persentase"></progress-bar>
-                <div class="card-subtitle"> exp {{jumlah}} of 1500 </div>
+                <div class="card-subtitle"> exp {{jumlah}} of {{MaxExp}} </div>
             </ion-card>
             <ion-card>
                 <h2 class="judul">Exp History</h2>

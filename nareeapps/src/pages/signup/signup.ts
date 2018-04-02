@@ -53,7 +53,7 @@ export class SignupPage {
         gender: this.user.gender,
         birthdate: this.user.birthdate,
         occupation: this.user.occupation,
-        level: this.user.level = 0
+        level: this.user.level = 1
         // birthdate: this.user.hp,
         // status: this.user.role="tourist"
       });
