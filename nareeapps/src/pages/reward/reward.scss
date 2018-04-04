@@ -7,7 +7,7 @@ page-reward {
         padding-inline-start: 0px;
         left: 0%;
     }
-    button.z10 {
+    .z10 {
         z-index: 11;
         position: fixed;
         top: 80%;
@@ -16,8 +16,37 @@ page-reward {
         height: 45px;
         // text-transform: none;
     }
-    .center {
-        // text-align:center;
+    .z11 {
+        z-index: 11;
+        position: fixed;
+        top: 39%;
+        left: 43%;
+        // font-size: 45px;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        font-size: 3.5em;
+        // width: 40%;
+        // text-transform: none;
+    }
+    .card-title {
+        position: absolute;
+        top: 35%;
+        font-size: 1.5em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+    }
+    .z12 {
+        z-index: 11;
+        position: fixed;
+        top: 39%;
+        left: 46%;
+        font-size: 3.5em;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        // text-transform: none;
     }
     .back {
         background-color: #e8e9ea;
@@ -35,14 +64,6 @@ page-reward {
     ion-card {
         position: relative;
         text-align: center;
-    }
-    .card-title {
-        position: absolute;
-        top: 35%;
-        font-size: 1.5em;
-        width: 100%;
-        font-weight: bold;
-        color: #fff;
     }
     .card-subtitle {
         font-size: 1.0em;

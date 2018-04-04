@@ -15,6 +15,17 @@ export class ProfilePage {
   profile: any;
   validFoto = false;
   image : string;
+  nama:any;
+  kategori:any;
+  level:any;
+  gender:any;
+  email:any;
+  hp:any;
+  about:any;
+  achiev:any;
+  usrname:any;
+  users: any;
+  user:any;
   // private camera: Camera,
   constructor(private http:Http,public navCtrl: NavController) {
     this.profiles = JSON.parse(localStorage.getItem('currentUser'));
@@ -23,6 +34,24 @@ export class ProfilePage {
   }
   ionViewDidLoad() {
     console.log(this.profiles);
+    this.http.get("http://127.0.0.1:8000/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
+      let response = userss.json();
+      // let response = userss;
+      this.users = response;
+      this.user = this.users.currentuser;
+      this.nama  = this.user.name;
+      this.usrname = this.user.username;
+      this.kategori = this.user.dance_type;
+      this.level = this.user.level;
+      this.email = this.user.email;
+      this.image=this.user.photo;
+      this.about = this.user.about_me;
+      // console.log("ini hasilnya" + JSON.stringify(this.user));
+      console.log(this.user);
+      if(response.status=="200"){
+        this.users= response.data;   //ini disimpen ke variabel pasien diatas itu ,, yang udah di delacre
+      }
+    });
   //   manggil semua user
   //   this.http.get(getApiEvent).subscribe(users =>{
   //     let response = users.json();

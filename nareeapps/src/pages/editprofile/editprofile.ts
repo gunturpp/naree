@@ -80,8 +80,7 @@ export class EditprofilePage {
     });
     loading.present();
     let contentHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-      let input = ({
-        id:this.iduser,
+      let masuk = ({
         name:this.nama,
         username:this.usrname,
         dance_type:this.kategori,
@@ -93,9 +92,9 @@ export class EditprofilePage {
         // :this.achiev,
 
       });
-        this.http.put("http://192.168.43.118/api/users/"+this.profiles.id +"/update",input).subscribe(user => {
+        this.http.put("http://127.0.0.1:8000/api/users/"+this.profiles.id +"/update",masuk).subscribe(user => {
         let response = user.text;
-        localStorage.setItem("currentUser",JSON.stringify(input));
+        localStorage.setItem("currentUser",JSON.stringify(masuk));
         console.log(response);
         
 	  if(response.name =="Selamat, profile berhasil diubah"){

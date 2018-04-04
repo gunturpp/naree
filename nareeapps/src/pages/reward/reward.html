@@ -11,8 +11,13 @@
 <ion-content class="back">
     <!-- popup when level up -->
     <div *ngIf="showPopup" class="center">
-        <img class="popUpCssLevel" src="../assets/imgs/levelupBG.png">
-        <button color="light" large block round class="z10" (click)="takeLevel()" ion-button><a ion-text color="primary">Continue</a></button>
+        <ion-card no-padding no-margin>
+
+            <img class="popUpCssLevel" src="../assets/imgs/levelupBG.png">
+            <button color="light" large block round class="z10" (click)="takeLevel()" ion-button><a ion-text color="primary">Continue</a></button>
+            <p *ngIf="show2digit" style="text-align:center" class="z11">{{leveluser}}</p>
+            <p *ngIf="show1digit" style="text-align:center" class="z12">{{leveluser}}</p>
+        </ion-card>
     </div>
     <ng-progress></ng-progress>
     <div class="seg">
@@ -34,22 +39,22 @@
             </ion-card>
             <button>Continue</button>
         </ion-list>
-        <!-- <div padding>
+        <div padding>
             <button color="primary" large block (click)="openModal()">Check In</button>
-        </div> -->
+        </div>
 
         <ion-list *ngSwitchCase="'level'">
             <ion-card>
                 <img src="assets/imgs/star.jpg" />
-                <div class="card-title">{{levels}}</div>
+                <div class="card-title">{{leveluser}}</div>
                 <progress-bar class="card-loading" [progress]="persentase"></progress-bar>
-                <div class="card-subtitle"> exp {{jumlah}} of {{MaxExp}} </div>
+                <div class="card-subtitle"> exp {{expuser}} of {{MaxExp}} </div>
             </ion-card>
             <ion-card>
                 <h2 class="judul">Exp History</h2>
                 <ion-item no-margin *ngFor="let history of riwayat">
                     <!-- *ngFor="let history of riwayat" -->
-                    <p item-start> {{history.updated_at}}</p>
+                    <p item-start> {{history.updated_at|date: 'dd/mm/yy'}}</p>
                     <p> {{history.judul}} </p>
                     <p item-end> {{history.exp}}</p>
                 </ion-item>
