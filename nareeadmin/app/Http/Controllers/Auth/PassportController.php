@@ -13,6 +13,7 @@ use App\Feedback;
 use App\Achievement;
 use App\History;
 use App\Exp;
+use App\Kehadiran;
 
 use Validator;
 use DB;
@@ -54,10 +55,11 @@ class PassportController extends Controller
 			'about_me'=>'max:200',
 			'team'=> 'max:30',
 			'dance_type'=>'max:30',
-			'exp' => 'max:191'
+			'exp' => 'max:11',
+			'level'=> 'max:11'
 			
 		]);
-		$data = $request->only('name','occupation','photo','no_hp','about_me','team','dance_type','exp');
+		$data = $request->only('name','occupation','photo','no_hp','about_me','team','dance_type','exp','level');
 		User::find($id)->update($data);
         return $message = ('Selamat, profile berhasil diubah');
     }
@@ -178,7 +180,21 @@ class PassportController extends Controller
 	}
 
 	// POST
-	
+	public function postKehadiranEvent(Request $request)
+	{
+		$user = Auth::user();
+		$data = $request->only(
+			'kehadiran',
+			'id_user',
+			'id_event'
+		);
+		$data['kehadiran'] = $request->kehadiran;
+		$data['id_user'] = $request->id_user;
+		$data['id_event'] = $request->id_event;
+        $kehadirans = Kehadiran::create($data);
+        $success = $kehadirans;
+        return response()->json(['success'=>$success], $this->successStatus);	
+	}
 	public function postFeedback(Request $request)
 	{
 		$user = Auth::user();

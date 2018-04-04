@@ -73,7 +73,7 @@ class AchievementController extends Controller
                 $ip = request()->ip();
                 $file = $request->poster;
                 $fileName = str_random(40) . '.' . $file->guessClientExtension();;
-                $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
+                $getPath = 'http://127.0.0.1:8000/homeislandadmin/public/img/' . $fileName;
                 $destinationPath = "images/achievement";
                 $data['poster'] = '../'. $destinationPath . '/' . $fileName;
                 $file -> move($destinationPath, $getPath,$fileName);
@@ -139,7 +139,7 @@ class AchievementController extends Controller
                 $ip = request()->ip();
                 $file = $request->poster;
                 $fileName = str_random(40) . '.' . $file->guessClientExtension();;
-                $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
+                $getPath = 'http://127.0.0.1:8000/homeislandadmin/public/img/' . $fileName;
                 $destinationPath = "images/achievement";
                 $data['poster'] = '../'. $destinationPath . '/' . $fileName;
                 $file -> move($destinationPath, $getPath,$fileName);

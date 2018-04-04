@@ -7,6 +7,7 @@ Route::post('login', 'Auth\PassportController@login');
 Route::post('post-history', 'Auth\PassportController@postHistories');
 Route::post('post-feedback', 'Auth\PassportController@postFeedback');
 Route::post('post-achievement', 'Auth\PassportController@postAchievement');
+Route::post('post-kehadiran', 'Auth\PassportController@postKehadiranEvent');
 
 Route::get('users/{id}/edit', 'Auth\PassportController@editUser');
 Route::put('users/{id}/update', 'Auth\PassportController@updateUser');

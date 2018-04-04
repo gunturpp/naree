@@ -82,7 +82,7 @@ class ExploreController extends Controller
                 $ip = request()->ip();
                 $file = $request->foto_1;
                 $fileName = str_random(40) . '.' . $file->guessClientExtension();;
-                $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
+                $getPath = 'http://127.0.0.1:8000/homeislandadmin/public/img/' . $fileName;
                 $destinationPath = "images/explore";
                 $data['foto_1'] = '../'. $destinationPath . '/' . $fileName;
                 $file -> move($destinationPath, $getPath,$fileName);
@@ -95,7 +95,7 @@ class ExploreController extends Controller
                 $ip = request()->ip();
                 $file = $request->foto_2;
                 $fileName = str_random(40) . '.' . $file->guessClientExtension();;
-                $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
+                $getPath = 'http://127.0.0.1:8000/homeislandadmin/public/img/' . $fileName;
                 $destinationPath = "images/explore";
                 $data['foto_2'] = '../'. $destinationPath . '/' . $fileName;
                 $file -> move($destinationPath, $getPath,$fileName);
@@ -108,7 +108,7 @@ class ExploreController extends Controller
                 $ip = request()->ip();
                 $file = $request->foto_3;
                 $fileName = str_random(40) . '.' . $file->guessClientExtension();;
-                $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
+                $getPath = 'http://127.0.0.1:8000/homeislandadmin/public/img/' . $fileName;
                 $destinationPath = "images/explore";
                 $data['foto_3'] = '../'. $destinationPath . '/' . $fileName;
                 $file -> move($destinationPath, $getPath,$fileName);
@@ -182,7 +182,7 @@ class ExploreController extends Controller
                 $ip = request()->ip();
                 $file = $request->foto_1;
                 $fileName = str_random(40) . '.' . $file->guessClientExtension();;
-                $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
+                $getPath = 'http://127.0.0.1:8000/homeislandadmin/public/img/' . $fileName;
                 $destinationPath = "images/explore";
                 $data['foto_1'] = '../'. $destinationPath . '/' . $fileName;
                 $file -> move($destinationPath, $getPath,$fileName);
@@ -195,7 +195,7 @@ class ExploreController extends Controller
                 $ip = request()->ip();
                 $file = $request->foto_2;
                 $fileName = str_random(40) . '.' . $file->guessClientExtension();;
-                $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
+                $getPath = 'http://127.0.0.1:8000/homeislandadmin/public/img/' . $fileName;
                 $destinationPath = "images/explore";
                 $data['foto_2'] = '../'. $destinationPath . '/' . $fileName;
                 $file -> move($destinationPath, $getPath,$fileName);
@@ -208,7 +208,7 @@ class ExploreController extends Controller
                 $ip = request()->ip();
                 $file = $request->foto_3;
                 $fileName = str_random(40) . '.' . $file->guessClientExtension();;
-                $getPath = 'http://192.168.43.85/homeislandadmin/public/img/' . $fileName;
+                $getPath = 'http://127.0.0.1:8000/homeislandadmin/public/img/' . $fileName;
                 $destinationPath = "images/explore";
                 $data['foto_3'] = '../'. $destinationPath . '/' . $fileName;
                 $file -> move($destinationPath, $getPath,$fileName);
