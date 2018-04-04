@@ -149,11 +149,19 @@
           </span> -->
         </a>
       </li>
-
       
       <li>
         <a href="{{ url('achievement') }}">
           <i class="fa fa-th"></i> <span>Achievement</span>
+          <!-- <span class="pull-right-container">
+            <small class="label pull-right bg-green">new</small>
+          </span> -->
+        </a>
+      </li>
+      
+      <li>
+        <a href="{{ url('kehadiran') }}">
+          <i class="fa fa-th"></i> <span>Kehadiran Event</span>
           <!-- <span class="pull-right-container">
             <small class="label pull-right bg-green">new</small>
           </span> -->

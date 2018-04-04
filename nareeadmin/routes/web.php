@@ -59,9 +59,19 @@ Route::put('achievement/update', 'AchievementController@update');
 Route::get('achievement/show', 'AchievementController@show');
 Route::get('achievement/edit', 'AchievementController@edit');
 
+// Kehadiran
+Route::get('/kehadiran', 'KehadiranController@index')->name('kehadiran-event.index');
+Route::get('kehadiran/create', 'KehadiranController@create');
+Route::post('kehadiran/store', 'KehadiranController@store');
+Route::delete('kehadiran/destroy', 'KehadiranController@destroy');
+Route::put('kehadiran/update', 'KehadiranController@update');
+Route::get('kehadiran/show', 'KehadiranController@show');
+Route::get('kehadiran/edit', 'KehadiranController@edit');
+
 // // resources
 Route::resource('news','NewsController');
 Route::resource('event','EventController');
 Route::resource('advertisement','AdvertisementController');
 Route::resource('feeback','FeedbackController');
 Route::resource('achievement','AchievementController');
+Route::resource('kehadiran','KehadiranController');
