@@ -92,7 +92,7 @@ console.log(this.data);
       judul:this.nama,
       exp:this.exp,
     });
-      this.http.post("http://127.0.0.1:8000/api/post-history",input).subscribe(data => {
+      this.http.post("http://192.168.43.118/api/post-history",input).subscribe(data => {
         let response = data.json();
       console.log(response);  
     });

@@ -46,7 +46,7 @@ export class RewardPage {
     this.dailyExp = 5;
   }
   ionViewDidLoad() {
-    // this.http.get("http://127.0.0.1:8000/api/get-history").subscribe(histories => {
+    // this.http.get("http://192.168.43.118/api/get-history").subscribe(histories => {
     //     let response = histories.json();
     //     this.history = response.histories;
     //     this.panjang = this.history.length;
@@ -61,7 +61,7 @@ export class RewardPage {
     //       }
     //     }
     //     console.log(this.persentase);
-    //   }); this.http.get("http://127.0.0.1:8000/api/get-exps").subscribe(exps => {
+    //   }); this.http.get("http://192.168.43.118/api/get-exps").subscribe(exps => {
     //     let response = exps.json();
     //     this.experience=response.exps;
     //     console.log("experience:",this.experience[0].level);
@@ -78,7 +78,7 @@ export class RewardPage {
    }
   ionViewWillEnter() {
     this.jumlah = 0;
-    this.http.get("http://127.0.0.1:8000/api/get-history").subscribe(histories => {
+    this.http.get("http://192.168.43.118/api/get-history").subscribe(histories => {
         let response = histories.json();
         this.history = response.histories;
         this.panjang = this.history.length;
@@ -106,7 +106,7 @@ export class RewardPage {
         }
     
       });
-      this.http.get("http://127.0.0.1:8000/api/get-exps").subscribe(exps => {
+      this.http.get("http://192.168.43.118/api/get-exps").subscribe(exps => {
         let response = exps.json();
         this.experience=response.exps;
         console.log("exp :",this.profiles.level);
@@ -136,7 +136,7 @@ export class RewardPage {
       exp: this.exp
     };
     this.http
-      .post("http://127.0.0.1:8000/api/post-history", input)
+      .post("http://192.168.43.118/api/post-history", input)
       .subscribe(data => {
         let response = data.json();
         console.log(response);

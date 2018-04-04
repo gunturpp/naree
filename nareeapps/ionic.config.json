@@ -6,7 +6,7 @@
         "cordova": {}
     },
     "proxies": [{
-        "path": "http://http://127.0.0.1:8000/api",
+        "path": "http://http://192.168.43.118/api",
         "proxyUrl": "http://cors.api.com/api"
     }]
 

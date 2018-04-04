@@ -49,7 +49,7 @@ export class EditprofilePage {
     this.profiles = JSON.parse(localStorage.getItem('currentUser'));
   }
   ionViewDidLoad() {
-    this.http.get("http://127.0.0.1:8000/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
+    this.http.get("http://192.168.43.118/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
       let response = userss.json();
       // let response = userss;
       this.users = response;
@@ -93,7 +93,7 @@ export class EditprofilePage {
         // :this.achiev,
 
       });
-        this.http.put("http://127.0.0.1:8000/api/users/"+this.profiles.id +"/update",input).subscribe(user => {
+        this.http.put("http://192.168.43.118/api/users/"+this.profiles.id +"/update",input).subscribe(user => {
         let response = user.text;
         localStorage.setItem("currentUser",JSON.stringify(input));
         console.log(response);

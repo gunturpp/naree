@@ -15,7 +15,7 @@ export class ApiProvider {
   }
   apiEvent()
   {
-    this.getApiEvent = "http://127.0.0.1:8000/api/get-events";
+    this.getApiEvent = "http://192.168.43.118/api/get-events";
     console.log(this.getApiEvent);
   }
 
