@@ -19,6 +19,8 @@ import { Http, Headers, RequestOptions } from "@angular/http";
 export class RewardPage {
   showPopup: boolean = false;
   showHeader: boolean= false;
+  show2digit: boolean = false;
+  show1digit: boolean= false;
   pet: string = "level";
   profiles: any;
   history: any;
@@ -28,9 +30,13 @@ export class RewardPage {
   persentase: any;
   nama: any;
   dailyExp: any;
+  leveluser:any;
   experience:any;
   exp:any;
+  jumlahexp:any;
   levels:any;
+  user:any;
+  expuser:any;
   levelId:any;
   MaxExp:any;
   constructor(
@@ -46,6 +52,7 @@ export class RewardPage {
     this.dailyExp = 5;
   }
   ionViewDidLoad() {
+    console.log("persentase load", this.persentase);
     // this.http.get("http://127.0.0.1:8000/api/get-history").subscribe(histories => {
     //     let response = histories.json();
     //     this.history = response.histories;
@@ -78,6 +85,10 @@ export class RewardPage {
    }
   ionViewWillEnter() {
     this.jumlah = 0;
+    this.persentase=0;
+    this.expuser=0;
+    this.MaxExp=0;
+    console.log("persentase", this.persentase);
     this.http.get("http://127.0.0.1:8000/api/get-history").subscribe(histories => {
         let response = histories.json();
         this.history = response.histories;
@@ -89,39 +100,69 @@ export class RewardPage {
             this.riwayat[j] = this.history[i];
             // this.jumlah += this.history[i].exp;
             // tinggal comment baris 76 dan uncomment baris 74
-            this.jumlah = 15;
-             this.persentase=(this.jumlah/this.MaxExp)*100;
+            // this.jumlah = 15;
+            //  this.persentase=(this.jumlah/this.MaxExp)*100;
             j++;
           }
         }
-        console.log("persentase", this.persentase);
         // show popup when levelup
-        if(this.persentase >= 100){
-          this.showPopup = true;
-          this.showHeader = false;
-        }
-        else {
-          this.showPopup = false;
-          this.showHeader = true;
-        }
-    
       });
+      this.http.get("http://127.0.0.1:8000/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
+      let response = userss.json();
+      // let response = userss;
+      this.user = response.currentuser;
+      this.expuser  = this.user.exp;
+      console.log("expuser1 =",this.expuser);
+      this.leveluser= this.user.level;
+      // this.leveluser= 1;
+      console.log("leveluser1 =",this.leveluser); 
+
+  });
       this.http.get("http://127.0.0.1:8000/api/get-exps").subscribe(exps => {
         let response = exps.json();
         this.experience=response.exps;
-        console.log("exp :",this.profiles.level);
         for (var i = 0; i < this.experience.length; i++) {
-          if (this.experience[i].level == this.profiles.level) {
+          if (this.experience[i].level == this.leveluser) {
             this.levels = this.experience[i].level;
             this.MaxExp = this.experience[i].maxExp;
+            // this.MaxExp=150;
             console.log("experience: ",this.experience[i].level);
           }
         }
-      });
+      
+      console.log("expuser =",this.expuser);
+      console.log("MaxExp =",this.MaxExp);
+      this.persentase=(this.expuser/this.MaxExp)*100;
+      
+      console.log("persentase =",this.persentase);
+      if(this.persentase >= 100){
+        this.showPopup = true;
+        this.showHeader = false;
+        if(this.leveluser>=10)
+        this.show2digit =true;
+        else this.show1digit=true;
+      }
+      else {
+        this.showPopup = false;
+        this.showHeader = true;
+      }
+    });
   }
   takeLevel(){
+    this.expuser-=this.MaxExp;
+    this.leveluser+=1;
+    console.log("levellast=",this.leveluser);
+    let add = ({
+      exp:this.expuser,
+      level:this.leveluser,
+    });
+    this.http.put("http://127.0.0.1:8000/api/users/"+this.profiles.id +"/update",add).subscribe(user => {
+      let response = user.text;
+    });
+      // location.reload();
       this.showPopup = false;
       this.showHeader = true;
+      this.navCtrl.push(RewardPage);
   }
   // checkin() {
   //   this.navCtrl.push(CheckinDailyPage);
@@ -133,7 +174,7 @@ export class RewardPage {
     let input = {
       id_user: this.profiles.id,
       judul: this.nama,
-      exp: this.exp
+      exp: this.dailyExp,
     };
     this.http
       .post("http://127.0.0.1:8000/api/post-history", input)
@@ -141,6 +182,13 @@ export class RewardPage {
         let response = data.json();
         console.log(response);
       });
+      this.jumlahexp=this.expuser+this.dailyExp;
+      let tambah = ({
+        exp:this.jumlahexp,
+      });
+      this.http.put("http://127.0.0.1:8000/api/users/"+this.profiles.id +"/update",tambah).subscribe(user => {
+        let response = user.text;
+    });
     const modal = this.modalCtrl.create(CheckinDailyPage);
     modal.present();
   }

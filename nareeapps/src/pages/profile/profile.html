@@ -18,21 +18,21 @@
                 <img style="width: 130px; height: 130px;" class="foto" src="assets/imgs/default.png">
             </ion-avatar>
         </ion-item>
-        <div class="card-title">{{profiles.name}}</div>
+        <div class="card-title">{{usrname}}</div>
     </ion-card>
     <ion-grid>
         <ion-row>
             <ion-col>
                 <ion-item no-padding class="kartu">
                     <ion-img item-start width="53" height="50" src="assets/imgs/level.jpg"></ion-img>
-                    <h2 class="judul1"> Level 5 </h2>
+                    <h2 class="judul1"> Level {{level}} </h2>
                 </ion-item>
             </ion-col>
 
             <ion-col>
                 <ion-card no-padding ion-item class="kartu">
                     <ion-img item-start width="53" height="50" src="assets/imgs/breaking.jpg"></ion-img>
-                    <h2 item-end class="judul" end>{{profiles.dance_type}} </h2>
+                    <h2 item-end class="judul" end>{{kategori}} </h2>
                 </ion-card>
             </ion-col>
         </ion-row>
@@ -42,7 +42,7 @@
         <!-- <p class="about-p"> Hello! Im </p>
         <p class="about-p"> im a breakdancer form Padang, Indonesia</p>
         <p class="about-p"> I havce jsadaskdaskdak </p> -->
-        <p class="about-p"> {{profiles.about_me}}</p>
+        <p class="about-p"> {{about}}</p>
     </ion-card>
     <ion-card>
         <h2 class="judul-card"> Achievement </h2>

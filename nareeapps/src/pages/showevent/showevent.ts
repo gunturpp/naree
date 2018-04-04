@@ -35,6 +35,9 @@ longtitude:any;
 lattitude:any;
 profiles:any;
 exp:any;
+expuser:any;
+jumlahexp:any;
+user:any;
 @ViewChild('map') mapRef: ElementRef;
   constructor(private http:Http,
     public toastCtrl: ToastController,
@@ -45,7 +48,12 @@ exp:any;
   }
 
   ionViewDidLoad() {
-  
+    this.http.get("http://127.0.0.1:8000/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
+      let response = userss.json();
+      // let response = userss;
+      this.user = response.currentuser;
+      this.expuser  = this.user.exp;
+  });
     console.log(this.mapRef);
   this.data = this.navParams.get('event');
   this.nama = this.data.name_event;
@@ -85,6 +93,7 @@ console.log(this.data);
        map
      })
    }
+   
    checkin() {
     let contentHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let input = ({
@@ -95,6 +104,13 @@ console.log(this.data);
       this.http.post("http://127.0.0.1:8000/api/post-history",input).subscribe(data => {
         let response = data.json();
       console.log(response);  
+    });
+    this.jumlahexp=this.expuser+this.exp;
+      let add = ({
+        exp:this.jumlahexp,
+      });
+      this.http.put("http://127.0.0.1:8000/api/users/"+this.profiles.id +"/update",add).subscribe(user => {
+        let response = user.text;
     });
     this.navCtrl.push(CheckinEventPage);
   }
