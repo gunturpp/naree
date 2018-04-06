@@ -29,7 +29,7 @@ class feedbackController extends Controller
 			$feedbacks = DB::table('feedbacks')->count();
         }
         else {
-            return 'salah';
+            return 'kamu bukan staff naree';
         }
         // $newss = News::latest()->paginate(5);
         $feedbacks = DB::table('feedbacks')->latest()->paginate(5);

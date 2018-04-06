@@ -5,7 +5,7 @@ import{ NewsPage } from '../news/news';
 import { IonicPage,ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { DataProvider } from '../../providers/data/data';
-let getApiNews = "http://192.168.43.118/api/get-news";
+let getApiNews = "http://nareeapp.com/api/get-news";
 
 
 @Component({

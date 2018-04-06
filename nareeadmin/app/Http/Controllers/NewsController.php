@@ -29,7 +29,7 @@ class NewsController extends Controller
 			$news = DB::table('news')->count();
         }
         else {
-            return 'salah';
+            return 'kamu bukan staff naree';
         }
         // $news = News::latest()->paginate(5);
         $news = DB::table('news')->latest()->paginate(5);

@@ -29,7 +29,7 @@ class EventController extends Controller
 			$events = DB::table('events')->count();
         }
         else {
-            return 'salah';
+            return 'kamu bukan staff naree';
         }
         // $newss = News::latest()->paginate(5);
         $events = DB::table('events')->latest()->paginate(5);

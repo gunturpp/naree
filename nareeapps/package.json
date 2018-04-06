@@ -1,8 +1,8 @@
 {
-  "name": "myfirstProject",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "Naree",
+  "version": "1.0.1",
+  "author": "Naree Indonesia",
+  "homepage": "http://nareeapp.com/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",

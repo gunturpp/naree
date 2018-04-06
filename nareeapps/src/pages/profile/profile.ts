@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Http, Headers,RequestOptions } from '@angular/http';
 import { MorePage } from '../more/more';
 import { Camera,CameraOptions } from '@ionic-native/camera';
-// let getApiEvent = "http://192.168.43.118/api/get-users";
+// let getApiEvent = "http://nareeapp.com/api/get-users";
 
 @Component({
   selector: 'page-profile',
@@ -34,7 +34,7 @@ export class ProfilePage {
   }
   ionViewDidLoad() {
     console.log(this.profiles);
-    this.http.get("http://127.0.0.1:8000/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
+    this.http.get("http://nareeapp.com/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
       let response = userss.json();
       // let response = userss;
       this.users = response;

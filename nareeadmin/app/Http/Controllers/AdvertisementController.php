@@ -29,7 +29,7 @@ class AdvertisementController extends Controller
 			$advertisements = DB::table('advertisements')->count();
         }
         else {
-            return 'salah';
+            return 'kamu bukan staff naree';
         }
         // $newss = News::latest()->paginate(5);
         $advertisements = DB::table('advertisements')->latest()->paginate(5);

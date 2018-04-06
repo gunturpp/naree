@@ -29,7 +29,7 @@ class AchievementController extends Controller
 			$achievements = DB::table('achievements')->count();
         }
         else {
-            return 'salah';
+            return 'kamu bukan staff naree';
         }
         // $newss = News::latest()->paginate(5);
         $achievements = DB::table('achievements')->latest()->paginate(5);

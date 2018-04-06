@@ -58,7 +58,7 @@ export class SignupPage {
         // status: this.user.role="tourist"
       });
 
-      this.http.post("http://192.168.43.118/api/register", input).subscribe(data => {
+      this.http.post("http://nareeapp.com/api/register", input).subscribe(data => {
 
         // this.storage.set(this.HAS_LOGGED_IN, true); 
         // this.loginState = true;        

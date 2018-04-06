@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
 import { Http, Headers,RequestOptions } from '@angular/http';
-let getApiNews = "http://192.168.43.118/api/get-news";
+let getApiNews = "http://nareeapp.com/api/get-news";
 /**
  * Generated class for the NewsPage page.
  *

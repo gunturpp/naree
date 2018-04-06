@@ -29,7 +29,7 @@ class ExploreController extends Controller
 			$newss = DB::table('explores')->count();
         }
         else {
-            return 'salah';
+            return 'kamu bukan staff naree';
         }
         // $newss = News::latest()->paginate(5);
         $explores = DB::table('explores')->where('admin', $user->email)->latest()->paginate(5);
