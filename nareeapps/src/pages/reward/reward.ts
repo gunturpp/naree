@@ -29,16 +29,18 @@ export class RewardPage {
   jumlah: any;
   persentase: any;
   nama: any;
-  dailyExp: any;
-  leveluser:any;
+  dailyExp: number;
+  leveluser:number;
   experience:any;
   exp:any;
-  jumlahexp:any;
-  levels:any;
+  jumlahexp:number;
+  levels:number;
   user:any;
-  expuser:any;
+  expuser:number;
   levelId:any;
-  MaxExp:any;
+  MaxExp:number;
+  waktu:any;
+  hariIni:any;
   constructor(
     public http: Http,
     public navCtrl: NavController,
@@ -146,6 +148,7 @@ export class RewardPage {
         this.showPopup = false;
         this.showHeader = true;
       }
+      
     });
   }
   takeLevel(){
@@ -180,6 +183,7 @@ export class RewardPage {
       .post("http://nareeapp.com/api/post-history", input)
       .subscribe(data => {
         let response = data.json();
+        localStorage.setItem("currentUser",JSON.stringify(response.currentuser));
         console.log(response);
       });
       this.jumlahexp=this.expuser+this.dailyExp;
@@ -189,7 +193,6 @@ export class RewardPage {
       this.http.put("http://nareeapp.com/api/users/"+this.profiles.id +"/update",tambah).subscribe(user => {
         let response = user.text;
     });
-    const modal = this.modalCtrl.create(CheckinDailyPage);
-    modal.present();
+    this.navCtrl.push(CheckinDailyPage);
   }
 }

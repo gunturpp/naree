@@ -70,6 +70,7 @@ this.lattitude =this.data.lat;
 this.exp =this.data.exp;
 this.tiket=this.data.ticket_price;
 this.showMap(this.longtitude,this.lattitude);
+// if (this.tiket==null);
 console.log(this.data);
   }
   closeModal(){
@@ -105,6 +106,15 @@ console.log(this.data);
         let response = data.json();
       console.log(response);  
     });
+    // let masukan = ({
+    //   id_user:this.profiles.id,
+    //   id_event:this.nama,
+    //   
+    // });
+    //   this.http.post("http://nareeapp.com/api/post-kehadiran",masukan).subscribe(data => {
+    //     let response = data.json();
+    //   console.log(response);  
+    // });
     this.jumlahexp=this.expuser+this.exp;
       let add = ({
         exp:this.jumlahexp,

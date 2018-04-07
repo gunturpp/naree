@@ -16,6 +16,9 @@ page-reward {
         height: 45px;
         // text-transform: none;
     }
+    .checkin {
+        padding: 20px;
+    }
     .z11 {
         z-index: 11;
         position: fixed;
@@ -104,5 +107,13 @@ page-reward {
         top: 71%;
         width: 100%;
         left: 10%;
+    }
+    .checkin {
+        text-transform: none;
+        width: 94%;
+        margin: 10px;
+    }
+    ion-scroll {
+        height: 100px;
     }
 }

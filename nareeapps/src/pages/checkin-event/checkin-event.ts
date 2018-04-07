@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
 import { ShoweventPage } from "../showevent/showevent";
+import { TabsPage } from '../tabs/tabs';
 /**
  * Generated class for the CheckinEventPage page.
  *
@@ -22,7 +23,7 @@ export class CheckinEventPage {
     console.log('ionViewDidLoad CheckinEventPage');
   }
   back(){
-    this.navCtrl.popToRoot();
+    this.navCtrl.push(TabsPage);
   }
   
 }

@@ -40,7 +40,7 @@ export class MorePage {
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
     if(localStorage.getItem('token') == null ) {
-      this.navCtrl.push(LoginPage);
+      this.navCtrl.setRoot (LoginPage);
     }
   }
 }

@@ -43,19 +43,23 @@
         <ion-card class="back-card">
             <ion-item>
                 <h2 class="judul" item-start> Birthdate</h2>
-                <ion-input class="inputi" [(ngModel)]="tgl" type="text" placeholder={{tgl}} name="tgl"></ion-input>
+                <ion-datetime displayFormat="DD MMM YYYY" class="inputi" [(ngModel)]="tgl" type="text" name="tgl"></ion-datetime>
             </ion-item>
+            <!-- <ion-item>
+                    <ion-label color="dark" class="gender">Birthdate</ion-label>
+                    <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="user.birthdate"></ion-datetime>
+                </ion-item> -->
         </ion-card>
         <ion-card class="back-card">
             <ion-item>
                 <h2 class="judul" item-start>Gender</h2>
-                <ion-input class="inputu" [(ngModel)]="gender" type="text" placeholder={{gender}} name="gender"></ion-input>
+                <ion-input class="inputu" disabled="true" [(ngModel)]="gender" type="text" placeholder={{gender}} name="gender"></ion-input>
             </ion-item>
         </ion-card>
         <ion-card class="back-card">
             <ion-item>
                 <h2 class="judul" item-start>Email</h2>
-                <ion-input class="inpute" [(ngModel)]="email" type="text" placeholder={{email}} name="email"></ion-input>
+                <ion-input class="inpute" disabled="true" [(ngModel)]="email" type="text" placeholder={{email}} name="email"></ion-input>
             </ion-item>
         </ion-card>
         <ion-card class="back-card">
@@ -73,6 +77,7 @@
         <ion-card class="back">
             <ion-item>
                 <h2 class="judul" item-start>Achievement</h2>
+                <p item-end class="isc" color="dark">How to input achievement >>> </p>
             </ion-item>
         </ion-card>
         <button ion-button (click)="editProfil()" type="submit" block>Update Akun</button>

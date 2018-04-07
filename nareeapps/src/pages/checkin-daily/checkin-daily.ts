@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage,ViewController, NavController, NavParams,ModalController } from 'ionic-angular';
 import { RewardPage } from "../reward/reward"; 
+// import {HomePage } from "../home/home";
+import { TabsPage } from '../tabs/tabs';
 /**
  * Generated class for the CheckinDailyPage page.
  *
@@ -25,6 +27,6 @@ export class CheckinDailyPage {
   //   this.navCtrl.popToRoot();
   // }
   closeModal(){
-    this.viewCtrl.dismiss();
+    this.navCtrl.push(TabsPage);
    }
 }
