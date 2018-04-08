@@ -8,7 +8,7 @@
 </ion-header>
 
 
-<ion-content class="back" scroll="false">
+<ion-content class="back">
     <!-- popup when level up -->
     <div *ngIf="showPopup" class="center">
         <ion-card no-padding no-margin>
@@ -36,7 +36,8 @@
                 <img src="assets/imgs/daily.jpg" align-items: stretch />
                 <h3 class="batas">Lakukan Daily Check-In setiap hari dan dapatkan Daily EXP Reward!</h3>
 
-                <button class="checkin" ion-button block large (click)="openModal()">Check In</button>
+                <button *ngIf="checkin" class="checkin" ion-button block large (click)="openModal()">Check In</button>
+                <button disabled *ngIf="checkout" class="checkin" ion-button block large (click)="openModal()">Check In</button>
             </ion-card>
         </ion-list>
 
@@ -51,16 +52,18 @@
             <ion-card>
                 <h2 class="judul">Exp History</h2>
                 <!-- <ion-scroll style="width: 100%; height: 100%" scrollY="true"> -->
+                <div class="lol">
 
-                <ion-item no-margin *ngFor="let history of riwayat">
-                    <!-- <ion-scroll style="width: 100%; height: 100%" scrollY="true"> -->
-                    <p item-start> {{history.updated_at|date: 'dd/mm/yy'}}</p>
-                    <p> {{history.judul}} </p>
-                    <p item-end> {{history.exp}}</p>
-                    <!-- *ngFor="let history of riwayat" -->
-                    <!-- </ion-scroll> -->
-                </ion-item>
 
+                    <ion-item no-margin *ngFor="let history of riwayat">
+                        <!-- <ion-scroll style="width: 100%; height: 100%" scrollY="true"> -->
+                        <p item-start> {{history.updated_at|date: 'dd/mm/yy'}}</p>
+                        <p> {{history.judul}} </p>
+                        <p item-end> {{history.exp}}</p>
+                        <!-- *ngFor="let history of riwayat" -->
+                        <!-- </ion-scroll> -->
+                    </ion-item>
+                </div>
             </ion-card>
         </ion-list>
     </div>
