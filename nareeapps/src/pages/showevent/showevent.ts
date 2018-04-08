@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { ModalController,ToastController, AlertController,  ActionSheetController , Platform, NavParams, ViewController } from 'ionic-angular';
 import { Http, Headers,RequestOptions } from '@angular/http';
 import { CheckinEventPage } from '../checkin-event/checkin-event';
+import { Storage } from '@ionic/storage';
 declare var google: any;
 
 
@@ -34,17 +35,51 @@ tiket:any;
 longtitude:any;
 lattitude:any;
 profiles:any;
-exp:any;
-expuser:any;
-jumlahexp:any;
 user:any;
+bayar:boolean=true;
+exp:number;
+expuser:number;
+jumlahexp:number;
+absen:boolean=true;
+idevent:any;
+panjang:any;
+free:boolean=false;
+items: any;
+showcheckin:boolean=true;
+showcancel:boolean=false;
+
 @ViewChild('map') mapRef: ElementRef;
   constructor(private http:Http,
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
+    public storage: Storage,
     public actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController,public viewCtrl : ViewController,public navParams : NavParams) {
       this.profiles = JSON.parse(localStorage.getItem('currentUser'));
+      this.storage.get('myStore').then((data) => {
+        this.items = data;
+        if(data!=null){
+        this.panjang= data.length;
+        console.log("cek ada arry",data);
+       
+        for (var i = 0; i < this.panjang; i++) {
+          if (this.idevent == this.items[i]) {
+           this.absen=false;
+           console.log("absen : ",this.absen)
+          }
+        }}
+        if(this.absen==false){
+          this.showcheckin=false;
+          this.showcancel=true;
+        console.log("show ",this.showcancel,this.showcheckin);
+        }
+        else{
+          this.showcheckin=true;
+          this.showcancel=false;
+        console.log("show ",this.showcancel,this.showcheckin);
+        }
+      });
+
   }
 
   ionViewDidLoad() {
@@ -60,6 +95,7 @@ user:any;
   this.tipe = this.data.dance_type;
 this.location = this.data.location;
 this.province = this.data.province;
+this.idevent =this.data.id;
 this.tanggal = this.data.date_event;
 this.isi = this.data.description;
 this.org = this.data.organizer;
@@ -72,6 +108,11 @@ this.tiket=this.data.ticket_price;
 this.showMap(this.longtitude,this.lattitude);
 // if (this.tiket==null);
 console.log(this.data);
+if (this.tiket==null){
+  this.free=true;
+  this.bayar=false;
+};
+
   }
   closeModal(){
     this.viewCtrl.dismiss();
@@ -106,21 +147,35 @@ console.log(this.data);
         let response = data.json();
       console.log(response);  
     });
-    // let masukan = ({
-    //   id_user:this.profiles.id,
-    //   id_event:this.nama,
-    //   
-    // });
-    //   this.http.post("https://nareeapp.com/api/post-kehadiran",masukan).subscribe(data => {
-    //     let response = data.json();
-    //   console.log(response);  
-    // });
-    this.jumlahexp=this.expuser+this.exp;
+    let masukan = ({
+      id_user:this.profiles.id,
+      id_event:this.data.id,
+      kehadiran: "1",
+    });
+      this.http.post("https://nareeapp.com/api/post-kehadiran",masukan).subscribe(data => {
+        let response = data.json();
+      console.log("ini kehadiran",response);  
+    });
+
+    this.jumlahexp =parseInt(this.expuser.toString()) + parseInt(this.exp.toString());
       let add = ({
         exp:this.jumlahexp,
       });
       this.http.put("https://nareeapp.com/api/users/"+this.profiles.id +"/update",add).subscribe(user => {
         let response = user.text;
+    });
+    this.storage.get('myStore').then((data) => {
+      if(data != null)
+      {
+        data.push(this.idevent);
+        this.storage.set('myStore', data);
+      }
+      else
+      {
+        let array = [];
+        array.push(this.idevent);
+        this.storage.set('myStore', array);
+      }
     });
     this.navCtrl.push(CheckinEventPage);
   }
