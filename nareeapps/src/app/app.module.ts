@@ -4,6 +4,9 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from "@angular/http";
 import { IonicStorageModule } from '@ionic/storage';
+import { Camera } from '@ionic-native/camera';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 
 import { HttpClientModule } from '@angular/common/http';
 import { EventPage } from '../pages/event/event';
@@ -93,6 +96,10 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
   ],
   providers: [
     StatusBar,
+    FileTransfer,
+    FileTransferObject,
+    File,
+    Camera,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,

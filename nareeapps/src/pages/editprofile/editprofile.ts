@@ -22,6 +22,7 @@ import{ ProfilePage }from '../profile/profile';
   templateUrl: 'editprofile.html',
 })
 export class EditprofilePage {
+  image: string;
   profiles: any;
   resposeData: any;
   submitted: any;
@@ -49,7 +50,7 @@ export class EditprofilePage {
     this.profiles = JSON.parse(localStorage.getItem('currentUser'));
   }
   ionViewDidLoad() {
-    this.http.get("http://nareeapp.com/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
+    this.http.get("https://nareeapp.com/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
       let response = userss.json();
       // let response = userss;
       this.users = response;
@@ -64,7 +65,7 @@ export class EditprofilePage {
       this.about = this.user.about_me;
       this.iduser= this.user.id;
       // console.log("ini hasilnya" + JSON.stringify(this.user));
-      console.log(this.user);
+      console.log("user profile" ,this.user);
       if(response.status=="200"){
         this.users= response.data;   //ini disimpen ke variabel pasien diatas itu ,, yang udah di delacre
       }
@@ -92,7 +93,7 @@ export class EditprofilePage {
         // :this.achiev,
 
       });
-        this.http.put("http://nareeapp.com/api/users/"+this.profiles.id +"/update",masuk).subscribe(user => {
+        this.http.put("https://nareeapp.com/api/users/"+this.profiles.id +"/update",masuk).subscribe(user => {
         let response = user.text;
         localStorage.setItem("currentUser",JSON.stringify(masuk));
         console.log(response);

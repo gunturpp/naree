@@ -5,18 +5,19 @@
         </ion-title>
         <ion-buttons end>
             <button ion-button large icon-only (click)="gotoNextPage()">
-      <ion-icon name='md-more' ></ion-icon>
-    </button>
+                <ion-icon name='md-more'></ion-icon>
+            </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 <ion-content class="back">
+    <button ion-button (click)="SavePhoto()">Save Photo</button>
     <ion-card color="primary">
         <ion-item class="fotoi" color="primary">
-            <ion-avatar item-start (click)="getPhotoFromGallery()">
-                <img style="width: 130px; height: 130px;" class="foto" src="assets/imgs/default.png">
-            </ion-avatar>
+            <!-- <ion-avatar item-start (click)="uploadPicture()"> -->
+                <img required class="foto" style="width: 130px; height: 130px;" src="{{image}}" tappable (click)="uploadPicture()" />
+            <!-- </ion-avatar> -->
         </ion-item>
         <div class="card-title">{{usrname}}</div>
     </ion-card>
@@ -43,6 +44,7 @@
         <p class="about-p"> im a breakdancer form Padang, Indonesia</p>
         <p class="about-p"> I havce jsadaskdaskdak </p> -->
         <p class="about-p"> {{about}}</p>
+        
     </ion-card>
     <ion-card>
         <h2 class="judul-card"> Achievement </h2>

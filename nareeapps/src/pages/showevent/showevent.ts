@@ -48,7 +48,7 @@ user:any;
   }
 
   ionViewDidLoad() {
-    this.http.get("http://nareeapp.com/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
+    this.http.get("https://nareeapp.com/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
       let response = userss.json();
       // let response = userss;
       this.user = response.currentuser;
@@ -102,7 +102,7 @@ console.log(this.data);
       judul:this.nama,
       exp:this.exp,
     });
-      this.http.post("http://nareeapp.com/api/post-history",input).subscribe(data => {
+      this.http.post("https://nareeapp.com/api/post-history",input).subscribe(data => {
         let response = data.json();
       console.log(response);  
     });
@@ -111,7 +111,7 @@ console.log(this.data);
     //   id_event:this.nama,
     //   
     // });
-    //   this.http.post("http://nareeapp.com/api/post-kehadiran",masukan).subscribe(data => {
+    //   this.http.post("https://nareeapp.com/api/post-kehadiran",masukan).subscribe(data => {
     //     let response = data.json();
     //   console.log(response);  
     // });
@@ -119,7 +119,7 @@ console.log(this.data);
       let add = ({
         exp:this.jumlahexp,
       });
-      this.http.put("http://nareeapp.com/api/users/"+this.profiles.id +"/update",add).subscribe(user => {
+      this.http.put("https://nareeapp.com/api/users/"+this.profiles.id +"/update",add).subscribe(user => {
         let response = user.text;
     });
     this.navCtrl.push(CheckinEventPage);

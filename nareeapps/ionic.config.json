@@ -6,7 +6,7 @@
         "cordova": {}
     },
     "proxies": [{
-        "path": "http://http://nareeapp.com/api",
+        "path": "http://https://nareeapp.com/api",
         "proxyUrl": "http://cors.api.com/api"
     }]
 

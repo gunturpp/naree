@@ -55,7 +55,7 @@ export class RewardPage {
   }
   ionViewDidLoad() {
     console.log("persentase load", this.persentase);
-    // this.http.get("http://nareeapp.com/api/get-history").subscribe(histories => {
+    // this.http.get("https://nareeapp.com/api/get-history").subscribe(histories => {
     //     let response = histories.json();
     //     this.history = response.histories;
     //     this.panjang = this.history.length;
@@ -70,7 +70,7 @@ export class RewardPage {
     //       }
     //     }
     //     console.log(this.persentase);
-    //   }); this.http.get("http://nareeapp.com/api/get-exps").subscribe(exps => {
+    //   }); this.http.get("https://nareeapp.com/api/get-exps").subscribe(exps => {
     //     let response = exps.json();
     //     this.experience=response.exps;
     //     console.log("experience:",this.experience[0].level);
@@ -91,7 +91,7 @@ export class RewardPage {
     this.expuser=0;
     this.MaxExp=0;
     console.log("persentase", this.persentase);
-    this.http.get("http://nareeapp.com/api/get-history").subscribe(histories => {
+    this.http.get("https://nareeapp.com/api/get-history").subscribe(histories => {
         let response = histories.json();
         this.history = response.histories;
         this.panjang = this.history.length;
@@ -109,7 +109,7 @@ export class RewardPage {
         }
         // show popup when levelup
       });
-      this.http.get("http://nareeapp.com/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
+      this.http.get("https://nareeapp.com/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
       let response = userss.json();
       // let response = userss;
       this.user = response.currentuser;
@@ -120,7 +120,7 @@ export class RewardPage {
       console.log("leveluser1 =",this.leveluser); 
 
   });
-      this.http.get("http://nareeapp.com/api/get-exps").subscribe(exps => {
+      this.http.get("https://nareeapp.com/api/get-exps").subscribe(exps => {
         let response = exps.json();
         this.experience=response.exps;
         for (var i = 0; i < this.experience.length; i++) {
@@ -159,7 +159,7 @@ export class RewardPage {
       exp:this.expuser,
       level:this.leveluser,
     });
-    this.http.put("http://nareeapp.com/api/users/"+this.profiles.id +"/update",add).subscribe(user => {
+    this.http.put("https://nareeapp.com/api/users/"+this.profiles.id +"/update",add).subscribe(user => {
       let response = user.text;
     });
       // location.reload();
@@ -180,7 +180,7 @@ export class RewardPage {
       exp: this.dailyExp,
     };
     this.http
-      .post("http://nareeapp.com/api/post-history", input)
+      .post("https://nareeapp.com/api/post-history", input)
       .subscribe(data => {
         let response = data.json();
         localStorage.setItem("currentUser",JSON.stringify(response.currentuser));
@@ -190,7 +190,7 @@ export class RewardPage {
       let tambah = ({
         exp:this.jumlahexp,
       });
-      this.http.put("http://nareeapp.com/api/users/"+this.profiles.id +"/update",tambah).subscribe(user => {
+      this.http.put("https://nareeapp.com/api/users/"+this.profiles.id +"/update",tambah).subscribe(user => {
         let response = user.text;
     });
     this.navCtrl.push(CheckinDailyPage);

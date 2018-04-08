@@ -15,7 +15,7 @@ export class ApiProvider {
   }
   apiEvent()
   {
-    this.getApiEvent = "http://nareeapp.com/api/get-events";
+    this.getApiEvent = "https://nareeapp.com/api/get-events";
     console.log(this.getApiEvent);
   }
 

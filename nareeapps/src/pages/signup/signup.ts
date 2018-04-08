@@ -53,12 +53,13 @@ export class SignupPage {
         gender: this.user.gender,
         birthdate: this.user.birthdate,
         occupation: this.user.occupation,
-        level: this.user.level = 1
+        level: this.user.level = 1,
+        photo: "/images/photoprofile/default.png"
         // birthdate: this.user.hp,
         // status: this.user.role="tourist"
       });
 
-      this.http.post("http://nareeapp.com/api/register", input).subscribe(data => {
+      this.http.post("https://nareeapp.com/api/register", input).subscribe(data => {
 
         // this.storage.set(this.HAS_LOGGED_IN, true); 
         // this.loginState = true;        

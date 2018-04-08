@@ -6,7 +6,7 @@ import { ModalController, Platform, NavParams, ViewController } from 'ionic-angu
 import { AlertController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { DataProvider } from '../../providers/data/data';
-let getApiEvent = "http://nareeapp.com/api/get-events";
+let getApiEvent = "https://nareeapp.com/api/get-events";
 
 @Component({
   selector: 'page-event',

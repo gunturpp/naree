@@ -51,7 +51,7 @@ export class LoginPage {
         password: this.user.password
       };
       // console.log(this.user.password);
-      this.http.post("http://nareeapp.com/api/login", input).subscribe(data => {
+      this.http.post("https://nareeapp.com/api/login", input).subscribe(data => {
             let response = data.json();
             loading.dismiss();
             // login berhasil

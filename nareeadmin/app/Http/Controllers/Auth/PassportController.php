@@ -5,6 +5,14 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\UploadedFile;
+
+// use Symfony\Component\HttpFoundation\File\UploadedFile;
+use DB;
+use Validator;
+use Session;
+use File;
+
 use App\User;
 use App\News;
 use App\Event;
@@ -15,8 +23,6 @@ use App\History;
 use App\Exp;
 use App\Kehadiran;
 
-use Validator;
-use DB;
 class PassportController extends Controller
 {
     public $successStatus = 200;
@@ -41,31 +47,69 @@ class PassportController extends Controller
     public function editUser($id)
     {
         $users = User::find($id);
-		$user = Auth::user();
 		return response()->json(['currentuser'=>$users]);
     }
     public function updateUser(Request $request , $id)
     {
-        $user = Auth::user();
-        request()->validate([
+	
+        // Validator::extend('photo',function($attribute, $value, $params, $validator) {
+		// 	$image = base64_decode($getPhoto);
+		// 	/* check mime, check file size on disk, check dimensions, whatever... */
+		// 	return $image; /* true/false if the image fits the required attributes */
+		// });
+		
+		// return $file;
+		// $data->photo = $data;
+		// echo $haha->id;
+		// $data['photo'] = $fil	e;
+		$rules = ([
 			'name' =>'max:30',
 			'occupation'=>'max:30',
-			'photo'=> 'mimes:jpeg,png,jpg|max:15000',
+			'photo'=> 'required|mimes:jpeg,jpg,png|max:15000',
 			'no_hp'=> 'min:10|max:13',
 			'about_me'=>'max:200',
 			'team'=> 'max:30',
 			'dance_type'=>'max:30',
 			'exp' => 'max:11',
-			'level'=> 'max:11'
-			
+			'level'=> 'max:11',
 		]);
+		$messages = [
+			'required' => 'Field harus di isi alias tidak boleh kosong',
+		];
 		$data = $request->only('name','occupation','photo','no_hp','about_me','team','dance_type','exp','level');
-		User::find($id)->update($data);
+			$data = $request->input('photo');
+			// echo json_encode($data);
+			$haha = $request->all();
+			// echo json_encode($request->all());
+			$data = str_replace('data:image/png;base64,', '', $data);
+			$data = str_replace(' ', '+', $data);
+			$image = base64_decode($data);
+			$ip = "https://nareeapp.com";
+			$file = $ip . DIRECTORY_SEPARATOR . "images/photoprofile" . DIRECTORY_SEPARATOR . uniqid() . '.png';
+			$destinationPath = public_path() . DIRECTORY_SEPARATOR . 'images/';
+			$success = file_put_contents($file,$image);				
+			// $data['photo'] = $request->photo;
+			// $data = json_encode(['photo' => $file]);
+			$data = $file;
+		
+        $validator = Validator::make($request->all(), $messages);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->
+            errors()], 401);;
+		}
+		// if ($request->hasFile('photo')->isValid()){
+        //     $data['photo'] = ;
+        // } 
+		// $data->photo = $file;
+		User::find($id)->update(['photo' => $file]);
         return $message = ('Selamat, profile berhasil diubah');
-    }
+	}
+
+
 	// ===========================================================
     public function register(Request $request)
     {
+		
         $validator = Validator::make($request->all(),[
 			'name' => 'required',
 			'email' => 'required|string|email|min:6|max:30|unique:users',
