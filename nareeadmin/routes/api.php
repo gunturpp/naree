@@ -22,6 +22,9 @@ Route::get('get-history', 'Auth\PassportController@getHistories');
 Route::get('get-events', 'Auth\PassportController@getEvents');
 Route::get('get-exps', 'Auth\PassportController@getExp');
 
+// reset password in API
+Route::post('password/email', 'Auth\ForgotPasswordController@getResetToken');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 // Route::group(['middleware' => 'auth:api'], function(){
 //     Route::post('login', 'Auth\PassportController@login'){
 //         return $userss;

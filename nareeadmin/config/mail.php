@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'naree.indonesia@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'No-reply'),
     ],
 
     /*
@@ -100,7 +100,17 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+    
 
+    // to avoid error
+    // src https://stackoverflow.com/questions/44423096/localhost-and-stream-socket-enable-crypto-ssl-operation-failed-with-code-1/44423204
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+        ],
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings
