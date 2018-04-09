@@ -54,7 +54,7 @@
             {{location}}, {{province}}</p>
         <p icon-start>
             <ion-icon color='primary' name="cash"></ion-icon>
-            {{tiket| currency:"Rp"}}</p>
+            <span *ngIf="bayar"> {{tiket| currency:"Rp"}}</span> <span *ngIf="free"> Free</span> </p>
         <p icon-start>
             <ion-icon color='primary' name="people"></ion-icon>
             by {{org}}</p>
@@ -64,8 +64,7 @@
         <p class="isi"> {{isi}}</p>
     </ion-card>
     <ion-card #map id="map" class="backcard-ket">
-
     </ion-card>
-
-    <button ion-button color="primary" full (click)="checkin()">Check In</button>
+    <button *ngIf="showcheckin" ion-button color="primary" full (click)="checkin() ">Check In</button>
+    <button disabled *ngIf="showcancel" ion-button color="primary" full (click)="checkin() ">Check In</button>
 </ion-content>

@@ -4,7 +4,7 @@ import { CheckinDailyPage } from "../checkin-daily/checkin-daily";
 import { Observable } from "rxjs/Observable";
 import { DataProvider } from "../../providers/data/data";
 import { Http, Headers, RequestOptions } from "@angular/http";
-
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the RewardPage page.
  *
@@ -41,10 +41,18 @@ export class RewardPage {
   MaxExp:number;
   waktu:any;
   hariIni:any;
+  jumalahlevel:number;
+checkin:boolean=true;
+  checkout:boolean=false;
+  today: any = new Date().toISOString();
+  hari:any;
+  items:any;
+
   constructor(
     public http: Http,
     public navCtrl: NavController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public storage: Storage,
   ) {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
     this.riwayat = [];
@@ -52,6 +60,12 @@ export class RewardPage {
     this.persentase = 0;
     this.nama = "Daily Check-in";
     this.dailyExp = 5;
+    this.storage.get('checkhari').then((data) => {
+      this.items = data;
+      console.log("hari yang ada di data",this.items);
+      
+  });
+    
   }
   ionViewDidLoad() {
     console.log("persentase load", this.persentase);
@@ -84,6 +98,15 @@ export class RewardPage {
     //                   }
     //     }
     //   }); 
+  
+    this.hari = this.today.split("T")[0];
+    if(this.hari==this.items){
+      this.checkin=false;
+      console.log("checkin",this.checkin);
+      this.checkout=true;
+      console.log("checkout",this.checkout);
+    };
+
    }
   ionViewWillEnter() {
     this.jumlah = 0;
@@ -153,11 +176,11 @@ export class RewardPage {
   }
   takeLevel(){
     this.expuser-=this.MaxExp;
-    this.leveluser+=1;
+    this.jumalahlevel=parseInt(this.leveluser.toString())+1;
     console.log("levellast=",this.leveluser);
     let add = ({
       exp:this.expuser,
-      level:this.leveluser,
+      level:this.jumalahlevel,
     });
     this.http.put("https://nareeapp.com/api/users/"+this.profiles.id +"/update",add).subscribe(user => {
       let response = user.text;
@@ -183,16 +206,21 @@ export class RewardPage {
       .post("https://nareeapp.com/api/post-history", input)
       .subscribe(data => {
         let response = data.json();
-        localStorage.setItem("currentUser",JSON.stringify(response.currentuser));
         console.log(response);
       });
-      this.jumlahexp=this.expuser+this.dailyExp;
+      this.jumlahexp =parseInt(this.expuser.toString())+ parseInt(this.dailyExp.toString());
       let tambah = ({
         exp:this.jumlahexp,
       });
       this.http.put("https://nareeapp.com/api/users/"+this.profiles.id +"/update",tambah).subscribe(user => {
         let response = user.text;
     });
+    this.storage.set('checkhari', this.hari);
+    this.checkin=false;
+    // console.log("checkin",this.checkin);
+    this.checkout=true;
+    // console.log("checkout",this.checkout);
+
     this.navCtrl.push(CheckinDailyPage);
   }
 }

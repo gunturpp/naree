@@ -1,3 +1,32 @@
 page-achievement {
-
+    ion-title {
+        text-align: center;
+    }
+    ion-card {
+        // text-align: justify;
+    }
+    .judul {
+        font-size: 20px;
+        color: #95171A;
+        text-align: center;
+        padding-block-start: 5px;
+        padding-block-end: 20px;
+        font-weight: bold;
+    }
+    .back {
+        background-color: #e8e9ea;
+    }
+    .email {
+        color: #95171A;
+        padding-inline-start: 15px;
+    }
+    .list {
+        padding-inline-start: 15px;
+    }
+    .spasi {
+        padding-inline-start: 105px;
+    }
+    .foto {
+        padding-inline-start: 15px;
+    }
 }
