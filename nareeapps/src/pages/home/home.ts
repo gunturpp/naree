@@ -23,6 +23,7 @@ export class HomePage {
     
   }
   ionViewDidLoad() {
+    
     this.http.get(getApiNews).subscribe(newss =>{
       let response = newss.json();
       this.news = response.news;

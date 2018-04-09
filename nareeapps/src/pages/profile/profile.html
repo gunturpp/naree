@@ -16,7 +16,7 @@
     <ion-card color="primary">
         <ion-item class="fotoi" color="primary">
             <!-- <ion-avatar item-start (click)="uploadPicture()"> -->
-                <img required class="foto" style="width: 130px; height: 130px;" src="{{image}}" tappable (click)="uploadPicture()" />
+                <img required class="foto" style="width: 130px; height: 130px;" *ngIf="image == null" src="{{image}}" tappable (click)="uploadPicture()" />
             <!-- </ion-avatar> -->
         </ion-item>
         <div class="card-title">{{usrname}}</div>
