@@ -12,7 +12,6 @@
     <!-- popup when level up -->
     <div *ngIf="showPopup" class="center">
         <ion-card no-padding no-margin>
-
             <img class="popUpCssLevel" src="../assets/imgs/levelupBG.png">
             <button color="light" large block round class="z10" (click)="takeLevel()" ion-button><a ion-text color="primary">Continue</a></button>
             <p *ngIf="show2digit" style="text-align:center" class="z11">{{leveluser}}</p>
