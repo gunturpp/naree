@@ -10,12 +10,13 @@
                 margin-block-end: 10px;
             }
             .judul {
-                size: 14px;
+                font-size: 20px;
                 color: white;
                 text-align: center;
-                padding-block-start: 10px;
-                font-weight: bold;
-                padding-block-end: 10px;
+                padding-block-start: 14px;
+                // font-weight: bold;
+                padding-block-end: 0px !important;
+                margin-block-end: 0px !important;
             }
             .bintang {
                 text-align: center;
@@ -62,5 +63,21 @@
                 padding: 15px;
                 margin-block-start: 0px;
                 padding-block-end: 10px;
+            }
+            ul {
+                padding: 0px !important;
+                margin: 0px !important;
+                &.rating li {
+                    margin-block-start: 0px;
+                    padding: 0px !important;
+                    // margin: 0px !important;
+                    background: none;
+                    color: yellow;
+                    ion-icon {
+                        font-size: 20px;
+                        padding-block-start: 5px;
+                        padding-block-end: 10px;
+                    }
+                }
             }
         }

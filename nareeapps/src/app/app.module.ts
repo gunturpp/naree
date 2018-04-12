@@ -30,7 +30,7 @@ import { VerifcodePage } from '../pages/verifcode/verifcode';
 import { CheckinDailyPage } from '../pages/checkin-daily/checkin-daily';
 import { CheckinEventPage } from '../pages/checkin-event/checkin-event';
 import { NgProgressModule} from 'ng2-progressbar';
-
+import { Ionic2RatingModule } from 'ionic2-rating';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
@@ -68,7 +68,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     NgProgressModule,
-
+    Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -21,6 +21,7 @@ declare var google: any;
 
 
 export class ShoweventPage {
+  x: string;
   data: any;
   nama: any;
   tipe: any;
@@ -59,7 +60,6 @@ export class ShoweventPage {
     public actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController, public viewCtrl: ViewController, public navParams: NavParams) {
     this.profiles = JSON.parse(localStorage.getItem('currentUser'));
-    this.bintang = [];
     this.ratings = 4.5;
     this.storage.get('myStore').then((data) => {
       this.items = data;
@@ -114,16 +114,18 @@ export class ShoweventPage {
     this.tiket = this.data.ticket_price;
     this.showMap(this.longtitude, this.lattitude);
     // if (this.tiket==null);
-    this.ratings = 4.5;
+    this.ratings = 3.5;
+    this.bintang=5;
     console.log("awal rating", this.ratings);
-    for (var i = 0; i < 5; i++) {
-      if (this.ratings >= 1) this.bintang.push(1);
-      else if (this.ratings >0) this.bintang.push(2);
-      else this.bintang.push(3);
-      console.log("isi array bintang", this.bintang);
-      console.log("rating: ", this.ratings);
-      this.ratings = this.ratings - 1;
-    };
+    // for (var i = 0; i < 5; i++) {
+    //   if (this.ratings >= 1) this.bintang.push(1);
+    //   else if (this.ratings >0) this.bintang.push(2);
+    //   else this.bintang.push(3);
+    //   console.log("rating: ", this.ratings);
+    //   this.ratings = this.ratings - 1;
+    // };
+    this.x = JSON.stringify(this.bintang);
+    console.log("isi array bintang", this.x);
     console.log(this.data);
     if (this.tiket == null) {
       this.free = true;
