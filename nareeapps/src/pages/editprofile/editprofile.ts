@@ -9,7 +9,6 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { DataProvider } from '../../providers/data/data';
 import{ ProfilePage }from '../profile/profile';
-import { AchievementPage } from '../achievement/achievement';
 
 /**
  * Generated class for the EditprofilePage page.
@@ -125,8 +124,4 @@ export class EditprofilePage {
       });
       this.navCtrl.push(ProfilePage);
   }
-  achiv(){
-    this.navCtrl.push(AchievementPage);
-  }
-
 }

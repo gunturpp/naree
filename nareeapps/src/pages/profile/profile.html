@@ -1,4 +1,4 @@
-<ion-header>
+    <ion-header>
     <ion-navbar color="primary">
         <ion-title class="ikon">
             <ion-icon name="ai-profile"></ion-icon>
@@ -12,11 +12,10 @@
 </ion-header>
 
 <ion-content class="back">
-    <button ion-button (click)="SavePhoto()">Save Photo</button>
     <ion-card color="primary">
         <ion-item class="fotoi" color="primary">
             <!-- <ion-avatar item-start (click)="uploadPicture()"> -->
-                <img required class="foto" style="width: 130px; height: 130px;" *ngIf="image == null" src="{{image}}" tappable (click)="uploadPicture()" />
+                <img required class="foto" style="width: 130px; height: 130px;" src="{{image}}" tappable (click)="uploadPicture()" />
             <!-- </ion-avatar> -->
         </ion-item>
         <div class="card-title">{{usrname}}</div>

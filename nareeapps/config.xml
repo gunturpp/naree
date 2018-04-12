@@ -3,7 +3,7 @@
     <name>Naree</name>
     <description>Naree is application for dancer</description>
     <author email="gppratama17@gmail.com" href="http://nareeapps.com/">Naree Indonesia</author>
-    <content original-src="index.html" src="http://10.100.243.35:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

@@ -84,13 +84,14 @@ class PassportController extends Controller
 			$data = str_replace('data:image/png;base64,', '', $data);
 			$data = str_replace(' ', '+', $data);
 			$image = base64_decode($data);
-			$ip = "https://nareeapp.com";
-			$file = $ip . DIRECTORY_SEPARATOR . "images/photoprofile" . DIRECTORY_SEPARATOR . uniqid() . '.png';
-			$destinationPath = public_path() . DIRECTORY_SEPARATOR . 'images/';
-			$success = file_put_contents($file,$image);				
-			// $data['photo'] = $request->photo;
-			// $data = json_encode(['photo' => $file]);
-			$data = $file;
+			// put path
+			$uniq = uniqid();
+			$imagePath = public_path() . DIRECTORY_SEPARATOR . "images/photoprofile" . DIRECTORY_SEPARATOR . $uniq . '.png';
+			$destinationPath = "/images/photoprofile" . DIRECTORY_SEPARATOR . $uniq . '.png';
+			// put image
+			$success = file_put_contents($imagePath,$image);				
+	
+			$data = $imagePath;
 		
         $validator = Validator::make($request->all(), $messages);
         if ($validator->fails()) {
@@ -101,8 +102,8 @@ class PassportController extends Controller
         //     $data['photo'] = ;
         // } 
 		// $data->photo = $file;
-		User::find($id)->update(['photo' => $file]);
-        return $message = ('Selamat, profile berhasil diubah');
+		User::find($id)->update(['photo' => $destinationPath]);
+        return $message = ('Selamat, profile berhasil diubah.');
 	}
 
 

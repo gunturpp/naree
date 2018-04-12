@@ -53,6 +53,10 @@ export class ProfilePage {
     // this.profil = JSON.parse(this.profile);
   }
   ionViewDidLoad() {
+    let loading = this.loadCtrl.create({
+      content: "Tunggu sebentar..."
+    });
+    loading.present();
     console.log(this.profiles);
     this.http
       .get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit")
@@ -66,7 +70,7 @@ export class ProfilePage {
         this.kategori = this.user.dance_type;
         this.level = this.user.level;
         this.email = this.user.email;
-        this.image = "https://nareeapp.com" + this.user.photo;
+        this.image = "https://nareeapp.com/" + this.user.photo;
         // this.image = "assets/photoprofile/default.png";
         this.about = this.user.about_me;
         // console.log("ini hasilnya" + JSON.stringify(this.user));
@@ -81,6 +85,7 @@ export class ProfilePage {
     //     this.userss = response.users;
     //     console.log(this.userss);
     //   })
+    loading.dismiss();
   }
   ionViewWillEnter() {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
@@ -169,6 +174,7 @@ export class ProfilePage {
     });
     actionSheet.present();
   }
+  
   SavePhoto() {
     let contentHeaders = new Headers();
     contentHeaders.append( 'Content-Type', 'application/json' );
@@ -185,6 +191,6 @@ export class ProfilePage {
         
         // localStorage.setItem("currentUser", JSON.stringify(masuk));
       });
-    this.navCtrl.push(ProfilePage);
+      this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 }
