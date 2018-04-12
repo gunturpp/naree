@@ -37,6 +37,7 @@ export class RewardPage {
   levels:number;
   user:any;
   expuser:number;
+
   levelId:any;
   MaxExp:number;
   waktu:any;
@@ -56,6 +57,7 @@ checkin:boolean=true;
   ) {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
     this.riwayat = [];
+ 
     this.jumlah = 0;
     this.persentase = 0;
     this.nama = "Daily Check-in";
@@ -63,7 +65,7 @@ checkin:boolean=true;
     this.storage.get('checkhari').then((data) => {
       this.items = data;
       console.log("hari yang ada di data",this.items);
-      
+     
   });
     
   }
@@ -106,13 +108,15 @@ checkin:boolean=true;
       this.checkout=true;
       console.log("checkout",this.checkout);
     };
-
+    
+   
    }
   ionViewWillEnter() {
     this.jumlah = 0;
     this.persentase=0;
     this.expuser=0;
     this.MaxExp=0;
+    
     console.log("persentase", this.persentase);
     this.http.get("https://nareeapp.com/api/get-history").subscribe(histories => {
         let response = histories.json();
@@ -123,10 +127,6 @@ checkin:boolean=true;
         for (var i = 0, j = 0; i < this.panjang; i++) {
           if (this.history[i].id_user == this.profiles.id) {
             this.riwayat[j] = this.history[i];
-            // this.jumlah += this.history[i].exp;
-            // tinggal comment baris 76 dan uncomment baris 74
-            // this.jumlah = 15;
-            //  this.persentase=(this.jumlah/this.MaxExp)*100;
             j++;
           }
         }
@@ -173,7 +173,9 @@ checkin:boolean=true;
       }
       
     });
+    
   }
+
   takeLevel(){
     this.expuser-=this.MaxExp;
     this.jumalahlevel=parseInt(this.leveluser.toString())+1;

@@ -27,7 +27,7 @@
         <ion-icon name="ios-undo"></ion-icon>
       </button>
         </ion-buttons>
-        
+
     </ion-navbar>
 </ion-header>
 <ion-content padding class="back">
@@ -35,15 +35,14 @@
         <img style="width:100%;height:100%;" src="https://nareeapp.com/{{foto_poster}}" />
     </ion-card>
     <ion-card color='primary' class="backcard">
-
         <p class='judul'>{{nama}} </p>
-        <!-- <div class='bintang'>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star-half"></ion-icon>
-            <ion-icon name="star-outline"></ion-icon>
-        </div> -->
+        <div class='bintang' *ngFor="let n of bintang ">
+            <ion-icon ng-if="n==1" name="star"></ion-icon>
+            <!-- <ion-icon name="star"></ion-icon> -->
+            <!-- <ion-icon name="star"></ion-icon> -->
+            <ion-icon ng-if="n==2" name="star-half"></ion-icon>
+            <ion-icon ng-if="n==3" name="star-outline"></ion-icon>
+        </div>
     </ion-card>
     <ion-card class="backcard-ket" padding>
         <p icon-start>
