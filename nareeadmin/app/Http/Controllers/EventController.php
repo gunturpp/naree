@@ -70,8 +70,9 @@ class EventController extends Controller
             'exp' => 'required',
             'long' => 'required',
             'lat' => 'required',
+            'rating' => 'required',
             ]);
-            $data = $request->only('name_event', 'description', 'date_event','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'exp', 'long', 'lat');
+            $data = $request->only('name_event', 'description', 'date_event','ticket_price','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'exp', 'long', 'lat','rating');
             
             // $data = $request->except(['image']);
             $poster = "";
@@ -142,8 +143,9 @@ class EventController extends Controller
             'exp' => 'required',
             'long' => 'required',
             'lat' => 'required',
+            'rating' => 'required',
             ]);
-            $data = $request->only('name_event', 'description', 'date_event','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'exp', 'long', 'lat');
+            $data = $request->only('name_event', 'description', 'date_event','ticket_price','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'exp', 'long', 'lat','rating');
             
             // $data = $request->except(['image']);
             $poster = "";

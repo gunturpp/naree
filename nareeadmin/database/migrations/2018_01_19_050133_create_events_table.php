@@ -27,6 +27,7 @@ class CreateEventsTable extends Migration
             $table->string('poster');
             $table->integer('exp');
             $table->string('duration');
+            $table->float('rating');
             $table->decimal('long',10,7);
             $table->decimal('lat',10,7);
             $table->timestamps();

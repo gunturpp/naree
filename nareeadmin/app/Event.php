@@ -28,6 +28,7 @@ class Event extends Model
         'long',
         'lat',
         'exp',
+        'rating',
     ];
 
     /**

@@ -7,12 +7,14 @@ use App\Transformers\Json;
 use App\User;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
+use Mail;
 
 class ForgotPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
+    https://www.youtube.com/watch?v=T49ogngdhrw
     |--------------------------------------------------------------------------
     |
     | This controller is responsible for handling password reset emails and
@@ -48,7 +50,19 @@ class ForgotPasswordController extends Controller
                 return response()->json(Json::response(null, trans('passwords.user')), 400);
             }
             $token = $this->broker()->createToken($user);
-            return response()->json(Json::response(['token' => $token]));
+            echo $token;
+            $data = [
+                'email' => $request->email,
+                'subject' => 'Reset My Password',
+                'tokennya' => $token, 
+            ];
+            // push token password to gmail
+            Mail::send('gmail.gmail',$data,function($message) use ($data) { 
+                $message->from('naree.indonesia@gmail.com', 'nareeadmin');
+                $message->to($data['email']);
+                $message->subject($data['subject']);
+            });
+            return (response()->json(Json::response(['token' => $token])));
         }
     }
 }

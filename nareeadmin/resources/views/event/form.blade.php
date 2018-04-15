@@ -71,6 +71,13 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+            <strong>rating</strong>
+            {!! Form::number('rating', null, array('placeholder' => 'beri rating 1 - 5','class' => 'form-control','step'=>'any')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
             <strong>Longitude :</strong>
             {!! Form::text('long', null, array('placeholder' => 'Longitude','class' => 'form-control')) !!}
         </div>

@@ -77,13 +77,13 @@ class PassportController extends Controller
 			'required' => 'Field harus di isi alias tidak boleh kosong',
 		];
 		$data = $request->only('name','occupation','photo','no_hp','about_me','team','dance_type','exp','level');
-			$data = $request->input('photo');
-			// echo json_encode($data);
+			$imageData = $request->input('photo');
+			// echo json_encode($imageData);
 			$haha = $request->all();
 			// echo json_encode($request->all());
-			$data = str_replace('data:image/png;base64,', '', $data);
-			$data = str_replace(' ', '+', $data);
-			$image = base64_decode($data);
+			$imageData = str_replace('imageData:image/png;base64,', '', $imageData);
+			$imageData = str_replace(' ', '+', $imageData);
+			$image = base64_decode($imageData);
 			// put path
 			$uniq = uniqid();
 			$imagePath = public_path() . DIRECTORY_SEPARATOR . "images/photoprofile" . DIRECTORY_SEPARATOR . $uniq . '.png';
@@ -91,7 +91,7 @@ class PassportController extends Controller
 			// put image
 			$success = file_put_contents($imagePath,$image);				
 	
-			$data = $imagePath;
+			$imageData = $imagePath;
 		
         $validator = Validator::make($request->all(), $messages);
         if ($validator->fails()) {
@@ -101,12 +101,10 @@ class PassportController extends Controller
 		// if ($request->hasFile('photo')->isValid()){
         //     $data['photo'] = ;
         // } 
-		// $data->photo = $file;
-		User::find($id)->update(['photo' => $destinationPath]);
+		$data['photo'] = $destinationPath;
+		User::find($id)->update($data);
         return $message = ('Selamat, profile berhasil diubah.');
 	}
-
-
 	// ===========================================================
     public function register(Request $request)
     {

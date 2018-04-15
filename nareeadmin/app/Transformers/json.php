@@ -8,7 +8,7 @@ class Json
     {
         return [
             'data'    => $data,
-            'message' => $message,
+            'message' => $message
         ];
     }
 }

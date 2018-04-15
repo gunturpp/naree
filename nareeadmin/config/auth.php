@@ -12,6 +12,7 @@ return [
     */
     'defaults' => [
         'guard' => 'web',
+        // ini table yang menghubungkan reset password; tabel yang dipake "users", bukan admin
         'passwords' => 'users',
     ],
     /*

@@ -1,0 +1,1 @@
+<p>Copy this unique to the field in application : {{$tokennya}}</p>
