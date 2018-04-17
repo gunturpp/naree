@@ -29,11 +29,14 @@ export class ProfilePage {
   nama: any;
   kategori: any;
   level: any;
+  achievements:any;
   gender: any;
   email: any;
   hp: any;
   about: any;
   achiev: any;
+  nullpage:boolean=false;
+  showpage:boolean=true;
   usrname: any;
   users: any;
   user: any;
@@ -49,8 +52,6 @@ export class ProfilePage {
     private toastCtrl: ToastController
   ) {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
-    // this.profile = JSON.stringify(this.profiles.currentuser);
-    // this.profil = JSON.parse(this.profile);
   }
   ionViewDidLoad() {
     let loading = this.loadCtrl.create({
@@ -58,26 +59,24 @@ export class ProfilePage {
     });
     loading.present();
     console.log(this.profiles);
-    this.http
-      .get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit")
-      .subscribe(userss => {
-        let response = userss.json();
-        // let response = userss;
-        this.users = response;
-        this.user = this.users.currentuser;
-        this.nama = this.user.name;
-        this.usrname = this.user.username;
-        this.kategori = this.user.dance_type;
-        this.level = this.user.level;
-        this.email = this.user.email;
-        this.image = "https://nareeapp.com/" + this.user.photo;
-        // this.image = "assets/photoprofile/default.png";
-        this.about = this.user.about_me;
-        // console.log("ini hasilnya" + JSON.stringify(this.user));
-        console.log(this.user);
-        if (response.status == "200") {
-          this.users = response.data; //ini disimpen ke variabel pasien diatas itu ,, yang udah di declare
+    
+     this.image="https://nareeapp.com"+this.profiles.photo;
+      this.http.get("https://nareeapp.com/api/get-achievement").subscribe(achievement => {
+        let response = achievement.json();
+        this.achievements = response.achievements;
+        console.log("ach :", this.achievements);
+        for (var i = 0, j = 0; i < this.achievements.length ; i++) {
+          if (this.achievements[i].id_user == this.profiles.id) {
+            this.achiev[j] = this.achievements[i];
+            j++;
+          }
         }
+        if(this.achiev==null)
+        {
+          this.nullpage=true;
+          this.showpage=false;
+        }
+        // show popup when levelup
       });
     //   manggil semua user
     //   this.http.get(getApiEvent).subscribe(users =>{
@@ -89,6 +88,7 @@ export class ProfilePage {
   }
   ionViewWillEnter() {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
+    console.log("jika udah di update:",this.profiles);
   }
   gotoNextPage() {
     this.navCtrl.push(MorePage);

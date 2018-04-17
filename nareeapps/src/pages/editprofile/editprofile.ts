@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { DataProvider } from '../../providers/data/data';
 import{ ProfilePage }from '../profile/profile';
+import { AchievementPage } from '../achievement/achievement';
 
 /**
  * Generated class for the EditprofilePage page.
@@ -73,7 +74,12 @@ export class EditprofilePage {
     // console.log(this.profiles);
   }
     
- 
+  ionViewWillEnter(){
+
+  }
+  achievment(){
+    this.navCtrl.push(AchievementPage);
+  }
   editProfil()
   {
     let loading = this.loadCtrl.create({
@@ -83,21 +89,34 @@ export class EditprofilePage {
     let contentHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
       let masuk = ({
         name:this.nama,
-        username:this.usrname,
-        dance_type:this.kategori,
-        birthdate:this.tgl,
-        gender:this.gender,
         email:this.email,
+        username:this.usrname,
+        gender:this.gender,
+        birthdate:this.tgl,
         no_hp :this.hp,
         about_me:this.about,
-        // :this.achiev,
-
+        dance_type:this.kategori,
       });
         this.http.put("https://nareeapp.com/api/users/"+this.profiles.id +"/update",masuk).subscribe(user => {
         let response = user.text;
-        localStorage.setItem("currentUser",JSON.stringify(masuk));
         console.log(response);
-        
+        let ubah = ({
+          id: this.profiles.id,
+          name:this.nama,
+          email:this.profiles.email,
+          username:this.profiles.username,
+          gender:this.gender,
+          birthdate:this.tgl,
+          occupation: this.profiles.occupation,
+          photo:this.profiles.photo,
+          no_hp :this.hp,
+          about_me:this.about,
+          team: this.profiles.team,
+          exp: this.profiles.exp,
+          dance_type:this.kategori,
+          level: this.profiles.level,
+        });
+          localStorage.setItem("currentUser",JSON.stringify(ubah));
 	  if(response.name =="Selamat, profile berhasil diubah"){
        // this.data.login(response.data);
           loading.dismiss();
@@ -122,6 +141,6 @@ export class EditprofilePage {
            }
 
       });
-      this.navCtrl.push(ProfilePage);
+      this.navCtrl.setRoot(ProfilePage);
   }
 }

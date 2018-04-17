@@ -30,15 +30,11 @@ export class RewardPage {
   persentase: any;
   nama: any;
   dailyExp: number;
-  leveluser:number;
   experience:any;
   exp:any;
   jumlahexp:number;
   levels:number;
   user:any;
-  expuser:number;
-
-  levelId:any;
   MaxExp:number;
   waktu:any;
   hariIni:any;
@@ -71,36 +67,6 @@ checkin:boolean=true;
   }
   ionViewDidLoad() {
     console.log("persentase load", this.persentase);
-    // this.http.get("https://nareeapp.com/api/get-history").subscribe(histories => {
-    //     let response = histories.json();
-    //     this.history = response.histories;
-    //     this.panjang = this.history.length;
-    //     console.log(this.panjang);
-    //     console.log(this.profiles.id);
-    //     for (var i = 0, j = 0; i < this.panjang; i++) {
-    //       if (this.history[i].id_user == this.profiles.id) {
-    //         this.riwayat[j] = this.history[i];
-    //         this.jumlah = 15;
-    //         this.persentase=(this.jumlah/this.MaxExp)*100;
-    //         j++;
-    //       }
-    //     }
-    //     console.log(this.persentase);
-    //   }); this.http.get("https://nareeapp.com/api/get-exps").subscribe(exps => {
-    //     let response = exps.json();
-    //     this.experience=response.exps;
-    //     console.log("experience:",this.experience[0].level);
-    //     console.log("level user :",this.profiles.level);
-    //     for (var i = 0; i < this.experience.length; i++) {
-    //       console.log("level exp: ",this.experience[5].level);
-
-    //       if (this.experience[i].level == 1) {
-    //         this.levels = this.experience[i].level;
-    //         this.MaxExp = this.experience[i].maxExp;
-    //                   }
-    //     }
-    //   }); 
-  
     this.hari = this.today.split("T")[0];
     if(this.hari==this.items){
       this.checkin=false;
@@ -114,9 +80,8 @@ checkin:boolean=true;
   ionViewWillEnter() {
     this.jumlah = 0;
     this.persentase=0;
-    this.expuser=0;
     this.MaxExp=0;
-    
+    this.profiles = JSON.parse(localStorage.getItem("currentUser"));
     console.log("persentase", this.persentase);
     this.http.get("https://nareeapp.com/api/get-history").subscribe(histories => {
         let response = histories.json();
@@ -132,22 +97,12 @@ checkin:boolean=true;
         }
         // show popup when levelup
       });
-      this.http.get("https://nareeapp.com/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
-      let response = userss.json();
-      // let response = userss;
-      this.user = response.currentuser;
-      this.expuser  = this.user.exp;
-      console.log("expuser1 =",this.expuser);
-      this.leveluser= this.user.level;
-      // this.leveluser= 1;
-      console.log("leveluser1 =",this.leveluser); 
 
-  });
       this.http.get("https://nareeapp.com/api/get-exps").subscribe(exps => {
         let response = exps.json();
         this.experience=response.exps;
         for (var i = 0; i < this.experience.length; i++) {
-          if (this.experience[i].level == this.leveluser) {
+          if (this.experience[i].level == this.profiles.level) {
             this.levels = this.experience[i].level;
             this.MaxExp = this.experience[i].maxExp;
             // this.MaxExp=150;
@@ -155,15 +110,14 @@ checkin:boolean=true;
           }
         }
       
-      console.log("expuser =",this.expuser);
-      console.log("MaxExp =",this.MaxExp);
-      this.persentase=(this.expuser/this.MaxExp)*100;
+  
+      this.persentase=(this.profiles.exp/this.MaxExp)*100;
       
       console.log("persentase =",this.persentase);
       if(this.persentase >= 100){
         this.showPopup = true;
         this.showHeader = false;
-        if(this.leveluser>=10)
+        if(this.profiles.level>=10)
         this.show2digit =true;
         else this.show1digit=true;
       }
@@ -177,11 +131,11 @@ checkin:boolean=true;
   }
 
   takeLevel(){
-    this.expuser-=this.MaxExp;
-    this.jumalahlevel=parseInt(this.leveluser.toString())+1;
-    console.log("levellast=",this.leveluser);
+    this.profiles.exp-=this.MaxExp;
+    this.jumalahlevel=parseInt(this.profiles.level.toString())+1;
+    console.log("levellast=",this.profiles.level);
     let add = ({
-      exp:this.expuser,
+      exp:this.profiles.exp,
       level:this.jumalahlevel,
     });
     this.http.put("https://nareeapp.com/api/users/"+this.profiles.id +"/update",add).subscribe(user => {
@@ -190,11 +144,26 @@ checkin:boolean=true;
       // location.reload();
       this.showPopup = false;
       this.showHeader = true;
+      let masuk = ({
+        id: this.profiles.id,
+        name:this.profiles.name,
+        email:this.profiles.email,
+        username:this.profiles.username,
+        gender:this.profiles.gender,
+        birthdate:this.profiles.birthdate,
+        occupation: this.profiles.occupation,
+        photo:this.profiles.photo,
+        no_hp :this.profiles.no_hp,
+        about_me:this.profiles.about_me,
+        team: this.profiles.team,
+        exp: this.profiles.exp,
+        dance_type:this.profiles.dance_type,
+        level:  this.jumalahlevel,
+      });
+        localStorage.setItem("currentUser",JSON.stringify(masuk));
       this.navCtrl.push(RewardPage);
   }
-  // checkin() {
-  //   this.navCtrl.push(CheckinDailyPage);
-  // }
+  
   openModal() {
     let contentHeaders = new Headers({
       "Content-Type": "application/x-www-form-urlencoded"
@@ -210,13 +179,31 @@ checkin:boolean=true;
         let response = data.json();
         console.log(response);
       });
-      this.jumlahexp =parseInt(this.expuser.toString())+ parseInt(this.dailyExp.toString());
+      this.jumlahexp =parseInt(this.profiles.exp.toString())+ parseInt(this.dailyExp.toString());
       let tambah = ({
         exp:this.jumlahexp,
       });
       this.http.put("https://nareeapp.com/api/users/"+this.profiles.id +"/update",tambah).subscribe(user => {
         let response = user.text;
     });
+   
+      let masuk = ({
+        id: this.profiles.id,
+        name:this.profiles.name,
+        email:this.profiles.email,
+        username:this.profiles.username,
+        gender:this.profiles.gender,
+        birthdate:this.profiles.birthdate,
+        occupation: this.profiles.occupation,
+        photo:this.profiles.photo,
+        no_hp :this.profiles.no_hp,
+        about_me:this.profiles.about_me,
+        team: this.profiles.team,
+        exp: this.jumlahexp,
+        dance_type:this.profiles.dance_type,
+        level: this.profiles.level,
+      });
+        localStorage.setItem("currentUser",JSON.stringify(masuk));
     this.storage.set('checkhari', this.hari);
     this.checkin=false;
     // console.log("checkin",this.checkin);

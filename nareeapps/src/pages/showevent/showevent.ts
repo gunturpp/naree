@@ -41,7 +41,7 @@ export class ShoweventPage {
   exp: number;
   expuser: number;
   jumlahexp: number;
-  // rating: number;
+  rating: number;
   bintang: any;            //nilai array rating
   ratings: any;             //nilai rating yang di get dari DB
   absen: boolean = true;
@@ -60,8 +60,7 @@ export class ShoweventPage {
     public actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController, public viewCtrl: ViewController, public navParams: NavParams) {
     this.profiles = JSON.parse(localStorage.getItem('currentUser'));
-    this.ratings = 4.5;
-    this.storage.get('myStore').then((data) => {
+    this.storage.get('eventcheckin').then((data) => {
       this.items = data;
       if (data != null) {
         this.panjang = data.length;
@@ -111,6 +110,7 @@ export class ShoweventPage {
     this.longtitude = this.data.long;
     this.lattitude = this.data.lat;
     this.exp = this.data.exp;
+    this.rating= this.data.rating;
     this.tiket = this.data.ticket_price;
     this.showMap(this.longtitude, this.lattitude);
     // if (this.tiket==null);
@@ -183,17 +183,34 @@ export class ShoweventPage {
     this.http.put("https://nareeapp.com/api/users/" + this.profiles.id + "/update", add).subscribe(user => {
       let response = user.text;
     });
-    this.storage.get('myStore').then((data) => {
+    this.storage.get('eventcheckin').then((data) => {
       if (data != null) {
         data.push(this.idevent);
-        this.storage.set('myStore', data);
+        this.storage.set('eventcheckin', data);
       }
       else {
         let array = [];
         array.push(this.idevent);
-        this.storage.set('myStore', array);
+        this.storage.set('eventcheckin', array);
       }
     });
+    let masuk = ({
+      id: this.profiles.id,
+      name:this.profiles.name,
+      email:this.profiles.email,
+      username:this.profiles.username,
+      gender:this.profiles.gender,
+      birthdate:this.profiles.birthdate,
+      occupation: this.profiles.occupation,
+      photo:this.profiles.photo,
+      no_hp :this.profiles.no_hp,
+      about_me:this.profiles.about_me,
+      team: this.profiles.team,
+      exp: this.jumlahexp,
+      dance_type:this.profiles.dance_type,
+      level: this.profiles.level,
+    });
+      localStorage.setItem("currentUser",JSON.stringify(masuk));
     this.navCtrl.push(CheckinEventPage);
   }
 

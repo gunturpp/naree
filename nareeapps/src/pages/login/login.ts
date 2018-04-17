@@ -36,6 +36,9 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log("ionViewDidLoad LoginPage");
   }
+  ionViewWillLeave(){
+
+  }
   onLogin(form: NgForm) {
     // kondisi submit true
     this.submitted = true;
