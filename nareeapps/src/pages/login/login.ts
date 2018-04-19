@@ -16,11 +16,16 @@ import { Storage } from "@ionic/storage";
   templateUrl: "login.html"
 })
 export class LoginPage {
+  ukuran: number;
+  daily: any;
+  hadir: any=[];
+  kehadiran: any=[];
   achiev: any=[];
   achievements: any;
   riwayat: any=[];
   profiles: any;
   history: any;
+  judul: any="Daily Check-in";
   token: any;
   statusnya: any;
   HAS_LOGGED_IN = "hasLoggedIn";
@@ -31,6 +36,7 @@ export class LoginPage {
   exp:any;
   constructor(public navCtrl: NavController, public toastCtrl: ToastController,public loadCtrl: LoadingController,public storage: Storage,public http: Http,public viewCtrl: ViewController)
   {
+    
     // kalo tokennya gak expired, langsung push tabspage
     if(localStorage.getItem("token") != null){
       this.navCtrl.push(TabsPage);
@@ -61,7 +67,21 @@ export class LoginPage {
       // show popup when levelup
       localStorage.setItem("expHistory",JSON.stringify(this.riwayat));
       console.log("cek ada history apa tidak",this.riwayat);
+      this.ukuran=parseInt(this.riwayat.length.toString());
+      for (var i = this.ukuran-1; i >=0 ; i--) {
+        console.log("riwayat",this.riwayat[i]);
+        if (this.riwayat[i].judul === this.judul) {
+          console.log("riwayat",this.riwayat[i].judul);
+          this.daily = this.riwayat[i].updated_at;
+        }
+      }
+      this.daily =this.daily.split(" ")[0];
+      console.log("daily ", this.daily);
+      this.storage.set('checkhari',this.daily);
     });
+   
+    // this.daily =  this.daily.split(" ")[0];
+   
     //untuk mengambil DB exps
     if (this.exp == null) {
       this.http.get("https://nareeapp.com/api/get-exps").subscribe(level => {
@@ -79,11 +99,22 @@ export class LoginPage {
         for (var i = 0, j = 0; i < this.achievements.length ; i++) {
           if (this.achievements[i].id_user == this.profiles.id) {
             this.achiev[j] = this.achievements[i];
-            console.log("ach keterima:",this.achiev);
             j++;
           }
         }
         localStorage.setItem("achievement",JSON.stringify(this.achiev));
+      });
+      this.http.get("https://nareeapp.com/api/get-kehadirans").subscribe(hadir => {
+        let response = hadir.json();
+        this.kehadiran = response.kehadirans;
+        console.log("kehadiran :", this.kehadiran);
+        for (var i = 0, j = 0; i < this.kehadiran.length ; i++) {
+          if (this.kehadiran[i].id_user == this.profiles.id) {
+            this.hadir[j] = this.kehadiran[i].id_event;
+            j++;
+          }
+        }
+        this.storage.set('eventcheckin',this.hadir);
       });
   }
   onLogin(form: NgForm) {

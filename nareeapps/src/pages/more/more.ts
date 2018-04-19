@@ -37,6 +37,8 @@ export class MorePage {
     this.authServiceProvider.logout();
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
+    this.storage.remove('eventcheckin');
+    this.storage.remove('checkhari');
     if(localStorage.getItem('token') == null ) {
       this.navCtrl.setRoot (LoginPage);
     }

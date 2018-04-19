@@ -39,7 +39,7 @@ export class ShoweventPage {
   profiles: any;
   user: any;
   bayar: boolean = true;
-  exp: number;
+  exp: any;
   expuser: number;
   jumlahexp: number;
   rating: number;
@@ -161,7 +161,7 @@ export class ShoweventPage {
     let contentHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let input = ({
       id_user: this.profiles.id,
-      judul: this.nama,
+      judul: this.data.name_event,
       exp: this.exp,
     });
     this.http.post("https://nareeapp.com/api/post-history", input).subscribe(data => {
@@ -170,6 +170,8 @@ export class ShoweventPage {
       this.historyExp.push(response.success);
       console.log("ini hasil checkin",this.historyExp);
     });
+    
+
     let masukan = ({
       id_user: this.profiles.id,
       id_event: this.data.id,

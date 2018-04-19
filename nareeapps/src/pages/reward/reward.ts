@@ -93,6 +93,7 @@ checkin:boolean=true;
     this.MaxExp=0;
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
     this.historyExp = JSON.parse(localStorage.getItem("expHistory"));
+
     console.log("persentase", this.persentase);
         for (var i = 0; i < this.experience.length; i++) {
           if (this.experience[i].level == this.profiles.level) {
@@ -171,6 +172,7 @@ checkin:boolean=true;
         let response = data.json();
         console.log(response);
         this.historyExp.push(response.success);
+        console.log("history",this.historyExp);
       });
       this.jumlahexp =parseInt(this.profiles.exp.toString())+ parseInt(this.dailyExp.toString());
       let tambah = ({
@@ -197,6 +199,7 @@ checkin:boolean=true;
         level: this.profiles.level,
       });
         localStorage.setItem("currentUser",JSON.stringify(masuk));
+        console.log("sukses ubah currnet ")
     this.storage.set('checkhari', this.hari);
     this.checkin=false;
     // console.log("checkin",this.checkin);
