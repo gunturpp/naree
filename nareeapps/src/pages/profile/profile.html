@@ -49,14 +49,16 @@
         <h2 class="judul-card"> Achievement </h2>
         <ion-item *ngIf="nullpage">
             <p item-start> tanggal</p>
-            <p>Checkin event </p>
-            <p item-end> 50xp</p>
+            <p>Achievement history </p>
+            <p item-end> exp</p>
         </ion-item>
-        <ion-item *ngIf="showpage">
-            <p item-start> achiev.updated_at</p>
-            <p>achiev.title </p>
-            <p item-end> achiev.exp</p>
-        </ion-item>
+        <div *ngIf="showpage">
+            <ion-item *ngFor="let x of achiev">
+                <p item-start> {{x.updated_at|date: 'dd/mm/yy'}}</p>
+                <p>{{x.title}} </p>
+                <p item-end> {{x.exp}}</p>
+            </ion-item>
+        </div>
     </ion-card>
     <!--<ion-grid>
         <ion-row>

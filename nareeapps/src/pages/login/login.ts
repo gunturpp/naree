@@ -7,7 +7,6 @@ import {
 } from "ionic-angular";
 import { TabsPage } from "../tabs/tabs";
 import { SignupPage } from "../signup/signup";
-
 import { Http, Headers } from "@angular/http";
 import { NgForm } from "@angular/forms";
 import { Storage } from "@ionic/storage";
@@ -17,6 +16,11 @@ import { Storage } from "@ionic/storage";
   templateUrl: "login.html"
 })
 export class LoginPage {
+  achiev: any=[];
+  achievements: any;
+  riwayat: any=[];
+  profiles: any;
+  history: any;
   token: any;
   statusnya: any;
   HAS_LOGGED_IN = "hasLoggedIn";
@@ -24,20 +28,63 @@ export class LoginPage {
 
   user: { email?: string; password?: string } = {};
   submitted = false;
-
+  exp:any;
   constructor(public navCtrl: NavController, public toastCtrl: ToastController,public loadCtrl: LoadingController,public storage: Storage,public http: Http,public viewCtrl: ViewController)
   {
     // kalo tokennya gak expired, langsung push tabspage
     if(localStorage.getItem("token") != null){
       this.navCtrl.push(TabsPage);
-    }
+  }
+  this.exp = JSON.parse(localStorage.getItem("experience"));
+  this.profiles = JSON.parse(localStorage.getItem("currentUser"));
   }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad LoginPage");
+    console.log("ada exp di DB? ",this.exp);
+    
   }
   ionViewWillLeave(){
-
+     //get exp-history user
+     this.http.get("https://nareeapp.com/api/get-history").subscribe(histories => {
+      let response = histories.json();
+      this.history = response.histories;
+      console.log("cek API get1",this.history[0].id_user);
+      console.log("cek API get2",this.profiles.id);
+      for (var i = 0, j = 0; i < this.history.length; i++) {
+        if (this.history[i].id_user == this.profiles.id) {
+          this.riwayat[j] = this.history[i];
+          j++;
+        }
+      }
+      console.log("cek ada history apa tidak",this.riwayat);
+      // show popup when levelup
+      localStorage.setItem("expHistory",JSON.stringify(this.riwayat));
+      console.log("cek ada history apa tidak",this.riwayat);
+    });
+    //untuk mengambil DB exps
+    if (this.exp == null) {
+      this.http.get("https://nareeapp.com/api/get-exps").subscribe(level => {
+            let response = level.json();
+              // save profile in localstorage   
+              localStorage.setItem("experience",JSON.stringify(response.exps));
+              console.log("exp di local storage",response.exps);
+          },
+        )
+    }
+    this.http.get("https://nareeapp.com/api/get-achievement").subscribe(achievement => {
+        let response = achievement.json();
+        this.achievements = response.achievements;
+        console.log("ach :", this.achievements);
+        for (var i = 0, j = 0; i < this.achievements.length ; i++) {
+          if (this.achievements[i].id_user == this.profiles.id) {
+            this.achiev[j] = this.achievements[i];
+            console.log("ach keterima:",this.achiev);
+            j++;
+          }
+        }
+        localStorage.setItem("achievement",JSON.stringify(this.achiev));
+      });
   }
   onLogin(form: NgForm) {
     // kondisi submit true
@@ -61,6 +108,7 @@ export class LoginPage {
             if (response.status == 200) {
               // save profile in localstorage   
               localStorage.setItem("currentUser",JSON.stringify(response.currentuser));
+              this.profiles = JSON.parse(localStorage.getItem("currentUser"));
               // save token in localstorage   
               localStorage.setItem("token",JSON.stringify(response.token));
               this.navCtrl.setRoot(TabsPage);

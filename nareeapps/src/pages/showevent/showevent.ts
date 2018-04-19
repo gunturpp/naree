@@ -21,6 +21,7 @@ declare var google: any;
 
 
 export class ShoweventPage {
+  historyExp: any;
   x: string;
   data: any;
   nama: any;
@@ -60,6 +61,7 @@ export class ShoweventPage {
     public actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController, public viewCtrl: ViewController, public navParams: NavParams) {
     this.profiles = JSON.parse(localStorage.getItem('currentUser'));
+    this.historyExp = JSON.parse(localStorage.getItem("expHistory"));
     this.storage.get('eventcheckin').then((data) => {
       this.items = data;
       if (data != null) {
@@ -165,6 +167,8 @@ export class ShoweventPage {
     this.http.post("https://nareeapp.com/api/post-history", input).subscribe(data => {
       let response = data.json();
       console.log(response);
+      this.historyExp.push(response.success);
+      console.log("ini hasil checkin",this.historyExp);
     });
     let masukan = ({
       id_user: this.profiles.id,

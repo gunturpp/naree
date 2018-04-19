@@ -17,6 +17,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: "reward.html"
 })
 export class RewardPage {
+  historyExp: any;
   showPopup: boolean = false;
   showHeader: boolean= false;
   show2digit: boolean = false;
@@ -52,28 +53,37 @@ checkin:boolean=true;
     public storage: Storage,
   ) {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
+    this.historyExp = JSON.parse(localStorage.getItem("expHistory"));
     this.riwayat = [];
  
     this.jumlah = 0;
     this.persentase = 0;
     this.nama = "Daily Check-in";
     this.dailyExp = 5;
+    
     this.storage.get('checkhari').then((data) => {
       this.items = data;
       console.log("hari yang ada di data",this.items);
+      this.hari = this.today.split("T")[0];
+      if(this.hari==this.items){
+        this.checkin=false;
+        console.log("checkin",this.checkin);
+        this.checkout=true;
+        console.log("checkout",this.checkout);
+      };
      
   });
-    
+    this.experience = JSON.parse(localStorage.getItem("experience"));
   }
   ionViewDidLoad() {
     console.log("persentase load", this.persentase);
     this.hari = this.today.split("T")[0];
-    if(this.hari==this.items){
-      this.checkin=false;
-      console.log("checkin",this.checkin);
-      this.checkout=true;
-      console.log("checkout",this.checkout);
-    };
+    // if(this.hari==this.items){
+    //   this.checkin=false;
+    //   console.log("checkin",this.checkin);
+    //   this.checkout=true;
+    //   console.log("checkout",this.checkout);
+    // };
     
    
    }
@@ -82,25 +92,8 @@ checkin:boolean=true;
     this.persentase=0;
     this.MaxExp=0;
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
+    this.historyExp = JSON.parse(localStorage.getItem("expHistory"));
     console.log("persentase", this.persentase);
-    this.http.get("https://nareeapp.com/api/get-history").subscribe(histories => {
-        let response = histories.json();
-        this.history = response.histories;
-        this.panjang = this.history.length;
-        console.log(this.panjang);
-        console.log(this.profiles.id);
-        for (var i = 0, j = 0; i < this.panjang; i++) {
-          if (this.history[i].id_user == this.profiles.id) {
-            this.riwayat[j] = this.history[i];
-            j++;
-          }
-        }
-        // show popup when levelup
-      });
-
-      this.http.get("https://nareeapp.com/api/get-exps").subscribe(exps => {
-        let response = exps.json();
-        this.experience=response.exps;
         for (var i = 0; i < this.experience.length; i++) {
           if (this.experience[i].level == this.profiles.level) {
             this.levels = this.experience[i].level;
@@ -125,9 +118,8 @@ checkin:boolean=true;
         this.showPopup = false;
         this.showHeader = true;
       }
+     
       
-    });
-    
   }
 
   takeLevel(){
@@ -178,6 +170,7 @@ checkin:boolean=true;
       .subscribe(data => {
         let response = data.json();
         console.log(response);
+        this.historyExp.push(response.success);
       });
       this.jumlahexp =parseInt(this.profiles.exp.toString())+ parseInt(this.dailyExp.toString());
       let tambah = ({

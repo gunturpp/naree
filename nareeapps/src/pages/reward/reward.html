@@ -52,13 +52,11 @@
                 <h2 class="judul">Exp History</h2>
                 <!-- <ion-scroll style="width: 100%; height: 100%" scrollY="true"> -->
                 <div class="lol">
-
-
-                    <ion-item no-margin *ngFor="let history of riwayat">
+                    <ion-item no-margin *ngFor="let x of historyExp">
                         <!-- <ion-scroll style="width: 100%; height: 100%" scrollY="true"> -->
-                        <p item-start> {{history.updated_at|date: 'dd/mm/yy'}}</p>
-                        <p> {{history.judul}} </p>
-                        <p item-end> {{history.exp}}</p>
+                        <p item-start> {{x.updated_at|date: 'dd/mm/yy'}}</p>
+                        <p> {{x.judul}} </p>
+                        <p item-end> {{x.exp}}</p>
                         <!-- *ngFor="let history of riwayat" -->
                         <!-- </ion-scroll> -->
                     </ion-item>

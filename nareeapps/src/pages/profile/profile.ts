@@ -34,7 +34,7 @@ export class ProfilePage {
   email: any;
   hp: any;
   about: any;
-  achiev: any;
+  achiev: any=[];
   nullpage:boolean=false;
   showpage:boolean=true;
   usrname: any;
@@ -49,9 +49,9 @@ export class ProfilePage {
     private transfer: FileTransfer,
     private http: Http,
     public navCtrl: NavController,
-    private toastCtrl: ToastController
   ) {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
+    this.achiev= JSON.parse(localStorage.getItem("achievement"));
   }
   ionViewDidLoad() {
     let loading = this.loadCtrl.create({
@@ -61,23 +61,24 @@ export class ProfilePage {
     console.log(this.profiles);
     
      this.image="https://nareeapp.com"+this.profiles.photo;
-      this.http.get("https://nareeapp.com/api/get-achievement").subscribe(achievement => {
-        let response = achievement.json();
-        this.achievements = response.achievements;
-        console.log("ach :", this.achievements);
-        for (var i = 0, j = 0; i < this.achievements.length ; i++) {
-          if (this.achievements[i].id_user == this.profiles.id) {
-            this.achiev[j] = this.achievements[i];
-            j++;
-          }
-        }
+      // this.http.get("https://nareeapp.com/api/get-achievement").subscribe(achievement => {
+      //   let response = achievement.json();
+      //   this.achievements = response.achievements;
+      //   console.log("ach :", this.achievements);
+      //   for (var i = 0, j = 0; i < this.achievements.length ; i++) {
+      //     if (this.achievements[i].id_user == this.profiles.id) {
+      //       this.achiev[j] = this.achievements[i];
+      //       console.log("ach keterima:",this.achiev);
+      //       j++;
+      //     }
+      //   }
         if(this.achiev==null)
         {
           this.nullpage=true;
           this.showpage=false;
         }
         // show popup when levelup
-      });
+      // });
     //   manggil semua user
     //   this.http.get(getApiEvent).subscribe(users =>{
     //     let response = users.json();
@@ -88,6 +89,7 @@ export class ProfilePage {
   }
   ionViewWillEnter() {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
+    this.image="https://nareeapp.com"+this.profiles.photo;
     console.log("jika udah di update:",this.profiles);
   }
   gotoNextPage() {

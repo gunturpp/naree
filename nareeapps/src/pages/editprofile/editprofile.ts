@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Http, Headers,RequestOptions } from '@angular/http';
-import { MorePage } from '../more/more';
-import {  NavParams, LoadingController, ToastController, AlertController,  ActionSheetController } from 'ionic-angular';
+import { Http, Headers } from '@angular/http';
+import {   LoadingController, ToastController, AlertController,  ActionSheetController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { IonicPage } from 'ionic-angular';
-import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { DataProvider } from '../../providers/data/data';
 import{ ProfilePage }from '../profile/profile';
 import { AchievementPage } from '../achievement/achievement';
 
