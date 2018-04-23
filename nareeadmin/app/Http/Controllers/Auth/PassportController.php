@@ -46,26 +46,61 @@ class PassportController extends Controller
 	// UPDATE
     public function editUser($id)
     {
-        $users = User::find($id);
+		$users = User::find($id);
 		return response()->json(['currentuser'=>$users]);
-    }
+	}
+	public function updateFotoUser(Request $request, $id)
+	{
+		$oldPhoto = DB::table('users')->value('photo');
+
+		$usersImage = public_path() . $oldPhoto; // get previous image from folder
+		if (File::exists($usersImage)) 
+		{ // unlink or remove previous image from folder
+			unlink($usersImage);
+		}
+		$data = $request->only('photo');
+		// echo json_encode($data);
+		$imageData = $request->input('photo');
+		// echo json_encode($imageData);
+		
+		// echo($imageData);
+		// get extention from base44
+		preg_match("/^data:image\/(.*);base64/i",$imageData, $match);
+		$extension = $match[1];
+		// echo($extension);
+		$imageData = str_replace('data:image/jpeg;base64,', '', $imageData);
+		$imageData = str_replace('data:image/png;base64,', '', $imageData);
+		$imageData = str_replace('data:image/jpg;base64,', '', $imageData);
+		$imageData = str_replace(' ', '+', $imageData);
+		$image = base64_decode($imageData);
+		// echo($image);
+		// put path
+		$uniq = uniqid();
+		$imagePath = public_path() . DIRECTORY_SEPARATOR . "images/photoprofile" . DIRECTORY_SEPARATOR . $uniq . '.' . $extension;
+		$destinationPath = "/images/photoprofile/" . $uniq . '.' . $extension;
+		
+		// put image
+		$success = file_put_contents($imagePath,$image);				
+		
+		$imageData = $success;
+		$data['photo'] = $destinationPath;
+		$validator = Validator::make($data, [
+			'photo' => 'required|max:10000',
+			]); 
+			if($validator->fails()){
+				return response()->json(['error'=>$validator->
+				errors()], 401);
+			}
+		User::find($id)->update($data);
+		return "Selamat anda berhasil mengganti foto!";
+			
+	}
     public function updateUser(Request $request , $id)
     {
 	
-        // Validator::extend('photo',function($attribute, $value, $params, $validator) {
-		// 	$image = base64_decode($getPhoto);
-		// 	/* check mime, check file size on disk, check dimensions, whatever... */
-		// 	return $image; /* true/false if the image fits the required attributes */
-		// });
-		
-		// return $file;
-		// $data->photo = $data;
-		// echo $haha->id;
-		// $data['photo'] = $fil	e;
 		$rules = ([
 			'name' =>'max:30',
 			'occupation'=>'max:30',
-			'photo'=> 'required|mimes:jpeg,jpg,png|max:15000',
 			'no_hp'=> 'min:10|max:13',
 			'about_me'=>'max:200',
 			'team'=> 'max:30',
@@ -76,32 +111,14 @@ class PassportController extends Controller
 		$messages = [
 			'required' => 'Field harus di isi alias tidak boleh kosong',
 		];
-		$data = $request->only('name','occupation','photo','no_hp','about_me','team','dance_type','exp','level');
-			$imageData = $request->input('photo');
-			// echo json_encode($imageData);
-			$haha = $request->all();
-			// echo json_encode($request->all());
-			$imageData = str_replace('imageData:image/png;base64,', '', $imageData);
-			$imageData = str_replace(' ', '+', $imageData);
-			$image = base64_decode($imageData);
-			// put path
-			$uniq = uniqid();
-			$imagePath = public_path() . DIRECTORY_SEPARATOR . "images/photoprofile" . DIRECTORY_SEPARATOR . $uniq . '.png';
-			$destinationPath = "/images/photoprofile" . DIRECTORY_SEPARATOR . $uniq . '.png';
-			// put image
-			$success = file_put_contents($imagePath,$image);				
-	
-			$imageData = $imagePath;
-		
-        $validator = Validator::make($request->all(), $messages);
+		$data = $request->only('name','occupation','no_hp','about_me','team','dance_type','exp','level');
+			
+        $validator = Validator::make($request->only($data),$rules, $messages);
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->
             errors()], 401);;
 		}
-		// if ($request->hasFile('photo')->isValid()){
-        //     $data['photo'] = ;
-        // } 
-		$data['photo'] = $destinationPath;
+		
 		User::find($id)->update($data);
         return $message = ('Selamat, profile berhasil diubah.');
 	}
@@ -161,6 +178,19 @@ class PassportController extends Controller
 	}
    
 	// GET
+	public function  getKehadiran(Request $request, $string=null)
+	{
+		$token = $request->header('Api-key');
+		$user = Auth::user();
+		if($string!=null)
+			$kehadirans = Kehadiran::Where('created_at','like','%'.$string.'%')->orderBy('id')->get();
+		else
+
+			$kehadirans = Kehadiran::orderBy('id')->get();
+		$status=true;
+		return compact('status','kehadirans');
+		
+	}
     public function getNews(Request $request,  $string=null)
 	{
 		$token = $request->header('Api-key');

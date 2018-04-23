@@ -16,11 +16,11 @@ class CreateAchievementsTable extends Migration
         Schema::defaultStringLength(191);        
         Schema::create('achievements', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user')->unsigned();
+            $table->string('username',20)->nullable();
             $table->string('title',30)->nullable();
             $table->string('scope',15)->nullable();
-            $table->string('month',10)->nullable();
-            $table->date('year')->nullable();
+            $table->month('month',10)->nullable();
+            $table->year('year')->nullable();
             $table->string('exp');
             $table->string('poster');
             $table->timestamps();

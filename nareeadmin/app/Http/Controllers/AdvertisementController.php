@@ -83,7 +83,7 @@ class AdvertisementController extends Controller
     
             }
             $he = base64_encode($data['poster']);
-            dd(base64_decode($he));
+            // dd(base64_decode($he));
 
         Advertisement::create($data);
         return redirect()->route('advertisement.index')

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Admin;
 use App\Achievement;
-
+use App\History;
 class AchievementController extends Controller
 {
     public function __construct()
@@ -57,15 +57,17 @@ class AchievementController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+        $expUser = DB::table('users')->value('exp');
         request()->validate([
+            'username' => 'required',
             'title' => 'required',
+            'organizer' => 'required',
             'scope' => 'required',
             'month' => 'required',
             'year' => 'required',
             'exp' => 'required'
-
             ]);
-            $data = $request->only('title','scope','month','year','exp');
+            $data = $request->only('username','title','organizer','scope','month','year','exp');
             
             // $data = $request->except(['image']);
             $poster = "";
@@ -80,14 +82,23 @@ class AchievementController extends Controller
                 $photo1 = $fileName;
                 $data['admin'] = $user->email;
                 // return $getPath;
-
-    
             }
-
+            
+            $userId = DB::table('users')->where('username',$data['username'])->value('id');
+            // add total exp user with exp achievement
+            $addExp = $expUser + $data['exp'];
+            DB::table('users')->where('id', $userId)->update(['exp' => $addExp]);
+            // create history achievement in table history
+            History::create([
+                'id_user' => $userId,
+                'judul' => $data['title'],
+                'exp' => $data['exp']
+            ]);
 
         achievement::create($data);
-        return redirect()->route('achievement.index')
+        return redirect()->route('achievement.index')    
             ->with('success','New achievement has been created successfully');
+            
     }
     /**
      * Display the specified resource.
@@ -124,14 +135,16 @@ class AchievementController extends Controller
     {
         $user = Auth::user();
         request()->validate([
+            'username' => 'required',            
             'title' => 'required',
+            'organizer' => 'required',
             'scope' => 'required',
             'month' => 'required',
             'year' => 'required',
             'exp' => 'required'
 
             ]);
-            $data = $request->only('title','scope','month','year','exp');
+            $data = $request->only('username','title','organizer','scope','month','year','exp');
             
             // $data = $request->except(['image']);
             $poster = "";

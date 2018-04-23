@@ -52,7 +52,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Poster :</strong>
-                        <img src="{{ $advertisements -> poster }}" style="height:50px;width:50px;text-align:center">
+                        <img src="{{ $advertisements -> poster }}" style="height:50%;width:50%;text-align:center">
                     </div>
                 </div>
             </div>

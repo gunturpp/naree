@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Admin;
 use App\Kehadiran;
+use App\History;
 
 class KehadiranController extends Controller
 {
@@ -28,13 +29,11 @@ class KehadiranController extends Controller
 			$kehadiran_event = DB::table('kehadiran_event')->count();
         }
         else {
-            return 'kamu bukan staff naree';
+            return 'Sorry, you dont have permission';
         }
-        // $newss = News::latest()->paginate(5);
         $kehadiran_event = DB::table('kehadiran_event')->latest()->paginate(5);
         return view('kehadiran-event.index',compact('kehadiran_event', 'admins'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
-
     }
 
     /**
@@ -99,13 +98,35 @@ class KehadiranController extends Controller
     public function update(Request $request, $id)
     {
         $user = Auth::user();
+        // get id event in  table kehadiran_event
+        $id_kehadiran_event =  DB::table('kehadiran_event')->value('id_event');
+        $id_user_hadir = DB::table('kehadiran_event')->value('id_user');
+        $name_event = DB::table('events')->where('id',$id_kehadiran_event)->value('name_event');
+        // get exp event in table event by id event
+        $expByEvent =  DB::table('events')->where('id', $id_kehadiran_event)->value('exp');
+        $expUser = DB::table('users')->value('exp');
         request()->validate([
             'kehadiran' => 'required'
-
             ]);
             $data = $request->only('kehadiran');
+        // dd($data['kehadiran']);
+        if($data['kehadiran'] == 2){
+            // jumlahkan current exp user dengan exp event
+            $addExp = $expByEvent + $expUser;
+            // update exp sesuai exp event jika hadir
+            DB::table('users')->where('id', $id_user_hadir)->update(['exp' => $addExp]);
+            // create table histories by userId
+            History::create([
+                'id_user' => $id_user_hadir,
+                'judul' => $name_event,
+                'exp' => $expByEvent
+            ]);
 
+        }
+
+        // DB::update('update users set votes = 100 where name = ?', ['John']);
         Kehadiran::find($id)->update($data);
+        // User::find($user->id)-update($data->exp)
         return redirect()->route('kehadiran.index')
             ->with('success','New kehadiran has been created successfully');
     }

@@ -11,6 +11,7 @@ Route::post('post-kehadiran', 'Auth\PassportController@postKehadiranEvent');
 
 Route::get('users/{id}/edit', 'Auth\PassportController@editUser');
 Route::put('users/{id}/update', 'Auth\PassportController@updateUser');
+Route::put('users/{id}/photo', 'Auth\PassportController@updateFotoUser');
 
 
 
@@ -21,6 +22,7 @@ Route::get('get-achievement', 'Auth\PassportController@getAchievement');
 Route::get('get-history', 'Auth\PassportController@getHistories');
 Route::get('get-events', 'Auth\PassportController@getEvents');
 Route::get('get-exps', 'Auth\PassportController@getExp');
+Route::get('get-kehadirans', 'Auth\PassportController@getKehadiran');
 
 // reset password in API
 Route::post('password/email', 'Auth\ForgotPasswordController@getResetToken');

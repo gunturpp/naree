@@ -35,19 +35,22 @@
 
             <table class="table table-bordered">
                 <tr>
+                        username title scope month year
                     <th>No</th>
+                    <th>Username</th>
                     <th>Title</th>
-                    <th>Certificate</th>
+                    <th>Scope</th>
                     <th>Month/Year</th>
-                    <th>created_at</th>
+                    <th>Created_at</th>
                     <th width="280px">Action</th>
                 </tr>
             @foreach($achievements as $achievement)
             <tr>
                 <td>{{ ++$i }}</td>
+                <td>{{ $achievement->username}}</td>
                 <td>{{ $achievement->title}}</td>
-                <td><img src="{{ $achievement -> poster }}" style="height:50px;width:50px;text-align:center"></td>
-                <td>{{ $achievement->month}}{{ $achievement->year}}</td>
+                <td>{{ $achievement->scope}}</td>                
+                <td>{{ $achievement->month}}/{{ $achievement->year}}</td>
                 <td>{{ $achievement->created_at}}</td>
                 <td>
                     <a class="btn btn-info" href="{{ route('achievement.show',$achievement->id) }}">Show</a>

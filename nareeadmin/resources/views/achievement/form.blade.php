@@ -1,15 +1,29 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+            <strong>username :</strong>
+            {!! Form::text('username', null, array('placeholder' => 'username','class' => 'form-control')) !!}
+        </div>
+    </div>
+        
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
             <strong>title :</strong>
-            {!! Form::text('title', null, array('placeholder' => 'title','class' => 'form-control')) !!}
+            {!! Form::text('title', null, array('placeholder' => '1st Winner','class' => 'form-control')) !!}
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+            <strong>Organizer :</strong>
+            {!! Form::text('organizer', null, array('placeholder' => 'GGCrewcup','class' => 'form-control')) !!}
+        </div>
+    </div>
+    
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
             <strong>scope :</strong>
-            {!! Form::text('scope', null, array('placeholder' => 'Internasional/Nasional/Regional','class' => 'form-control')) !!}
+            {!! Form::select('scope', array('Regional' => 'Regional', 'Nasional' => 'Nasional', 'Internasional' => 'Internasional'), 'Regional') !!}
         </div>
     </div>
 
@@ -25,7 +39,7 @@
         <div class="form-group">
             <strong>Year :</strong>
             
-            {!! Form::selectYear('year', 1970, 2018) !!}
+            {!! Form::selectYear('year', 1980, 2018) !!}
         </div>
     </div>
 
@@ -38,7 +52,7 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group {!! $errors->has('poster') ? 'has-error' : '' !!}">
-            <strong>Poster :</strong>
+            <strong>Certificate :</strong>
             {!! Form::file('poster') !!}
             {!! Form::label('poster', 'Gambar Harus Memiliki Format ( jpg,jpeg,png )*') !!}
         </div>

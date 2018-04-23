@@ -58,7 +58,7 @@ class EventController extends Controller
     {
         $user = Auth::user();
         request()->validate([
-            'name_event' => 'required',
+            'name_event' => 'required|max:100|string',
             'description' => 'required|max:10000|string',
             'date_event' => 'required',
             'ticket_price' => 'required',
@@ -131,7 +131,7 @@ class EventController extends Controller
     {
         $user = Auth::user();
         request()->validate([
-            'name_event' => 'required',
+            'name_event' => 'required|max:100|string',
             'description' => 'required|max:10000|string',
             'date_event' => 'required',
             'ticket_price' => 'required',
