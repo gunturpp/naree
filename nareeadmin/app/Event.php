@@ -13,7 +13,6 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'name_event',
         'description',
         'ticket_price',

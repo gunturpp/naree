@@ -19,8 +19,8 @@ class CreateAchievementsTable extends Migration
             $table->string('username',20)->nullable();
             $table->string('title',30)->nullable();
             $table->string('scope',15)->nullable();
-            $table->month('month',10)->nullable();
-            $table->year('year')->nullable();
+            $table->string('month',2)->nullable();
+            $table->string('year',4)->nullable();
             $table->string('exp');
             $table->string('poster');
             $table->timestamps();

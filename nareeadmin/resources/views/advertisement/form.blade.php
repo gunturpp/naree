@@ -16,14 +16,14 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Duration :</strong>
-            {!! Form::text('duration', null, array('placeholder' => '2 hari','class' => 'form-control')) !!}
+            {!! Form::text('duration', null, array('placeholder' => 'cukup ketik angka, misal : 1','class' => 'form-control')) !!}
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Status :</strong>
-            {!! Form::text('status', null, array('placeholder' => 'Aktif/tidak','class' => 'form-control')) !!}
+            {!! Form::select('status', array(1 => 'Aktif', 0 => "Tidak Aktif"), 1) !!}
         </div>
     </div>
 

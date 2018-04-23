@@ -25,29 +25,22 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Judul:</strong>
-                        {{ $newss->judul}}
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Writter:</strong>
-                        {{ $newss->admin}}
+                        {{ $news->judul_news}}
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Deskripsi:</strong>
-                        {{ $newss->deskripsi}}
+                        {{ $news->description}}
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Foto:</strong>
-                        {{--  {{ $newss->handphone_number}}  --}}
-                        <img src="{{ $newss -> foto }}" style="height:50px;width:50px;text-align:center">
+                        {{--  {{ $news->handphone_number}}  --}}
+                        <img src="{{ $news->image }}" style="height:50px;width:50px;text-align:center">
                     </div>
                 </div>
             </div>
