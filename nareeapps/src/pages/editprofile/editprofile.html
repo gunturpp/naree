@@ -31,7 +31,7 @@
         <ion-card class="back-card">
             <ion-item>
                 <h2 class="judul" item-start> Username</h2>
-                <ion-input class="input" [(ngModel)]="usrname" type="text" placeholder={{usrname}} name="usrname"></ion-input>
+                <ion-input disabled="true" class="input" [(ngModel)]="usrname" type="text" placeholder={{usrname}} name="usrname"></ion-input>
             </ion-item>
         </ion-card>
         <ion-card class="back-kategori">
@@ -75,7 +75,7 @@
             </ion-item>
         </ion-card>
         <ion-card class="back">
-            <ion-item>
+            <ion-item (click)="achievment()">
                 <h2 class="judul" item-start>Achievement</h2>
                 <p item-end class="isc" color="dark">How to input achievement >>> </p>
             </ion-item>
@@ -83,4 +83,4 @@
         <button ion-button (click)="editProfil()" type="submit" block>Update Akun</button>
     </form>
 
-</ion-content>  
+</ion-content>

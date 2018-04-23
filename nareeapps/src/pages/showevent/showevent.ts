@@ -21,6 +21,7 @@ declare var google: any;
 
 
 export class ShoweventPage {
+  historyExp: any;
   x: string;
   data: any;
   nama: any;
@@ -38,10 +39,10 @@ export class ShoweventPage {
   profiles: any;
   user: any;
   bayar: boolean = true;
-  exp: number;
+  exp: any;
   expuser: number;
   jumlahexp: number;
-  // rating: number;
+  rating: number;
   bintang: any;            //nilai array rating
   ratings: any;             //nilai rating yang di get dari DB
   absen: boolean = true;
@@ -60,8 +61,8 @@ export class ShoweventPage {
     public actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController, public viewCtrl: ViewController, public navParams: NavParams) {
     this.profiles = JSON.parse(localStorage.getItem('currentUser'));
-    this.ratings = 4.5;
-    this.storage.get('myStore').then((data) => {
+    this.historyExp = JSON.parse(localStorage.getItem("expHistory"));
+    this.storage.get('eventcheckin').then((data) => {
       this.items = data;
       if (data != null) {
         this.panjang = data.length;
@@ -111,6 +112,7 @@ export class ShoweventPage {
     this.longtitude = this.data.long;
     this.lattitude = this.data.lat;
     this.exp = this.data.exp;
+    this.rating= this.data.rating;
     this.tiket = this.data.ticket_price;
     this.showMap(this.longtitude, this.lattitude);
     // if (this.tiket==null);
@@ -159,13 +161,17 @@ export class ShoweventPage {
     let contentHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let input = ({
       id_user: this.profiles.id,
-      judul: this.nama,
+      judul: this.data.name_event,
       exp: this.exp,
     });
     this.http.post("https://nareeapp.com/api/post-history", input).subscribe(data => {
       let response = data.json();
       console.log(response);
+      this.historyExp.push(response.success);
+      console.log("ini hasil checkin",this.historyExp);
     });
+    
+
     let masukan = ({
       id_user: this.profiles.id,
       id_event: this.data.id,
@@ -183,17 +189,34 @@ export class ShoweventPage {
     this.http.put("https://nareeapp.com/api/users/" + this.profiles.id + "/update", add).subscribe(user => {
       let response = user.text;
     });
-    this.storage.get('myStore').then((data) => {
+    this.storage.get('eventcheckin').then((data) => {
       if (data != null) {
         data.push(this.idevent);
-        this.storage.set('myStore', data);
+        this.storage.set('eventcheckin', data);
       }
       else {
         let array = [];
         array.push(this.idevent);
-        this.storage.set('myStore', array);
+        this.storage.set('eventcheckin', array);
       }
     });
+    let masuk = ({
+      id: this.profiles.id,
+      name:this.profiles.name,
+      email:this.profiles.email,
+      username:this.profiles.username,
+      gender:this.profiles.gender,
+      birthdate:this.profiles.birthdate,
+      occupation: this.profiles.occupation,
+      photo:this.profiles.photo,
+      no_hp :this.profiles.no_hp,
+      about_me:this.profiles.about_me,
+      team: this.profiles.team,
+      exp: this.jumlahexp,
+      dance_type:this.profiles.dance_type,
+      level: this.profiles.level,
+    });
+      localStorage.setItem("currentUser",JSON.stringify(masuk));
     this.navCtrl.push(CheckinEventPage);
   }
 

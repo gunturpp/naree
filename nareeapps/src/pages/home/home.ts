@@ -3,8 +3,6 @@ import { NavController } from 'ionic-angular';
 import { Http, Headers,RequestOptions } from '@angular/http';
 import{ NewsPage } from '../news/news';
 import { IonicPage,ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
-import { DataProvider } from '../../providers/data/data';
 let getApiNews = "https://nareeapp.com/api/get-news";
 
 

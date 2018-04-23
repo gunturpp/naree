@@ -12,10 +12,10 @@
     <!-- popup when level up -->
     <div *ngIf="showPopup" class="center">
         <ion-card no-padding no-margin>
-            <img class="popUpCssLevel" src="../assets/imgs/levelupBG.png">
+            <img class="popUpCssLevel" src="../assets/imgs/levelupBG.jpg">
             <button color="light" large block round class="z10" (click)="takeLevel()" ion-button><a ion-text color="primary">Continue</a></button>
-            <p *ngIf="show2digit" style="text-align:center" class="z11">{{leveluser}}</p>
-            <p *ngIf="show1digit" style="text-align:center" class="z12">{{leveluser}}</p>
+            <p *ngIf="show2digit" style="text-align:center" class="z11">{{profiles.level}}</p>
+            <p *ngIf="show1digit" style="text-align:center" class="z12">{{profiles.level}}</p>
         </ion-card>
     </div>
     <ng-progress></ng-progress>
@@ -44,21 +44,19 @@
         <ion-list *ngSwitchCase="'level'">
             <ion-card>
                 <img src="assets/imgs/star.jpg" />
-                <div class="card-title">{{leveluser}}</div>
+                <div class="card-title">{{profiles.level}}</div>
                 <progress-bar class="card-loading" [progress]="persentase"></progress-bar>
-                <div class="card-subtitle"> exp {{expuser}} of {{MaxExp}} </div>
+                <div class="card-subtitle"> exp {{profiles.exp}} of {{MaxExp}} </div>
             </ion-card>
             <ion-card>
                 <h2 class="judul">Exp History</h2>
                 <!-- <ion-scroll style="width: 100%; height: 100%" scrollY="true"> -->
                 <div class="lol">
-
-
-                    <ion-item no-margin *ngFor="let history of riwayat">
+                    <ion-item no-margin *ngFor="let x of historyExp">
                         <!-- <ion-scroll style="width: 100%; height: 100%" scrollY="true"> -->
-                        <p item-start> {{history.updated_at|date: 'dd/mm/yy'}}</p>
-                        <p> {{history.judul}} </p>
-                        <p item-end> {{history.exp}}</p>
+                        <p item-start> {{x.updated_at|date: 'dd/mm/yy'}}</p>
+                        <p> {{x.judul}} </p>
+                        <p item-end> {{x.exp}}</p>
                         <!-- *ngFor="let history of riwayat" -->
                         <!-- </ion-scroll> -->
                     </ion-item>

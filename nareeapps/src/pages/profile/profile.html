@@ -1,4 +1,4 @@
-    <ion-header>
+<ion-header>
     <ion-navbar color="primary">
         <ion-title class="ikon">
             <ion-icon name="ai-profile"></ion-icon>
@@ -15,24 +15,24 @@
     <ion-card color="primary">
         <ion-item class="fotoi" color="primary">
             <!-- <ion-avatar item-start (click)="uploadPicture()"> -->
-                <img required class="foto" style="width: 130px; height: 130px;" src="{{image}}" tappable (click)="uploadPicture()" />
+            <img required class="foto" style="width: 130px; height: 130px;" src="{{image}}" tappable (click)="uploadPicture()" />
             <!-- </ion-avatar> -->
         </ion-item>
-        <div class="card-title">{{usrname}}</div>
+        <div class="card-title">{{profiles.username}}</div>
     </ion-card>
     <ion-grid>
         <ion-row>
             <ion-col>
                 <ion-item no-padding class="kartu">
                     <ion-img item-start width="53" height="50" src="assets/imgs/level.jpg"></ion-img>
-                    <h2 class="judul1"> Level {{level}} </h2>
+                    <h2 class="judul1"> Level {{profiles.level}} </h2>
                 </ion-item>
             </ion-col>
 
             <ion-col>
                 <ion-card no-padding ion-item class="kartu">
                     <ion-img item-start width="53" height="50" src="assets/imgs/breaking.jpg"></ion-img>
-                    <h2 item-end class="judul" end>{{kategori}} </h2>
+                    <h2 item-end class="judul" end>{{profiles.dance_type}} </h2>
                 </ion-card>
             </ion-col>
         </ion-row>
@@ -42,16 +42,23 @@
         <!-- <p class="about-p"> Hello! Im </p>
         <p class="about-p"> im a breakdancer form Padang, Indonesia</p>
         <p class="about-p"> I havce jsadaskdaskdak </p> -->
-        <p class="about-p"> {{about}}</p>
-        
+        <p class="about-p"> {{profiles.about_me}}</p>
+
     </ion-card>
     <ion-card>
         <h2 class="judul-card"> Achievement </h2>
-        <ion-item>
+        <ion-item *ngIf="nullpage">
             <p item-start> tanggal</p>
-            <p>Checkin event </p>
-            <p item-end> 50xp</p>
+            <p>Achievement history </p>
+            <p item-end> exp</p>
         </ion-item>
+        <div *ngIf="showpage">
+            <ion-item *ngFor="let x of achiev">
+                <p item-start> {{x.updated_at|date: 'dd/mm/yy'}}</p>
+                <p>{{x.title}} </p>
+                <p item-end> {{x.exp}}</p>
+            </ion-item>
+        </div>
     </ion-card>
     <!--<ion-grid>
         <ion-row>
