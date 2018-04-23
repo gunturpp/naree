@@ -90,4 +90,5 @@
     <allow-navigation href="http://10.100.243.35:8100" />
     <engine name="browser" spec="^5.0.3" />
     <engine name="android" spec="7.0.0" />
+    <plugin name="cordova-plugin-calendar" spec="^5.0.0" />
 </widget>
