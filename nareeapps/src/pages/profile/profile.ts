@@ -6,11 +6,16 @@ import {
   AlertController,
   ToastController
 } from "ionic-angular";
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import {
+  FileTransfer,
+  FileUploadOptions,
+  FileTransferObject
+} from "@ionic-native/file-transfer";
 import { Http, Headers, RequestOptions } from "@angular/http";
 import { MorePage } from "../more/more";
-import { Camera , CameraOptions} from "@ionic-native/camera";
+import { Camera, CameraOptions } from "@ionic-native/camera";
 import { HomePage } from "../home/home";
+import { Loading } from "ionic-angular/components/loading/loading";
 // let getApiEvent = "https://nareeapp.com/api/get-users";
 
 @Component({
@@ -18,8 +23,8 @@ import { HomePage } from "../home/home";
   templateUrl: "profile.html"
 })
 export class ProfilePage {
-  imageURI:any;
-  imageFileName:any;
+  imageURI: any;
+  imageFileName: any;
   base64Image: string;
   profil: string;
   profiles: any;
@@ -29,14 +34,14 @@ export class ProfilePage {
   nama: any;
   kategori: any;
   level: any;
-  achievements:any;
+  achievements: any;
   gender: any;
   email: any;
   hp: any;
   about: any;
-  achiev: any=[];
-  nullpage:boolean=false;
-  showpage:boolean=true;
+  achiev: any = [];
+  nullpage: boolean = false;
+  showpage: boolean = true;
   usrname: any;
   users: any;
   user: any;
@@ -48,10 +53,18 @@ export class ProfilePage {
     private camera: Camera,
     private transfer: FileTransfer,
     private http: Http,
-    public navCtrl: NavController,
+    public navCtrl: NavController
   ) {
+    this.achiev = JSON.parse(localStorage.getItem("achievement"));
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
-    this.achiev= JSON.parse(localStorage.getItem("achievement"));
+    this.http
+      .get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit")
+      .subscribe(user => {
+        let profile = user.json();
+
+        this.image = "https://nareeapp.com" + profile.currentuser.photo;
+        console.log("jika udah di update di const:", profile.currentuser.photo);
+      });
   }
   ionViewDidLoad() {
     let loading = this.loadCtrl.create({
@@ -59,26 +72,12 @@ export class ProfilePage {
     });
     loading.present();
     console.log(this.profiles);
-    
-     this.image="https://nareeapp.com"+this.profiles.photo;
-      // this.http.get("https://nareeapp.com/api/get-achievement").subscribe(achievement => {
-      //   let response = achievement.json();
-      //   this.achievements = response.achievements;
-      //   console.log("ach :", this.achievements);
-      //   for (var i = 0, j = 0; i < this.achievements.length ; i++) {
-      //     if (this.achievements[i].id_user == this.profiles.id) {
-      //       this.achiev[j] = this.achievements[i];
-      //       console.log("ach keterima:",this.achiev);
-      //       j++;
-      //     }
-      //   }
-        if(this.achiev==null)
-        {
-          this.nullpage=true;
-          this.showpage=false;
-        }
-        // show popup when levelup
-      // });
+    if (this.achiev == null) {
+      this.nullpage = true;
+      this.showpage = false;
+    }
+    // show popup when levelup
+    // });
     //   manggil semua user
     //   this.http.get(getApiEvent).subscribe(users =>{
     //     let response = users.json();
@@ -87,24 +86,21 @@ export class ProfilePage {
     //   })
     loading.dismiss();
   }
-  ionViewWillEnter() {
-    this.profiles = JSON.parse(localStorage.getItem("currentUser"));
-    this.image="https://nareeapp.com"+this.profiles.photo;
-    console.log("jika udah di update:",this.profiles);
-  }
+  // ionViewWillEnter() {
+
+  // }
   gotoNextPage() {
     this.navCtrl.push(MorePage);
   }
   showConfirm() {
     let confirm = this.alertCtrl.create({
-      title: 'Foto Telah di Update',
-      message: 'Terima Kasih',
+      title: "Foto Telah di Update",
+      message: "Terima Kasih",
       buttons: [
         {
-          text: 'Agree',
+          text: "Agree",
           handler: () => {
-            console.log('Agree clicked');
-            this.SavePhoto();
+            console.log("Agree clicked");
           }
         }
       ]
@@ -129,6 +125,7 @@ export class ProfilePage {
         imageData => {
           this.base64Image = "data:image/png;base64," + imageData;
           this.image = this.base64Image;
+          this.SavePhoto();
           this.showConfirm();
         },
         err => {
@@ -143,12 +140,12 @@ export class ProfilePage {
         sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
         targetWidth: 600,
         targetHeight: 600,
-        correctOrientation: true
       })
       .then(
         imageData => {
           this.base64Image = "data:image/png;base64," + imageData;
           this.image = this.base64Image;
+          this.SavePhoto();
           this.showConfirm();
         },
         err => {}
@@ -176,23 +173,40 @@ export class ProfilePage {
     });
     actionSheet.present();
   }
-  
+
   SavePhoto() {
     let contentHeaders = new Headers();
-    contentHeaders.append( 'Content-Type', 'application/json' );
+    contentHeaders.append("Content-Type", "application/json");
     let masuk = {
       photo: this.base64Image
     };
+    let loading = this.loadCtrl.create({
+      content: "Tunggu sebentar..."
+    });
+    loading.present();
     this.http
-      .put("https://nareeapp.com/api/users/" + this.profiles.id + "/update",masuk, { headers : contentHeaders}
+      .put(
+        "https://nareeapp.com/api/users/" + this.profiles.id + "/photo",
+        masuk,
+        { headers: contentHeaders }
       )
       .subscribe(user => {
         let response = user;
-        console.log("ress",response);
-        console.log("base64 masuk",masuk.photo);
-        
-        // localStorage.setItem("currentUser", JSON.stringify(masuk));
+        console.log("ress", response);
+        if (response.status == 200) {
+          this.http
+            .get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit")
+            .subscribe(user => {
+              let profile = user.json();
+              this.image = "https://nareeapp.com" + profile.currentuser.photo;
+              console.log(
+                "jika udah di update di save:",
+                profile.currentuser.photo
+              );
+            });
+          loading.dismiss();
+          this.navCtrl.setRoot(this.navCtrl.getActive().component);
+        }
       });
-      this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 }
