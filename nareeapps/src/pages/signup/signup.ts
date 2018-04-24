@@ -76,14 +76,6 @@ export class SignupPage {
 
           this.navCtrl.setRoot(TabsPage, {}, { animate: true, direction: 'forward' });
 
-          // if(response.data.user_status =="customer"){
-          //  this.navCtrl.push(TabsCustomer);
-          // }
-          // else{
-          //   this.navCtrl.push(TabsPage);
-          //}
-
-
         } else {
           this.showAlert(response.message);
         }
@@ -91,30 +83,6 @@ export class SignupPage {
         loading.dismiss();
         this.showError(err);
       });
-
-
-
-
-
-
-
-      //           this.http.post("http://127.0.0.1/homeisland/backend/signUpInfo.php",input).subscribe(data => {
-      //                loading.dismiss();
-      //                let response = data.json();
-      //                if(response.status == 200){
-      //                  let user=response.data;
-      //                 // this.userDataProvider.login(user.id,user.username,user.status);
-      //                 //  this.navCtrl.setRoot(LocationSelect);
-
-      //                }
-      //                this.showAlert(response.message);
-      //                this.navCtrl.setRoot(LoginPage,{},{animate:true, direction:'forward'});
-      // }, err => {
-      //    loading.dismiss();
-      //    this.showError(err);
-      // });
-
-
 
     }
   }
@@ -132,16 +100,7 @@ export class SignupPage {
   }
 
 
-  signup() {
-
-    //API connection
-    // this.authServiceProvider.postData(this.userData, "/register").then((result) => {
-    //   this.resposeData = result;
-    //   console.log(this.resposeData);
-    //   localStorage.setItem('userData', JSON.stringify(this.resposeData))
-    //   this.navCtrl.push(LoginPage);
-    // }, (err) => {
-
-    // });
+  backgo() {
+    this.navCtrl.push(LoginPage);
   }
 }

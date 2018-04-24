@@ -138,7 +138,9 @@ showError(err) {
     });
     alert.present();
   }
-  
+  backto(){
+    this.navCtrl.push(LoginPage);
+  }
 // showError() {
 //   err.status == 0
 //     ? this.showAlert("Tidak ada koneksi. Cek kembali sambungan Internet perangkat Anda")
