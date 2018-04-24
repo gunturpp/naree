@@ -10,14 +10,14 @@ import { SignupPage } from "../signup/signup";
 import { Http, Headers } from "@angular/http";
 import { NgForm } from "@angular/forms";
 import { Storage } from "@ionic/storage";
-
+import { ForgotpasswordPage } from '../forgotpassword/forgotpassword';
 @Component({
   selector: "page-login",
   templateUrl: "login.html"
 })
 export class LoginPage {
   ukuran: number;
-  daily: any;
+  daily: any="sesuatu";
   hadir: any=[];
   kehadiran: any=[];
   achiev: any=[];
@@ -39,6 +39,70 @@ export class LoginPage {
     
     // kalo tokennya gak expired, langsung push tabspage
     if(localStorage.getItem("token") != null){
+      this.http.get("https://nareeapp.com/api/get-history").subscribe(histories => {
+        let response = histories.json();
+        this.history = response.histories;
+        console.log("cek API get1",this.history[0].id_user);
+        console.log("cek API get2",this.profiles.id);
+        for (var i = 0, j = 0; i < this.history.length; i++) {
+          if (this.history[i].id_user == this.profiles.id) {
+            this.riwayat[j] = this.history[i];
+            j++;
+          }
+        }
+        console.log("cek ada history apa tidak",this.riwayat);
+        // show popup when levelup
+        localStorage.setItem("expHistory",JSON.stringify(this.riwayat));
+        console.log("cek ada history apa tidak",this.riwayat);
+        this.ukuran=parseInt(this.riwayat.length.toString());
+        for (var i = this.ukuran-1; i >=0 ; i--) {
+          console.log("riwayat",this.riwayat[i]);
+          if (this.riwayat[i].judul === this.judul) {
+            console.log("riwayat",this.riwayat[i].judul);
+            this.daily = this.riwayat[i].updated_at;
+          }
+        }
+        this.daily =this.daily.split(" ")[0];
+        console.log("daily ", this.daily);
+        this.storage.set('checkhari',this.daily);
+      });
+     
+      // this.daily =  this.daily.split(" ")[0];
+     
+      //untuk mengambil DB exps
+      if (this.exp == null) {
+        this.http.get("https://nareeapp.com/api/get-exps").subscribe(level => {
+              let response = level.json();
+                // save profile in localstorage   
+                localStorage.setItem("experience",JSON.stringify(response.exps));
+                console.log("exp di local storage",response.exps);
+            },
+          )
+      }
+      this.http.get("https://nareeapp.com/api/get-achievement").subscribe(achievement => {
+          let response = achievement.json();
+          this.achievements = response.achievements;
+          console.log("ach :", this.achievements);
+          for (var i = 0, j = 0; i < this.achievements.length ; i++) {
+            if (this.achievements[i].id_user == this.profiles.id) {
+              this.achiev[j] = this.achievements[i];
+              j++;
+            }
+          }
+          localStorage.setItem("achievement",JSON.stringify(this.achiev));
+        });
+        this.http.get("https://nareeapp.com/api/get-kehadirans").subscribe(hadir => {
+          let response = hadir.json();
+          this.kehadiran = response.kehadirans;
+          console.log("kehadiran :", this.kehadiran);
+          for (var i = 0, j = 0; i < this.kehadiran.length ; i++) {
+            if (this.kehadiran[i].id_user == this.profiles.id) {
+              this.hadir[j] = this.kehadiran[i].id_event;
+              j++;
+            }
+          }
+          this.storage.set('eventcheckin',this.hadir);
+        });
       this.navCtrl.push(TabsPage);
   }
   this.exp = JSON.parse(localStorage.getItem("experience"));
@@ -52,70 +116,7 @@ export class LoginPage {
   }
   ionViewWillLeave(){
      //get exp-history user
-     this.http.get("https://nareeapp.com/api/get-history").subscribe(histories => {
-      let response = histories.json();
-      this.history = response.histories;
-      console.log("cek API get1",this.history[0].id_user);
-      console.log("cek API get2",this.profiles.id);
-      for (var i = 0, j = 0; i < this.history.length; i++) {
-        if (this.history[i].id_user == this.profiles.id) {
-          this.riwayat[j] = this.history[i];
-          j++;
-        }
-      }
-      console.log("cek ada history apa tidak",this.riwayat);
-      // show popup when levelup
-      localStorage.setItem("expHistory",JSON.stringify(this.riwayat));
-      console.log("cek ada history apa tidak",this.riwayat);
-      this.ukuran=parseInt(this.riwayat.length.toString());
-      for (var i = this.ukuran-1; i >=0 ; i--) {
-        console.log("riwayat",this.riwayat[i]);
-        if (this.riwayat[i].judul === this.judul) {
-          console.log("riwayat",this.riwayat[i].judul);
-          this.daily = this.riwayat[i].updated_at;
-        }
-      }
-      this.daily =this.daily.split(" ")[0];
-      console.log("daily ", this.daily);
-      this.storage.set('checkhari',this.daily);
-    });
-   
-    // this.daily =  this.daily.split(" ")[0];
-   
-    //untuk mengambil DB exps
-    if (this.exp == null) {
-      this.http.get("https://nareeapp.com/api/get-exps").subscribe(level => {
-            let response = level.json();
-              // save profile in localstorage   
-              localStorage.setItem("experience",JSON.stringify(response.exps));
-              console.log("exp di local storage",response.exps);
-          },
-        )
-    }
-    this.http.get("https://nareeapp.com/api/get-achievement").subscribe(achievement => {
-        let response = achievement.json();
-        this.achievements = response.achievements;
-        console.log("ach :", this.achievements);
-        for (var i = 0, j = 0; i < this.achievements.length ; i++) {
-          if (this.achievements[i].id_user == this.profiles.id) {
-            this.achiev[j] = this.achievements[i];
-            j++;
-          }
-        }
-        localStorage.setItem("achievement",JSON.stringify(this.achiev));
-      });
-      this.http.get("https://nareeapp.com/api/get-kehadirans").subscribe(hadir => {
-        let response = hadir.json();
-        this.kehadiran = response.kehadirans;
-        console.log("kehadiran :", this.kehadiran);
-        for (var i = 0, j = 0; i < this.kehadiran.length ; i++) {
-          if (this.kehadiran[i].id_user == this.profiles.id) {
-            this.hadir[j] = this.kehadiran[i].id_event;
-            j++;
-          }
-        }
-        this.storage.set('eventcheckin',this.hadir);
-      });
+    
   }
   onLogin(form: NgForm) {
     // kondisi submit true
@@ -142,6 +143,70 @@ export class LoginPage {
               this.profiles = JSON.parse(localStorage.getItem("currentUser"));
               // save token in localstorage   
               localStorage.setItem("token",JSON.stringify(response.token));
+              this.http.get("https://nareeapp.com/api/get-history").subscribe(histories => {
+                let response = histories.json();
+                this.history = response.histories;
+                console.log("cek API get1",this.history[0].id_user);
+                console.log("cek API get2",this.profiles.id);
+                for (var i = 0, j = 0; i < this.history.length; i++) {
+                  if (this.history[i].id_user == this.profiles.id) {
+                    this.riwayat[j] = this.history[i];
+                    j++;
+                  }
+                }
+                console.log("cek ada history apa tidak",this.riwayat);
+                // show popup when levelup
+                localStorage.setItem("expHistory",JSON.stringify(this.riwayat));
+                console.log("cek ada history apa tidak",this.riwayat);
+                this.ukuran=parseInt(this.riwayat.length.toString());
+                for (var i = this.ukuran-1; i >=0 ; i--) {
+                  console.log("riwayat",this.riwayat[i]);
+                  if (this.riwayat[i].judul === this.judul) {
+                    console.log("riwayat",this.riwayat[i].judul);
+                    this.daily = this.riwayat[i].updated_at;
+                  }
+                }
+                this.daily =this.daily.split(" ")[0];
+                console.log("daily ", this.daily);
+                this.storage.set('checkhari',this.daily);
+              });
+             
+              // this.daily =  this.daily.split(" ")[0];
+             
+              //untuk mengambil DB exps
+              if (this.exp == null) {
+                this.http.get("https://nareeapp.com/api/get-exps").subscribe(level => {
+                      let response = level.json();
+                        // save profile in localstorage   
+                        localStorage.setItem("experience",JSON.stringify(response.exps));
+                        console.log("exp di local storage",response.exps);
+                    },
+                  )
+              }
+              this.http.get("https://nareeapp.com/api/get-achievement").subscribe(achievement => {
+                  let response = achievement.json();
+                  this.achievements = response.achievements;
+                  console.log("ach :", this.achievements);
+                  for (var i = 0, j = 0; i < this.achievements.length ; i++) {
+                    if (this.achievements[i].id_user == this.profiles.id) {
+                      this.achiev[j] = this.achievements[i];
+                      j++;
+                    }
+                  }
+                  localStorage.setItem("achievement",JSON.stringify(this.achiev));
+                });
+                this.http.get("https://nareeapp.com/api/get-kehadirans").subscribe(hadir => {
+                  let response = hadir.json();
+                  this.kehadiran = response.kehadirans;
+                  console.log("kehadiran :", this.kehadiran);
+                  for (var i = 0, j = 0; i < this.kehadiran.length ; i++) {
+                    if (this.kehadiran[i].id_user == this.profiles.id) {
+                      this.hadir[j] = this.kehadiran[i].id_event;
+                      j++;
+                    }
+                  }
+                  this.storage.set('eventcheckin',this.hadir);
+                });
               this.navCtrl.setRoot(TabsPage);
               // this.viewCtrl.dismiss(); 
             } else {
@@ -179,5 +244,8 @@ export class LoginPage {
 
   signup() {
     this.navCtrl.push(SignupPage);
+  }
+  forgotpassword(){
+    this.navCtrl.push(ForgotpasswordPage);
   }
 }

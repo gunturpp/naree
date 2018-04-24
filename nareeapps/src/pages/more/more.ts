@@ -8,6 +8,7 @@ import { ContactusPage } from '../contactus/contactus';
 import { Storage } from "@ionic/storage";
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { LoginPage } from '../login/login';
+import { TabsPage } from '../tabs/tabs';
 @Component({
   selector: 'page-more',
   templateUrl: 'more.html',
@@ -40,7 +41,9 @@ export class MorePage {
     this.storage.remove('eventcheckin');
     this.storage.remove('checkhari');
     if(localStorage.getItem('token') == null ) {
-      this.navCtrl.setRoot (LoginPage);
+      this.navCtrl.parent.parent.setRoot(LoginPage);
+      // this.navCtrl.popToRoot();
+      // window.location.reload();
     }
   }
 }

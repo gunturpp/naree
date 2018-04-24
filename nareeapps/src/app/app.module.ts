@@ -37,6 +37,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { ApiProvider } from '../providers/api/api';
 import { DataProvider } from '../providers/data/data';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
+import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     LoginPage,
     SignupPage,
     ProfilePage,
+    ForgotpasswordPage,
     TesapiPage,
     CheckinDailyPage,
     CheckinEventPage,
@@ -79,6 +81,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     EditprofilePage,
     CheckinDailyPage,
     CheckinEventPage,
+    ForgotpasswordPage,
     MorePage,
     PengaturanPage,
     EventPage,

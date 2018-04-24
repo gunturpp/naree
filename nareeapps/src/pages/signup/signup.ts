@@ -54,7 +54,8 @@ export class SignupPage {
         birthdate: this.user.birthdate,
         occupation: this.user.occupation,
         level: this.user.level = 1,
-        photo: "/images/photoprofile/default.png"
+        photo: "/images/photoprofile/default.png",
+        exp: 0,
         // birthdate: this.user.hp,
         // status: this.user.role="tourist"
       });
