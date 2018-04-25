@@ -149,7 +149,6 @@ export class LoginPage {
       this.http.post("https://nareeapp.com/api/login", input).subscribe(
         data => {
           let response = data.json();
-          loading.dismiss();
           // login berhasil
           if (response.status == 200) {
             // save profile in localstorage
@@ -242,8 +241,11 @@ export class LoginPage {
                 }
                 this.storage.set("eventcheckin", this.hadir);
               });
+              loading.dismiss();
             // this.navCtrl.setRoot(TabsPage);
-            this.navCtrl.setRoot(HomePage);
+            // this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(TabsPage, { animate: false });
+            
             // this.viewCtrl.dismiss();
           } else {
             // this.showAlert(response.message);
