@@ -20,7 +20,7 @@
 
     <div style="width: 80%; margin: auto;">
       	<table class="table centered">
-            {!! Form::model($newss, ['method' => 'PATCH','route' => ['news.update', $newss->id], 'files'=>true]) !!}
+            {!! Form::model($news, ['method' => 'PATCH','route' => ['news.update', $news->id], 'files'=>true]) !!}
                 @include('news.form')
             {!! Form::close() !!}
         </table>

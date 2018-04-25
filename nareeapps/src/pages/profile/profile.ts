@@ -115,9 +115,7 @@ export class ProfilePage {
         sourceType: this.camera.PictureSourceType.CAMERA,
         mediaType: this.camera.MediaType.PICTURE,
         encodingType: this.camera.EncodingType.PNG,
-        correctOrientation: true,
         saveToPhotoAlbum: true,
-        cameraDirection: 0,
         targetWidth: 600,
         targetHeight: 600
       })
