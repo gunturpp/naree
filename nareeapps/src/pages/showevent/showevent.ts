@@ -209,7 +209,7 @@ export class ShoweventPage {
       no_hp :this.profiles.no_hp,
       about_me:this.profiles.about_me,
       team: this.profiles.team,
-      exp: this.jumlahexp,
+      exp: this.profiles.exp,
       dance_type:this.profiles.dance_type,
       level: this.profiles.level,
     });

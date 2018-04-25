@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { DataProvider } from "../../providers/data/data";
 import { Http, Headers, RequestOptions } from "@angular/http";
 import { Storage } from '@ionic/storage';
+import { TabsPage } from "../tabs/tabs";
 /**
  * Generated class for the RewardPage page.
  *
@@ -52,6 +53,7 @@ checkin:boolean=true;
     public modalCtrl: ModalController,
     public storage: Storage,
   ) {
+    
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
     this.historyExp = JSON.parse(localStorage.getItem("expHistory"));
     this.experience = JSON.parse(localStorage.getItem("experience"));
@@ -63,7 +65,7 @@ checkin:boolean=true;
         console.log("experience: ",this.experience[i].level);
       }
     }
-    
+    this.today = new Date().toISOString();
     console.log("profil : ",this.profiles);
     console.log("exp : ",this.experience);
     console.log("history : ",this.historyExp);
@@ -220,6 +222,6 @@ checkin:boolean=true;
     this.checkout=true;
     // console.log("checkout",this.checkout);
 
-    this.navCtrl.push(CheckinDailyPage);
+    this.navCtrl.setRoot(TabsPage);
   }
 }
