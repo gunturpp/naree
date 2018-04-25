@@ -11,6 +11,7 @@ import { Http, Headers } from "@angular/http";
 import { NgForm } from "@angular/forms";
 import { Storage } from "@ionic/storage";
 import { ForgotpasswordPage } from "../forgotpassword/forgotpassword";
+import { HomePage } from "../home/home";
 @Component({
   selector: "page-login",
   templateUrl: "login.html"
@@ -49,7 +50,7 @@ export class LoginPage {
         .subscribe(histories => {
           let response = histories.json();
           this.history = response.histories;
-          if (this.history.id_user != null) {
+          if (this.history != null) {
             console.log("cek API get1", this.history[0].id_user);
             console.log("cek API get2", this.profiles.id);
             for (var i = 0, j = 0; i < this.history.length; i++) {
@@ -64,7 +65,7 @@ export class LoginPage {
           localStorage.setItem("expHistory", JSON.stringify(this.riwayat));
           console.log("cek ada history apa tidak", this.riwayat);
           this.ukuran = parseInt(this.riwayat.length.toString());
-          for (let i = this.ukuran - 1; i >= 0; i--) {
+          for (var i = this.ukuran - 1; i >= 0; i--) {
             console.log("riwayat", this.riwayat[i]);
             if (this.riwayat[i].judul === this.judul) {
               console.log("riwayat", this.riwayat[i].judul);
@@ -164,7 +165,7 @@ export class LoginPage {
               .subscribe(histories => {
                 let response = histories.json();
                 this.history = response.histories;
-                if (this.history.id_user != null) {
+                if (this.history != null) {
                   console.log("cek API get1", this.history[0].id_user);
                   console.log("cek API get2", this.profiles.id);
                   for (var i = 0, j = 0; i < this.history.length; i++) {
@@ -241,7 +242,8 @@ export class LoginPage {
                 }
                 this.storage.set("eventcheckin", this.hadir);
               });
-            this.navCtrl.setRoot(TabsPage);
+            // this.navCtrl.setRoot(TabsPage);
+            this.navCtrl.setRoot(HomePage);
             // this.viewCtrl.dismiss();
           } else {
             // this.showAlert(response.message);

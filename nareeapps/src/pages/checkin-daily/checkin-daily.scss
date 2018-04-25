@@ -1,9 +1,11 @@
 page-checkin-daily {
     .getstart {
-        background-image: url('../../assets/imgs/checkin.jpg');
+        // background-image: url('../../assets/imgs/checkin.jpg');src="assets/imgs/welcome32.jpg"
         // background: url('../../img/getstart.png');
+        // background-image: src("assets/imgs/checkin.jpg");
         background-repeat: no-repeat;
         background-size: 100%;
+        background-position: sticky;
         // width: 100%;
         // height: 100%;
     }

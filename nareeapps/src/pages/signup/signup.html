@@ -14,24 +14,17 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-content>
+<ion-content>
+    <ion-content padding>
         <ion-list>
             <form #signupForm="ngForm" novalidate>
-
-                <ion-item>
-                    <!--<ion-icon name="md-person" [ngClass]="{'hide': true }"></ion-icon>-->
-                    <!-- <ion-input type="text" placeholder="Username" value="" [(ngModel)]="userData.name">
-                </ion-input> -->
-                </ion-item>
-                <!--<style>
-                .hide {
-                    display: none;
-                }
-            </style>-->
                 <ion-item>
                     <ion-input type="username" placeholder="Username" name="username" [(ngModel)]="user.username"></ion-input>
                 </ion-item>
+                <ion-item>
+                    <ion-input type="text" placeholder="Full Name" name="name" [(ngModel)]="user.name"></ion-input>
+                </ion-item>
+
                 <ion-item>
                     <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="user.email"></ion-input>
                 </ion-item>
@@ -50,9 +43,6 @@
                     </ion-select>
                 </ion-item>
 
-                <ion-item>
-                    <ion-input type="text" placeholder="Name" name="name" [(ngModel)]="user.name"></ion-input>
-                </ion-item>
 
                 <!-- <ion-item>
                     <ion-input type="password" placeholder="Confirm Password" [(ngModel)]="user.c_password"></ion-input>

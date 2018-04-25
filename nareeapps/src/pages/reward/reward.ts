@@ -54,16 +54,31 @@ checkin:boolean=true;
   ) {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
     this.historyExp = JSON.parse(localStorage.getItem("expHistory"));
-    this.riwayat = [];
- 
-    this.jumlah = 0;
-    this.persentase = 0;
-    this.nama = "Daily Check-in";
-    this.dailyExp = 5;
+    this.experience = JSON.parse(localStorage.getItem("experience"));
+    for (var i = 0; i < this.experience.length; i++) {
+      if (this.experience[i].level == this.profiles.level) {
+        this.levels = this.experience[i].level;
+        this.MaxExp = this.experience[i].maxExp;
+        // this.MaxExp=150;
+        console.log("experience: ",this.experience[i].level);
+      }
+    }
     
+    console.log("profil : ",this.profiles);
+    console.log("exp : ",this.experience);
+    console.log("history : ",this.historyExp);
+    console.log("constractor: ",this.persentase);
+    this.hari = this.today.split("T")[0];
+    console.log("terbaru : ",this.hari);
+    this.riwayat = [];
+    this.jumlah = 0;
+    this.nama = "Daily Check-in";
+    this.dailyExp = 5; 
     this.storage.get('checkhari').then((data) => {
       this.items = data;
       console.log("hari yang ada di data",this.items);
+      console.log("profil : ",this.profiles);
+      console.log("history : ",this.historyExp);
       this.hari = this.today.split("T")[0];
       if(this.hari==this.items){
         this.checkin=false;
@@ -73,11 +88,12 @@ checkin:boolean=true;
       };
      
   });
-    this.experience = JSON.parse(localStorage.getItem("experience"));
+  
+  
   }
   ionViewDidLoad() {
     console.log("persentase load", this.persentase);
-    this.hari = this.today.split("T")[0];
+  
     // if(this.hari==this.items){
     //   this.checkin=false;
     //   console.log("checkin",this.checkin);
@@ -91,6 +107,7 @@ checkin:boolean=true;
     this.jumlah = 0;
     this.persentase=0;
     this.MaxExp=0;
+    
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
     this.historyExp = JSON.parse(localStorage.getItem("expHistory"));
 
@@ -103,10 +120,7 @@ checkin:boolean=true;
             console.log("experience: ",this.experience[i].level);
           }
         }
-      
-  
       this.persentase=(this.profiles.exp/this.MaxExp)*100;
-      
       console.log("persentase =",this.persentase);
       if(this.persentase >= 100){
         this.showPopup = true;

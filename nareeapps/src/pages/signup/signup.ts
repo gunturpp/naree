@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { Http, RequestOptionsArgs } from '@angular/http';
 
 import { TabsPage } from '../tabs/tabs';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 
 @IonicPage()
@@ -15,6 +16,7 @@ import { TabsPage } from '../tabs/tabs';
   templateUrl: 'signup.html',
 })
 export class SignupPage {
+  pesan: any;
   resposeData: any;
   submitted: any;
   user: { name?: string, email?: string,username?: string, password?: string, gender?: string, birthdate?: string, occupation?: string, level?: number } = {};
@@ -80,16 +82,24 @@ export class SignupPage {
           this.showAlert(response.message);
         }
       }, err => {
+        this.pesan = err.json();
+        console.log("error nya apa: ",this.pesan.error);
         loading.dismiss();
-        this.showError(err);
+        this.showError(this.pesan.error.username);
+        this.showError(this.pesan.error.email);
+        this.showError(this.pesan.error.password);
+        this.showError(this.pesan.error.gender);
+        this.showError(this.pesan.error.name);
+        this.showError(this.pesan.error.birthdate);
       });
 
     }
   }
   showError(err: any) {
-    err.status == 0 ?
-      this.showAlert("Tidak ada koneksi. Cek kembali sambungan Internet perangkat Anda") :
-      this.showAlert("Tidak dapat menyambungkan ke server. Mohon muat kembali halaman ini");
+    // err.status == 0 ?
+    //   this.showAlert("Tidak ada koneksi. Cek kembali sambungan Internet perangkat Anda") :
+    //   this.showAlert("Tidak dapat menyambungkan ke server. Mohon muat kembali halaman ini");
+    this.showAlert(err)
   }
   showAlert(message) {
     let toast = this.toastCtrl.create({

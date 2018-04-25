@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angul
 import { ShoweventPage } from "../showevent/showevent";
 import { TabsPage } from '../tabs/tabs';
 import { Http, Headers, RequestOptions } from "@angular/http"
+import { HomePage } from '../home/home';
 /**
  * Generated class for the CheckinEventPage page.
  *
@@ -28,7 +29,7 @@ export class CheckinEventPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CheckinEventPage');
   }
-  back(){
+  goback(){
     this.http.get("https://nareeapp.com/api/get-history").subscribe(histories => {
       let response = histories.json();
       this.history = response.histories;

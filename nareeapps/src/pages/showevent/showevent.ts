@@ -159,19 +159,17 @@ export class ShoweventPage {
 
   checkin() {
     let contentHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    let input = ({
-      id_user: this.profiles.id,
-      judul: this.data.name_event,
-      exp: this.exp,
-    });
-    this.http.post("https://nareeapp.com/api/post-history", input).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      this.historyExp.push(response.success);
-      console.log("ini hasil checkin",this.historyExp);
-    });
-    
-
+    // let input = ({
+    //   id_user: this.profiles.id,
+    //   judul: this.data.name_event,
+    //   exp: this.exp,
+    // });
+    // this.http.post("https://nareeapp.com/api/post-history", input).subscribe(data => {
+    //   let response = data.json();
+    //   console.log(response);
+    //   this.historyExp.push(response.success);
+    //   console.log("ini hasil checkin",this.historyExp);
+    // });
     let masukan = ({
       id_user: this.profiles.id,
       id_event: this.data.id,
@@ -181,14 +179,13 @@ export class ShoweventPage {
       let response = data.json();
       console.log("ini kehadiran", response);
     });
-
-    this.jumlahexp = parseInt(this.expuser.toString()) + parseInt(this.exp.toString());
-    let add = ({
-      exp: this.jumlahexp,
-    });
-    this.http.put("https://nareeapp.com/api/users/" + this.profiles.id + "/update", add).subscribe(user => {
-      let response = user.text;
-    });
+    // this.jumlahexp = parseInt(this.expuser.toString()) + parseInt(this.exp.toString());
+    // let add = ({
+    //   exp: this.jumlahexp,
+    // });
+    // this.http.put("https://nareeapp.com/api/users/" + this.profiles.id + "/update", add).subscribe(user => {
+    //   let response = user.text;
+    // });
     this.storage.get('eventcheckin').then((data) => {
       if (data != null) {
         data.push(this.idevent);

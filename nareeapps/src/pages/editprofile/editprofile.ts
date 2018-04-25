@@ -113,10 +113,9 @@ export class EditprofilePage {
           level: this.profiles.level,
         });
           localStorage.setItem("currentUser",JSON.stringify(ubah));
-	  if(response.name =="Selamat, profile berhasil diubah"){
        // this.data.login(response.data);
-          loading.dismiss();
-          
+          loading.dismiss();  
+          this.navCtrl.setRoot(ProfilePage);
           // this.navCtrl.push(ProfilPasien);
           let alert = this.alertCtrl.create({
           title: 'Data Tersimpan!',
@@ -124,19 +123,21 @@ export class EditprofilePage {
           buttons: ['OK']
           });
           alert.present();
-      }   
-      else
-           {
-             loading.dismiss();
-             let alert = this.alertCtrl.create({
-                title: 'Data Tersimpan!',
-                subTitle: '',      
-                buttons: ['OK']
-              });
-              alert.present();
-           }
 
-      });
-      this.navCtrl.setRoot(ProfilePage);
+      }, 
+       err => {
+        loading.dismiss();
+        this.showError('your data is incomplete');}
+    );
+     
+  }
+  showError(err) {
+  
+    let alert = this.alertCtrl.create({
+      title: 'Heyy!!',
+      subTitle: err,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }
