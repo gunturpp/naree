@@ -25,4 +25,12 @@ page-home {
         font-weight: bold;
         margin-block-start: 0px;
     }
+    .slide-zoom {
+        // height:200px;
+        height: 100%;
+        // overflow:hidden;
+    }
+    ion-slides {
+        height: auto;
+    }
 }

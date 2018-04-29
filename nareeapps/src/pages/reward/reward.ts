@@ -222,6 +222,6 @@ checkin:boolean=true;
     this.checkout=true;
     // console.log("checkout",this.checkout);
 
-    this.navCtrl.setRoot(TabsPage);
+    this.navCtrl.push(CheckinDailyPage);
   }
 }

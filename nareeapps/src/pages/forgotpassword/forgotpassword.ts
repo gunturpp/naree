@@ -139,7 +139,7 @@ showError(err) {
     alert.present();
   }
   backto(){
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.pop();
   }
 // showError() {
 //   err.status == 0

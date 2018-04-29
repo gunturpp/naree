@@ -3,7 +3,7 @@ import {
   NavController,
   ToastController,
   LoadingController,
-  ViewController
+  ViewController,App
 } from "ionic-angular";
 import { TabsPage } from "../tabs/tabs";
 import { SignupPage } from "../signup/signup";
@@ -41,6 +41,7 @@ export class LoginPage {
     public loadCtrl: LoadingController,
     public storage: Storage,
     public http: Http,
+    public app: App,
     public viewCtrl: ViewController
   ) {
     // kalo tokennya gak expired, langsung push tabspage
@@ -116,7 +117,9 @@ export class LoginPage {
           }
           this.storage.set("eventcheckin", this.hadir);
         });
-      this.navCtrl.push(TabsPage);
+          // let nav = this.app.getRootNav(); 
+              // nav.setRoot(TabsPage);
+      this.navCtrl.setRoot(TabsPage);
     }
     this.exp = JSON.parse(localStorage.getItem("experience"));
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
@@ -242,8 +245,8 @@ export class LoginPage {
                 this.storage.set("eventcheckin", this.hadir);
               });
               loading.dismiss();
-            // this.navCtrl.setRoot(TabsPage);
-            // this.navCtrl.setRoot(HomePage);
+              // let nav = this.app.getRootNav(); 
+              // nav.setRoot(TabsPage);
             this.navCtrl.setRoot(TabsPage, { animate: false });
             
             // this.viewCtrl.dismiss();

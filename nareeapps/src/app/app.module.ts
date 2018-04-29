@@ -67,11 +67,14 @@ import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
   ],
   imports: [
     BrowserModule,HttpModule,HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    // IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     NgProgressModule,
-    Ionic2RatingModule
-  ],
+    Ionic2RatingModule,
+     IonicModule.forRoot(MyApp, {
+      backButtonIcon: "ios-undo",
+     }) 
+    ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,

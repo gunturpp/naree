@@ -34,10 +34,9 @@ export class HomePage {
     console.log("token :",this.token);
   }
   openModal(newss) {
-    const modal = this.modalCtrl.create(NewsPage,{newss});
-    modal.present();
+    // const modal = this.modalCtrl.create(NewsPage,{newss});
+    this.navCtrl.push(NewsPage,{newss})
     // this.navCtrl.push(NewsPage,newss)
-    console.log(newss);
   }
   // navigateToDetail(id: number ){
   //   this.navCtrl.push('NewsPage',{ id })

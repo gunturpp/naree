@@ -6,62 +6,60 @@
 -->
 >
 
-<ion-header>
-    <ion-navbar color="primary" item-height="50px" hideBackButton>
-        <ion-title>
-            <img class="card" src="assets/imgs/logobkg-36.jpg" />
-        </ion-title>
-    </ion-navbar>
-</ion-header>
+
 
 <ion-content>
-    <ion-content padding>
-        <ion-list>
-            <form #signupForm="ngForm" novalidate>
-                <ion-item>
-                    <ion-input type="username" placeholder="Username" name="username" [(ngModel)]="user.username"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-input type="text" placeholder="Full Name" name="name" [(ngModel)]="user.name"></ion-input>
-                </ion-item>
 
-                <ion-item>
-                    <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="user.email"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="user.password"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-input type="text" placeholder="Occupation" name="occupation" [(ngModel)]="user.occupation"></ion-input>
-                </ion-item>
+    <img class="card" src="assets/imgs/logobkg-36.jpg" />
 
-                <ion-item>
-                    <ion-label color="dark" class="gender"> Gender</ion-label>
-                    <ion-select name="gender" [(ngModel)]="user.gender">
-                        <ion-option value="Female">Female</ion-option>
-                        <ion-option value="Male">Male</ion-option>
-                    </ion-select>
-                </ion-item>
-
-
-                <!-- <ion-item>
-                    <ion-input type="password" placeholder="Confirm Password" [(ngModel)]="user.c_password"></ion-input>
-                </ion-item> -->
-            </form>
+    <ion-list padding>
+        <form #signupForm="ngForm" novalidate>
             <ion-item>
-                <ion-label color="dark" class="gender">Birthdate</ion-label>
-                <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="user.birthdate"></ion-datetime>
+                <ion-input type="username" placeholder="Username" name="username" [(ngModel)]="user.username"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" placeholder="Full Name" name="name" [(ngModel)]="user.name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="user.email"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="user.password"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" placeholder="Occupation" name="occupation" [(ngModel)]="user.occupation"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="dark" class="gender"> Gender</ion-label>
+                <ion-select name="gender" [(ngModel)]="user.gender">
+                    <ion-option value="Female">Female</ion-option>
+                    <ion-option value="Male">Male</ion-option>
+                </ion-select>
             </ion-item>
 
 
-        </ion-list>
-        <div padding>
-            <button ion-button color="primary" block round type="submit" (click)='onSignup(signupForm)'>
-                <p class="HeadButton">Daftar</p>
+            <!-- <ion-item>
+                    <ion-input type="password" placeholder="Confirm Password" [(ngModel)]="user.c_password"></ion-input>
+                </ion-item> -->
+        </form>
+        <ion-item>
+            <ion-label color="dark" class="gender">Birthdate</ion-label>
+            <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="user.birthdate"></ion-datetime>
+        </ion-item>
+
+
+    </ion-list>
+    <div class="daftar">
+        <button ion-button color="primary" block large round type="submit" style="text-transform: none" (click)='onSignup(signupForm)'>
+                Sign Up 
             </button>
-            <!-- <button ion-button color="primary" block round (click)="signup()">Sign Up</button> -->
-            <ion-item-divider>
-                <button ion-button item-end clear color="dark" (click)='backgo()'>back</button>
-            </ion-item-divider>
-        </div>
-    </ion-content>
+        <!-- <button ion-button color="primary" block round (click)="signup()">Sign Up</button> -->
+    </div>
+    <div style="text-align: right">
+        <button ion-button clear color="dark" style="text-transform: none; font-weight: bold;text-align: right;" (click)='backgo()'>Back</button>
+
+    </div>
+
+</ion-content>

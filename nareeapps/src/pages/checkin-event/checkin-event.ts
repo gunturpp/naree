@@ -44,7 +44,7 @@ export class CheckinEventPage {
       // show popup when levelup
       localStorage.setItem("expHistory",JSON.stringify(this.riwayat));
     });
-    this.navCtrl.push(TabsPage);
+    this.navCtrl.setRoot(TabsPage);
   }
   
 }

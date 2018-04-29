@@ -29,19 +29,20 @@ export class NewsPage {
   constructor(private http:Http,public navCtrl: NavController,public viewCtrl : ViewController,public navParams : NavParams) {
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     
     
     this.data = this.navParams.get('newss');
+    // console.log("ada yang dilempar:",this.data);
     this.judul = this.data.judul_news;
     this.isi = this.data.description;
     this.foto = this.data.image;
     this.tgl = this.data.updated_at;
-    console.log(this.data);
+    // console.log(this.data);
     
   }
   closeModal(){
-    this.viewCtrl.dismiss();
+    this.navCtrl.pop();
    }
 
 }
