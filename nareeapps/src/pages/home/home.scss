@@ -24,6 +24,7 @@ page-home {
         padding-block-start: 2px;
         font-weight: bold;
         margin-block-start: 0px;
+        padding-block-end: 0px;
     }
     .slide-zoom {
         // height:200px;
@@ -32,5 +33,10 @@ page-home {
     }
     ion-slides {
         height: auto;
+    }
+    .logo {
+        padding-block-start: 5px;
+        padding-block-end: 0px;
+        margin-block-end: 0px;
     }
 }

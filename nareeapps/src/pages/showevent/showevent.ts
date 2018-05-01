@@ -136,7 +136,7 @@ export class ShoweventPage {
 
   }
   closeModal() {
-    this.viewCtrl.dismiss();
+    this.navCtrl.pop();
   }
   showMap(long, lat) {
     //location lang longtitude

@@ -1,9 +1,8 @@
 page-news {
     .ikon {
         margin-inline-start: 16%;
-        width: 160px;
+        width: 130px;
         padding-block-start: 10px;
-        margin-block-start: 0px;
     }
     .back {
         background-color: #e8e9ea;
@@ -38,9 +37,9 @@ page-news {
     .detail {
         padding: 20px;
         padding-block-start: 5px;
-        text-align: justify;
+        font-size: 1.5rem;
     }
     .back-button-icon {
-        font-size: 3.4rem;
+        font-size: 3.2rem;
     }
 }

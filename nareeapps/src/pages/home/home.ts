@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component,ViewChild  } from '@angular/core';
+import { NavController, Slide, Slides } from 'ionic-angular';
 import { Http, Headers,RequestOptions } from '@angular/http';
 import{ NewsPage } from '../news/news';
 import { IonicPage,ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
@@ -11,6 +11,8 @@ let getApiNews = "https://nareeapp.com/api/get-news";
   templateUrl: 'home.html'
 })
 export class HomePage {
+  @ViewChild(Slides) slides: Slides;
+
   token: string;
   profile: string;
   news: any;
@@ -37,6 +39,10 @@ export class HomePage {
     // const modal = this.modalCtrl.create(NewsPage,{newss});
     this.navCtrl.push(NewsPage,{newss})
     // this.navCtrl.push(NewsPage,newss)
+  }
+  startloop(){
+  //  this.slide.autoplayDisableOnInteraction=false;
+  this.slides.startAutoplay();
   }
   // navigateToDetail(id: number ){
   //   this.navCtrl.push('NewsPage',{ id })

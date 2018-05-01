@@ -1,6 +1,6 @@
         page-showevent {
             .ikon {
-                margin-inline-start: 48%;
+                margin-inline-start: 34%;
             }
             .poster {
                 height: 91vw;
@@ -13,14 +13,14 @@
                 font-size: 20px;
                 color: white;
                 text-align: center;
-                padding-block-start: 14px;
+                padding-block-start: 10px;
                 // font-weight: bold;
                 padding-block-end: 0px !important;
                 margin-block-end: 0px !important;
             }
             .bintang {
                 text-align: center;
-                padding-block-end: 10px;
+                padding-block-end: 5px;
                 color: yellow;
             }
             .backcard {
@@ -51,17 +51,14 @@
                 width: 100%;
                 height: 91vw;
             }
-            .ikon {
-                margin-inline-start: 48%;
-            }
             #map {
                 height: 50%;
             }
             .back-button-icon {
-                font-size: 3.4rem;
+                font-size: 3.2rem;
             }
             .isi {
-                text-align: justify;
+                font-size: 1.5rem;
                 margin: 10px;
                 padding: 15px;
                 margin-block-start: 0px;

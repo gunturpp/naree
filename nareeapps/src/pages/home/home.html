@@ -1,9 +1,9 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title>
+        <ion-title class="logo">
             <ion-row justify-content-center>
                 <ion-col col-5>
-                    <img src="assets/imgs/naree-07.png">
+                    <img width="110px" src="assets/imgs/naree-07.png">
                 </ion-col>
             </ion-row>
         </ion-title>
@@ -11,8 +11,8 @@
 </ion-header>
 
 <ion-content class="back">
-    <ion-slides autoplay="3000" loop>
-        <ion-slide *ngFor="let image of [1,2,3]">
+    <ion-slides autoplay="3000" loop (ionSlideAutoplayStop)="startloop()">
+        <ion-slide *ngFor="let image of [1,2]">
             <img data-src="assets/imgs/slide{{image}}.jpg" align-items: stretch>
         </ion-slide>
     </ion-slides>

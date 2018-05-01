@@ -6,6 +6,7 @@ import { ModalController, Platform, NavParams, ViewController } from 'ionic-angu
 import { AlertController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { DataProvider } from '../../providers/data/data';
+import { TambaheventPage } from '../tambahevent/tambahevent';
 let getApiEvent = "https://nareeapp.com/api/get-events";
 
 @Component({
@@ -33,17 +34,21 @@ export class EventPage {
     console.log("token :",this.token);
   }
   openModal(event) {
-    const modal = this.modalCtrl.create(ShoweventPage,{event});
-    modal.present();
-    console.log(event);
+    this.navCtrl.push(ShoweventPage,{event})
+    // const modal = this.modalCtrl.create(ShoweventPage,{event});
+    // modal.present();
+    // console.log(event);
   }
   doAlert() {
-    let alert = this.alerCtrl.create({
-      title: 'TAMBAH EVENT',
-      message: 'hubungi kami melalui line@: naree.app' ,
-      buttons: ['Ok']
-    });
-    alert.present()
+      const modal = this.modalCtrl.create(TambaheventPage);
+     modal.present();
+    // console.log(event);
+    // let alert = this.alerCtrl.create({
+    //   title: 'TAMBAH EVENT',
+    //   message: 'hubungi kami melalui line@: naree.app' ,
+    //   buttons: ['Ok']
+    // });
+    // alert.present()
   }
 };
 // <img src="assets/imgs/welcome32.jpg">
