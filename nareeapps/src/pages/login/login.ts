@@ -46,14 +46,22 @@ export class LoginPage {
   ) {
     // kalo tokennya gak expired, langsung push tabspage
     if (localStorage.getItem("token") != null) {
+      this.profiles = JSON.parse(localStorage.getItem("currentUser"));
+      this.http.get("https://nareeapp.com/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
+        let response = userss.json();
+        console.log("user profile" ,response);
+          localStorage.setItem( "currentUser", JSON.stringify(response.currentuser));
+          this.profiles = JSON.parse(localStorage.getItem("currentUser"));
+          console.log("ini ada ga sih ",this.profiles);
+      });
       this.http
         .get("https://nareeapp.com/api/get-history")
         .subscribe(histories => {
           let response = histories.json();
           this.history = response.histories;
           if (this.history != null) {
-            console.log("cek API get1", this.history[0].id_user);
-            console.log("cek API get2", this.profiles.id);
+            // console.log("cek API get1", this.history[0].id_user);
+            // console.log("cek API get2", this.profiles.id);
             for (var i = 0, j = 0; i < this.history.length; i++) {
               if (this.history[i].id_user == this.profiles.id) {
                 this.riwayat[j] = this.history[i];
@@ -61,20 +69,20 @@ export class LoginPage {
               }
             }
           }
-          console.log("cek ada history apa tidak", this.riwayat);
+          // console.log("cek ada history apa tidak", this.riwayat);
           // show popup when levelup
           localStorage.setItem("expHistory", JSON.stringify(this.riwayat));
-          console.log("cek ada history apa tidak", this.riwayat);
+          // console.log("cek ada history apa tidak", this.riwayat);
           this.ukuran = parseInt(this.riwayat.length.toString());
           for (var i = this.ukuran - 1; i >= 0; i--) {
-            console.log("riwayat", this.riwayat[i]);
+            // console.log("riwayat", this.riwayat[i]);
             if (this.riwayat[i].judul === this.judul) {
-              console.log("riwayat", this.riwayat[i].judul);
+              // console.log("riwayat", this.riwayat[i].judul);
               this.daily = this.riwayat[i].updated_at;
             }
           }
           this.daily = this.daily.split(" ")[0];
-          console.log("daily ", this.daily);
+          // console.log("daily ", this.daily);
           this.storage.set("checkhari", this.daily);
         });
 
@@ -86,7 +94,7 @@ export class LoginPage {
           let response = level.json();
           // save profile in localstorage
           localStorage.setItem("experience", JSON.stringify(response.exps));
-          console.log("exp di local storage", response.exps);
+          // console.log("exp di local storage", response.exps);
         });
       }
       this.http
@@ -96,7 +104,7 @@ export class LoginPage {
           this.achievements = response.achievements;
           console.log("ach :", this.achievements);
           for (var i = 0, j = 0; i < this.achievements.length; i++) {
-            if (this.achievements[i].id_user == this.profiles.id) {
+            if (this.achievements[i].username == this.profiles.username) {
               this.achiev[j] = this.achievements[i];
               j++;
             }
@@ -108,7 +116,7 @@ export class LoginPage {
         .subscribe(hadir => {
           let response = hadir.json();
           this.kehadiran = response.kehadirans;
-          console.log("kehadiran :", this.kehadiran);
+          // console.log("kehadiran :", this.kehadiran);
           for (var i = 0, j = 0; i < this.kehadiran.length; i++) {
             if (this.kehadiran[i].id_user == this.profiles.id) {
               this.hadir[j] = this.kehadiran[i].id_event;
@@ -119,19 +127,15 @@ export class LoginPage {
         });
           // let nav = this.app.getRootNav(); 
               // nav.setRoot(TabsPage);
-      this.navCtrl.setRoot(TabsPage);
+              this.navCtrl.setRoot(TabsPage);
+    
     }
+    
     this.exp = JSON.parse(localStorage.getItem("experience"));
-    this.profiles = JSON.parse(localStorage.getItem("currentUser"));
+   
   }
 
-  ionViewDidLoad() {
-    console.log("ionViewDidLoad LoginPage");
-    console.log("ada exp di DB? ", this.exp);
-  }
-  ionViewWillLeave() {
-    //get exp-history user
-  }
+
   onLogin(form: NgForm) {
     // kondisi submit true
     this.submitted = true;
@@ -168,8 +172,8 @@ export class LoginPage {
                 let response = histories.json();
                 this.history = response.histories;
                 if (this.history != null) {
-                  console.log("cek API get1", this.history[0].id_user);
-                  console.log("cek API get2", this.profiles.id);
+                  // console.log("cek API get1", this.history[0].id_user);
+                  // console.log("cek API get2", this.profiles.id);
                   for (var i = 0, j = 0; i < this.history.length; i++) {
                     if (this.history[i].id_user == this.profiles.id) {
                       this.riwayat[j] = this.history[i];
@@ -177,23 +181,23 @@ export class LoginPage {
                     }
                   }
                 }
-                console.log("cek ada history apa tidak", this.riwayat);
+                // console.log("cek ada history apa tidak", this.riwayat);
                 // show popup when levelup
                 localStorage.setItem(
                   "expHistory",
                   JSON.stringify(this.riwayat)
                 );
-                console.log("cek ada history apa tidak", this.riwayat);
+                // console.log("cek ada history apa tidak", this.riwayat);
                 this.ukuran = parseInt(this.riwayat.length.toString());
                 for (let i = this.ukuran - 1; i >= 0; i--) {
-                  console.log("riwayat", this.riwayat[i]);
+                  // console.log("riwayat", this.riwayat[i]);
                   if (this.riwayat[i].judul === this.judul) {
-                    console.log("riwayat", this.riwayat[i].judul);
+                    // console.log("riwayat", this.riwayat[i].judul);
                     this.daily = this.riwayat[i].updated_at;
                   }
                 }
                 this.daily = this.daily.split(" ")[0];
-                console.log("daily ", this.daily);
+                // console.log("daily ", this.daily);
                 this.storage.set("checkhari", this.daily);
               });
 
@@ -210,7 +214,7 @@ export class LoginPage {
                     "experience",
                     JSON.stringify(response.exps)
                   );
-                  console.log("exp di local storage", response.exps);
+                  // console.log("exp di local storage", response.exps);
                 });
             }
             this.http
@@ -218,9 +222,9 @@ export class LoginPage {
               .subscribe(achievement => {
                 let response = achievement.json();
                 this.achievements = response.achievements;
-                console.log("ach :", this.achievements);
+                // console.log("ach :", this.achievements);
                 for (var i = 0, j = 0; i < this.achievements.length; i++) {
-                  if (this.achievements[i].id_user == this.profiles.id) {
+                  if (this.achievements[i].username == this.profiles.username) {
                     this.achiev[j] = this.achievements[i];
                     j++;
                   }
@@ -235,7 +239,7 @@ export class LoginPage {
               .subscribe(hadir => {
                 let response = hadir.json();
                 this.kehadiran = response.kehadirans;
-                console.log("kehadiran :", this.kehadiran);
+                // console.log("kehadiran :", this.kehadiran);
                 for (var i = 0, j = 0; i < this.kehadiran.length; i++) {
                   if (this.kehadiran[i].id_user == this.profiles.id) {
                     this.hadir[j] = this.kehadiran[i].id_event;
@@ -253,13 +257,13 @@ export class LoginPage {
           } else {
             // this.showAlert(response.message);
             // console.log(response.message);
-            console.log("password salah");
+            // console.log("password salah");
           }
         },
         err => {
           loading.dismiss();
           this.showError(err);
-          console.log("eerrror", err);
+          // console.log("eerrror", err);
         }
       );
     }
@@ -280,7 +284,7 @@ export class LoginPage {
     toast.present();
   }
   forgotPassword() {
-    console.log("forgot password");
+    // console.log("forgot password");
   }
 
   signup() {

@@ -12,7 +12,7 @@
 </ion-header>
 
 <ion-content class="back">
-    <ion-card color="primary">
+    <ion-card color="primary" style="    margin-bottom: 0px;">
         <ion-item class="fotoi" color="primary">
             <!-- <ion-avatar item-start (click)="uploadPicture()"> -->
             <img *ngIf="image == 'https://nareeapp.com/images/photoprofile/default.png'" required class="foto" style="width: 130px; height: 130px;" src="assets/imgs/default.png" tappable (click)="uploadPicture()" />
@@ -24,16 +24,20 @@
     <ion-grid>
         <ion-row>
             <ion-col>
-                <ion-item no-padding class="kartu">
-                    <ion-img item-start width="53" height="50" src="assets/imgs/level.jpg"></ion-img>
-                    <h2 class="judul1"> Level {{profiles.level}} </h2>
-                </ion-item>
+                <ion-card class="bagi2">
+                    <ion-item no-padding class="kartu">
+                        <ion-img item-start width="53" height="50" src="assets/imgs/level.jpg"></ion-img>
+                        <h2 class="judul1"> Level {{profiles.level}} </h2>
+                    </ion-item>
+                </ion-card>
             </ion-col>
 
             <ion-col>
-                <ion-card no-padding ion-item class="kartu">
-                    <ion-img item-start width="53" height="50" src="assets/imgs/breaking.jpg"></ion-img>
-                    <h2 class="judul">{{profiles.dance_type}} </h2>
+                <ion-card class="bagi2">
+                    <ion-item no-padding ion-item class="kartu">
+                        <ion-img item-start width="53" height="50" src="assets/imgs/breaking.jpg"></ion-img>
+                        <h2 class="judul">{{profiles.dance_type}} </h2>
+                    </ion-item>
                 </ion-card>
             </ion-col>
         </ion-row>
@@ -55,9 +59,10 @@
         </ion-item>
         <div *ngIf="showpage">
             <ion-item *ngFor="let x of achiev">
-                <p item-start> {{x.updated_at|date: 'dd/mm/yy'}}</p>
-                <p>{{x.title}} </p>
-                <p item-end> {{x.exp}}</p>
+                <!-- <p item-start> {{x.updated_at|date: 'dd/MM/yy'}}</p> -->
+                <p class="juara" item-start>{{x.title}} </p>
+                <p class="deskripsi"> {{x.year}}</p>
+                <!-- <p item-end> {{x.exp}}</p> -->
             </ion-item>
         </div>
     </ion-card>

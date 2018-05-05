@@ -2,21 +2,6 @@ page-checkin-event {
     .back {
         background-color: #e8e9ea;
     }
-    .image-event {
-        padding: 0px!important;
-        margin: 0px!important;
-        border: 0px;
-        padding-block-start: 0px;
-        margin-block-start: 0px;
-    }
-    .getstart {
-        background-image: url('../../assets/imgs/checkin.jpg');
-        // background: url('../../img/getstart.png');
-        background-repeat: no-repeat;
-        background-size: 100%;
-        // width: 100%;
-        // height: 100%;
-    }
     .posisi {
         margin-block-start: 135%;
         position: fixed;
@@ -43,5 +28,9 @@ page-checkin-event {
         left: 10%;
         width: 80%;
         height: 7vh;
+    }
+    .foto {
+        height: 67vh;
+        width: 100%;
     }
 }

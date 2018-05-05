@@ -114,7 +114,8 @@ export class ShoweventPage {
     this.exp = this.data.exp;
     this.rating= this.data.rating;
     this.tiket = this.data.ticket_price;
-    this.showMap(this.longtitude, this.lattitude);
+        this.showMap( this.lattitude,this.longtitude);
+
     // if (this.tiket==null);
     this.ratings = 3.5;
     this.bintang=5;
@@ -138,6 +139,7 @@ export class ShoweventPage {
   closeModal() {
     this.navCtrl.pop();
   }
+
   showMap(long, lat) {
     //location lang longtitude
     const location = new google.maps.LatLng(long, lat);

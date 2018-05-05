@@ -2,11 +2,9 @@
     <img class="card" src="assets/imgs/logobkg-36.jpg" />
     <form class='formi' #LoginForm="ngForm" novalidate>
         <ion-list no-margin no-padding>
-            <ion-item>
+            <ion-item style="padding-left: 0px;">
                 <ion-icon color='primary' style="margin-inline-end: 0px;padding-inline-end: 0px;" item-left name="ios-person-outline"> </ion-icon>
-                <!--<ion-icon name="md-person" [ngClass]="{'hide': true }"></ion-icon>-->
-                <!-- <ion-input [(ngModel)]="user.email" type="text"  #email="ngModel" name="email" required></ion-input> -->
-                <ion-input style="margin-inline-start: 0px;padding-inline-start: 0px;" type="email" placeholder="Email" name="email" [(ngModel)]="user.email"></ion-input>
+                <ion-input style="margin-left: 0px;;padding-inline-start: 0px;" type="email" placeholder="Email" name="email" [(ngModel)]="user.email"></ion-input>
             </ion-item>
         </ion-list>
         <!--<style>
@@ -15,7 +13,7 @@
                 }
             </style>-->
         <ion-list no-margin no-padding>
-            <ion-item no-margin>
+            <ion-item no-margin style="padding-left: 0px;">
                 <ion-icon color='primary' item-left name="ios-lock-outline"> </ion-icon>
                 <ion-input type="text" *ngIf="showPasswordText" name="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>
                 <ion-input type="password" *ngIf="!showPasswordText" name="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>
@@ -26,7 +24,7 @@
             <!-- <ion-input type="password" name="password" [(ngModel)]="user.password" placeholder="Password"></ion-input> -->
         </ion-list>
         <p class="forgot" style="text-align: right; padding-block-start: 0px;margin-block-start: 0px;">
-            <button ion-button item-end clear style="text-transform: none; font-weight: bold;" color="dark" (click)="forgotpassword()">Forgot password?</button>
+            <button ion-button item-end clear style="text-transform: none; font-weight: bold;    padding-right: 0px;" color="dark" (click)="forgotpassword()">Forgot password?</button>
         </p>
     </form>
 
@@ -34,7 +32,7 @@
     <div class="sign">
         <button ion-button large block round style="text-transform: none;" (click)='onLogin(LoginForm)'>Sign In</button>
     </div>
-    <div style="text-align: center">
+    <div style="text-align: center;padding-block-start: 0px;margin-block-start: 0px;">
         Don`t have an account ? <a style="font-weight: bold;" (click)="signup()">Sign Up </a>
         <!-- <button ion-button no-padding no-margin clear style="text-transform: none;" color="dark" (click)="signup()">Sign up</button> -->
     </div>
