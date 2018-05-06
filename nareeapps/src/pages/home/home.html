@@ -1,9 +1,9 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title>
+        <ion-title class="logo">
             <ion-row justify-content-center>
                 <ion-col col-5>
-                    <img src="assets/imgs/naree-07.png">
+                    <img width="110px" src="assets/imgs/naree-07.png">
                 </ion-col>
             </ion-row>
         </ion-title>
@@ -11,15 +11,20 @@
 </ion-header>
 
 <ion-content class="back">
-    <img src="assets/imgs/welcome32.jpg" align-items: stretch />
+    <ion-slides autoplay="3000" loop (ionSlideAutoplayStop)="startloop()" pager>
+        <ion-slide *ngFor="let image of [1,2]">
+            <img data-src="assets/imgs/slide{{image}}.jpg" align-items: stretch>
+        </ion-slide>
+    </ion-slides>
+    <!-- <img src="assets/imgs/welcome32.jpg" align-items: stretch /> -->
     <!--width="80" height="80"-->
-    <ion-card *ngFor="let newss of news" (click)="openModal(newss)">
+    <ion-card *ngFor="let newss of news" (click)="openModal(newss)" style="margin-top: 5px;">
         <img class="image-news" src="https://nareeapp.com/{{newss.image}}" />
         <ion-card-content>
             <ion-card-title class="judul">
                 {{newss.judul_news}}
             </ion-card-title>
-            <p displayFormat="MM/DD/YYYY"> {{newss.created_at|date: 'dd MMMM yyyy'}}</p>
+            <p style="font-weight: bold;" displayFormat="MM/DD/YYYY"> {{newss.created_at|date: 'dd MMMM yyyy'}}</p>
             <!-- <ion-datetime color="primary" disabled displayFormat="MM/DD/YYYY" [(ngModel)]="newss.created_at"></ion-datetime> -->
         </ion-card-content>
     </ion-card>

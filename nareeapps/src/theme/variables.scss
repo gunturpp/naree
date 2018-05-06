@@ -22,6 +22,10 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 $colors: ( primary: #95171A, secondary: #32db64, danger: #f53d3d, light: #f4f4f4, dark: #222, loading:yellow);
+$button-md-large-height: 2.8em;
+$button-md-large-padding-end: 0.5em;
+$button-md-large-font-size :1.8rem;
+// $toolbar-md-button-font-size: 2.4rem;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -48,3 +52,19 @@ $colors: ( primary: #95171A, secondary: #32db64, danger: #f53d3d, light: #f4f4f4
 // --------------------------------------------------
 @import "roboto";
 @import "noto-sans";
+$font-family-md-base: "roboto";
+$font-family-ios-base: "roboto";
+$font-family-wp-base: "roboto";
+// @font-face {
+//     font-family: 'roboto';
+//     font-weight: 500;
+//     font-style: normal;
+//     src: url('../../assets/fonts/Lato-300/Lato-300.eot');
+//     src: url('../../assets/fonts/Lato-300/Lato-300.eot?#iefix') format('embedded-opentype'),
+//     local('Lato Light'),
+//     local('Lato-300'),
+//     url('../assets/fonts/Lato-300/Lato-300.woff2') format('woff2'),
+//     url('../assets/fonts/Lato-300/Lato-300.woff') format('woff'),
+//     url('../assets/fonts/Lato-300/Lato-300.ttf') format('truetype'),
+//     url('../assets/fonts/Lato-300/Lato-300.svg#Lato') format('svg');
+//     }

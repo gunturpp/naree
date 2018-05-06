@@ -111,6 +111,6 @@ export class SignupPage {
 
 
   backgo() {
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.pop();
   }
 }

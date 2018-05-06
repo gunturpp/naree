@@ -38,6 +38,7 @@ import { ApiProvider } from '../providers/api/api';
 import { DataProvider } from '../providers/data/data';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
+import { TambaheventPage } from '../pages/tambahevent/tambahevent';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
     CheckinDailyPage,
     CheckinEventPage,
     NewsPage,
+    TambaheventPage,
     ShoweventPage,
     SmsotpPage,
     VerifcodePage,
@@ -67,11 +69,14 @@ import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
   ],
   imports: [
     BrowserModule,HttpModule,HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    // IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     NgProgressModule,
-    Ionic2RatingModule
-  ],
+    Ionic2RatingModule,
+     IonicModule.forRoot(MyApp, {
+      backButtonIcon: "ios-undo",
+     }) 
+    ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -83,6 +88,7 @@ import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
     CheckinEventPage,
     ForgotpasswordPage,
     MorePage,
+    TambaheventPage,
     PengaturanPage,
     EventPage,
     RewardPage,

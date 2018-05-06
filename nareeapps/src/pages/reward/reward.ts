@@ -75,7 +75,7 @@ checkin:boolean=true;
     this.riwayat = [];
     this.jumlah = 0;
     this.nama = "Daily Check-in";
-    this.dailyExp = 5; 
+    this.dailyExp = 1; 
     this.storage.get('checkhari').then((data) => {
       this.items = data;
       console.log("hari yang ada di data",this.items);
@@ -125,23 +125,24 @@ checkin:boolean=true;
       this.persentase=(this.profiles.exp/this.MaxExp)*100;
       console.log("persentase =",this.persentase);
       if(this.persentase >= 100){
+        this.jumalahlevel=parseInt(this.profiles.level.toString())+1;
+        this.profiles.level=this.jumalahlevel;
         this.showPopup = true;
         this.showHeader = false;
-        if(this.profiles.level>=10)
-        this.show2digit =true;
-        else this.show1digit=true;
+        
       }
       else {
         this.showPopup = false;
         this.showHeader = true;
       }
      
-      
+      if(this.profiles.level>=10)
+        this.show2digit =true;
+        else this.show1digit=true;
   }
 
   takeLevel(){
     this.profiles.exp-=this.MaxExp;
-    this.jumalahlevel=parseInt(this.profiles.level.toString())+1;
     console.log("levellast=",this.profiles.level);
     let add = ({
       exp:this.profiles.exp,
@@ -222,6 +223,6 @@ checkin:boolean=true;
     this.checkout=true;
     // console.log("checkout",this.checkout);
 
-    this.navCtrl.setRoot(TabsPage);
+    this.navCtrl.push(CheckinDailyPage);
   }
 }

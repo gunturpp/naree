@@ -15,8 +15,19 @@ page-checkin-daily {
         padding-inline-end: 23px;
         padding-block-end: 20px;
         padding-block-start: 20px;
+        font-size: 1.5rem;
+        font-weight: 500;
     }
     .posisi {
         margin-block-start: 135%;
+    }
+    .button {
+        left: 10%;
+        width: 80%;
+        height: 7vh;
+    }
+    .foto {
+        height: 67vh;
+        width: 100%;
     }
 }

@@ -4,7 +4,7 @@
         }
         .kartu {
             height: 50px;
-            width: 165px;
+            width: 45vw;
             margin-inline-end: 0px;
             margin-inline-start: 0px;
             margin-block-start: 0px;
@@ -27,13 +27,13 @@
             width: auto;
         }
         .judul {
-            size: 12px;
+            font-size: 1.8rem;
             color: #95171A;
             text-align: center;
             font-weight: bold;
         }
         .judul1 {
-            size: 12px;
+            font-size: 1.8rem;
             color: #95171A;
             text-align: center;
             padding-inline-start: 10px;
@@ -47,6 +47,7 @@
             font-weight: bold;
             padding-block-start: 10px;
             padding-block-end: 10px;
+            padding-left: 0px;
         }
         .about {
             text-align: center;
@@ -67,7 +68,7 @@
         .card-title {
             position: absolute;
             top: 80%;
-            font-size: 1.5em;
+            font-size: 1.8em;
             width: 100%;
             font-weight: bold;
             color: #fff;
@@ -79,5 +80,37 @@
         }
         ion-card {
             position: relative;
+        }
+        .bagi2 {
+            margin: 0;
+            width: 45vw;
+        }
+        .item-md [item-left],
+        .item-md [item-right],
+        .item-md [item-start],
+        .item-md [item-end] {
+            margin: 0px 8px 0px 0;
+            color: black;
+            font-weight: bold;
+        }
+        .label-md {
+            margin: 0px 8px 0px 0;
+            color: black;
+            font-weight: 500;
+        }
+        .item-block {
+            min-height: 2.1rem;
+        }
+        .juara {
+            padding-block-end: 5px;
+            text-transform: uppercase;
+            padding-inline-start: 10px;
+        }
+        .deskripsi {
+            color: black;
+            font-weight: 500;
+            margin-bottom: 0px;
+            padding-block-end: 5px;
+            padding-inline-start: 10px;
         }
     }

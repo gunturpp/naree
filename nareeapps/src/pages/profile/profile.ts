@@ -59,12 +59,14 @@ export class ProfilePage {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
     this.http
       .get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit")
-      .subscribe(user => {
-        let profile = user.json();
+      .subscribe(user => {let profile = user.json();
 
         this.image = "https://nareeapp.com" + profile.currentuser.photo;
         console.log("jika udah di update di const:", profile.currentuser.photo);
       });
+  }
+  ionViewWillEnter(){
+    this.profiles = JSON.parse(localStorage.getItem("currentUser"));
   }
   ionViewDidLoad() {
     let loading = this.loadCtrl.create({

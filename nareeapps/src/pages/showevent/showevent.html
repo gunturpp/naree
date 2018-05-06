@@ -1,33 +1,8 @@
-<!--
-  Generated template for the ShoweventPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!-- <ion-header>
-    <ion-navbar color="primary">
-        <ion-buttons start (click)="closeModal()">
-            <button ion-button large icon-only>
-                  <ion-icon name='ios-undo' ></ion-icon>
-            </button>
-        </ion-buttons>
-       <ion-title class="ikon">
-            <ion-icon large name="ai-event"></ion-icon>
-        </ion-title> -->
-<!-- </ion-navbar> -->
-
-<!-- </ion-header> -->
 <ion-header>
     <ion-navbar color="primary">
         <ion-title class="ikon">
             <ion-icon style="font-size: 30px;" large name="ai-event"></ion-icon>
         </ion-title>
-        <ion-buttons end>
-            <button ion-button icon-only (click)="closeModal()">
-        <ion-icon name="ios-undo"></ion-icon>
-      </button>
-        </ion-buttons>
-
     </ion-navbar>
 </ion-header>
 <script src="lib/ionic-rating/ionic-rating.min.js"></script>
@@ -64,6 +39,6 @@
     </ion-card>
     <ion-card #map id="map" class="backcard-ket">
     </ion-card>
-    <button *ngIf="showcheckin" ion-button color="primary" full (click)="checkin() ">Check In</button>
-    <button disabled *ngIf="showcancel" ion-button color="primary" full (click)="checkin() ">Check In</button>
+    <button *ngIf="showcheckin" ion-button style="text-transform: none;" color="primary" full large (click)="checkin() ">Check In</button>
+    <button disabled *ngIf="showcancel" ion-button style="text-transform: none;" color="primary" full large (click)="checkin() ">Check In</button>
 </ion-content>
