@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.naree.indonesia" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Naree</name>
     <description>Naree is application for dancer</description>
-    <author email="gppratama17@gmail.com" href="http://nareeapps.com/">Naree Indonesia</author>
+    <author email="naree.indonesia@gmail.com" href="http://nareeapps.com/">Naree Indonesia</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -90,6 +90,7 @@
     <allow-navigation href="http://10.100.243.35:8100" />
     <allow-navigation href="http://10.103.125.126:8100" />
     <plugin name="cordova-plugin-calendar" spec="^5.0.0" />
+    <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <engine name="browser" spec="^5.0.3" />
     <engine name="android" spec="7.0.0" />
 </widget>
