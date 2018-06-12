@@ -22,6 +22,12 @@ use App\Achievement;
 use App\History;
 use App\Exp;
 use App\Kehadiran;
+use App\Ticket;
+use App\Payment;
+use App\Category;
+use App\Participantbycategory;
+use App\Memberbycategory;
+
 
 class PassportController extends Controller
 {
@@ -43,7 +49,7 @@ class PassportController extends Controller
             return response()->json(['error'=>'Wrong email or password'],401);
         }
     }
-	// UPDATE
+	//UPDATE
     public function editUser($id)
     {
 		$users = User::find($id);
@@ -177,7 +183,46 @@ class PassportController extends Controller
 		return compact('status','users');
 	}
    
-	// GET
+	//GET
+	public function  getCategory(Request $request, $string=null)
+	{
+		$token = $request->header('Api-key');
+		$user = Auth::user();
+		if($string!=null)
+			$categories = Category::Where('created_at','like','%'.$string.'%')->orderBy('id')->get();
+		else
+
+			$categories = Category::orderBy('id')->get();
+		$status=true;
+		return compact('status','categories');
+		
+	}
+	public function  getPayment(Request $request, $string=null)
+	{
+		$token = $request->header('Api-key');
+		$user = Auth::user();
+		if($string!=null)
+			$payments = Payment::Where('created_at','like','%'.$string.'%')->orderBy('id')->get();
+		else
+
+			$payments = Payment::orderBy('id')->get();
+		$status=true;
+		return compact('status','payments');
+		
+	}
+	public function  getTicket(Request $request, $string=null)
+	{
+		$token = $request->header('Api-key');
+		$user = Auth::user();
+		if($string!=null)
+			$tickets = Ticket::Where('created_at','like','%'.$string.'%')->orderBy('id')->get();
+		else
+
+			$tickets = Ticket::orderBy('id')->get();
+		$status=true;
+		return compact('status','tickets');
+		
+	}
 	public function  getKehadiran(Request $request, $string=null)
 	{
 		$token = $request->header('Api-key');
@@ -252,7 +297,55 @@ class PassportController extends Controller
 		return compact('status','histories');
 	}
 
-	// POST
+	//POST
+	public function postParticipant_by_category(Request $request)
+	{
+		$user = Auth::user();
+		$data = $request->only(
+			'invoice',
+			'id_category',
+			'id_ticket_type'
+
+		);
+		$data['invoice'] = $request->invoice;
+		$data['id_category'] = $request->id_category;
+		$data['id_ticket_type'] = $request->id_ticket_type;
+        $participantByCategory = Participantbycategory::create($data);
+        $success = $participantByCategory;
+        return response()->json(['success'=>$success], $this->successStatus);	
+	}
+	public function postMember_by_category(Request $request)
+	{
+		$user = Auth::user();
+		$data = $request->only(
+			'invoice',
+			'username'
+		);
+		$data['invoice'] = $request->invoice;
+		$data['username'] = $request->username;
+        $memberByCategory = Memberbycategory::create($data);
+        $success = $memberByCategory;
+        return response()->json(['success'=>$success], $this->successStatus);	
+	}
+	public function postPayment(Request $request)
+	{
+		$user = Auth::user();
+		$data = $request->only(
+			'id_user',
+			'id_event',
+			'status',
+			'total_price',
+			'invoice'
+		);
+		$data['id_user'] = $request->id_user;
+		$data['id_event'] = $request->id_event;
+		$data['status'] = $request->status;
+		$data['total_price'] = $request->total_price;
+		$data['invoice'] = $request->invoice;
+        $payments = Payment::create($data);
+        $success = $payments;
+        return response()->json(['success'=>$success], $this->successStatus);	
+	}
 	public function postKehadiranEvent(Request $request)
 	{
 		$user = Auth::user();

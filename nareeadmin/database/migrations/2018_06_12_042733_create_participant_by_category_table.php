@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTickettypeTable extends Migration
+class CreateParticipantByCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,15 @@ class CreateTickettypeTable extends Migration
      */
     public function up()
     {
-// + id: int(10)
-// + id_category: int
-// + type: varchar(30)
-// + price: int
-// + period_start:date
-// + period_end:date
-
-        Schema::create('tickettype', function (Blueprint $table) {
+// - Id: int(10)*
+// - invoice: unique
+// - id_category: int
+// - id_ticket_type: int
+        Schema::create('participant_by_category', function (Blueprint $table) {
             $table->increments('id',10);
+            $table->string('invoice',10)->unique();
             $table->integer('id_category');
-            $table->string('type',40);
-            $table->integer('price');
-            $table->date('period_start');
-            $table->date('periode_end');
+            $table->integer('id_ticket_type');
             $table->timestamps();
         });
     }
@@ -38,6 +33,6 @@ class CreateTickettypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickettype');
+        Schema::dropIfExists('participant_by_category');
     }
 }
