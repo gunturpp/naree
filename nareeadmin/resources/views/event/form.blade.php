@@ -9,7 +9,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>description :</strong>
-            {!! Form::textarea('description', null, array('placeholder' => 'Fill description...','class' => 'form-control')) !!}
+            {!! Form::textarea('description', null, array('placeholder' => 'Fill description...(maksimal 10000 karakter)','class' => 'form-control')) !!}
         </div>
     </div>
 
@@ -65,7 +65,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Duration :</strong>
-            {!! Form::text('duration', null, array('placeholder' => 'example : 2 hari','class' => 'form-control')) !!}
+            {!! Form::text('duration', null, array('placeholder' => 'example : 2','class' => 'form-control')) !!}
         </div>
     </div>
 
