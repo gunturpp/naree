@@ -27,6 +27,7 @@ class CreatePaymentsTable extends Migration
         $table->string('status',10);
         $table->integer('total_price');
         $table->string('invoice',10);
+        $table->string('nota')->nullable();
         $table->timestamps();
     });
 }

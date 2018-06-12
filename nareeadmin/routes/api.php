@@ -13,6 +13,8 @@ Route::post('post-participant-by-category', 'Auth\PassportController@postPartici
 Route::post('post-member-by-category', 'Auth\PassportController@postMember_by_category');
 
 
+Route::get('payment/{id}/edit', 'Auth\PassportController@editPayment');
+Route::put('payment/{id}/nota-update', 'Auth\PassportController@updateNotaPayment');
 Route::get('users/{id}/edit', 'Auth\PassportController@editUser');
 Route::put('users/{id}/update', 'Auth\PassportController@updateUser');
 Route::put('users/{id}/photo', 'Auth\PassportController@updateFotoUser');
