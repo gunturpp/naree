@@ -8,14 +8,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 // import { TesapiPage } from '../pages/tesapi/tesapi';
 // import { SmsotpPage } from '../pages/smsotp/smsotp';
 import { HomePage } from '../pages/home/home';
-import { VerifcodePage } from '../pages/verifcode/verifcode';
-import { EditprofilePage } from '../pages/editprofile/editprofile';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage:any = LoginPage;
-  // rootPage:any = EditprofilePage;
+  // rootPage:any = TiketPage;
   
 // rootPage:any = TabsPage; 
 // ini yang default

@@ -6,16 +6,34 @@
 -->
 <ion-header>
     <ion-navbar color="primary">
+        <ion-buttons left>
+            <button ion-button icon-only (click)="doAlert()">
+                <ion-icon name="md-add-circle"></ion-icon>
+            </button>
+        </ion-buttons>
         <ion-title class="ikon">
-            <ion-icon large name="ai-event"></ion-icon>
+            Events
         </ion-title>
-        <ion-buttons end>
+        <ion-buttons right>
             <button ion-button icon-only (click)="doAlert()">
         <ion-icon name="md-add-circle"></ion-icon>
       </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
+<!-- <ion-header>
+    <ion-navbar color="primary">
+        <ion-buttons left>
+            <button ion-button icon-only>
+                <ion-icon name="chatboxes"></ion-icon>
+              </button>
+        </ion-buttons>
+        <ion-title>Event</ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only><ion-icon name="notifications"></ion-icon></button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header> -->
 
 
 <ion-content class="back">

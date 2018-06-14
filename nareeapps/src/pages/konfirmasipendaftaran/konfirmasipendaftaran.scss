@@ -1,0 +1,37 @@
+page-konfirmasipendaftaran {
+    .back {
+        background-color: #e8e9ea;
+    }
+    .judul {
+        font-size: 20px;
+        color: white;
+        text-align: center;
+        font-weight: 500;
+        padding-inline-start: 30px;
+        padding-inline-end: 30px;
+    }
+    .lanjutkan {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        text-transform: none;
+        font-size: 2rem;
+        margin-bottom: 0px;
+    }
+    .tittle {
+        color: #95171A;
+        font-size: 1.6rem;
+        font-weight: 900;
+        padding-top: 15px;
+        padding-bottom: 0px;
+        line-height: 16px;
+    }
+    .isi {
+        font-weight: 500;
+        line-height: 16px;
+    }
+    .note {
+        text-align: center;
+        font-size: 1.4rem;
+        line-height: 16px;
+    }
+}

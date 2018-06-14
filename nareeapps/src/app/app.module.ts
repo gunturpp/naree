@@ -37,29 +37,40 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { ApiProvider } from '../providers/api/api';
 import { DataProvider } from '../providers/data/data';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
+import { InvoicePage } from '../pages/invoice/invoice';
+import { TiketPage } from '../pages/tiket/tiket';
 import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
 import { TambaheventPage } from '../pages/tambahevent/tambahevent';
-
+import { RegistrasieventPage } from '../pages/registrasievent/registrasievent';
+import { PembayaranPage }from '../pages/pembayaran/pembayaran';
+import { DatapesertaPage } from '../pages/datapeserta/datapeserta';
+import { KonfirmasipendaftaranPage } from '../pages/konfirmasipendaftaran/konfirmasipendaftaran';
 @NgModule({
   declarations: [
     MyApp,
     AboutusPage,
     AchievementPage,
+    KonfirmasipendaftaranPage,
     ContactusPage,
     EditprofilePage,
     MorePage,
     PengaturanPage,
     EventPage,
+    DatapesertaPage,
     HomePage,
     TabsPage,
+    InvoicePage,
     RewardPage,
     LoginPage,
+    TiketPage,
     SignupPage,
     ProfilePage,
     ForgotpasswordPage,
     TesapiPage,
     CheckinDailyPage,
     CheckinEventPage,
+    RegistrasieventPage,
+    PembayaranPage,
     NewsPage,
     TambaheventPage,
     ShoweventPage,
@@ -87,17 +98,23 @@ import { TambaheventPage } from '../pages/tambahevent/tambahevent';
     CheckinDailyPage,
     CheckinEventPage,
     ForgotpasswordPage,
+    KonfirmasipendaftaranPage,
     MorePage,
     TambaheventPage,
+    RegistrasieventPage,
     PengaturanPage,
     EventPage,
     RewardPage,
     HomePage,
     LoginPage,
+    InvoicePage,
     NewsPage,
+    TiketPage,    
+    PembayaranPage,
     ShoweventPage,
     ProfilePage,
     SignupPage,
+    DatapesertaPage,
     TabsPage,
     TesapiPage,
     SmsotpPage,

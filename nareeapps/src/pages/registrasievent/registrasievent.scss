@@ -1,0 +1,90 @@
+page-registrasievent {
+    .ikon {
+        margin-inline-start: 34%;
+    }
+    .judul {
+        font-size: 20px;
+        color: white;
+        text-align: center;
+        font-weight: 500;
+        padding-inline-start: 30px;
+        padding-inline-end: 30px;
+    }
+    .back {
+        background-color: #e8e9ea;
+    }
+    .judul-about {
+        color: #95171A;
+        text-align: initial;
+        padding-block-start: 0px;
+        padding-inline-start: 0px;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 18px;
+        margin-block-end: 0px;
+    }
+    .card-header-md {
+        font-size: 1.6rem;
+        color: white;
+        padding: 16px;
+        font-weight: 400;
+        text-align: center;
+    }
+    ion-item {
+        padding: 0px !important;
+        margin: 0px !important;
+    }
+    .font {
+        font-weight: 900;
+        font-size: 1.6rem;
+        text-transform: none;
+    }
+    .label-md {
+        margin: 0;
+    }
+    [text-center] {
+        text-align: center !important;
+        padding-inline-start: 8vw;
+    }
+    .item-inner {
+        padding-right: 0px;
+    }
+    .first {
+        padding-inline-start: 20px;
+    }
+    .mid {
+        padding-inline-start: 20vw;
+    }
+    .item.item-md .checkbox-md[item-right],
+    .item.item-md .checkbox-md[item-end] {
+        margin: 11px 25px 10px 0;
+    }
+    .checkbox-md-dark .checkbox-checked {
+        border-color: #95171A;
+        background-color: #fff;
+    }
+    .checkbox-md .checkbox-icon {
+        width: 24px;
+        height: 24px;
+    }
+    .checkbox-md .checkbox-checked .checkbox-inner {
+        width: 7px;
+        height: 14px;
+        left: 6px;
+    }
+    .checkbox-md-dark .checkbox-checked .checkbox-inner {
+        border-color: #95171A;
+    }
+    .lanjutkan {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        text-transform: none;
+        font-size: 2rem;
+    }
+    .footer {
+        button {
+            margin-bottom: 0px;
+        }
+    }
+}

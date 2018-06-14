@@ -1,0 +1,53 @@
+page-pembayaran {
+    .back {
+        background-color: #e8e9ea;
+    }
+    .judul {
+        font-size: 20px;
+        color: white;
+        text-align: center;
+        font-weight: 500;
+        padding-inline-start: 30px;
+        padding-inline-end: 30px;
+    }
+    .lanjutkan {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        text-transform: none;
+        font-size: 2rem;
+        margin-bottom: 0px;
+    }
+    .tittle {
+        color: #95171A;
+        font-size: 1.6rem;
+        font-weight: 700;
+        padding-top: 5px;
+        padding-bottom: 0px;
+        height: 19px;
+    }
+    .isi {
+        height: 19px;
+    }
+    img {
+        width: 180px;
+    }
+    .item-md {
+        padding-left: 16px;
+    }
+    .konteks {
+        text-align: center;
+        font-weight: bold;
+        color: black;
+        font-size: 1.4rem;
+        line-height: 16px;
+    }
+    .harga {
+        font-size: 2.2rem;
+        font-weight: bold;
+        line-height: 20px;
+        text-align: center;
+    }
+    .back-card {
+        padding-bottom: 0px;
+    }
+}

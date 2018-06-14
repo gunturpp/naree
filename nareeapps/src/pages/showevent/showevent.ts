@@ -4,6 +4,7 @@ import { ModalController, ToastController, AlertController, ActionSheetControlle
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { CheckinEventPage } from '../checkin-event/checkin-event';
 import { Storage } from '@ionic/storage';
+import { RegistrasieventPage } from '../registrasievent/registrasievent';
 declare var google: any;
 
 
@@ -21,6 +22,7 @@ declare var google: any;
 
 
 export class ShoweventPage {
+
   historyExp: any;
   x: string;
   data: any;
@@ -40,6 +42,7 @@ export class ShoweventPage {
   user: any;
   bayar: boolean = true;
   exp: any;
+  kategoris:any;
   expuser: number;
   jumlahexp: number;
   rating: number;
@@ -58,6 +61,7 @@ export class ShoweventPage {
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public storage: Storage,
+    public modalCtrl: ModalController,
     public actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController, public viewCtrl: ViewController, public navParams: NavParams) {
     this.profiles = JSON.parse(localStorage.getItem('currentUser'));
@@ -134,7 +138,12 @@ export class ShoweventPage {
       this.free = true;
       this.bayar = false;
     };
-
+    this.http.get("https://nareeapp.com/api/get-categories").subscribe(kategori => {
+      let response = kategoris.json();
+      // let response = userss;
+      this.user = response.currentuser;
+      this.expuser = this.user.exp;
+    });
   }
   closeModal() {
     this.navCtrl.pop();
@@ -158,20 +167,10 @@ export class ShoweventPage {
       map
     })
   }
-
-  checkin() {
+  // dibawah kodingan untuk mengupload dan disable button
+  checkout() {
     let contentHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    // let input = ({
-    //   id_user: this.profiles.id,
-    //   judul: this.data.name_event,
-    //   exp: this.exp,
-    // });
-    // this.http.post("https://nareeapp.com/api/post-history", input).subscribe(data => {
-    //   let response = data.json();
-    //   console.log(response);
-    //   this.historyExp.push(response.success);
-    //   console.log("ini hasil checkin",this.historyExp);
-    // });
+  
     let masukan = ({
       id_user: this.profiles.id,
       id_event: this.data.id,
@@ -181,13 +180,7 @@ export class ShoweventPage {
       let response = data.json();
       console.log("ini kehadiran", response);
     });
-    // this.jumlahexp = parseInt(this.expuser.toString()) + parseInt(this.exp.toString());
-    // let add = ({
-    //   exp: this.jumlahexp,
-    // });
-    // this.http.put("https://nareeapp.com/api/users/" + this.profiles.id + "/update", add).subscribe(user => {
-    //   let response = user.text;
-    // });
+
     this.storage.get('eventcheckin').then((data) => {
       if (data != null) {
         data.push(this.idevent);
@@ -219,4 +212,8 @@ export class ShoweventPage {
     this.navCtrl.push(CheckinEventPage);
   }
 
+  checkin(){
+    const modal = this.modalCtrl.create(RegistrasieventPage);
+    modal.present();
+  }
 }
