@@ -25,7 +25,6 @@ class CreateEventsTable extends Migration
             $table->string('organizer', 30);
             $table->string('dance_type', 30);
             $table->string('poster');
-            $table->integer('exp');
             $table->integer('duration');
             $table->float('rating');
             $table->decimal('long',10,7);
