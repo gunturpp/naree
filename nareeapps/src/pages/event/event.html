@@ -16,8 +16,8 @@
         </ion-title>
         <ion-buttons right>
             <button ion-button icon-only (click)="doAlert()">
-        <ion-icon name="md-add-circle"></ion-icon>
-      </button>
+                <ion-icon name="md-add-circle"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -91,8 +91,10 @@
 
                 <ion-col>
                     <p class="judul">{{event.name_event}}</p>
-                    <button ion-button color="primary" small style="font-size:12px;">{{event.dance_type}}</button>
-                    <p>{{event.location}},{{event.province}}</p>
+                    <!-- <button ion-button color="primary" small style="font-size:12px;">{{event.dance_type}}</button> -->
+                    <div class="btn-event">{{event.dance_type}}</div>
+                    <br><br>
+                    <p>{{event.location}}, {{event.province}}</p>
                     <p>{{event.date_event| date: 'dd MMMM yyyy'}}</p>
                 </ion-col>
             </ion-row>

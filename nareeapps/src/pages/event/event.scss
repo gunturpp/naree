@@ -8,6 +8,7 @@ page-event {
     .poster-event {
         height: 100px;
         width: 100px;
+        border-radius: 10px;
     }
     .ikon {
         margin-inline-start: 37%;
@@ -29,5 +30,16 @@ page-event {
     .gambar {
         padding-inline-end: 10px;
         padding-inline-start: 10px;
+    }
+    .btn-event {
+        font-size:12px;
+        max-width: 100%;
+        float: left;
+        display: block;
+        padding: 10px;
+        height: 30px;
+        text-align: center;
+        background-color: $nareeMain;
+        color: #fff;
     }
 }

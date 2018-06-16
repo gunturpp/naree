@@ -40,7 +40,10 @@ export class EventPage {
    
   }
   openModal(event) {
-    this.navCtrl.push(ShoweventPage,{event})
+    console.log("event",event);
+    this.navCtrl.push(ShoweventPage,{
+      event
+    })
     // const modal = this.modalCtrl.create(ShoweventPage,{event});
     // modal.present();
     // console.log(event);

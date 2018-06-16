@@ -101,7 +101,7 @@ export class ShoweventPage {
       this.user = response.currentuser;
       this.expuser = this.user.exp;
     });
-    console.log(this.mapRef);
+    // console.log("mapref?",this.mapRef);
     this.data = this.navParams.get('event');
     this.nama = this.data.name_event;
     this.tipe = this.data.dance_type;
@@ -139,10 +139,11 @@ export class ShoweventPage {
       this.bayar = false;
     };
     this.http.get("https://nareeapp.com/api/get-categories").subscribe(kategori => {
-      let response = kategoris.json();
+      this.kategoris = kategori.json();
+      console.log("kategori", this.kategoris.categories);
       // let response = userss;
-      this.user = response.currentuser;
-      this.expuser = this.user.exp;
+      // this.user = response.currentuser;?
+      // this.expuser = this.user.exp;
     });
   }
   closeModal() {
@@ -213,7 +214,9 @@ export class ShoweventPage {
   }
 
   checkin(){
-    const modal = this.modalCtrl.create(RegistrasieventPage);
-    modal.present();
+    console.log("kategorisModal", this.kategoris.categories);
+    this.navCtrl.setRoot(RegistrasieventPage,{
+      categories: this.kategoris.categories
+    });
   }
 }
