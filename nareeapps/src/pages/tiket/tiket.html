@@ -19,15 +19,26 @@
 
 <ion-content class="back">
     <ion-card padding color="tittle" style="padding: 10px 10px 10px 10px;">
-        <p class="judul"> E-Ticket List</p>
+        <p class="judul">E-Ticket List</p>
     </ion-card>
-    <ion-card style="margin-top: 5px;">
-        <img class="image-news" src="" />
-        <ion-card-content>
-            <ion-card-title class="judul1">
-                Bboy Shane Indonesia Tour
-            </ion-card-title>
-            <p style="font-weight: bold;"> 2 juni 2012</p>
-        </ion-card-content>
+    <ion-card *ngFor="let ev of events;let i = index" style="margin-top: 5px;">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-4>
+                    <img class="poster-event" src="https://nareeapp.com/{{ev.poster}}" />
+                </ion-col>
+                <ion-col *ngFor="let pay of payments">
+                    <ion-card-title class="judul1">
+                        {{ev.name_event}}
+                    </ion-card-title>
+                    <p style="font-weight: bold;"> {{ev.date_event|date: 'dd MMMM yyyy'}}</p>
+                    <p style="font-weight: bold;"> {{ev.location}}, {{ev.province}}</p>
+                    <p class="cancelCss" *ngIf="ev.id == pay.id_event && pay.status == 'cancel'">Cancel</p>
+                    <p class="waitingCss" *ngIf="ev.id == pay.id_event && pay.status == 'waiting'">Belum Bayar</p>
+                    <p class="processCss" *ngIf="ev.id == pay.id_event && pay.status == 'process'">Sedang Diverifikasi</p>
+                    <p class="confirmedCss" *ngIf="ev.id == pay.id_event && pay.status == 'confirmed'">Registrasi Berhasil</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </ion-card>
 </ion-content>

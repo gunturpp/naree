@@ -15,6 +15,7 @@ import { KonfirmasipendaftaranPage } from "../konfirmasipendaftaran/konfirmasipe
   templateUrl: "datapeserta.html"
 })
 export class DatapesertaPage {
+  tipetiket: any;
   event: any;
   categories: any;
   user: any;
@@ -27,16 +28,23 @@ export class DatapesertaPage {
     this.categories = this.navParams.get("categories");
     this.totalBiaya = this.navParams.get("biayaTotal");
     this.event = this.navParams.get("event");
+    this.tipetiket = this.navParams.get("tipetiket");
+    
     for (var x = 0; x < this.categories.length; x++) {
       let num = 1;
       for (var y = 0; y < this.categories[x].max_person; y++) {
         this.member[y] = num;
-        this.name_member[y+1] = "username";
+        this.name_member[y] = "isi username";
         num++;
-        console.log("ionViewDidLoad DatapesertaPage",this.categories[x].max_person);
+        console.log(
+          "ionViewDidLoad DatapesertaPage",
+          this.categories[x].max_person
+        );
       }
     }
-    console.log("ha", this.member);
+    console.log("tipetiket", this.tipetiket);
+    console.log("categories", this.categories);
+    console.log("id_event", this.event.id);
     this.getCurrentUser();
     console.log(this.getCurrentUser());
   }
@@ -46,7 +54,7 @@ export class DatapesertaPage {
     console.log("biodata2", this.user.username);
     console.log("biodata3", this.user.email);
     console.log("biodata4", this.user.no_hp);
-    for (var y = 0; y < this.name_member.length-1; y++) {
+    for (var y = 0; y < this.name_member.length; y++) {
       console.log("nama member", y + this.name_member[y]);
     }
     // console.log("biodata6", this.user.);
@@ -54,12 +62,13 @@ export class DatapesertaPage {
     // console.log("biodata8", this.user.);
     this.navCtrl.push(KonfirmasipendaftaranPage, {
       shadowPayment: {
+        id_event: parseInt(this.event.id),
         totalBiaya: this.totalBiaya,
         team: this.user.team,
         username: this.user.username,
         name_event: this.event.name_event,
         categories: this.categories,
-        name_member: this.name_member,
+        name_member: { username: this.name_member },
         no_hp: this.user.no_hp,
         email: this.user.email
       }

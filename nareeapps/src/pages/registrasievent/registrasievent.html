@@ -29,8 +29,9 @@
                             <br>({{dataTiket.period_end|date: 'dd MMMM yyyy'}})</ion-col>
                         <ion-col col-4>{{dataTiket.price}}</ion-col>
                         <ion-col col-2 *ngIf="dataTiket.type !=  'On The Spot'">
-                                        <!-- <input type="checkbox" [(ngModel)]="dataTickets" /> -->
-                            <ion-checkbox [(ngModel)]="ticketStatus[i]" (ionChange)="checklist(dataTiket.type,i,dataTiket.price)" item-right color="dark" style="padding-inline-end: 20px;"></ion-checkbox>
+                            <!-- <input type="checkbox" [(ngModel)]="dataTickets" /> -->
+                            <ion-checkbox [(ngModel)]="ticketStatus[i]" (ionChange)="checklist(dataTiket.type,i,dataTiket.price)" item-right color="dark"
+                                style="padding-inline-end: 20px;"></ion-checkbox>
                         </ion-col>
                     </ion-row>
 
@@ -107,5 +108,6 @@
 
 </ion-content>
 <ion-footer>
-    <button ion-button full class="lanjutkan" (click)='next()'>Lanjutkan</button>
+    <button *ngIf="enable" ion-button full class="lanjutkan" (click)='next()'>Lanjutkan</button>
+    <button *ngIf="!enable" disabled ion-button full class="lanjutkan" (click)='next()'>Lanjutkan</button>
 </ion-footer>

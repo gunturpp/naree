@@ -1,9 +1,3 @@
-<!--
-  Generated template for the KonfirmasipendaftaranPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
     <ion-navbar color="primary">
         <ion-title>
@@ -23,34 +17,46 @@
     </ion-card>
     <ion-card padding style="padding-top:0px; ">
         <p class="tittle"> Tipe Tiket</p>
-        <div *ngFor="let categories of shadowPayment.categories;let i=index">
-            <p class="isi">Early Bird- {{categories[i].category}}</p>
+        <div *ngFor="let categories of categories">
+            <p *ngIf="categories.checklist == true" class="isi">Early Bird- {{categories.category}}</p>
         </div>
         <p class="tittle">Total Harga</p>
         <p class="isi">Rp {{shadowPayment.totalBiaya}},-</p>
     </ion-card>
     <ion-card padding style="padding-top:0px; ">
         <p class="tittle">Data Informasi</p>
-        <p class="isi">No. Telepon {{shadowPayment.no_hp}}</p>
+        <ion-row>
+            <ion-col col-5>No. Telepon</ion-col>
+            <ion-col col-7>{{shadowPayment.no_hp}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-5>Email</ion-col>
+            <ion-col col-7>{{shadowPayment.email}}</ion-col>
+        </ion-row>
+        <!-- <p class="isi">No. Telepon {{shadowPayment.no_hp}}</p>
         <p class="isi">Email
             <span> {{shadowPayment.email}}</span>
-        </p>
-        <div *ngFor="let categories of shadowPayment.categories;let i=index">
-            <p class="tittle">Data Peserta {{categories[i].category}}</p>
-            <p class="isi">Nama Tim
-                <span>{{shadowPayment.team}}</span>
-            </p>
-            <p class="isi">Username 1
-                <span>dennyspooki</span>
-            </p>
-            <p class="isi">Username 2
-                <span>dennyfadhli</span>
-            </p>
-            <!-- <p class="tittle">Data Peserta 1vs1 Openstyle Battle</p>
-            <p class="isi">Username
-                <span>dennyspooki</span>
-            </p> -->
-
+        </p> -->
+        <div *ngFor="let categories of categories">
+            <div *ngIf="categories.checklist == true">
+                <p class="tittle">Data Peserta {{categories.category}}</p>
+                <ion-row *ngIf="categories.persons == '2'">
+                    <ion-col col-5>Nama Tim</ion-col>
+                    <ion-col col-7>{{shadowPayment.team}}</ion-col>
+                </ion-row>
+                <div *ngFor="let members of name_member.username; let i = index">
+                    <ion-row *ngIf="categories.persons == '2'">
+                        <ion-col col-5 *ngIf="[i] == '0'">Ketua Tim</ion-col>
+                        <ion-col col-5 *ngIf="[i] > '0'">Anggota {{i}}</ion-col>
+                        <ion-col col-7 *ngIf="[i] == '0'">{{shadowPayment.username}}</ion-col>
+                        <ion-col col-7 *ngIf="[i] >  '0'">{{members}}</ion-col>
+                    </ion-row>
+                    <ion-row *ngIf="categories.persons == '1' && [i] == '1'">
+                        <ion-col col-5>Username</ion-col>
+                        <ion-col col-7>{{shadowPayment.username}}</ion-col>
+                    </ion-row>
+                </div>
+            </div>
         </div>
     </ion-card>
     <ion-card padding color="primary" style="padding: 11px 11px 11px 11px;">
@@ -58,6 +64,6 @@
             Pastikan data yang tertera sudah benar. Anda tidak bisa mengubah detail pesanan setelah konfirmasi.
         </p>
     </ion-card>
-    <button ion-button full class="lanjutkan" (click)='next()'>konfirmasi</button>
+    <button ion-button full class="lanjutkan" (click)="registrationNow()">konfirmasi</button>
 
 </ion-content>

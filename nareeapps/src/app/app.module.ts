@@ -45,6 +45,7 @@ import { RegistrasieventPage } from '../pages/registrasievent/registrasievent';
 import { PembayaranPage }from '../pages/pembayaran/pembayaran';
 import { DatapesertaPage } from '../pages/datapeserta/datapeserta';
 import { KonfirmasipendaftaranPage } from '../pages/konfirmasipendaftaran/konfirmasipendaftaran';
+
 @NgModule({
   declarations: [
     MyApp,
