@@ -14,7 +14,7 @@ class Category extends Model
      */
     protected $fillable = [
         'id_event',
-        'name',
+        'category',
         'min_person',
         'max_person',
         'persons',//int(1:solo,2:team)

@@ -26,7 +26,9 @@ Route::get('news/edit', 'NewsController@edit');
 // // Event
 Route::get('/event', 'EventController@index');
 Route::get('event/create', 'EventController@create');
+Route::get('event/{id}/addCategory', 'EventController@addCategory');
 Route::post('event/store', 'EventController@store');
+Route::post('event/storeCategory', 'EventController@storeCategory')->name('event.storeCategory');
 Route::delete('event/destroy', 'EventController@destroy');
 Route::put('event/update', 'EventController@update');
 Route::get('event/show', 'EventController@show');

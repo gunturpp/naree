@@ -19,64 +19,48 @@
 </ion-header>
 
 
-<ion-content class="background" scroll="false">
-    <ion-card color="tittle" style="margin-bottom: 0px; text-align: center;">
-        <ion-card-header>
-            Kategori 2v2 BBoy Battle Under21
-        </ion-card-header>
-    </ion-card>
-    <form #signupForm="ngForm" novalidate>
-        <ion-card class="back-card">
+<ion-content *ngIf="user" class="background" scroll="false">
+    <div *ngFor="let dataCategory of categories">
+        <ion-card *ngIf="dataCategory.persons != '1'">
+            <p class="cssCategory">Kategori {{dataCategory.category}}</p>
             <ion-item>
                 <h2 class="judul" item-start>Nama Tim</h2>
-                <ion-input class="input" type="text" placeholder={{nama}} name="nama"></ion-input>
+                <ion-input disabled="true" class="input" type="text" value={{user.team}} name="nama"></ion-input>
             </ion-item>
+            <div *ngFor="let person of member;let i = index">
+                <ion-item>
+                    <h2 class="judul" item-start>Username Anggota {{member[i]}}</h2>
+                    <ion-input *ngIf="member[i] == '1'" disabled="true" class="input" type="text" [(ngModel)]="name_member[1]" value={{user.username}}></ion-input>
+                    <ion-input *ngIf="member[i] > '1'" class="input" type="text" [(ngModel)]="name_member[i+1]" placeholder={{name_member[i+1]}}></ion-input>
+                </ion-item>
+            </div>
         </ion-card>
-        <ion-card class="back-card">
+        <ion-card *ngIf="dataCategory.persons == '1'">
+            <p class="cssCategory">Kategori {{dataCategory.category}}</p>
             <ion-item>
-                <h2 class="judul" item-start> Username Anggota 1</h2>
-                <ion-input disabled="true" class="input" type="text" placeholder={{usrname}} name="usrname"></ion-input>
+                <h2 class="judul" item-start>Username Peserta</h2>
+                <ion-input disabled="true" class="input" type="text" value={{user.username}}></ion-input>
             </ion-item>
         </ion-card>
-        <ion-card class="back-kategori">
-            <ion-item>
-                <h2 class="judul" item-start> Username Anggota 2</h2>
-                <ion-input class="inputa" type="text" placeholder={{kategori}} name="kategori"></ion-input>
-            </ion-item>
-        </ion-card>
-        <!-- tittle  -->
-        <ion-card color="tittle" style="margin-bottom: 0px; text-align: center;">
-            <ion-card-header>
-                Kategori 2v2 BBoy Battle Under21
-            </ion-card-header>
-        </ion-card>
-        <ion-card class="back-kategori">
-            <ion-item>
-                <h2 class="judul" item-start> Username Peserta</h2>
-                <ion-input class="inputa" type="text" placeholder={{kategori}} name="kategori"></ion-input>
-            </ion-item>
-        </ion-card>
-        <!-- tittle  -->
-        <ion-card color="tittle" style="margin-bottom: 0px; text-align: center;">
-            <ion-card-header>
-                Kontak Pemesan
-            </ion-card-header>
-        </ion-card>
-        <ion-card class="back-card">
-            <ion-item>
-                <h2 class="judul" item-start> No. Telepon</h2>
-                <ion-input class="inputa" type="text" placeholder={{kategori}} name="kategori"></ion-input>
-            </ion-item>
-        </ion-card>
-        <ion-card class="back-kategori">
-            <ion-item>
-                <h2 class="judul" item-start>Email</h2>
-                <ion-input class="inputa" type="text" placeholder={{kategori}} name="kategori"></ion-input>
-            </ion-item>
-        </ion-card>
-
-    </form>
-    <ion-footer>
-        <button ion-button full class="lanjutkan" (click)='next()'>Lanjutkan</button>
-    </ion-footer>
+    </div>
+    <ion-card color="tittle" style="margin-bottom: 0px; text-align: center;">
+        <ion-card-header>
+            Kontak Pemesan
+        </ion-card-header>
+    </ion-card>
+    <ion-card class="back-card">
+        <ion-item>
+            <h2 class="judul2" item-start>No. Telepon</h2>
+            <ion-input disabled="true" class="inputa" type="text" value={{user.no_hp}}></ion-input>
+        </ion-item>
+    </ion-card>
+    <ion-card class="back-kategori">
+        <ion-item>
+            <h2 class="judul2" item-start>Email</h2>
+            <ion-input disabled="true" class="inputa" type="text" value={{user.email}}></ion-input>
+        </ion-item>
+    </ion-card>
 </ion-content>
+<ion-footer>
+    <button ion-button full class="lanjutkan" (click)='next()'>Lanjutkan</button>
+</ion-footer>

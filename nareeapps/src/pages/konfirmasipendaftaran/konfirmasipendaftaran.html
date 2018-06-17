@@ -17,27 +17,41 @@
 </ion-header>
 
 
-<ion-content class="back">
+<ion-content *ngIf="shadowPayment" class="back">
     <ion-card padding color="tittle">
-        <p class="judul"> Bboy Shane Indonesia Tour 2018</p>
+        <p class="judul">{{shadowPayment.name_event}}</p>
     </ion-card>
     <ion-card padding style="padding-top:0px; ">
         <p class="tittle"> Tipe Tiket</p>
-        <p class="isi"> Early Bird- 2vs2 Bboy Battle Category U21</p>
-        <p class="isi"> Early Bird - 1vs1 Openstrle Battle</p>
+        <div *ngFor="let categories of shadowPayment.categories;let i=index">
+            <p class="isi">Early Bird- {{categories[i].category}}</p>
+        </div>
         <p class="tittle">Total Harga</p>
-        <p class="isi">Rp 100.000,-</p>
+        <p class="isi">Rp {{shadowPayment.totalBiaya}},-</p>
     </ion-card>
     <ion-card padding style="padding-top:0px; ">
         <p class="tittle">Data Informasi</p>
-        <p class="isi">No. Telepon 08121210921</p>
-        <p class="isi">Email <span> dennyspooky@gmail.com</span></p>
-        <p class="tittle"> Data Peserta 2vs2 Bboy Battle U21</p>
-        <p class="isi">Nama Tim <span>Tim Horee</span></p>
-        <p class="isi">Username 1 <span>dennyspooki</span></p>
-        <p class="isi">Username 2 <span>dennyfadhli</span></p>
-        <p class="tittle">Data Peserta 1vs1 Openstyle Battle</p>
-        <p class="isi">Username <span>dennyspooki</span></p>
+        <p class="isi">No. Telepon {{shadowPayment.no_hp}}</p>
+        <p class="isi">Email
+            <span> {{shadowPayment.email}}</span>
+        </p>
+        <div *ngFor="let categories of shadowPayment.categories;let i=index">
+            <p class="tittle">Data Peserta {{categories[i].category}}</p>
+            <p class="isi">Nama Tim
+                <span>{{shadowPayment.team}}</span>
+            </p>
+            <p class="isi">Username 1
+                <span>dennyspooki</span>
+            </p>
+            <p class="isi">Username 2
+                <span>dennyfadhli</span>
+            </p>
+            <!-- <p class="tittle">Data Peserta 1vs1 Openstyle Battle</p>
+            <p class="isi">Username
+                <span>dennyspooki</span>
+            </p> -->
+
+        </div>
     </ion-card>
     <ion-card padding color="primary" style="padding: 11px 11px 11px 11px;">
         <p class="note">

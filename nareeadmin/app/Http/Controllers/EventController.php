@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Database\Query\Builder;
 use DB;
 use App\Admin;
 use App\Event;
+use App\Category;
 
 class EventController extends Controller
 {
+    
     public function __construct()
     {   
         // harus role admin
@@ -70,9 +72,15 @@ class EventController extends Controller
             'long' => 'required',
             'lat' => 'required',
             'rating' => 'required',
+
+            'category' => 'required',
+            'min_person' => 'required',
+            'max_person' => 'required',
+            'persons' => 'required',
+            'exp' => 'required'
             ]);
-            $data = $request->only('name_event', 'description', 'date_event','ticket_price','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'exp', 'long', 'lat','rating');
-            
+            $data = $request->only('name_event', 'description', 'date_event','ticket_price','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'long', 'lat','rating');
+            $categories = $request->only('category','min_person','max_person','persons','exp');
             // $data = $request->except(['image']);
             $poster = "";
             if ($request->hasFile('poster')){ //has file itu meminta nama databasenya bukan classnya
@@ -86,11 +94,9 @@ class EventController extends Controller
                 $photo1 = $fileName;
                 $data['admin'] = $user->email;
                 // return $getPath;
-
-    
             }
 
-
+        Category::create($categories);
         Event::create($data);
         return redirect()->route('event.index')
             ->with('success','New Event has been created successfully');
@@ -104,7 +110,64 @@ class EventController extends Controller
     public function show($id)
     {
         $events = Event::find($id);
+        // $justId = $events->id;
+        // $this->addCategory($justId);
         return view('event.show',compact('events'));
+    }
+    private $id_event;
+    public function addCategory($id)
+    {
+        $events = Event::find($id);
+        // dd($events->id);
+        // $this->id_event = $events->id;
+        return view('event.addCategory',compact('events'));
+        
+        // request()->validate([
+        //     'id_event' => $id,
+        //     'category' => 'required',
+        //     'min_person' => 'required',
+        //     'max_person' => 'required',
+        //     'persons' => 'required',
+        //     'exp' => 'required'
+        //     ]);
+        //     $categories = $request->only('id_event','category','min_person','max_person','persons','exp');
+
+        // Category::create($categories);
+        // return redirect()->route('event.show')
+        //     ->with('success','New Category has been created successfully');
+    }
+    
+    public function storeCategory(Request $request)
+    {
+        $events = DB::table('events')
+            ->join('categorydance', 'events.id', '=', 'categorydance.id_event')
+            ->select('events.id', 'categorydance.id_event')
+            ->get();
+        // $h = $this->addCategory($request);
+        // $events = Event::find($id);
+        dd($events);
+        $user = Auth::user();
+        // request()->validate([
+        //     'id_event' => 'required',
+        //     'category' => 'required',
+        //     'min_person' => 'required',
+        //     'max_person' => 'required',
+        //     'persons' => 'required',
+        //     'exp' => 'required'
+        // ]);
+
+        // $categories = $request->only('category','min_person','max_person','persons','exp');
+        $categories = new Category;
+        $categories->id_event = $events[0]->id;
+        $categories->category = $request->category;
+        $categories->min_person = $request->min_person;
+        $categories->max_person = $request->max_person;
+        $categories->persons = $request->persons;
+        $categories->exp = $request->exp;
+        $categories->save();
+        // Category::create($categories);
+        return redirect()->route('event.index')
+            ->with('success','New Category has been created successfully');
     }
 
     /**

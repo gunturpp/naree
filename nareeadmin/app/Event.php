@@ -16,7 +16,6 @@ class Event extends Model
         'name_event',
         'description',
         'ticket_price',
-        'exp',
         'date_event',
         'province',
         'location',

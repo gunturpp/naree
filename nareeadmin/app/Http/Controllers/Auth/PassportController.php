@@ -392,7 +392,7 @@ class PassportController extends Controller
 		$data['id_event'] = $request->id_event;
 		$data['status'] = $request->status;
 		$data['total_price'] = $request->total_price;
-		$data['invoice'] = $request->invoice;
+		$data['invoice'] = 'naree' . substr(md5(uniqid(mt_rand(), true)) , 0, 11);
         $payments = Payment::create($data);
         $success = $payments;
         return response()->json(['success'=>$success], $this->successStatus);	

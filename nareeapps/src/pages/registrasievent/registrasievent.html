@@ -8,8 +8,8 @@
 
 
 <ion-content class="back">
-    <ion-card padding style="background-color: #999999">
-        <p class="judul"> Bboy Shane Indonesia Tour 2018</p>
+    <ion-card *ngIf="event" style="background-color: #999999">
+        <p class="judul">{{event.name_event}}</p>
     </ion-card>
     <div *ngFor="let dataCategory of categories">
         <ion-card>
@@ -29,7 +29,8 @@
                             <br>({{dataTiket.period_end|date: 'dd MMMM yyyy'}})</ion-col>
                         <ion-col col-4>{{dataTiket.price}}</ion-col>
                         <ion-col col-2 *ngIf="dataTiket.type !=  'On The Spot'">
-                            <ion-checkbox [(ngModel)]="dataTickets" value="{{dataTiket.type}}" item-right color="dark" style="padding-inline-end: 20px;"></ion-checkbox>
+                                        <!-- <input type="checkbox" [(ngModel)]="dataTickets" /> -->
+                            <ion-checkbox [(ngModel)]="ticketStatus[i]" (ionChange)="checklist(dataTiket.type,i,dataTiket.price)" item-right color="dark" style="padding-inline-end: 20px;"></ion-checkbox>
                         </ion-col>
                     </ion-row>
 

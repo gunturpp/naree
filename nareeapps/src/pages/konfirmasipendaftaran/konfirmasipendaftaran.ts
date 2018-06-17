@@ -17,11 +17,13 @@ import { InvoicePage } from '../invoice/invoice';
 })
 export class KonfirmasipendaftaranPage {
 
+  shadowPayment: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad KonfirmasipendaftaranPage');
+    this.shadowPayment = this.navParams.get("shadowPayment");
+    console.log('load KonfirmasipendaftaranPage', this.shadowPayment);
   }
   next(){
     this.navCtrl.push(InvoicePage);

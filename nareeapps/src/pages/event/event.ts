@@ -40,7 +40,7 @@ export class EventPage {
    
   }
   openModal(event) {
-    console.log("event",event);
+    console.log("eventzz",event);
     this.navCtrl.push(ShoweventPage,{
       event
     })

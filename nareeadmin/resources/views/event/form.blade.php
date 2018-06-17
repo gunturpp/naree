@@ -29,13 +29,6 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Exp :</strong>
-            {!! Form::number('exp', null, array('placeholder' => '100000','class' => 'form-control')) !!}
-        </div>
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
             <strong>Location :</strong>
             {!! Form::text('location', null, array('placeholder' => 'Jl.Mampang','class' => 'form-control')) !!}
         </div>
@@ -116,6 +109,7 @@
                 </ul>
             </div>
         @endif  --}}
+
 
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>

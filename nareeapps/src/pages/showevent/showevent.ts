@@ -1,12 +1,19 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { ModalController, ToastController, AlertController, ActionSheetController, Platform, NavParams, ViewController } from 'ionic-angular';
-import { Http, Headers, RequestOptions } from '@angular/http';
-import { CheckinEventPage } from '../checkin-event/checkin-event';
-import { Storage } from '@ionic/storage';
-import { RegistrasieventPage } from '../registrasievent/registrasievent';
+import { Component, ViewChild, ElementRef } from "@angular/core";
+import { NavController } from "ionic-angular";
+import {
+  ModalController,
+  ToastController,
+  AlertController,
+  ActionSheetController,
+  Platform,
+  NavParams,
+  ViewController
+} from "ionic-angular";
+import { Http, Headers, RequestOptions } from "@angular/http";
+import { CheckinEventPage } from "../checkin-event/checkin-event";
+import { Storage } from "@ionic/storage";
+import { RegistrasieventPage } from "../registrasievent/registrasievent";
 declare var google: any;
-
 
 // **
 //  * Generated class for the ShoweventPage page.
@@ -16,13 +23,11 @@ declare var google: any;
 //  */
 
 @Component({
-  selector: 'page-showevent',
-  templateUrl: 'showevent.html',
+  selector: "page-showevent",
+  templateUrl: "showevent.html"
 })
-
-
 export class ShoweventPage {
-
+  event: any;
   historyExp: any;
   x: string;
   data: any;
@@ -42,12 +47,12 @@ export class ShoweventPage {
   user: any;
   bayar: boolean = true;
   exp: any;
-  kategoris:any;
+  kategoris: any;
   expuser: number;
   jumlahexp: number;
   rating: number;
-  bintang: any;            //nilai array rating
-  ratings: any;             //nilai rating yang di get dari DB
+  bintang: any; //nilai array rating
+  ratings: any; //nilai rating yang di get dari DB
   absen: boolean = true;
   idevent: any;
   panjang: any;
@@ -56,53 +61,56 @@ export class ShoweventPage {
   showcheckin: boolean = true;
   showcancel: boolean = false;
 
-  @ViewChild('map') mapRef: ElementRef;
-  constructor(private http: Http,
+  @ViewChild("map") mapRef: ElementRef;
+  constructor(
+    private http: Http,
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public storage: Storage,
     public modalCtrl: ModalController,
     public actionSheetCtrl: ActionSheetController,
-    public navCtrl: NavController, public viewCtrl: ViewController, public navParams: NavParams) {
-    this.profiles = JSON.parse(localStorage.getItem('currentUser'));
+    public navCtrl: NavController,
+    public viewCtrl: ViewController,
+    public navParams: NavParams
+  ) {
+    this.profiles = JSON.parse(localStorage.getItem("currentUser"));
     this.historyExp = JSON.parse(localStorage.getItem("expHistory"));
-    this.storage.get('eventcheckin').then((data) => {
+    this.storage.get("eventcheckin").then(data => {
       this.items = data;
       if (data != null) {
         this.panjang = data.length;
-        console.log("cek ada arry", data);
+        // console.log("cek ada arry", data);
 
         for (var i = 0; i < this.panjang; i++) {
           if (this.idevent == this.items[i]) {
             this.absen = false;
-            console.log("absen : ", this.absen)
+            // console.log("absen : ", this.absen);
           }
         }
       }
       if (this.absen == false) {
         this.showcheckin = false;
         this.showcancel = true;
-        console.log("show ", this.showcancel, this.showcheckin);
-      }
-      else {
+        // console.log("show ", this.showcancel, this.showcheckin);
+      } else {
         this.showcheckin = true;
         this.showcancel = false;
-        console.log("show ", this.showcancel, this.showcheckin);
+        // console.log("show ", this.showcancel, this.showcheckin);
       }
     });
-
   }
 
   ionViewDidLoad() {
-
-    this.http.get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit").subscribe(userss => {
-      let response = userss.json();
-      // let response = userss;
-      this.user = response.currentuser;
-      this.expuser = this.user.exp;
-    });
+    this.http
+      .get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit")
+      .subscribe(userss => {
+        let response = userss.json();
+        // let response = userss;
+        this.user = response.currentuser;
+        this.expuser = this.user.exp;
+      });
     // console.log("mapref?",this.mapRef);
-    this.data = this.navParams.get('event');
+    this.data = this.navParams.get("event");
     this.nama = this.data.name_event;
     this.tipe = this.data.dance_type;
     this.location = this.data.location;
@@ -116,14 +124,14 @@ export class ShoweventPage {
     this.longtitude = this.data.long;
     this.lattitude = this.data.lat;
     this.exp = this.data.exp;
-    this.rating= this.data.rating;
+    this.rating = this.data.rating;
     this.tiket = this.data.ticket_price;
-        this.showMap( this.lattitude,this.longtitude);
+    this.showMap(this.lattitude, this.longtitude);
 
     // if (this.tiket==null);
     this.ratings = 3.5;
-    this.bintang=5;
-    console.log("awal rating", this.ratings);
+    this.bintang = 5;
+    // console.log("awal rating", this.ratings);
     // for (var i = 0; i < 5; i++) {
     //   if (this.ratings >= 1) this.bintang.push(1);
     //   else if (this.ratings >0) this.bintang.push(2);
@@ -132,19 +140,21 @@ export class ShoweventPage {
     //   this.ratings = this.ratings - 1;
     // };
     this.x = JSON.stringify(this.bintang);
-    console.log("isi array bintang", this.x);
-    console.log(this.data);
+    // console.log("isi array bintang", this.x);
+    console.log("evennya ni", this.data);
     if (this.tiket == null) {
       this.free = true;
       this.bayar = false;
-    };
-    this.http.get("https://nareeapp.com/api/get-categories").subscribe(kategori => {
-      this.kategoris = kategori.json();
-      console.log("kategori", this.kategoris.categories);
-      // let response = userss;
-      // this.user = response.currentuser;?
-      // this.expuser = this.user.exp;
-    });
+    }
+    this.http
+      .get("https://nareeapp.com/api/get-categories")
+      .subscribe(kategori => {
+        this.kategoris = kategori.json();
+        console.log("kategorii", this.kategoris.categories);
+        // let response = userss;
+        // this.user = response.currentuser;?
+        // this.expuser = this.user.exp;
+      });
   }
   closeModal() {
     this.navCtrl.pop();
@@ -166,57 +176,62 @@ export class ShoweventPage {
     return new google.maps.Marker({
       position,
       map
-    })
+    });
   }
   // dibawah kodingan untuk mengupload dan disable button
   checkout() {
-    let contentHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-  
-    let masukan = ({
-      id_user: this.profiles.id,
-      id_event: this.data.id,
-      kehadiran: "1",
-    });
-    this.http.post("https://nareeapp.com/api/post-kehadiran", masukan).subscribe(data => {
-      let response = data.json();
-      console.log("ini kehadiran", response);
+    let contentHeaders = new Headers({
+      "Content-Type": "application/x-www-form-urlencoded"
     });
 
-    this.storage.get('eventcheckin').then((data) => {
+    let masukan = {
+      id_user: this.profiles.id,
+      id_event: this.data.id,
+      kehadiran: "1"
+    };
+    this.http
+      .post("https://nareeapp.com/api/post-kehadiran", masukan)
+      .subscribe(data => {
+        let response = data.json();
+        console.log("ini kehadiran", response);
+      });
+
+    this.storage.get("eventcheckin").then(data => {
       if (data != null) {
         data.push(this.idevent);
-        this.storage.set('eventcheckin', data);
-      }
-      else {
+        this.storage.set("eventcheckin", data);
+      } else {
         let array = [];
         array.push(this.idevent);
-        this.storage.set('eventcheckin', array);
+        this.storage.set("eventcheckin", array);
       }
     });
-    let masuk = ({
+    let masuk = {
       id: this.profiles.id,
-      name:this.profiles.name,
-      email:this.profiles.email,
-      username:this.profiles.username,
-      gender:this.profiles.gender,
-      birthdate:this.profiles.birthdate,
+      name: this.profiles.name,
+      email: this.profiles.email,
+      username: this.profiles.username,
+      gender: this.profiles.gender,
+      birthdate: this.profiles.birthdate,
       occupation: this.profiles.occupation,
-      photo:this.profiles.photo,
-      no_hp :this.profiles.no_hp,
-      about_me:this.profiles.about_me,
+      photo: this.profiles.photo,
+      no_hp: this.profiles.no_hp,
+      about_me: this.profiles.about_me,
       team: this.profiles.team,
       exp: this.profiles.exp,
-      dance_type:this.profiles.dance_type,
-      level: this.profiles.level,
-    });
-      localStorage.setItem("currentUser",JSON.stringify(masuk));
+      dance_type: this.profiles.dance_type,
+      level: this.profiles.level
+    };
+    localStorage.setItem("currentUser", JSON.stringify(masuk));
     this.navCtrl.push(CheckinEventPage);
   }
 
-  checkin(){
+  checkin() {
     console.log("kategorisModal", this.kategoris.categories);
-    this.navCtrl.setRoot(RegistrasieventPage,{
-      categories: this.kategoris.categories
+    console.log("data", this.data);
+    this.navCtrl.setRoot(RegistrasieventPage, {
+      categories: this.kategoris.categories,
+      event: this.data
     });
   }
 }
