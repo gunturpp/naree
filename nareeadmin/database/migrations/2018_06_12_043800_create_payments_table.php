@@ -25,6 +25,7 @@ class CreatePaymentsTable extends Migration
         $table->integer('id_user');
         $table->integer('id_event');
         $table->string('status',10);
+        $table->text('details',500);
         $table->integer('total_price');
         $table->string('invoice',16);
         $table->string('nota')->nullable();

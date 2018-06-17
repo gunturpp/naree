@@ -26,11 +26,13 @@ Route::get('get-advertisements', 'Auth\PassportController@getAdvertisement');
 Route::get('get-achievement', 'Auth\PassportController@getAchievement');
 Route::get('get-history', 'Auth\PassportController@getHistories');
 Route::get('get-events', 'Auth\PassportController@getEvents');
+Route::get('get-event-by-id/{id}', 'Auth\PassportController@getEventById');
 Route::get('get-exps', 'Auth\PassportController@getExp');
 Route::get('get-kehadirans', 'Auth\PassportController@getKehadiran');
 Route::get('get-categories', 'Auth\PassportController@getCategory');
 Route::get('get-tickettype', 'Auth\PassportController@getTicket');
 Route::get('get-payments', 'Auth\PassportController@getPayment');
+Route::get('get-payments-by-iduser/{id_user}', 'Auth\PassportController@getPaymentById');
 
 // reset password in API
 Route::post('password/email', 'Auth\ForgotPasswordController@getResetToken');

@@ -40,7 +40,8 @@ export class TiketPage {
       for (let i = 0; i < this.new_id_event.length; i ++) {
         this.getEventListByCurrentUser(this.new_id_event[i]).then(
           event => {
-            this.events[i] = event.events[0];
+            let temp:any = event;
+            this.events[i] = temp.events[0];
             // console.log("evhen", event);
           }
         );

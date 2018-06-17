@@ -261,6 +261,19 @@ class PassportController extends Controller
 		return compact('status','payments');
 		
 	}
+	public function  getPaymentById(Request $request, $string=null)
+	{
+		$token = $request->header('Api-key');
+		$user = Auth::user();
+		if($string!=null)
+			$payments = Payment::Where('created_at','like','%'.$string.'%')->orderBy('id_user')->get();
+		else
+
+			$payments = Payment::orderBy('id_user')->get();
+		$status=true;
+		return compact('status','payments');
+		
+	}
 	public function  getTicket(Request $request, $string=null)
 	{
 		$token = $request->header('Api-key');
@@ -308,6 +321,18 @@ class PassportController extends Controller
 		else
 
 			$events = Event::orderBy('id', 'description')->get();
+		$status=true;
+		return compact('status','events');
+	}
+    public function getEventById(Request $request,  $string=null)
+	{
+		$token = $request->header('Api-key');
+		$user = Auth::user();
+		if($string!=null)
+			$events = Event::Where('id','like','%'.$string.'%')->orderBy('created_at')->get();
+		else
+
+			$events = Event::orderBy('id')->get();
 		$status=true;
 		return compact('status','events');
 	}
@@ -385,12 +410,14 @@ class PassportController extends Controller
 			'id_user',
 			'id_event',
 			'status',
+			'details',
 			'total_price',
 			'invoice'
 		);
 		$data['id_user'] = $request->id_user;
 		$data['id_event'] = $request->id_event;
 		$data['status'] = $request->status;
+		$data['details'] = $request->details;
 		$data['total_price'] = $request->total_price;
 		$data['invoice'] = 'naree' . substr(md5(uniqid(mt_rand(), true)) , 0, 11);
         $payments = Payment::create($data);

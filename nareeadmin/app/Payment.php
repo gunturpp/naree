@@ -16,6 +16,7 @@ class Payment extends Model
         'id_user',
         'id_event',
         'status', // process, verified, cancel
+        'details',
         'total_price',
         'invoice',
         'nota'
