@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('no_hp',15)->nullable();
             $table->string('about_me',150)->nullable();
             $table->string('team', 30)->nullable();
+            $table->string('province', 30)->nullable();
             $table->integer('exp')->nullable();
             $table->string('dance_type', 30)->nullable();
             $table->integer('level');

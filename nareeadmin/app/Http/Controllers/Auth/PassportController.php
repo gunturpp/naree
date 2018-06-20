@@ -193,6 +193,7 @@ class PassportController extends Controller
 			'birthdate' => 'required',
 			'occupation' => 'required',
 			'level' => 'required',
+			'province' => 'required',
         ]);
 
         if($validator->fails()){
