@@ -146,4 +146,8 @@ showError(err) {
 //     ? this.showAlert("Tidak ada koneksi. Cek kembali sambungan Internet perangkat Anda")
 //     : this.showAlert("Email atau password salah");
 // }
+pindah(){
+  this.findemail=true;
+  this.newPassword=false;
+}
 }

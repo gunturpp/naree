@@ -1,7 +1,7 @@
 page-news {
     .ikon {
-        margin-inline-start: 16%;
-        width: 130px;
+        margin-inline-start: 20%;
+        width: 120px;
         padding-block-start: 10px;
     }
     .back {
@@ -42,5 +42,18 @@ page-news {
     }
     .back-button-icon {
         font-size: 3.2rem;
+    }
+    .toolbar-md-primary .bar-button-clear-md,
+    .toolbar-md-primary .bar-button-default-md,
+    .toolbar-md-primary .bar-button-outline-md,
+    .toolbar-md-primary .toolbar-title-md {
+        color: #fff;
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+    .logo {
+        padding-block-start: 5px;
+        padding-block-end: 0px;
+        margin-block-end: 0px;
     }
 }

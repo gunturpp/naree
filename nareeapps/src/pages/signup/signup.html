@@ -9,8 +9,10 @@
 
 
 <ion-content>
-
-    <img class="card" src="assets/imgs/logobkg-36.jpg" />
+    <div padding class="header">
+        Create New Account
+    </div>
+    <!-- <img class="card" src="assets/imgs/logobkg-36.jpg" /> -->
 
     <ion-list padding>
         <form #signupForm="ngForm" novalidate>
@@ -48,7 +50,12 @@
             <ion-label color="dark" class="gender">Birthdate</ion-label>
             <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="user.birthdate"></ion-datetime>
         </ion-item>
-
+        <ion-item>
+            <ion-label color="dark" class="gender">Hometown</ion-label>
+            <ion-select [(ngModel)]="province" okText="Okay" cancelText="Dismiss" [compareWith]="compareFn">
+                <ion-option *ngFor="let o of ProvinceData" [value]="o">{{o.text}}</ion-option>
+            </ion-select>
+        </ion-item>
 
     </ion-list>
     <div class="daftar">
@@ -57,8 +64,8 @@
             </button>
         <!-- <button ion-button color="primary" block round (click)="signup()">Sign Up</button> -->
     </div>
-    <div style="text-align: right">
-        <button ion-button clear color="dark" style="text-transform: none; font-weight: bold;text-align: right;" (click)='backgo()'>Back</button>
+    <div style="text-align: center">
+        <button ion-button clear color="dark" style="text-transform: none; font-weight: bold;text-align: center;" (click)='backgo()'>Back</button>
 
     </div>
 

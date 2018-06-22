@@ -12,7 +12,7 @@
             </button>
         </ion-buttons>
         <ion-title class="ikon">
-            Events
+            Event
         </ion-title>
         <ion-buttons right>
             <button ion-button icon-only (click)="ticketList()">
@@ -93,9 +93,9 @@
                     <p class="judul">{{event.name_event}}</p>
                     <!-- <button ion-button color="primary" small style="font-size:12px;">{{event.dance_type}}</button> -->
                     <div class="btn-event">{{event.dance_type}}</div>
-                    <br><br><br>
-                    <p>{{event.location}}, {{event.province}}</p>
-                    <p>{{event.date_event| date: 'dd MMMM yyyy'}}</p>
+                    <br><br>
+                    <p class="tanggal">{{event.location}}, {{event.province}}</p>
+                    <p class="tanggal">{{event.date_event| date: 'dd MMMM yyyy'}}</p>
                 </ion-col>
             </ion-row>
         </ion-grid>

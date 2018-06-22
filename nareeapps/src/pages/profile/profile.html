@@ -1,7 +1,8 @@
 <ion-header>
     <ion-navbar color="primary">
         <ion-title class="ikon">
-            <ion-icon name="ai-profile"></ion-icon>
+            Profile
+            <!-- <ion-icon name="ai-profile"></ion-icon> -->
         </ion-title>
         <ion-buttons end>
             <button ion-button large icon-only (click)="gotoNextPage()">
@@ -14,9 +15,15 @@
 <ion-content class="back">
     <ion-card color="primary" style="    margin-bottom: 0px;">
         <ion-item class="fotoi" color="primary">
+            <div class="profile">
+                <!-- <img *ngIf="image == 'https://nareeapp.com/images/photoprofile/default.png'" required class="foto" style="width: 130px; height: 130px;" src="assets/imgs/default.png" tappable (click)="uploadPicture()" />
+                    <img *ngIf="image != 'https://nareeapp.com/images/photoprofile/default.png'" required class="foto" style="width: 130px; height: 130px;" src="{{image}}" tappable (click)="uploadPicture()" /> -->
+
+                <img *ngIf="image == 'https://nareeapp.com/images/photoprofile/default.png'" required src="assets/imgs/default.png" tappable (click)="uploadPicture()" />
+                <img *ngIf="image != 'https://nareeapp.com/images/photoprofile/default.png'" required src="{{image}}" tappable (click)="uploadPicture()" />
+            </div>
             <!-- <ion-avatar item-start (click)="uploadPicture()"> -->
-            <img *ngIf="image == 'https://nareeapp.com/images/photoprofile/default.png'" required class="foto" style="width: 130px; height: 130px;" src="assets/imgs/default.png" tappable (click)="uploadPicture()" />
-            <img *ngIf="image != 'https://nareeapp.com/images/photoprofile/default.png'" required class="foto" style="width: 130px; height: 130px;" src="{{image}}" tappable (click)="uploadPicture()" />
+
             <!-- </ion-avatar> -->
         </ion-item>
         <div class="card-title">{{profiles.username}}</div>
@@ -27,7 +34,9 @@
                 <ion-card class="bagi2">
                     <ion-item no-padding class="kartu">
                         <ion-img item-start width="53" height="50" src="assets/imgs/level.jpg"></ion-img>
-                        <h2 class="judul1"> Level {{profiles.level}} </h2>
+                        <!-- <h2 class="judul1"> Level {{profiles.level}} </h2> -->
+                        <h2 class="judul1"> Coming Soon </h2>
+
                     </ion-item>
                 </ion-card>
             </ion-col>

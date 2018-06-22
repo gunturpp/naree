@@ -33,11 +33,14 @@
             font-weight: bold;
         }
         .judul1 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: #95171A;
             text-align: center;
             padding-inline-start: 10px;
             font-weight: bold;
+            padding-left: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
         }
         .judul-card {
             size: 12px;
@@ -60,17 +63,17 @@
             padding-block-end: 0.25px;
         }
         .ikon {
-            margin-inline-start: 48%;
+            margin-inline-start: 43%;
         }
         ion-icon {
             font-size: 30px; //Preferred size her
         }
         .card-title {
             position: absolute;
-            top: 80%;
-            font-size: 1.8em;
+            top: 77%;
+            font-size: 1.6em;
             width: 100%;
-            font-weight: bold;
+            font-weight: 500;
             color: #fff;
             text-align: center;
         }
@@ -94,7 +97,7 @@
             font-weight: bold;
         }
         .label-md {
-            margin: 0px 8px 0px 0;
+            margin: 0px 0px 0px 0;
             color: black;
             font-weight: 500;
         }
@@ -112,5 +115,27 @@
             margin-bottom: 0px;
             padding-block-end: 5px;
             padding-inline-start: 10px;
+        }
+        .profile {
+            position: relative;
+            overflow: hidden;
+            height: 24vh;
+            margin-bottom: -0.625em;
+            img {
+                width: 30vw;
+                height: 30vw;
+                border-radius: 100%;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                object-fit: cover;
+                margin-top: 0px;
+            }
+            img.activated {
+                opacity: 0.5;
+            }
         }
     }

@@ -23,12 +23,12 @@ export class HomePage {
   constructor(private http:Http, public navCtrl: NavController,public modalCtrl: ModalController,private loadCtrl: LoadingController,) {
     
   }
-  ionViewWillLeave(){
-    this.slides.stopAutoplay();
-  }
-  ionViewDidEnter() {
-    this.slides.startAutoplay();
-  }
+  // ionViewWillLeave(){
+  //   this.slides.stopAutoplay();
+  // }
+  // ionViewDidEnter() {
+  //   this.slides.startAutoplay();
+  // }
   ionViewDidLoad() {
     let loading = this.loadCtrl.create({
       content: "Tunggu sebentar..."
@@ -52,12 +52,12 @@ export class HomePage {
     this.navCtrl.push(NewsPage,{newss})
     // this.navCtrl.push(NewsPage,newss)
   }
-  startloop(){
-    this.slides.autoplay=3000;
-// console.log("katanya mulai"); 
-    //  this.slide.autoplayDisableOnInteraction=false;
-  this.slides.startAutoplay();
-  }
+//   startloop(){
+//     this.slides.autoplay=3000;
+// // console.log("katanya mulai"); 
+//     //  this.slide.autoplayDisableOnInteraction=false;
+//   this.slides.startAutoplay();
+//   }
   // navigateToDetail(id: number ){
   //   this.navCtrl.push('NewsPage',{ id })
   // }

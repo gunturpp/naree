@@ -32,7 +32,7 @@ page-event {
         padding-inline-start: 10px;
     }
     .btn-event {
-        font-size:12px;
+        font-size: 12px;
         max-width: 100%;
         float: left;
         display: block;
@@ -41,5 +41,13 @@ page-event {
         text-align: center;
         background-color: $nareeMain;
         color: #fff;
+        padding-top: 8px;
+    }
+    .tanggal {
+        margin-bottom: 0px;
+        color: black;
+        height: 18px;
+        font-size: 13px;
+        font-weight: 600;
     }
 }

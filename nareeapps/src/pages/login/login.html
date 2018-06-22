@@ -17,7 +17,7 @@
                 <ion-icon color='primary' item-left name="ios-lock-outline"> </ion-icon>
                 <ion-input type="text" *ngIf="showPasswordText" name="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>
                 <ion-input type="password" *ngIf="!showPasswordText" name="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>
-                <button style="text-transform: none; color: gray;" ion-button clear type="button" item-right (click)="showPasswordText = !showPasswordText"> 
+                <button style="text-transform: none; color: gray;margin-right: 0px;padding-right: 0px;" ion-button clear type="button" item-right (click)="showPasswordText = !showPasswordText"> 
                         Unhide
               </button>
             </ion-item>

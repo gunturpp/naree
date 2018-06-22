@@ -19,8 +19,10 @@ export class SignupPage {
   pesan: any;
   resposeData: any;
   submitted: any;
-  user: { name?: string, email?: string,username?: string, password?: string, gender?: string, birthdate?: string, occupation?: string, level?: number } = {};
+  user: { name?: string, email?: string,username?: string, password?: string, gender?: string, birthdate?: string, occupation?: string, level?: number ,province?:string; } = {};
   c_password: string;
+  ProvinceData: { text: string; value: string; }[];
+  province: { text: string; value: string; };
   // userData = { "name": "", "email": "", "password": "", "c_password": "", "gender": "male", "birthdate": "2017/06/23", "occupation": "student" };
   constructor(
     public http: Http,
@@ -28,8 +30,49 @@ export class SignupPage {
     public authService: AuthServiceProvider,
     public toastCtrl: ToastController,
     public loadCtrl: LoadingController) {
-  }
+      this.ProvinceData = [
+        { text: 'Aceh', value: 'Aceh' },
+        { text: 'Bali', value: 'Bali' },
+        { text: 'Banten', value: 'Banten' },
+        { text: 'Bengkulu', value: 'Bengkulu' },
+        { text: 'Gorontalo', value: 'Gorontalo' },
+        { text: 'Jakarta', value: 'Jakarta' },
+        { text: 'Jambi', value: 'Jambi' },
+        { text: 'Jawa Barat', value: 'Jawa Barat' },
+        { text: 'Jawa Tengah', value: 'Jawa Tengah' },
+        { text: 'Jawa Timur', value: 'Jawa Timur' },
+        { text: 'Kalimantan Barat', value: 'Kalimantan Barat' },
+        { text: 'Kalimantan Selatan', value: 'Kalimantan Selatan' },
+        { text: 'Kalimantan Tengah', value: 'Kalimantan Tengah' },
+        { text: 'Kalimantan Timur', value: 'Kalimantan Timur' },
+        { text: 'Kalimantan Utara', value: 'Kalimantan Utara' },
+        { text: 'Kepulauan Bangka Belitung', value: 'Kepulauan Bangka Belitung' },
+        { text: 'Kepulauan Riau', value: 'Kepulauan Riau' },
+        { text: 'Lampung', value: 'Lampung' },
+        { text: 'Maluku', value: 'Maluku' },
+        { text: 'Maluku Utara', value: 'Maluku Utara' },
+        { text: 'Nusa Tenggara Barat', value: 'Nusa Tenggara Barat' },
+        { text: 'Nusa Tenggara Timur', value: 'Nusa Tenggara Timur' },
+        { text: 'Papua', value: 'Papua' },
+        { text: 'Papua Barat', value: 'Papua Barat' },
+        { text: 'Riau', value: 'Riau' },
+        { text: 'Sulawesi Barat', value: 'Sulawesi Barat' },
+        { text: 'Sulawesi Selatan', value: 'Sulawesi Selatan' },
+        { text: 'Sulawesi Tengah', value: 'Sulawesi Tengah' },
+        { text: 'Sulawesi Tenggara', value: 'Sulawesi Tenggara' },
+        { text: 'Sulawesi Utara', value: 'Sulawesi Utara' },
+        { text: 'Sumatera Barat', value: 'Sumatera Barat' },
+        { text: 'Sumatera Selatan', value: 'Sumatera Selatan' },
+        { text: 'Sumatera Utara', value: 'Sumatera Utara' },
+        { text: 'Yogyakarta', value: 'Yogyakarta' }
+    ];
 
+    // Pre-selected object with different object reference      
+    this.province = { text: 'Jakarta', value: 'Jakarta' };
+  }
+  compareFn(option1: any, option2: any) {
+    return option1.value === option2.value;
+}
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
@@ -58,6 +101,8 @@ export class SignupPage {
         level: this.user.level = 1,
         photo: "/images/photoprofile/default.png",
         exp: 0,
+        province : this.province.value,
+        team : null,
         // birthdate: this.user.hp,
         // status: this.user.role="tourist"
       });
