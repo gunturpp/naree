@@ -8,4 +8,22 @@ page-tambahevent {
         padding-block-start: 15%;
         border-radius: 20px;
     }
+    .link {
+        text-align: center;
+        bottom: 30%;
+        z-index: 999;
+    }
+    ion-card {
+        position: relative;
+        text-align: center;
+        background-color: transparent;
+    }
+    .card-title {
+        position: absolute;
+        top: 60%;
+        font-weight: bold;
+        left: 10%;
+        color: #fff;
+        width: 80%
+    }
 }

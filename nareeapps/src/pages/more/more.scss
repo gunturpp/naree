@@ -31,4 +31,12 @@ page-more {
         text-align: center;
         size: 16px;
     }
+    .toolbar-md-primary .bar-button-clear-md,
+    .toolbar-md-primary .bar-button-default-md,
+    .toolbar-md-primary .bar-button-outline-md,
+    .toolbar-md-primary .toolbar-title-md {
+        color: #fff;
+        margin-left: 0px;
+        padding-left: 0px;
+    }
 }
