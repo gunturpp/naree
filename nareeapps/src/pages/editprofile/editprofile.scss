@@ -8,37 +8,38 @@ page-editprofile {
     }
     .input {
         size: 12px;
-        padding-block-end: 10px;
+        padding-bottom: 0px;
     }
     .inputa {
         size: 12px;
-        padding-block-end: 10px;
-        margin-inline-start: 9px;
+        // padding-block-end: 10px;
+        // margin-inline-start: 9px;
     }
     .inputi {
         size: 12px;
-        padding-block-end: 10px;
-        margin-inline-start: 8px;
+        // padding-block-end: 10px;
+        // margin-inline-start: 8px;
     }
     .inputu {
         size: 12px;
-        padding-block-end: 10px;
+        // padding-block-end: 10px;
         margin-inline-start: 24px;
     }
     .inpute {
         size: 12px;
-        padding-block-end: 10px;
-        margin-inline-start: 34px;
+        // padding-block-end: 10px;
+        margin-inline-start: 36px;
     }
     .inputo {
         size: 12px;
-        padding-block-end: 10px;
+        // padding-block-end: 10px;
         margin-inline-start: 30px;
+        margin-left: 0px;
     }
     .inputb {
         size: 12px;
-        padding-block-end: 10px;
-        margin-inline-start: 7px;
+        // padding-block-end: 10px;
+        // margin-inline-start: 7px;
     }
     .back {
         padding-block-start: 10px;
@@ -47,8 +48,9 @@ page-editprofile {
         margin-block-end: 10px;
     }
     .back-kategori {
-        padding-block-start: 5px;
-        // padding-block-end: 15px;
+        // padding-block-start: 5px;
+        padding-block-start: 8px;
+        padding-block-end: 8px;
         margin-block-start: 1px;
         margin-block-end: 10px;
     }
@@ -56,8 +58,10 @@ page-editprofile {
         background-color: #e8e9ea;
     }
     .back-card {
-        padding-block-start: 5px;
+        // padding-block-start: 5px;
         // padding-block-end: 10px;
+        padding-block-start: 8px;
+        padding-block-end: 8px;
         margin-block-start: 1px;
         margin-block-end: 1px;
     }
@@ -72,5 +76,19 @@ page-editprofile {
     }
     .back-button-icon {
         font-size: 3.4rem;
+    }
+    .toolbar-md-primary .bar-button-clear-md,
+    .toolbar-md-primary .bar-button-default-md,
+    .toolbar-md-primary .bar-button-outline-md,
+    .toolbar-md-primary .toolbar-title-md {
+        color: #fff;
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+    .ikon {
+        margin-inline-start: 26%;
+    }
+    ion-select {
+        max-width: 80vw;
     }
 }

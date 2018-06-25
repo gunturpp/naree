@@ -8,21 +8,17 @@
 
 
     <ion-navbar color="primary">
-        <ion-title>
-            <ion-row justify-content-center>
-                <ion-col col-7>
-                    Edit Profile
-                </ion-col>
-            </ion-row>
+        <ion-title class="ikon">
+            Edit Profile
         </ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding class="background">
+<ion-content class="background">
     <form #signupForm="ngForm" novalidate>
-        <ion-card class="back-card">
+        <ion-card class="back-card" style="margin-top: 10px;">
             <ion-item>
                 <h2 class="judul" item-start>Full Name</h2>
                 <ion-input class="input" [(ngModel)]="nama" type="text" placeholder={{nama}} name="nama"></ion-input>
@@ -36,7 +32,7 @@
         </ion-card>
         <ion-card class="back-kategori">
             <ion-item>
-                <h2 class="judul" item-start> Category</h2>
+                <h2 class="judul" item-start style="margin-right: 15px;"> Category</h2>
                 <ion-input class="inputa" [(ngModel)]="kategori" type="text" placeholder={{kategori}} name="kategori"></ion-input>
             </ion-item>
         </ion-card>
@@ -45,10 +41,14 @@
                 <h2 class="judul" item-start> Birthdate</h2>
                 <ion-datetime displayFormat="DD MMM YYYY" class="inputi" [(ngModel)]="tgl" type="text" name="tgl"></ion-datetime>
             </ion-item>
-            <!-- <ion-item>
-                    <ion-label color="dark" class="gender">Birthdate</ion-label>
-                    <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="user.birthdate"></ion-datetime>
-                </ion-item> -->
+        </ion-card>
+        <ion-card class="back-card">
+            <ion-item>
+                <h2 class="judul" item-start>Hometown</h2>
+                <ion-select style="padding-left: 5px;" [(ngModel)]="province" okText="Okay" cancelText="Dismiss" name="prov" [compareWith]="compareFn">
+                    <ion-option *ngFor="let o of ProvinceData" [value]="o">{{o.text}}</ion-option>
+                </ion-select>
+            </ion-item>
         </ion-card>
         <ion-card class="back-card">
             <ion-item>
@@ -64,13 +64,13 @@
         </ion-card>
         <ion-card class="back-card">
             <ion-item>
-                <h2 class="judul" item-start>Phone</h2>
+                <h2 class="judul" style="margin-right: 36px;" item-start>Phone</h2>
                 <ion-input class="inputo" [(ngModel)]="hp" type="number" placeholder={{hp}} name="hp"></ion-input>
             </ion-item>
         </ion-card>
         <ion-card class="back-card">
             <ion-item>
-                <h2 class="judul" item-start>About Me</h2>
+                <h2 class="judul" item-start style="margin-right: 12px;">About Me</h2>
                 <ion-input class="inputb" [(ngModel)]="about" type="text" placeholder={{about}} name="about"></ion-input>
             </ion-item>
         </ion-card>

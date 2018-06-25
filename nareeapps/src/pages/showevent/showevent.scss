@@ -1,7 +1,4 @@
         page-showevent {
-            .ikon {
-                margin-inline-start: 34%;
-            }
             .poster {
                 height: 91vw;
                 width: 91vw;
@@ -9,13 +6,16 @@
                 margin: 0;
                 margin-block-end: 10px;
             }
+            .ikon {
+                margin-inline-start: 28%;
+            }
             .judul {
                 font-size: 20px;
                 color: white;
                 text-align: center;
                 padding-block-start: 10px;
                 // font-weight: bold;
-                padding-block-end: 0px !important;
+                padding-block-end: 10px !important;
                 margin-block-end: 0px !important;
             }
             .bintang {

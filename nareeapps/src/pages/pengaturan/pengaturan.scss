@@ -6,6 +6,9 @@
             padding-inline-end: 5px;
             font-weight: bold;
         }
+        .ikon {
+            margin-inline-start: 19%;
+        }
         .back {
             padding-block-start: 10px;
             // padding-block-end: 15px;
@@ -22,21 +25,30 @@
             background-color: #e8e9ea;
         }
         .back-card {
-            padding-block-start: 10px;
+            margin-block-start: 10px;
+            padding-block-start: 8px;
+            padding-block-end: 8px;
             // padding-block-end: 10px;
-            margin-block-start: 1px;
-            margin-block-end: 1px;
         }
         .posisi {
             text-align: justify;
         }
         .isb {
             font-size: 15px;
-            padding-block-end: 8px;
+            // padding-block-end: 8px;
             padding-inline-start: 57px;
             color: black;
+            margin-bottom: 0px;
         }
         .back-button-icon {
             font-size: 3.4rem;
+        }
+        .toolbar-md-primary .bar-button-clear-md,
+        .toolbar-md-primary .bar-button-default-md,
+        .toolbar-md-primary .bar-button-outline-md,
+        .toolbar-md-primary .toolbar-title-md {
+            color: #fff;
+            padding-left: 0px;
+            margin-left: 0px;
         }
     }

@@ -5,6 +5,10 @@ page-contactus {
         // padding-inline-start: 20px;
         padding-inline-end: 5px;
         font-weight: bold;
+        padding-bottom: 8px;
+    }
+    .ikon {
+        margin-inline-start: 13%;
     }
     .back {
         padding-block-start: 10px;
@@ -38,41 +42,49 @@ page-contactus {
     }
     .isa {
         font-size: 15px;
-        padding-block-end: 8px;
+        padding-block-end: 5px;
         padding-inline-start: 60px;
         color: black;
     }
     .isu {
         font-size: 15px;
-        padding-block-end: 8px;
+        padding-block-end: 5px;
         padding-inline-start: 15px;
         color: black;
     }
     .ise {
         font-size: 15px;
-        padding-block-end: 8px;
+        padding-block-end: 5px;
         padding-inline-start: 35px;
         color: black;
     }
     .iso {
         font-size: 15px;
-        padding-block-end: 8px;
+        padding-block-end: 5px;
         padding-inline-start: 30px;
         color: black;
     }
     .isb {
         font-size: 15px;
-        padding-block-end: 8px;
+        padding-block-end: 5px;
         padding-inline-start: 57px;
         color: black;
     }
     .isc {
         font-size: 15px;
-        padding-block-end: 8px;
+        padding-block-end: 5px;
         padding-inline-start: 45px;
         color: black;
     }
     .back-button-icon {
         font-size: 3.4rem;
+    }
+    .toolbar-md-primary .bar-button-clear-md,
+    .toolbar-md-primary .bar-button-default-md,
+    .toolbar-md-primary .bar-button-outline-md,
+    .toolbar-md-primary .toolbar-title-md {
+        color: #fff;
+        padding-left: 0px;
+        margin-left: 0px;
     }
 }
