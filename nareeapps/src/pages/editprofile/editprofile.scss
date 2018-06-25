@@ -91,4 +91,9 @@ page-editprofile {
     ion-select {
         max-width: 80vw;
     }
+    .buton {
+        margin-left: 10px;
+        max-width: calc(100vw - 20px);
+        margin-right: 10px;
+    }
 }
