@@ -105,7 +105,7 @@ export class EditprofilePage {
       this.prov = this.user.province;
       this.iduser= this.user.id;
       // console.log("ini hasilnya" + JSON.stringify(this.user));
-      console.log("user profile" ,this.prov);
+      // console.log("user profile" ,this.user.province.value);
       this.province = { text: this.prov, value: this.prov };
       if(response.status=="200"){
         this.users= response.data;   //ini disimpen ke variabel pasien diatas itu ,, yang udah di delacre
@@ -133,6 +133,7 @@ export class EditprofilePage {
         username:this.usrname,
         gender:this.gender,
         birthdate:this.tgl,
+        province:this.province.value,
         no_hp :this.hp,
         about_me:this.about,
         dance_type:this.kategori,
