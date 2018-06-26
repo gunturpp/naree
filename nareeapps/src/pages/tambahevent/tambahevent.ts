@@ -8,7 +8,7 @@ import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angula
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-tambahevent',
   templateUrl: 'tambahevent.html',

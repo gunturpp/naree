@@ -6,7 +6,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 
 let mytoken = "04ba3bde8993265c9fe4c1dfd12442aa";
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-tesapi',
   templateUrl: 'tesapi.html',

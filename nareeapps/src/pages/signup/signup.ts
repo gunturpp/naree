@@ -10,7 +10,7 @@ import { TabsPage } from '../tabs/tabs';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',

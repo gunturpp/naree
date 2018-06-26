@@ -4,7 +4,7 @@ import { PembayaranPage } from "../pembayaran/pembayaran";
 import { InvoicePage } from "../invoice/invoice";
 import { Http } from '@angular/http';
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: "page-konfirmasipendaftaran",
   templateUrl: "konfirmasipendaftaran.html"

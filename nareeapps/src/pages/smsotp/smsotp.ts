@@ -6,7 +6,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { VerifcodePage } from '../verifcode/verifcode';
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-smsotp',
   templateUrl: 'smsotp.html',
