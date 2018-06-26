@@ -11,7 +11,7 @@ import { Http, Headers, RequestOptions } from "@angular/http";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-checkin-daily',
   templateUrl: 'checkin-daily.html',

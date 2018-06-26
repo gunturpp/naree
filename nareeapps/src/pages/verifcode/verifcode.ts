@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-verifcode',
   templateUrl: 'verifcode.html',

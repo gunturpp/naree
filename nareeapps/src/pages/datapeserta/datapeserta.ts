@@ -9,7 +9,7 @@ import { KonfirmasipendaftaranPage } from "../konfirmasipendaftaran/konfirmasipe
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: "page-datapeserta",
   templateUrl: "datapeserta.html"

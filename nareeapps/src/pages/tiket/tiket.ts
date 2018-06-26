@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { Http } from "@angular/http";
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: "page-tiket",
   templateUrl: "tiket.html"
