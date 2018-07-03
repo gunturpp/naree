@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\UploadedFile;
+use Carbon\Carbon;
 
 // use Symfony\Component\HttpFoundation\File\UploadedFile;
 use DB;
@@ -185,7 +186,7 @@ class PassportController extends Controller
 		
         $validator = Validator::make($request->all(),[
 			'name' => 'required',
-			'email' => 'required|string|email|min:6|max:30|unique:users',
+			'email' => 'required|string|email|min:6|max:50|unique:users',
 			'username' => 'required|string|min:6|max:20|unique:users',
 			'password' => 'required',
 			'c_password' => 'required|same:password',
@@ -318,10 +319,9 @@ class PassportController extends Controller
 		$token = $request->header('Api-key');
 		$user = Auth::user();
 		if($string!=null)
-			$events = Event::Where('name_event','like','%'.$string.'%')->orderBy('id', 'description')->get();
+			$events = Event::Where('name_event')->orderBy('date_event','asc')->get();
 		else
-
-			$events = Event::orderBy('id', 'description')->get();
+			$events = Event::whereDate('date_event', '>', Carbon::now())->orderBy('date_event', 'asc')->get();
 		$status=true;
 		return compact('status','events');
 	}
