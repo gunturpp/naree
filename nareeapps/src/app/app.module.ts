@@ -36,7 +36,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { ApiProvider } from '../providers/api/api';
 import { DataProvider } from '../providers/data/data';
-// import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { InvoicePage } from '../pages/invoice/invoice';
 import { TiketPage } from '../pages/tiket/tiket';
 import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
@@ -77,7 +77,7 @@ import { KonfirmasipendaftaranPage } from '../pages/konfirmasipendaftaran/konfir
     ShoweventPage,
     SmsotpPage,
     VerifcodePage,
-    // ProgressBarComponent
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,HttpModule,HttpClientModule,
