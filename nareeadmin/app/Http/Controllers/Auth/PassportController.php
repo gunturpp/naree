@@ -32,17 +32,22 @@ use App\Memberbycategory;
 
 class PassportController extends Controller
 {
-    public $successStatus = 200;
-	
+	public $successStatus = 200;
+	public $user;
+	// public function __construct()
+    // {
+    //     // $this->middleware('auth:api');
+    //     $this->user =  \Auth::user();
+    // }
 
     public function login(){
         if(Auth::attempt([
 			'email' => request('email'),
 			'password' => request('password')]))
         {
-            $user = Auth::user();
-            $token = $user->createToken('myToken')->accessToken;
-            return response()->json(['currentuser'=>$user, 'status' => $this->successStatus,'token'=>$token],
+            $this->user = Auth::user();
+            $token = $this->user->createToken('myToken')->accessToken;
+            return response()->json(['currentuser'=>$this->user, 'status' => $this->successStatus,'token'=>$token],
             $this->successStatus);
         }
         else{
@@ -99,7 +104,8 @@ class PassportController extends Controller
 				errors()], 401);
 			}
 		Payment::find($id)->update($data);
-		return "Selamat anda berhasil mengganti foto!";
+		$message = "Selamat anda berhasil mengganti foto!";
+		return response()->json(['status'=>true,'changed'=>$data, 'message'=>$message], 200);
 			
 	}
     public function editUser($id)
@@ -150,7 +156,7 @@ class PassportController extends Controller
 				errors()], 401);
 			}
 		User::find($id)->update($data);
-		return "Selamat anda berhasil mengganti foto!";
+		return response()->json(['changed'=>$data, 'status'=>true],200);
 			
 	}
     public function updateUser(Request $request , $id)
@@ -167,18 +173,18 @@ class PassportController extends Controller
 			'level'=> 'max:11',
 		]);
 		$messages = [
-			'required' => 'Field harus di isi alias tidak boleh kosong',
+			'required' => 'Field harus di isi, tidak boleh kosong',
 		];
-		$data = $request->only('name','occupation','no_hp','about_me','team','dance_type','exp','level');
-			
+		$data = $request->only(['name','occupation','no_hp','about_me','team','dance_type','exp','level']);
+		$message = ('Selamat, profil berhasil diubah.');			
         $validator = Validator::make($request->only($data),$rules, $messages);
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->
-            errors()], 401);;
+            errors(), 'status'=>401],401);
 		}
 		
 		User::find($id)->update($data);
-        return $message = ('Selamat, profile berhasil diubah.');
+        return response()->json(['status'=>true,'changed'=>$data,'message'=>$message],200);
 	}
 	// ===========================================================
     public function register(Request $request)
@@ -224,14 +230,12 @@ class PassportController extends Controller
 		return compact('status','exps');
 	}
 
-	public function getUsers(Request $request,  $string=null) {
-		$token = $request->header('Api-key');
-		$user = Auth::user();
-		if($string!=null)
-			$users = User::Where('id','like','%'.$string.'%')->orderBy('id', 'email')->get();
+	public function getUsers(Request $request, $string=null) {
+		$token = $request->header('Authorization');
+		if($token!=null)
+			$users = User::orderBy('created_at')->get();
 		else
-
-			$users = User::orderBy('id', 'email')->get();
+			return response(["message" => "User not found"], 500);	
 		$status=true;
 		return compact('status','users');
 	}
@@ -252,7 +256,14 @@ class PassportController extends Controller
 	}
 	public function  getPayment(Request $request, $string=null)
 	{
-		$token = $request->header('Api-key');
+		// $token = $request->header('Api-key');
+		// $response = $client->request('GET', '/api/user', [
+		// 	'headers' => [
+		// 		'Accept' => 'application/json',
+		// 		'Authorization' => 'Bearer '.$accessToken,
+		// 	],
+		// ]);
+		// dd($response);
 		$user = Auth::user();
 		if($string!=null)
 			$payments = Payment::Where('created_at','like','%'.$string.'%')->orderBy('id')->get();
@@ -265,21 +276,20 @@ class PassportController extends Controller
 	}
 	public function  getPaymentById(Request $request, $string=null)
 	{
-		$token = $request->header('Api-key');
-		$user = Auth::user();
+		$idUser = Auth::id();
 		if($string!=null)
-			$payments = Payment::Where('created_at','like','%'.$string.'%')->orderBy('id_user')->get();
+			$payments = Payment::where('id_user', '=', $idUser)->get();
 		else
 
-			$payments = Payment::orderBy('id_user')->get();
+			$payments = Payment::orderBy('created_at')->get();
+
 		$status=true;
+
 		return compact('status','payments');
 		
 	}
 	public function  getTicket(Request $request, $string=null)
 	{
-		$token = $request->header('Api-key');
-		$user = Auth::user();
 		if($string!=null)
 			$tickets = Ticket::Where('created_at','like','%'.$string.'%')->orderBy('id')->get();
 		else
@@ -327,7 +337,6 @@ class PassportController extends Controller
 	}
     public function getEventById(Request $request,  $string=null)
 	{
-		$token = $request->header('Api-key');
 		$user = Auth::user();
 		if($string!=null)
 			$events = Event::Where('id','like','%'.$string.'%')->orderBy('created_at')->get();
