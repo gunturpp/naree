@@ -59,7 +59,7 @@ class PassportController extends Controller
     public function editPayment($id)
     {
 		$payments = Payment::find($id);
-		return response()->json(['payment'=>$payments]);
+		return response()->json(['status'=>true,'payment'=>$payments]);
 	}
 	public function updateNotaPayment(Request $request, $id)
 	{

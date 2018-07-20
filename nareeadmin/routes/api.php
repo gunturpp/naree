@@ -28,8 +28,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('post-payment', 'Auth\PassportController@postPayment');
     Route::put('payment/{id}/nota-update', 'Auth\PassportController@updateNotaPayment');
     Route::get('get-payments', 'Auth\PassportController@getPayment');
-    // checkpoint
     Route::get('get-payments-by-iduser/{id_user}', 'Auth\PassportController@getPaymentById');
+    // checkpoint
     Route::get('payment/{id}/edit', 'Auth\PassportController@editPayment');
     // history
     Route::post('post-history', 'Auth\PassportController@postHistories');
