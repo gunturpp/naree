@@ -72,15 +72,16 @@ class EventController extends Controller
             'long' => 'required',
             'lat' => 'required',
             'rating' => 'required',
+            'any_register' => 'required',
 
-            'category' => 'required',
-            'min_person' => 'required',
-            'max_person' => 'required',
-            'persons' => 'required',
-            'exp' => 'required'
+            // 'category' => 'required',
+            // 'min_person' => 'required',
+            // 'max_person' => 'required',
+            // 'persons' => 'required',
+            // 'exp' => 'required'
             ]);
-            $data = $request->only('name_event', 'description', 'date_event','ticket_price','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'long', 'lat','rating');
-            $categories = $request->only('category','min_person','max_person','persons','exp');
+            $data = $request->only('name_event', 'description', 'date_event','ticket_price','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'long', 'lat','rating','any_register');
+            // $categories = $request->only('category','min_person','max_person','persons','exp');
             // $data = $request->except(['image']);
             $poster = "";
             if ($request->hasFile('poster')){ //has file itu meminta nama databasenya bukan classnya
@@ -96,7 +97,7 @@ class EventController extends Controller
                 // return $getPath;
             }
 
-        Category::create($categories);
+        // Category::create($categories);
         Event::create($data);
         return redirect()->route('event.index')
             ->with('success','New Event has been created successfully');
@@ -205,8 +206,9 @@ class EventController extends Controller
             'long' => 'required',
             'lat' => 'required',
             'rating' => 'required',
+            'any_register' => 'required',
             ]);
-            $data = $request->only('name_event', 'description', 'date_event','ticket_price','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'exp', 'long', 'lat','rating');
+            $data = $request->only('name_event', 'description', 'date_event','ticket_price','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'exp', 'long', 'lat','rating','any_register');
             
             // $data = $request->except(['image']);
             $poster = "";

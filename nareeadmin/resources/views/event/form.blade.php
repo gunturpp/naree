@@ -92,6 +92,13 @@
         </div>
     </div>
 
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Bisa register? </strong>
+            {!! Form::select('any_register', array(1 => 'Ya', 0 => "Tidak"), 0) !!}
+        </div>
+    </div>
+
     <!-- <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Foto:</strong>

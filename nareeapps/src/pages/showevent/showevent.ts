@@ -60,6 +60,7 @@ export class ShoweventPage {
   items: any;
   showcheckin: boolean = true;
   showcancel: boolean = false;
+  any_register: any;
 
   @ViewChild("map") mapRef: ElementRef;
   constructor(
@@ -101,8 +102,12 @@ export class ShoweventPage {
   }
 
   ionViewDidLoad() {
+    let headers = new Headers({
+      Authorization: "Bearer " + localStorage.getItem("token")
+    });
+    let options = new RequestOptions({ headers: headers });
     this.http
-      .get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit")
+      .get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit",options)
       .subscribe(userss => {
         let response = userss.json();
         // let response = userss;
@@ -126,6 +131,7 @@ export class ShoweventPage {
     this.exp = this.data.exp;
     this.rating = this.data.rating;
     this.tiket = this.data.ticket_price;
+    this.any_register = this.data.any_register;
     this.showMap(this.lattitude, this.longtitude);
 
     // if (this.tiket==null);
@@ -147,7 +153,7 @@ export class ShoweventPage {
       this.bayar = false;
     }
     this.http
-      .get("https://nareeapp.com/api/get-categories")
+      .get("https://nareeapp.com/api/get-categories",options)
       .subscribe(kategori => {
         this.kategoris = kategori.json();
         console.log("kategorii", this.kategoris.categories);
@@ -180,6 +186,10 @@ export class ShoweventPage {
   }
   // dibawah kodingan untuk mengupload dan disable button
   checkout() {
+    let headers = new Headers({
+      Authorization: "Bearer " + localStorage.getItem("token")
+    });
+    let options = new RequestOptions({ headers: headers });
     let contentHeaders = new Headers({
       "Content-Type": "application/x-www-form-urlencoded"
     });
@@ -190,7 +200,7 @@ export class ShoweventPage {
       kehadiran: "1"
     };
     this.http
-      .post("https://nareeapp.com/api/post-kehadiran", masukan)
+      .post("https://nareeapp.com/api/post-kehadiran", masukan,options)
       .subscribe(data => {
         let response = data.json();
         console.log("ini kehadiran", response);

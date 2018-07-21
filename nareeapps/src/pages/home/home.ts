@@ -4,6 +4,7 @@ import { Http, Headers,RequestOptions } from '@angular/http';
 import{ NewsPage } from '../news/news';
 import { IonicPage,ModalController, Platform, NavParams, ViewController ,LoadingController,} from 'ionic-angular';
 let getApiNews = "https://nareeapp.com/api/get-news";
+import { AuthHttp, JwtHelper } from "angular2-jwt";
 
 
 @Component({
@@ -30,22 +31,25 @@ export class HomePage {
   //   this.slides.startAutoplay();
   // }
   ionViewDidLoad() {
+    this.profile = localStorage.getItem('currentUser');
+    // console.log("current user :",this.profile);
+    this.token = localStorage.getItem('token');
+    // console.log("token :",this.token);
     let loading = this.loadCtrl.create({
       content: "Tunggu sebentar..."
     });
     loading.present();
-    this.http.get(getApiNews).subscribe(newss =>{
+    let headers = new Headers({
+      Authorization: 'Bearer ' + this.token
+    });
+    let options = new RequestOptions({ headers: headers });
+    this.http.get(getApiNews,options).subscribe(newss =>{
       let response = newss.json();
       this.news = response.news;
       // this.data = this.news[0];
       // console.log("news" + JSON.stringify(this.news));
       loading.dismiss();
-    });
-    this.profile = localStorage.getItem('currentUser');
-    // console.log("current user :",this.profile);
-    this.token = localStorage.getItem('token');
-    // console.log("token :",this.token);
-    
+    });    
   }
   openModal(newss) {
     // const modal = this.modalCtrl.create(NewsPage,{newss});

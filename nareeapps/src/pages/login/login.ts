@@ -7,7 +7,7 @@ import {
 } from "ionic-angular";
 import { TabsPage } from "../tabs/tabs";
 import { SignupPage } from "../signup/signup";
-import { Http, Headers } from "@angular/http";
+import { Http, Headers, RequestOptions } from "@angular/http";
 import { NgForm } from "@angular/forms";
 import { Storage } from "@ionic/storage";
 import { ForgotpasswordPage } from "../forgotpassword/forgotpassword";
@@ -35,6 +35,10 @@ export class LoginPage {
   user: { email?: string; password?: string } = {};
   submitted = false;
   exp: any;
+  headers = new Headers({
+    Authorization: 'Bearer ' + localStorage.getItem("token")
+  });
+  options = new RequestOptions({ headers: this.headers });
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
@@ -47,7 +51,7 @@ export class LoginPage {
     // kalo tokennya gak expired, langsung push tabspage
     if (localStorage.getItem("token") != null) {
       this.profiles = JSON.parse(localStorage.getItem("currentUser"));
-      this.http.get("https://nareeapp.com/api/users/"+this.profiles.id +"/edit").subscribe( userss => {
+      this.http.get("https://nareeapp.com/api/users/"+this.profiles.id +"/edit", this.options).subscribe( userss => {
         let response = userss.json();
         console.log("user profile" ,response);
           localStorage.setItem( "currentUser", JSON.stringify(response.currentuser));
@@ -55,7 +59,7 @@ export class LoginPage {
           console.log("ini ada ga sih ",this.profiles);
       });
       this.http
-        .get("https://nareeapp.com/api/get-history")
+        .get("https://nareeapp.com/api/get-history",this.options)
         .subscribe(histories => {
           let response = histories.json();
           this.history = response.histories;
@@ -74,7 +78,7 @@ export class LoginPage {
           localStorage.setItem("expHistory", JSON.stringify(this.riwayat));
           // console.log("cek ada history apa tidak", this.riwayat);
           this.ukuran = parseInt(this.riwayat.length.toString());
-          for (var i = this.ukuran - 1; i >= 0; i--) {
+          for (let i = this.ukuran - 1; i >= 0; i--) {
             // console.log("riwayat", this.riwayat[i]);
             if (this.riwayat[i].judul === this.judul) {
               // console.log("riwayat", this.riwayat[i].judul);
@@ -90,7 +94,7 @@ export class LoginPage {
 
       //untuk mengambil DB exps
       if (this.exp == null) {
-        this.http.get("https://nareeapp.com/api/get-exps").subscribe(level => {
+        this.http.get("https://nareeapp.com/api/get-exps",this.options).subscribe(level => {
           let response = level.json();
           // save profile in localstorage
           localStorage.setItem("experience", JSON.stringify(response.exps));
@@ -98,7 +102,7 @@ export class LoginPage {
         });
       }
       this.http
-        .get("https://nareeapp.com/api/get-achievement")
+        .get("https://nareeapp.com/api/get-achievement",this.options)
         .subscribe(achievement => {
           let response = achievement.json();
           this.achievements = response.achievements;
@@ -112,7 +116,7 @@ export class LoginPage {
           localStorage.setItem("achievement", JSON.stringify(this.achiev));
         });
       this.http
-        .get("https://nareeapp.com/api/get-kehadirans")
+        .get("https://nareeapp.com/api/get-kehadirans",this.options)
         .subscribe(hadir => {
           let response = hadir.json();
           this.kehadiran = response.kehadirans;
@@ -145,9 +149,6 @@ export class LoginPage {
 
     if (form.valid) {
       loading.present();
-      let contentheaders = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
-      });
       let input = {
         email: this.user.email,
         password: this.user.password
@@ -165,9 +166,9 @@ export class LoginPage {
             );
             this.profiles = JSON.parse(localStorage.getItem("currentUser"));
             // save token in localstorage
-            localStorage.setItem("token", JSON.stringify(response.token));
+            localStorage.setItem("token", response.token);
             this.http
-              .get("https://nareeapp.com/api/get-history")
+              .get("https://nareeapp.com/api/get-history",this.options)
               .subscribe(histories => {
                 let response = histories.json();
                 this.history = response.histories;
@@ -206,7 +207,7 @@ export class LoginPage {
             //untuk mengambil DB exps
             if (this.exp == null) {
               this.http
-                .get("https://nareeapp.com/api/get-exps")
+                .get("https://nareeapp.com/api/get-exps",this.options)
                 .subscribe(level => {
                   let response = level.json();
                   // save profile in localstorage
@@ -218,7 +219,7 @@ export class LoginPage {
                 });
             }
             this.http
-              .get("https://nareeapp.com/api/get-achievement")
+              .get("https://nareeapp.com/api/get-achievement",this.options)
               .subscribe(achievement => {
                 let response = achievement.json();
                 this.achievements = response.achievements;
@@ -235,7 +236,7 @@ export class LoginPage {
                 );
               });
             this.http
-              .get("https://nareeapp.com/api/get-kehadirans")
+              .get("https://nareeapp.com/api/get-kehadirans",this.options)
               .subscribe(hadir => {
                 let response = hadir.json();
                 this.kehadiran = response.kehadirans;

@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { DatapesertaPage } from "../datapeserta/datapeserta";
-import { Http } from "@angular/http";
+import { Http, RequestOptions, Headers } from "@angular/http";
 
 /**
  * Generated class for the RegistrasieventPage page.
@@ -22,7 +22,7 @@ export class RegistrasieventPage {
   ticketStatus = [];
   tipetiket: any;
   tickets: any;
-  apiTicket = "https://nareeapp.com/api/get-tickettype";
+  apiTicket = "https://nareeapp.com/api/get-tickettype/"; // + id_event
   categories: any;
   constructor(
     private http: Http,
@@ -34,7 +34,7 @@ export class RegistrasieventPage {
     this.isChecked = false;
     // all categories by event
     this.event = this.navParams.get("event");
-    console.log("getting event", this.event);
+    console.log("getting event id : ", this.event.id);
     this.categories = this.navParams.get("categories");
     for (var i = 0; i < this.categories.length; i++) {
       this.categories[i].checklist = false;
@@ -51,11 +51,17 @@ export class RegistrasieventPage {
     });
   }
   getApiTicket() {
+    let headers = new Headers({
+      Authorization: "Bearer " + localStorage.getItem("token")
+    });
+    let options = new RequestOptions({ headers: headers });
     return new Promise(resolve => {
-      this.http.get(this.apiTicket).subscribe(tickets => {
-        this.tickets = tickets.json();
-        resolve(this.tickets.tickets);
-      });
+      this.http
+        .get(this.apiTicket + this.event.id, options)
+        .subscribe(tickets => {
+          this.tickets = tickets.json();
+          resolve(this.tickets.tickets);
+        });
     });
   }
   checklist(signTicket, i, price) {
@@ -81,7 +87,7 @@ export class RegistrasieventPage {
     } else {
       this.totalPrice -= parseInt(price);
     }
-    if(this.totalPrice == 0) {
+    if (this.totalPrice == 0) {
       this.enable = false;
     }
     console.log("total biaya : ", this.totalPrice);

@@ -29,6 +29,7 @@ class CreateEventsTable extends Migration
             $table->float('rating');
             $table->decimal('long',10,7);
             $table->decimal('lat',10,7);
+            $table->boolean('any_register');
             $table->timestamps();
             
         });

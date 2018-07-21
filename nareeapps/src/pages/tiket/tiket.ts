@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
-import { Http } from "@angular/http";
+import { Http, RequestOptions , Headers} from "@angular/http";
 
 // @IonicPage()
 @Component({
@@ -51,9 +51,13 @@ export class TiketPage {
   }
 
   getTicketListByCurrentUser() {
+    let headers = new Headers({
+      Authorization: "Bearer " + localStorage.getItem("token")
+    });
+    let options = new RequestOptions({ headers: headers });
     return new Promise(resolve => {
       this.http
-        .get(this.getApiPaymentbyUser + this.user.id)
+        .get(this.getApiPaymentbyUser + this.user.id,options)
         .subscribe(payment => {
           resolve(payment.json());
         });
@@ -61,8 +65,12 @@ export class TiketPage {
   }
 
   getEventListByCurrentUser(id_event) {
+    let headers = new Headers({
+      Authorization: "Bearer " + localStorage.getItem("token")
+    });
+    let options = new RequestOptions({ headers: headers });
     return new Promise(resolve => {
-      this.http.get(this.getApiEventbyUser + id_event).subscribe(event => {
+      this.http.get(this.getApiEventbyUser + id_event,options).subscribe(event => {
         resolve(event.json());
       });
     });

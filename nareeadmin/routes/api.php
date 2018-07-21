@@ -18,7 +18,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     // event
     Route::get('get-events', 'Auth\PassportController@getEvents');
     Route::get('get-event-by-id/{id}', 'Auth\PassportController@getEventById');
-    Route::get('get-tickettype', 'Auth\PassportController@getTicket');    
+    Route::get('get-tickettype/{id}', 'Auth\PassportController@getTicketByIdEvent');    
     // achievement
     Route::post('post-achievement', 'Auth\PassportController@postAchievement');
     Route::get('get-achievement', 'Auth\PassportController@getAchievement');
@@ -28,8 +28,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('post-payment', 'Auth\PassportController@postPayment');
     Route::put('payment/{id}/nota-update', 'Auth\PassportController@updateNotaPayment');
     Route::get('get-payments', 'Auth\PassportController@getPayment');
-    Route::get('get-payments-by-iduser/{id_user}', 'Auth\PassportController@getPaymentById');
-    // checkpoint
+    Route::get('get-payments-by-iduser/{id}', 'Auth\PassportController@getPaymentById');
     Route::get('payment/{id}/edit', 'Auth\PassportController@editPayment');
     // history
     Route::post('post-history', 'Auth\PassportController@postHistories');

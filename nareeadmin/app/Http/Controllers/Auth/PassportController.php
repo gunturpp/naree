@@ -104,7 +104,7 @@ class PassportController extends Controller
 				errors()], 401);
 			}
 		Payment::find($id)->update($data);
-		$message = "Selamat anda berhasil mengganti foto!";
+		$message = "Selamat foto berhasil diunggah!";
 		return response()->json(['status'=>true,'changed'=>$data, 'message'=>$message], 200);
 			
 	}
@@ -288,15 +288,16 @@ class PassportController extends Controller
 		return compact('status','payments');
 		
 	}
-	public function  getTicket(Request $request, $string=null)
+	public function  getTicketByIdEvent(Request $request, $string=null)
 	{
-		if($string!=null)
-			$tickets = Ticket::Where('created_at','like','%'.$string.'%')->orderBy('id')->get();
+		$id = $request->id;
+ 		if($string!=null)
+			$tickets = Ticket::Where('id_category', '=', 1)->get();
 		else
 
-			$tickets = Ticket::orderBy('id')->get();
+			$tickets = Ticket::orderBy('created_at')->get();
 		$status=true;
-		return compact('status','tickets');
+		return compact('xxx','status','tickets');
 		
 	}
 	public function  getKehadiran(Request $request, $string=null)
@@ -337,9 +338,9 @@ class PassportController extends Controller
 	}
     public function getEventById(Request $request,  $string=null)
 	{
-		$user = Auth::user();
+		$id_event = $request->id;
 		if($string!=null)
-			$events = Event::Where('id','like','%'.$string.'%')->orderBy('created_at')->get();
+			$events = Event::Where('id','=',$id_event)->orderBy('created_at')->get();
 		else
 
 			$events = Event::orderBy('id')->get();
@@ -369,7 +370,7 @@ class PassportController extends Controller
 			$achievements = Achievement::orderBy('id', 'year')->get();
 		$status=true;
 		return compact('status','achievements');
-	}
+	}			
 	public function getHistories(Request $request,  $string=null)
 	{
 		$token = $request->header('Api-key');

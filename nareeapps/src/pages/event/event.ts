@@ -39,11 +39,19 @@ export class EventPage {
     public alerCtrl: AlertController
   ) {}
   ionViewDidLoad() {
+    this.profile = localStorage.getItem("currentUser");
+    // console.log("current user :", this.profile);
+    this.token = localStorage.getItem("token");
+    // console.log("token :", this.token);
     let loading = this.loadCtrl.create({
       content: "Tunggu sebentar..."
     });
     loading.present();
-    this.http.get(getApiEvent).subscribe(
+    let headers = new Headers({
+      Authorization: 'Bearer ' + this.token
+    });
+    let options = new RequestOptions({ headers: headers });
+    this.http.get(getApiEvent,options).subscribe(
       event => {
         let response = event.json();
         this.allEvents = response.events;
@@ -63,16 +71,16 @@ export class EventPage {
         loading.dismiss();
       }
     );
-    this.profile = localStorage.getItem("currentUser");
-    // console.log("current user :", this.profile);
-    this.token = localStorage.getItem("token");
-    // console.log("token :", this.token);
   }
   doInfinite(infiniteScroll) {
     console.log("Begin async operation");
 
     setTimeout(() => {
-      this.http.get(getApiEvent).subscribe(
+      let headers = new Headers({
+        Authorization: 'Bearer ' + this.token
+      });
+      let options = new RequestOptions({ headers: headers });
+      this.http.get(getApiEvent,options).subscribe(
         res => {
           let response = res.json();
           this.allEvents = response.events;

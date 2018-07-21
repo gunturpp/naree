@@ -57,8 +57,12 @@ export class ProfilePage {
   ) {
     this.achiev = JSON.parse(localStorage.getItem("achievement"));
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
+    let headers = new Headers({
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    });
+    let options = new RequestOptions({ headers: headers });
     this.http
-      .get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit")
+      .get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit",options)
       .subscribe(user => {let profile = user.json();
 
         this.image = "https://nareeapp.com" + profile.currentuser.photo;
@@ -175,8 +179,11 @@ export class ProfilePage {
   }
 
   SavePhoto() {
-    let contentHeaders = new Headers();
-    contentHeaders.append("Content-Type", "application/json");
+    let headers = new Headers({
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    });
+    let options = new RequestOptions({ headers: headers });
+
     let masuk = {
       photo: this.base64Image
     };
@@ -185,11 +192,7 @@ export class ProfilePage {
     });
     loading.present();
     this.http
-      .put(
-        "https://nareeapp.com/api/users/" + this.profiles.id + "/photo",
-        masuk,
-        { headers: contentHeaders }
-      )
+      .put("https://nareeapp.com/api/users/" + this.profiles.id + "/photo",masuk,options)
       .subscribe(user => {
         let response = user;
         console.log("ress", response);
