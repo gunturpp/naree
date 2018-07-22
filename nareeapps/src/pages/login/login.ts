@@ -31,7 +31,8 @@ export class LoginPage {
   statusnya: any;
   HAS_LOGGED_IN = "hasLoggedIn";
   public loginState = false;
-
+  
+  statusversion140:boolean = false;
   user: { email?: string; password?: string } = {};
   submitted = false;
   exp: any;
@@ -48,6 +49,12 @@ export class LoginPage {
     public app: App,
     public viewCtrl: ViewController
   ) {
+    if(!localStorage.getItem("statusversion140") && !localStorage.getItem("token")) {
+      localStorage.setItem("statusversion140", "false");
+    } else if(localStorage.getItem("statusversion140") == "false") {
+      localStorage.removeItem("token");
+      localStorage.setItem("statusversion140", "true");
+    }
     // kalo tokennya gak expired, langsung push tabspage
     if (localStorage.getItem("token") != null) {
       this.profiles = JSON.parse(localStorage.getItem("currentUser"));

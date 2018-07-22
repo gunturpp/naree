@@ -20,7 +20,7 @@ export class RegistrasieventPage {
   isChecked: boolean;
   totalPrice = 0;
   ticketStatus = [];
-  tipetiket: any;
+  tipetiket = [];
   tickets: any;
   apiTicket = "https://nareeapp.com/api/get-tickettype/"; // + id_event
   categories: any;
@@ -34,20 +34,22 @@ export class RegistrasieventPage {
     this.isChecked = false;
     // all categories by event
     this.event = this.navParams.get("event");
-    console.log("getting event id : ", this.event.id);
     this.categories = this.navParams.get("categories");
+    console.log("category event id : ", this.categories);
     for (var i = 0; i < this.categories.length; i++) {
       this.categories[i].checklist = false;
     }
     this.getApiTicket().then(data => {
-      this.tipetiket = data;
-      console.log("leng tiket", this.tipetiket.length);
-      // set status tiket all uncheck by array
-      // console.log("bisa", this.tipetiket);
-      for (let x = 0; x < this.tipetiket.length; x++) {
+      for (let i = 0; i < this.categories.length; i++) {
+        this.tipetiket[i] = data;
+        // set status tiket all uncheck by array
+        // console.log("bisa", this.tipetiket);
+        for (let x = 0; x < this.tipetiket.length; x++) {
         this.ticketStatus[x] = false;
         this.tipetiket[x].checklist = false;
+        }
       }
+      console.log("leng tiket", this.tipetiket);
     });
   }
   getApiTicket() {
@@ -55,14 +57,18 @@ export class RegistrasieventPage {
       Authorization: "Bearer " + localStorage.getItem("token")
     });
     let options = new RequestOptions({ headers: headers });
-    return new Promise(resolve => {
-      this.http
-        .get(this.apiTicket + this.event.id, options)
-        .subscribe(tickets => {
-          this.tickets = tickets.json();
-          resolve(this.tickets.tickets);
-        });
-    });
+    for (let i = 0; i < this.categories.length; i++) {
+      return new Promise(resolve => {
+        this.http
+          .get(this.apiTicket + this.categories[i].id, options)
+          .subscribe(tickets => {
+            this.tickets = tickets.json();
+            resolve(this.tickets.tickets);
+            console.log("tiketz", this.categories.length);
+            console.log("idnyaz", this.categories[i].id);
+          });
+      });
+    }
   }
   checklist(signTicket, i, price) {
     this.tipetiket[i].checklist = this.ticketStatus[i];

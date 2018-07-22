@@ -107,7 +107,10 @@ export class ShoweventPage {
     });
     let options = new RequestOptions({ headers: headers });
     this.http
-      .get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit",options)
+      .get(
+        "https://nareeapp.com/api/users/" + this.profiles.id + "/edit",
+        options
+      )
       .subscribe(userss => {
         let response = userss.json();
         // let response = userss;
@@ -153,7 +156,7 @@ export class ShoweventPage {
       this.bayar = false;
     }
     this.http
-      .get("https://nareeapp.com/api/get-categories",options)
+      .get("https://nareeapp.com/api/get-categories/" + this.idevent, options)
       .subscribe(kategori => {
         this.kategoris = kategori.json();
         console.log("kategorii", this.kategoris.categories);
@@ -200,7 +203,7 @@ export class ShoweventPage {
       kehadiran: "1"
     };
     this.http
-      .post("https://nareeapp.com/api/post-kehadiran", masukan,options)
+      .post("https://nareeapp.com/api/post-kehadiran", masukan, options)
       .subscribe(data => {
         let response = data.json();
         console.log("ini kehadiran", response);
