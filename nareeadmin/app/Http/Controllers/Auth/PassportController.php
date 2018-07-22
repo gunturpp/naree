@@ -192,7 +192,7 @@ class PassportController extends Controller
 		
         $validator = Validator::make($request->all(),[
 			'name' => 'required',
-			'email' => 'required|string|email|min:6|max:50|unique:users',
+			'email' => 'required|string|email|min:6|max:100|unique:users',
 			'username' => 'required|string|min:6|max:20|unique:users',
 			'password' => 'required',
 			'c_password' => 'required|same:password',
@@ -241,12 +241,11 @@ class PassportController extends Controller
 	}
    
 	//GET
-	public function  getCategory(Request $request, $string=null)
+	public function  getCategoryByIdEvent(Request $request, $string=null)
 	{
-		$token = $request->header('Api-key');
-		$user = Auth::user();
+		$id_event = $request->id;
 		if($string!=null)
-			$categories = Category::Where('created_at','like','%'.$string.'%')->orderBy('id')->get();
+			$categories = Category::Where('id_event','=', $id_event)->orderBy('id')->get();
 		else
 
 			$categories = Category::orderBy('id')->get();
@@ -288,16 +287,16 @@ class PassportController extends Controller
 		return compact('status','payments');
 		
 	}
-	public function  getTicketByIdEvent(Request $request, $string=null)
+	public function  getTicketByIdCategory(Request $request, $string=null)
 	{
-		$id = $request->id;
+		$id_category = $request->id;
  		if($string!=null)
-			$tickets = Ticket::Where('id_category', '=', 1)->get();
+			$tickets = Ticket::Where('id_category', '=', $id_category)->get();
 		else
 
 			$tickets = Ticket::orderBy('created_at')->get();
 		$status=true;
-		return compact('xxx','status','tickets');
+		return compact('status','tickets');
 		
 	}
 	public function  getKehadiran(Request $request, $string=null)
@@ -327,12 +326,10 @@ class PassportController extends Controller
     }
     public function getEvents(Request $request,  $string=null)
 	{
-		$token = $request->header('Api-key');
-		$user = Auth::user();
 		if($string!=null)
 			$events = Event::Where('name_event')->orderBy('date_event','asc')->get();
 		else
-			$events = Event::whereDate('date_event', '>', Carbon::now())->orderBy('date_event', 'asc')->get();
+			$events = Event::where('date_event', '>=', Carbon::now('+7')->toDateString())->orderBy('date_event', 'asc')->get();
 		$status=true;
 		return compact('status','events');
 	}

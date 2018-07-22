@@ -18,7 +18,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     // event
     Route::get('get-events', 'Auth\PassportController@getEvents');
     Route::get('get-event-by-id/{id}', 'Auth\PassportController@getEventById');
-    Route::get('get-tickettype/{id}', 'Auth\PassportController@getTicketByIdEvent');    
+    Route::get('get-tickettype/{id}', 'Auth\PassportController@getTicketByIdCategory');    
     // achievement
     Route::post('post-achievement', 'Auth\PassportController@postAchievement');
     Route::get('get-achievement', 'Auth\PassportController@getAchievement');
@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('get-kehadirans', 'Auth\PassportController@getKehadiran');
     Route::post('post-kehadiran', 'Auth\PassportController@postKehadiranEvent');
     // categories
-    Route::get('get-categories', 'Auth\PassportController@getCategory');
+    Route::get('get-categories{id}', 'Auth\PassportController@getCategoryByIdEvent');
     Route::post('post-participant-by-category', 'Auth\PassportController@postParticipant_by_category');
     Route::post('post-member-by-category', 'Auth\PassportController@postMember_by_category');
 });
