@@ -81,7 +81,7 @@
             </ion-item>
         </ion-col>
     </ion-row> -->
-    <h4><b>Special Event</b></h4>
+    <h4 class="special-event"><b>Special Event</b></h4>
     <ion-card *ngIf="eventEnam" (click)="openModal(eventEnam)">
         <ion-grid>
             <ion-row>
@@ -134,7 +134,7 @@
         </ion-grid>
     </ion-card>
 
-    <h4>All Event</h4>
+    <h4 class="all-event">All Event</h4>
     <ion-card *ngFor="let event of events" (click)="openModal(event)">
         <ion-grid *ngIf="event != undefined">
             <ion-row>

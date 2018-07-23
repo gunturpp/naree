@@ -43,7 +43,7 @@ export class RegistrasieventPage {
       for (let i = 0; i < this.categories.length; i++) {
         this.tipetiket[i] = data;
         // set status tiket all uncheck by array
-        // console.log("bisa", this.tipetiket);
+        console.log("data tiket", this.tipetiket[i]);
         for (let x = 0; x < this.tipetiket.length; x++) {
         this.ticketStatus[x] = false;
         this.tipetiket[x].checklist = false;
@@ -57,8 +57,8 @@ export class RegistrasieventPage {
       Authorization: "Bearer " + localStorage.getItem("token")
     });
     let options = new RequestOptions({ headers: headers });
-    for (let i = 0; i < this.categories.length; i++) {
-      return new Promise(resolve => {
+    return new Promise(resolve => {
+      for (let i = 0; i < this.categories.length; i++) {
         this.http
           .get(this.apiTicket + this.categories[i].id, options)
           .subscribe(tickets => {
@@ -67,8 +67,8 @@ export class RegistrasieventPage {
             console.log("tiketz", this.categories.length);
             console.log("idnyaz", this.categories[i].id);
           });
+        }
       });
-    }
   }
   checklist(signTicket, i, price) {
     this.tipetiket[i].checklist = this.ticketStatus[i];
