@@ -329,7 +329,18 @@ class PassportController extends Controller
 		if($string!=null)
 			$events = Event::Where('name_event')->orderBy('date_event','asc')->get();
 		else
-			$events = Event::where('date_event', '>=', Carbon::now('+7')->toDateString())->orderBy('date_event', 'asc')->get();
+		  //  filter event by today and future
+			$events = Event::where('date_event', '>=', Carbon::now('+7')->toDateString())->where('type', '=', 'normal')->orderBy('date_event', 'asc')->get();
+		$status=true;
+		return compact('status','events');
+	}
+	public function getEventsSpecial(Request $request,  $string=null)
+	{
+		if($string!=null)
+			$events = Event::Where('name_event')->orderBy('date_event','asc')->get();
+		else
+		  //  filter event by today and future
+			$events = Event::where('date_event', '>=', Carbon::now('+7')->toDateString())->where('type', '=', 'special')->orderBy('date_event', 'asc')->get();
 		$status=true;
 		return compact('status','events');
 	}

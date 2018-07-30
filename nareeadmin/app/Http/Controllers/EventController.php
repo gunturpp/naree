@@ -81,6 +81,7 @@ class EventController extends Controller
             // 'exp' => 'required'
             ]);
             $data = $request->only('name_event', 'description', 'date_event','ticket_price','location','province', 'organizer', 'dance_type', 'poster', 'duration', 'long', 'lat','rating','any_register');
+            $data['type'] = "normal";
             // $categories = $request->only('category','min_person','max_person','persons','exp');
             // $data = $request->except(['image']);
             $poster = "";
@@ -96,7 +97,6 @@ class EventController extends Controller
                 $data['admin'] = $user->email;
                 // return $getPath;
             }
-
         // Category::create($categories);
         Event::create($data);
         return redirect()->route('event.index')

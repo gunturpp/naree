@@ -10,9 +10,9 @@ Route::get('/home', 'HomeController@index');
 Route::prefix('admin')->group(function() {
     Route::get('/', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-  });
+});
 
- Route::get('/dashboard', 'AdminController@index');
+Route::get('/dashboard', 'AdminController@index');
 
 // News
 Route::get('/news', 'NewsController@index');

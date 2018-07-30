@@ -17,6 +17,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::put('users/{id}/photo', 'Auth\PassportController@updateFotoUser');
     // event
     Route::get('get-events', 'Auth\PassportController@getEvents');
+    Route::get('get-events-special', 'Auth\PassportController@getEventsSpecial');
     Route::get('get-event-by-id/{id}', 'Auth\PassportController@getEventById');
     Route::get('get-tickettype/{id}', 'Auth\PassportController@getTicketByIdCategory');    
     // achievement

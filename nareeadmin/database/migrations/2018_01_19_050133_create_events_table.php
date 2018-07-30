@@ -30,6 +30,7 @@ class CreateEventsTable extends Migration
             $table->decimal('long',10,7);
             $table->decimal('lat',10,7);
             $table->boolean('any_register');
+            $table->string('type',7);
             $table->timestamps();
             
         });
