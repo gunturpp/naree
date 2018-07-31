@@ -120,7 +120,27 @@
 
       <!-- /.row (main row) -->
       </div>
-
+      {{-- list user --}}
+      <div style="padding:20px;margin:20px;border:solid;height:400px;overflow-y:scroll">
+          <table class="table table-bordered">
+              <tr>
+                  <th>Id Akun</th>
+                  <th>Nama</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Provinsi</th>
+              </tr>
+          @foreach($userList as $list)
+          <tr>
+              <td>{{ $list->id }}</td>
+              <td>{{ $list->name}}</td>
+              <td>{{ $list->username}}</td>
+              <td>{{ $list->email}}</td>
+              <td>{{ $list->province}}</td>
+          </tr>
+          @endforeach
+          </table>
+      </div>
     </section>
     <!-- /.content -->
   </div>
