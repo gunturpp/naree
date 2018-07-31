@@ -11,33 +11,30 @@
     <ion-card *ngIf="event" style="background-color: #999999">
         <p class="judul">{{event.name_event}}</p>
     </ion-card>
-    <div *ngFor="let dataCategory of categories">
-        <ion-card>
+    <div *ngFor="let dataCategory of categories;let j = index">
+        <ion-card *ngIf="dataCategory.id">
             <p class="cssCategory">Kategori {{dataCategory.category}}</p>
             <ion-row>
                 <ion-col col-6 class="font">Tipe Tiket</ion-col>
                 <ion-col col-4 class="font">Harga</ion-col>
                 <ion-col col-2 class="font">Pilih</ion-col>
             </ion-row>
-            <div *ngFor="let dataTiket of tipetiket;let i = index">
-                <div *ngIf="dataTiket[i].id_category == dataCategory.id">
-                    <ion-row>
-                        <ion-col col-6 *ngIf="dataTiket[i].type !=  'On The Spot'">{{dataTiket[i].type}}
-                            <br>({{dataTiket[i].period_start|date: 'dd'}} - {{dataTiket[i].period_end|date: 'dd MMMM yyyy'}})</ion-col>
-                        <ion-col col-6 *ngIf="dataTiket[i].type ==  'On The Spot'">{{dataTiket[i].type}}(
+            <div *ngFor="let dataTiket of tipetiket[j];let i = index">
+                    <ion-row *ngIf="dataTiket.id_category == dataCategory.id">
+                        <ion-col col-6 *ngIf="dataTiket.type !=  'On The Spot'">{{dataTiket.type}}
+                            <br>({{dataTiket.period_start|date: 'dd'}} - {{dataTiket.period_end|date: 'dd MMMM yyyy'}})</ion-col>
+                        <ion-col col-6 *ngIf="dataTiket.type ==  'On The Spot'">{{dataTiket.type}}(
                             <span style="color:#95171A">No Exp</span>)
-                            <br>({{dataTiket[i].period_end|date: 'dd MMMM yyyy'}})</ion-col>
-                        <ion-col col-4>{{dataTiket[i].price}}</ion-col>
-                        <ion-col col-2 *ngIf="dataTiket[i].type !=  'On The Spot'">
-                            <!-- <input type="checkbox" [(ngModel)]="dataTickets" /> -->
+                            <br>({{dataTiket.period_end|date: 'dd MMMM yyyy'}})</ion-col>
+    
+                        <ion-col col-4>{{dataTiket.price}}</ion-col>
+                        <ion-col col-2 *ngIf="dataTiket.type !=  'On The Spot'">
                             <ion-checkbox [(ngModel)]="ticketStatus[i]" (ionChange)="checklist(dataTiket.type,i,dataTiket.price)" item-right color="dark"
                                 style="padding-inline-end: 20px;"></ion-checkbox>
                         </ion-col>
                     </ion-row>
-
                 </div>
-            </div>
-        </ion-card>
+            </ion-card>
     </div>
     <!-- 
     <ion-card color="tittle" style="margin-bottom: 0px;">

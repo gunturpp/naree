@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from "@angular/core";
-import { NavController } from "ionic-angular";
+import { NavController, LoadingController } from "ionic-angular";
 import {
   ModalController,
   ToastController,
@@ -72,7 +72,8 @@ export class ShoweventPage {
     public actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController,
     public viewCtrl: ViewController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public loadCtrl: LoadingController
   ) {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
     this.historyExp = JSON.parse(localStorage.getItem("expHistory"));
@@ -155,14 +156,24 @@ export class ShoweventPage {
       this.free = true;
       this.bayar = false;
     }
+    let loading = this.loadCtrl.create({
+      content: "Tunggu sebentar..."
+    });
+    loading.present();
     this.http
       .get("https://nareeapp.com/api/get-categories/" + this.idevent, options)
       .subscribe(kategori => {
         this.kategoris = kategori.json();
         console.log("kategorii", this.kategoris.categories);
+        loading.dismiss();
         // let response = userss;
         // this.user = response.currentuser;?
         // this.expuser = this.user.exp;
+      },
+      error => {
+        alert("Check your connection and try again");
+        console.log("error get data", error);
+        loading.dismiss();
       });
   }
   closeModal() {

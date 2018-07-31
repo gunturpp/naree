@@ -82,53 +82,19 @@
         </ion-col>
     </ion-row> -->
     <h4 class="special-event"><b>Special Event</b></h4>
-    <ion-card *ngIf="eventEnam" (click)="openModal(eventEnam)">
-        <ion-grid>
+    <ion-card *ngFor="let evSpecial of eventSpecial" (click)="openModal(evSpecial)">
+        <ion-grid *ngIf="evSpecial != undefined">
             <ion-row>
                 <ion-col col-4>
-                    <img class="poster-event" src="https://nareeapp.com/{{eventEnam.poster}}" />
+                    <img class="poster-event" src="https://nareeapp.com/{{evSpecial.poster}}" />
                 </ion-col>
                 <ion-col text-nowrap class="hiden">
-                    <p text-wrap class="judul">{{eventEnam.name_event}}</p>
+                    <p text-wrap class="judul">{{evSpecial.name_event}}</p>
                     <!-- <button ion-button color="primary" small style="font-size:12px;">{{event.dance_type}}</button> -->
-                    <div class="btn-event">{{eventEnam.dance_type}}</div>
+                    <div class="btn-event">{{evSpecial.dance_type}}</div>
                     <br><br>
-                    <p class="tanggal">{{eventEnam.location}}, {{eventEnam.province}}</p>
-                    <p class="tanggal">{{eventEnam.date_event| date: 'dd MMMM yyyy'}}</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card>
-    <ion-card *ngIf="eventDelapan" (click)="openModal(eventDelapan)">
-        <ion-grid>
-            <ion-row>
-                <ion-col col-4>
-                    <img class="poster-event" src="https://nareeapp.com/{{eventDelapan.poster}}" />
-                </ion-col>
-                <ion-col text-nowrap class="hiden">
-                    <p text-wrap class="judul">{{eventDelapan.name_event}}</p>
-                    <!-- <button ion-button color="primary" small style="font-size:12px;">{{event.dance_type}}</button> -->
-                    <div class="btn-event">{{eventDelapan.dance_type}}</div>
-                    <br><br>
-                    <p class="tanggal">{{eventDelapan.location}}, {{eventDelapan.province}}</p>
-                    <p class="tanggal">{{eventDelapan.date_event| date: 'dd MMMM yyyy'}}</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card>
-    <ion-card *ngIf="eventTujuh" (click)="openModal(eventTujuh)">
-        <ion-grid>
-            <ion-row>
-                <ion-col col-4>
-                    <img class="poster-event" src="https://nareeapp.com/{{eventTujuh.poster}}" />
-                </ion-col>
-                <ion-col text-nowrap class="hiden">
-                    <p text-wrap class="judul">{{eventTujuh.name_event}}</p>
-                    <!-- <button ion-button color="primary" small style="font-size:12px;">{{event.dance_type}}</button> -->
-                    <div class="btn-event">{{eventTujuh.dance_type}}</div>
-                    <br><br>
-                    <p class="tanggal">{{eventTujuh.location}}, {{eventTujuh.province}}</p>
-                    <p class="tanggal">{{eventTujuh.date_event| date: 'dd MMMM yyyy'}}</p>
+                    <p class="tanggal">{{evSpecial.location}}, {{evSpecial.province}}</p>
+                    <p class="tanggal">{{evSpecial.date_event| date: 'dd MMMM yyyy'}}</p>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -152,11 +118,12 @@
             </ion-row>
         </ion-grid>
     </ion-card>
-    <h4 *ngIf="loadEvent >= totalEvent">Enjoy the event!</h4>
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="loadEvent < totalEvent">
+    <!-- for infinty loop -->
+    <!-- <h4 *ngIf="loadEvent >= totalEvent">Enjoy the event!</h4> -->
+    <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="loadEvent < totalEvent">
         <ion-infinite-scroll-content
           loadingSpinner="bubbles"
           loadingText="Loading more events...">
         </ion-infinite-scroll-content>
-      </ion-infinite-scroll>
+      </ion-infinite-scroll> -->
 </ion-content>

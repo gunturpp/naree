@@ -55,21 +55,40 @@ export class ProfilePage {
     private http: Http,
     public navCtrl: NavController
   ) {
+    let loading = this.loadCtrl.create({
+      content: "Tunggu sebentar..."
+    });
+    loading.present();
     this.achiev = JSON.parse(localStorage.getItem("achievement"));
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
     let headers = new Headers({
-      Authorization: 'Bearer ' + localStorage.getItem('token')
+      Authorization: "Bearer " + localStorage.getItem("token")
     });
     let options = new RequestOptions({ headers: headers });
     this.http
-      .get("https://nareeapp.com/api/users/" + this.profiles.id + "/edit",options)
-      .subscribe(user => {let profile = user.json();
+      .get(
+        "https://nareeapp.com/api/users/" + this.profiles.id + "/edit",
+        options
+      )
+      .subscribe(
+        user => {
+          let profile = user.json();
 
-        this.image = "https://nareeapp.com" + profile.currentuser.photo;
-        console.log("jika udah di update di const:", profile.currentuser.photo);
-      });
+          this.image = "https://nareeapp.com" + profile.currentuser.photo;
+          console.log(
+            "jika udah di update di const:",
+            profile.currentuser.photo
+          );
+          loading.dismiss();
+        },
+        error => {
+          alert("Check your connection and try again");
+          console.log("error get data", error);
+          loading.dismiss();
+        }
+      );
   }
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
   }
   ionViewDidLoad() {
@@ -143,7 +162,7 @@ export class ProfilePage {
         destinationType: this.camera.DestinationType.DATA_URL,
         sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
         targetWidth: 600,
-        targetHeight: 600,
+        targetHeight: 600
       })
       .then(
         imageData => {
@@ -180,7 +199,7 @@ export class ProfilePage {
 
   SavePhoto() {
     let headers = new Headers({
-      Authorization: 'Bearer ' + localStorage.getItem('token')
+      Authorization: "Bearer " + localStorage.getItem("token")
     });
     let options = new RequestOptions({ headers: headers });
 
@@ -192,7 +211,11 @@ export class ProfilePage {
     });
     loading.present();
     this.http
-      .put("https://nareeapp.com/api/users/" + this.profiles.id + "/photo",masuk,options)
+      .put(
+        "https://nareeapp.com/api/users/" + this.profiles.id + "/photo",
+        masuk,
+        options
+      )
       .subscribe(user => {
         let response = user;
         console.log("ress", response);

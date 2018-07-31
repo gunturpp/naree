@@ -23,7 +23,9 @@ export class RegistrasieventPage {
   tipetiket = [];
   tickets: any;
   apiTicket = "https://nareeapp.com/api/get-tickettype/"; // + id_event
-  categories: any;
+  categories= [];
+  allTicket:any;
+  ticketA: any;
   constructor(
     private http: Http,
     public navCtrl: NavController,
@@ -35,43 +37,54 @@ export class RegistrasieventPage {
     // all categories by event
     this.event = this.navParams.get("event");
     this.categories = this.navParams.get("categories");
-    console.log("category event id : ", this.categories);
+    console.log("category by id event : ", this.categories);
     for (var i = 0; i < this.categories.length; i++) {
       this.categories[i].checklist = false;
     }
-    this.getApiTicket().then(data => {
-      for (let i = 0; i < this.categories.length; i++) {
-        this.tipetiket[i] = data;
-        // set status tiket all uncheck by array
-        console.log("data tiket", this.tipetiket[i]);
-        for (let x = 0; x < this.tipetiket.length; x++) {
-        this.ticketStatus[x] = false;
-        this.tipetiket[x].checklist = false;
+    for (let i = 0; i < this.categories.length; i++) {
+      this.getApiTicket(this.categories[i].id).then(data => {
+        for(var z=0; z<3;z++) {
+        data[z].checklist = false;
+          
         }
-      }
-      console.log("leng tiket", this.tipetiket);
-    });
+        this.tipetiket[i] = data;
+        this.ticketStatus[i] = false;
+        // this.tipetiket[i].checklist = false;
+        // this.ticketA.push(this.tipetiket[i]);
+        // set status tiket all uncheck by array
+      });
+    }
+    console.log("tipetikettzzz: ", this.tipetiket);
+    // tipe 1
+    // tipe 2
+    // tipe 3
+    // this.ticketArray();
   }
-  getApiTicket() {
+  // ticketArray() {
+  //   this.allTicket = this.tipetiket;
+  //   for (let j = 0; j < this.allTicket.length; j++) {
+  //     this.ticketStatus[j] = false;
+  //     this.allTicket[j].checklist = false;
+  //   }
+  //   console.log("all tiket", this.allTicket);
+  // }
+  getApiTicket(id) {
+    // id category
     let headers = new Headers({
       Authorization: "Bearer " + localStorage.getItem("token")
     });
     let options = new RequestOptions({ headers: headers });
     return new Promise(resolve => {
-      for (let i = 0; i < this.categories.length; i++) {
-        this.http
-          .get(this.apiTicket + this.categories[i].id, options)
-          .subscribe(tickets => {
-            this.tickets = tickets.json();
-            resolve(this.tickets.tickets);
-            console.log("tiketz", this.categories.length);
-            console.log("idnyaz", this.categories[i].id);
-          });
-        }
+      this.http.get(this.apiTicket + id, options).subscribe(tickets => {
+        this.tickets = tickets.json();
+        resolve(this.tickets.tickets);
       });
+    });
   }
   checklist(signTicket, i, price) {
-    this.tipetiket[i].checklist = this.ticketStatus[i];
+    for(var z=0; z<this.tipetiket.length;z++){
+      this.tipetiket[z].checklist = this.ticketStatus[i];
+    }
     for (var y = 0; y < this.categories.length; y++) {
       if (
         this.tipetiket[i].id_category == this.categories[y].id &&
