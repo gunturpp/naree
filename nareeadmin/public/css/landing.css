@@ -1,0 +1,217 @@
+.primaryColor {
+    color: #95171a;
+  }
+  .bold {
+    font-weight: bold;
+  }
+  .border {
+    border: solid 5px blue !important;
+  }
+  ul.nav-header {
+    padding: 10px 10%;
+    background-color: #95171a;
+  }
+  a.icon-naree:hover {
+    background-color: transparent !important;
+  }
+  .landing-header {
+    width: 100vw;
+    height: 80vh;
+  }
+  .header-img {
+    width: 100%;
+    position: absolute;
+    object-fit:cover;
+  }
+  .header-title {
+    color: #ffffff;
+    font-size: 4em;
+    float: left;
+    width: 40vw;
+    text-align: right;
+    left: 20%;
+    top: 40%;
+    position: absolute;
+    z-index: 2;
+  }
+  .icon-ps {
+    width: 25%;
+  }
+  .flex {
+    display: flex;
+  }
+  .content-a,
+  .content-b,
+  .content-c,
+  .content-d {
+    position: relative;
+    text-align: center;
+  }
+  .content-a {
+    padding: 20px 0px;
+  }
+  .sub-content-a {
+    width: 70%;
+    margin: auto;
+    padding: 15px;
+    font-weight: 500;
+    text-align: justify;
+  }
+  .content-a-img {
+    width: 60%;
+    position: relative;
+    text-align: center;
+  }
+  .content-b {
+    width: 100vw;
+  }
+  .bagan {
+    width: 100vw;
+      object-fit:cover;
+  
+  }
+  .content-c {
+    padding: 20px;
+    width: 100vw;
+
+  }
+  .content-d {
+    width: 100%;
+  }
+  .content-d-img {
+    width: 100%;
+    object-fit: cover;
+  }
+  h4.achievement,
+  h4.event,
+  h4.newspromo {
+    color: #95171a;
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+  }
+  .tx-left {
+    text-align: left !important;
+  }
+  .achievement-sub,
+  .newspromo-sub,
+  .event-sub {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+  .content-b-sub {
+    position: absolute;
+    margin-top: -250px;
+    color: #ffffff;
+    padding: 20px 25%;
+  }
+  .rumah {
+    width: 25vw;
+    float: right;
+  }
+  .justify {
+    text-align: justify;
+  }
+  .rumah-mobile {
+    display: none;
+  }
+  .footer-tx {
+    position: absolute;
+    z-index: 10;
+    color: #ffffff;
+    top: 10%;
+    font-size: 4em;
+    text-align: left;
+    left: 42%;
+  }
+  @media (max-width: 500px) {
+    .header-img {
+      width: 100vw;
+      position: absolute;
+    }
+  
+    .rumah {
+      display: none;
+    }
+    .rumah-mobile {
+      float: left;
+      width: 30vw;
+      margin-right: 20px;
+    }
+    .content-c {
+      padding: 20px;
+    }
+    .card-naree {
+      margin: 20px;
+    }
+    .landing-header {
+      width: 100%;
+      height: 20vh;
+    }
+    .header-title {
+      color: #ffffff;
+      font-size: 1.5em;
+      float: left;
+      width: 50vw;
+      text-align: right;
+      left: 8%;
+      top: 15%;
+      position: absolute;
+      z-index: 2;
+    }
+    .sub-content-a {
+      width: 90%;
+      margin: auto;
+      text-align: center;
+    }
+    .content-a-img {
+      width: 90%;
+      position: relative;
+      text-align: center;
+    }
+    .card-img {
+      width: 100%;
+    }
+    h4.achievement,
+    h4.event,
+    h4.newspromo {
+      color: #95171a;
+      position: absolute;
+      font-weight: bold;
+    }
+    .achievement-sub,
+    .newspromo-sub,
+    .event-sub {
+      position: absolute;
+      top: 70%;
+    }
+    .bagan {
+      height: 350px;
+        object-fit:cover;
+  
+    }
+    .content-b-sub {
+      position: absolute;
+      margin-top: -300px;
+      color: #ffffff;
+      padding: 20px 5%;
+    }
+    .content-d {
+      height: 40px;
+    }
+    .content-d-img {
+      width: 100vw;
+        object-fit:cover;
+  
+    }
+    .footer-tx {
+      display:none;
+    }
+  }
+  

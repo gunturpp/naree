@@ -1,5 +1,9 @@
 <?php
 Route::get('/', function () {
+    return view('landing');
+    // return view('/dashboard/index');  
+});
+Route::get('/loginadmin', function () {
     return view('/auth/admin-login');
     // return view('/dashboard/index');  
 });
