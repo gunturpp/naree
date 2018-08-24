@@ -50,7 +50,7 @@ return [
 
         'uploads' => [
             'driver' => 'local',
-            'root'   => public_path() . '/images/homestay',
+            'root'   => public_path(),
         ],
 
         'public' => [
