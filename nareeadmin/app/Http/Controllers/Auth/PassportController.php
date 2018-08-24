@@ -63,50 +63,59 @@ class PassportController extends Controller
 	}
 	public function updateNotaPayment(Request $request, $id)
 	{
-		$oldPhoto = DB::table('payments')->value('nota');
-
-		$notaImage = public_path() . $oldPhoto; // get previous image from folder
-		if (File::exists($notaImage)) 
-		{ // unlink or remove previous image from folder
-			unlink($notaImage);
-		}
-		$data = $request->only('nota');
+    	$payments = Payment::find($id);
+		$oldPhoto = $payments->nota;
+        if($oldPhoto !=null)
+        {
+    		$notaImage = public_path() . $oldPhoto; // get previous image from folder
+            
+    		if (File::exists($notaImage)) 
+    		{ // unlink or remove previous image from folder
+    			unlink($notaImage);
+    		}
+        }
+		$data = $request->only('nota','status');
 		// echo json_encode($data);
 		$imageData = $request->input('nota');
-		// echo json_encode($imageData);
-		
-		// echo($imageData);
-		// get extention from base44
-		preg_match("/^data:image\/(.*);base64/i",$imageData, $match);
-		$extension = $match[1];
-		// echo($extension);
-		$imageData = str_replace('data:image/jpeg;base64,', '', $imageData);
-		$imageData = str_replace('data:image/png;base64,', '', $imageData);
-		$imageData = str_replace('data:image/jpg;base64,', '', $imageData);
-		$imageData = str_replace(' ', '+', $imageData);
-		$image = base64_decode($imageData);
-		// echo($image);
-		// put path
-		$uniq = uniqid();
-		$imagePath = public_path() . DIRECTORY_SEPARATOR . "images/nota" . DIRECTORY_SEPARATOR . $uniq . '.' . $extension;
-		$destinationPath = "/images/nota/" . $uniq . '.' . $extension;
-		
-		// put image
-		$success = file_put_contents($imagePath,$image);				
-		
-		$imageData = $success;
-		$data['nota'] = $destinationPath;
-		$validator = Validator::make($data, [
-			'nota' => 'required|max:10000',
-			]); 
-			if($validator->fails()){
-				return response()->json(['error'=>$validator->
-				errors()], 401);
-			}
+    	if($imageData!=null) {
+    		// echo json_encode($imageData);
+    		//dd($imageData);
+    		// get extention from base44
+    		preg_match("/^data:image\/(.*);base64/i",$imageData, $match);
+    		$extension = $match[1];
+    		// echo($extension);
+    		$imageData = str_replace('data:image/jpeg;base64,', '', $imageData);
+    		$imageData = str_replace('data:image/png;base64,', '', $imageData);
+    		$imageData = str_replace('data:image/jpg;base64,', '', $imageData);
+    		$imageData = str_replace(' ', '+', $imageData);
+    		$image = base64_decode($imageData);
+    		// echo($image);
+    		// put path
+    		$uniq = uniqid();
+    		$imagePath = public_path() . DIRECTORY_SEPARATOR . "images/nota" . DIRECTORY_SEPARATOR . $uniq . '.' . $extension;
+    		$destinationPath = "/images/nota/" . $uniq . '.' . $extension;
+    		
+    		// put image
+    		$success = file_put_contents($imagePath,$image);				
+    		
+    		$imageData = $success;
+    		$data['nota'] = $destinationPath;
+    		$validator = Validator::make($data, [
+    			'nota' => 'required|max:10000',
+    			]); 
+    			if($validator->fails()){
+    				return response()->json(['error'=>$validator->
+    				errors()], 401);
+    			}
+    	}
+		$data['status'] = $request->input('status');
 		Payment::find($id)->update($data);
-		$message = "Selamat foto berhasil diunggah!";
+    	if($imageData!=null) {
+    	$message = "Selamat foto berhasil diunggah!";
+    	} else {
+    	$message = "Selamat status berhasil diganti!";
+    	}
 		return response()->json(['status'=>true,'changed'=>$data, 'message'=>$message], 200);
-			
 	}
     public function editUser($id)
     {
