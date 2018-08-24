@@ -65,21 +65,38 @@ page-tiket {
     .back-card {
         padding-bottom: 0px;
     }
-    .cancelCss, .waitingCss, .processCss, .confirmedCss {
+    .cancelCss,
+    .waitingCss,
+    .processCss,
+    .confirmedCss {
         color: #fff;
-        padding: 5px;
+        padding: 7px;
         font-weight: 500;
     }
     .cancelCss {
         background-color: orange;
     }
     .waitingCss {
-        background-color: red;
+        background-color: #95171a;
+        width: 27vw;
     }
     .processCss {
-        background-color: yellow;
+        background-color: rgb(199, 199, 15);
+        width: 39vw;
     }
     .confirmedCss {
         background-color: green;
+        width: 39vw;
+    }
+    .toolbar-md-primary .bar-button-clear-md,
+    .toolbar-md-primary .bar-button-default-md,
+    .toolbar-md-primary .bar-button-outline-md,
+    .toolbar-md-primary .toolbar-title-md {
+        color: #fff;
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+    .back-button-icon {
+        font-size: 3.4rem;
     }
 }

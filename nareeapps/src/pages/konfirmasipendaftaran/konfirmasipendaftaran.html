@@ -17,8 +17,9 @@
     </ion-card>
     <ion-card padding style="padding-top:0px; ">
         <p class="tittle"> Tipe Tiket</p>
-        <div *ngFor="let categories of categories">
-            <p *ngIf="categories.checklist == true" class="isi">Early Bird- {{categories.category}}</p>
+
+        <div *ngFor="let a of shadowPayment.tipe;">
+            <p class="isi">{{a.tipe}} - {{a.kater}}</p>
         </div>
         <p class="tittle">Total Harga</p>
         <p class="isi">Rp {{shadowPayment.totalBiaya}},-</p>
@@ -37,21 +38,21 @@
         <p class="isi">Email
             <span> {{shadowPayment.email}}</span>
         </p> -->
-        <div *ngFor="let categories of categories">
-            <div *ngIf="categories.checklist == true">
-                <p class="tittle">Data Peserta {{categories.category}}</p>
-                <ion-row *ngIf="categories.persons == '2'">
+        <div *ngFor="let b of shadowPayment.tipe; let j = index">
+            <div>
+                <p class="tittle">Data Peserta {{b.kater}}</p>
+                <ion-row *ngIf="b.max != '1'">
                     <ion-col col-5>Nama Tim</ion-col>
-                    <ion-col col-7>{{shadowPayment.team}}</ion-col>
+                    <ion-col col-7>{{shadowPayment.team[j]}}</ion-col>
                 </ion-row>
-                <div *ngFor="let members of name_member.username; let i = index">
-                    <ion-row *ngIf="categories.persons == '2'">
-                        <ion-col col-5 *ngIf="[i] == '0'">Ketua Tim</ion-col>
-                        <ion-col col-5 *ngIf="[i] > '0'">Anggota {{i}}</ion-col>
+                <div *ngFor="let members of  shadowPayment.name_member.username[j]; let i = index">
+                    <ion-row *ngIf="b.max != '1'">
+                        <ion-col col-5 *ngIf="[i] == '0'">Anggota 1</ion-col>
+                        <ion-col col-5 *ngIf="[i] > '0'&& members != null  && members != ''  ">Anggota {{i+1}}</ion-col>
                         <ion-col col-7 *ngIf="[i] == '0'">{{shadowPayment.username}}</ion-col>
-                        <ion-col col-7 *ngIf="[i] >  '0'">{{members}}</ion-col>
+                        <ion-col col-7 *ngIf="[i] >  '0'&& members != null && members != '' ">{{members}}</ion-col>
                     </ion-row>
-                    <ion-row *ngIf="categories.persons == '1' && [i] == '1'">
+                    <ion-row *ngIf="b.max == '1' && [i] == '0'">
                         <ion-col col-5>Username</ion-col>
                         <ion-col col-7>{{shadowPayment.username}}</ion-col>
                     </ion-row>
@@ -60,10 +61,10 @@
         </div>
     </ion-card>
     <ion-card padding color="primary" style="padding: 11px 11px 11px 11px;">
-        <!-- <p class="note">
+        <p class="note">
             Pastikan data yang tertera sudah benar. Anda tidak bisa mengubah detail pesanan setelah konfirmasi.
-        </p> -->
+        </p>
     </ion-card>
-    <button ion-button full class="lanjutkan" (click)="registrationNow()">konfirmasi</button>
+    <button ion-button full class="lanjutkan" (click)="confirmRegistration()">konfirmasi</button>
 
 </ion-content>

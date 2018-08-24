@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController, NavParams,ModalController } from "ionic-angular";
 import { Http, RequestOptions , Headers} from "@angular/http";
+import { InvoicePage } from "../invoice/invoice";
 
 // @IonicPage()
 @Component({
@@ -19,6 +20,7 @@ export class TiketPage {
   constructor(
     private http: Http,
     public navCtrl: NavController,
+    public modalCtrl: ModalController,
     public navParams: NavParams
   ) {}
 
@@ -74,5 +76,14 @@ export class TiketPage {
         resolve(event.json());
       });
     });
+  }
+  openModal(invoice) {
+    console.log("eventzz", invoice);
+    this.navCtrl.push(InvoicePage, {
+      details:invoice
+    });
+    // const modal = this.modalCtrl.create(InvoicePage,{details});
+    // modal.present();
+    // console.log(details);
   }
 }

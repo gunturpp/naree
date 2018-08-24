@@ -61,8 +61,14 @@ export class ShoweventPage {
   showcheckin: boolean = true;
   showcancel: boolean = false;
   any_register: any;
+  getApiPaymentbyUser = "https://nareeapp.com/api/get-payments-by-iduser/"; // https://nareeapp.com/api/get-payments-by-id/2/id_user
+  getApiEventbyUser = "https://nareeapp.com/api/get-event-by-id/"; // https://nareeapp.com/api/get-event-by-id/id
 
   @ViewChild("map") mapRef: ElementRef;
+  payments: any;
+  pay: {};
+  new_id_event: any;
+  events: any;
   constructor(
     private http: Http,
     public toastCtrl: ToastController,
@@ -76,17 +82,28 @@ export class ShoweventPage {
     public loadCtrl: LoadingController
   ) {
     this.profiles = JSON.parse(localStorage.getItem("currentUser"));
+    this.data = this.navParams.get("event");
     this.historyExp = JSON.parse(localStorage.getItem("expHistory"));
-    this.storage.get("eventcheckin").then(data => {
-      this.items = data;
-      if (data != null) {
-        this.panjang = data.length;
-        // console.log("cek ada arry", data);
-
+    let headers = new Headers({
+      Authorization: "Bearer " + localStorage.getItem("token")
+    });
+    let options = new RequestOptions({ headers: headers });
+    this.http
+      .get(
+        "https://nareeapp.com/api/get-payments-by-iduser/" + this.profiles.id,
+        options
+      )
+      .subscribe(payments => {
+        let response = payments.json();
+       this.payments=response.payments;
+       console.log('isi pendaftaran',this.payments);
+      if ( this.payments != null) {
+        this.panjang =  this.payments.length;
+        console.log("cek ada arry", this.panjang);
         for (var i = 0; i < this.panjang; i++) {
-          if (this.idevent == this.items[i]) {
+          if (this.data.id == this.payments[i].id_event && this.payments[i].status!="cancel") {
             this.absen = false;
-            // console.log("absen : ", this.absen);
+            console.log("absen : ", this.absen);
           }
         }
       }
@@ -100,6 +117,7 @@ export class ShoweventPage {
         // console.log("show ", this.showcancel, this.showcheckin);
       }
     });
+   
   }
 
   ionViewDidLoad() {
@@ -107,6 +125,17 @@ export class ShoweventPage {
       Authorization: "Bearer " + localStorage.getItem("token")
     });
     let options = new RequestOptions({ headers: headers });
+    this.http
+      .get(
+        "https://nareeapp.com/api/get-payments-by-iduser/" + this.profiles.id,
+        options
+      )
+      .subscribe(payments => {
+        let response = payments.json();
+       this.payments=response.payments;
+       console.log('isi pendaftaran',payments);
+      });
+      
     this.http
       .get(
         "https://nareeapp.com/api/users/" + this.profiles.id + "/edit",
@@ -119,7 +148,6 @@ export class ShoweventPage {
         this.expuser = this.user.exp;
       });
     // console.log("mapref?",this.mapRef);
-    this.data = this.navParams.get("event");
     this.nama = this.data.name_event;
     this.tipe = this.data.dance_type;
     this.location = this.data.location;
@@ -179,7 +207,31 @@ export class ShoweventPage {
   closeModal() {
     this.navCtrl.pop();
   }
+  getTicketListByCurrentUser() {
+    let headers = new Headers({
+      Authorization: "Bearer " + localStorage.getItem("token")
+    });
+    let options = new RequestOptions({ headers: headers });
+    return new Promise(resolve => {
+      this.http
+        .get(this.getApiPaymentbyUser + this.user.id,options)
+        .subscribe(payment => {
+          resolve(payment.json());
+        });
+    });
+  }
 
+  getEventListByCurrentUser(id_event) {
+    let headers = new Headers({
+      Authorization: "Bearer " + localStorage.getItem("token")
+    });
+    let options = new RequestOptions({ headers: headers });
+    return new Promise(resolve => {
+      this.http.get(this.getApiEventbyUser + id_event,options).subscribe(event => {
+        resolve(event.json());
+      });
+    });
+  }
   showMap(long, lat) {
     //location lang longtitude
     const location = new google.maps.LatLng(long, lat);

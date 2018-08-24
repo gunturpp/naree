@@ -21,24 +21,28 @@
     <ion-card padding color="tittle" style="padding: 10px 10px 10px 10px;">
         <p class="judul">E-Ticket List</p>
     </ion-card>
-    <ion-card *ngFor="let ev of events;let i = index" style="margin-top: 5px;">
-        <ion-grid>
-            <ion-row>
-                <ion-col col-4>
-                    <img class="poster-event" src="https://nareeapp.com/{{ev.poster}}" />
-                </ion-col>
-                <ion-col *ngFor="let pay of payments">
-                    <ion-card-title class="judul1">
-                        {{ev.name_event}}
-                    </ion-card-title>
-                    <p style="font-weight: bold;"> {{ev.date_event|date: 'dd MMMM yyyy'}}</p>
-                    <p style="font-weight: bold;"> {{ev.location}}, {{ev.province}}</p>
-                    <p class="cancelCss" *ngIf="ev.id == pay.id_event && pay.status == 'cancel'">Cancel</p>
-                    <p class="waitingCss" *ngIf="ev.id == pay.id_event && pay.status == 'waiting'">Belum Bayar</p>
-                    <p class="processCss" *ngIf="ev.id == pay.id_event && pay.status == 'process'">Sedang Diverifikasi</p>
-                    <p class="confirmedCss" *ngIf="ev.id == pay.id_event && pay.status == 'confirmed'">Registrasi Berhasil</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card>
+    <ng-container *ngFor="let ev of events;let i = index">
+        <ng-container *ngFor="let pay of payments">
+            <ion-card *ngIf="pay.status != 'cancel'" style="margin-top: 5px;">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-4>
+                            <img class="poster-event" src="https://nareeapp.com/{{ev.poster}}" />
+                        </ion-col>
+                        <ion-col (click)="openModal(pay)">
+                            <ion-card-title class="judul1">
+                                {{ev.name_event}}
+                            </ion-card-title>
+                            <p style="font-weight: bold;"> {{ev.date_event|date: 'dd MMMM yyyy'}}</p>
+                            <p style="font-weight: bold;"> {{ev.location}}, {{ev.province}}</p>
+                            <button class="cancelCss" *ngIf="ev.id == pay.id_event && pay.status == 'cancel'">Cancel</button>
+                            <button class="waitingCss" *ngIf="ev.id == pay.id_event && pay.status == 'waiting'">Belum Bayar</button>
+                            <button class="processCss" *ngIf="ev.id == pay.id_event && pay.status == 'process'">Sedang Diverifikasi</button>
+                            <button class="confirmedCss" *ngIf="ev.id == pay.id_event && pay.status == 'confirmed'">Registrasi Berhasil</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card>
+        </ng-container>
+    </ng-container>
 </ion-content>

@@ -20,25 +20,24 @@
 
 
 <ion-content *ngIf="user" class="background" scroll="false">
-
-    <div *ngFor="let dataCategory of categories">
-        <div *ngIf="dataCategory.checklist == true">
-            <ion-card *ngIf="dataCategory.persons != '1'">
-                <p class="cssCategory">Kategori {{dataCategory.category}}</p>
+    <div *ngFor="let dataCategory of tipe;let j = index">
+        <div>
+            <ion-card *ngIf="dataCategory.max != '1'">
+                <p class="cssCategory">Kategori {{dataCategory.kater}}</p>
                 <ion-item>
                     <h2 class="judul" item-start>Nama Tim</h2>
-                    <ion-input disabled="true" class="input" type="text" value={{user.team}} name="nama"></ion-input>
+                    <ion-input class="input" type="text" [(ngModel)]="nama_tim[j]" name="nama_ketua" placeholder="Nama Tim"></ion-input>
                 </ion-item>
-                <div *ngFor="let person of member;let i = index">
+                <div *ngFor="let person of member[j];let i = index">
                     <ion-item>
-                        <h2 class="judul" item-start>Username Anggota {{member[i]}}</h2>
-                        <ion-input *ngIf="member[i] == '1'" disabled="true" class="input" type="text" value={{user.username}}></ion-input>
-                        <ion-input *ngIf="member[i] > '1'" class="input" type="text" [(ngModel)]="name_member[i]"></ion-input>
+                        <h2 class="judul" item-start>Username Anggota {{member[j][i]}}</h2>
+                        <ion-input *ngIf="member[j][i] == '1'" disabled="true" class="input" type="text" value={{user.username}}></ion-input>
+                        <ion-input *ngIf="member[j][i] > '1'" class="input" type="text" [(ngModel)]="name_member[j][i]" placeholder="isi username"></ion-input>
                     </ion-item>
                 </div>
             </ion-card>
-            <ion-card *ngIf="dataCategory.persons == '1'">
-                <p class="cssCategory">Kategori {{dataCategory.category}}</p>
+            <ion-card *ngIf="dataCategory.max == '1'">
+                <p class="cssCategory">Kategori {{dataCategory.kater}}</p>
                 <ion-item>
                     <h2 class="judul" item-start>Username Peserta</h2>
                     <ion-input disabled="true" class="input" type="text" value={{user.username}}></ion-input>

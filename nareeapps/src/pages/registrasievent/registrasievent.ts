@@ -19,11 +19,15 @@ export class RegistrasieventPage {
   event: any;
   isChecked: boolean;
   totalPrice = 0;
+  tipe = [];
+  myDate: String = new Date().toISOString();
+  hari:any;
   ticketStatus = [];
   tipetiket = [];
   tickets: any;
   apiTicket = "https://nareeapp.com/api/get-tickettype/"; // + id_event
   categories= [];
+  kater=[];
   allTicket:any;
   ticketA: any;
   constructor(
@@ -34,6 +38,7 @@ export class RegistrasieventPage {
 
   ionViewDidLoad() {
     this.isChecked = false;
+    
     // all categories by event
     this.event = this.navParams.get("event");
     this.categories = this.navParams.get("categories");
@@ -53,7 +58,12 @@ export class RegistrasieventPage {
         // this.ticketA.push(this.tipetiket[i]);
         // set status tiket all uncheck by array
       });
+      this.myDate=new Date().toISOString();
+      this.hari = this.myDate.split("T")[0];
+     
+    console.log("hari ini",this.hari);
     }
+    
     console.log("tipetikettzzz: ", this.tipetiket);
     // tipe 1
     // tipe 2
@@ -81,26 +91,37 @@ export class RegistrasieventPage {
       });
     });
   }
-  checklist(signTicket, i, price) {
-    for(var z=0; z<this.tipetiket.length;z++){
-      this.tipetiket[z].checklist = this.ticketStatus[i];
+  checklist(kategori, signTicket, j,i, price) {
+    // for(var z=0; z<this.tipetiket.length;z++){
+    //   this.tipetiket[z].checklist = this.ticketStatus[j][i];
+    // }
+    // for (var y = 0; y < this.categories.length; y++) {
+    //   if (
+    //     this.tipetiket[i].id_category == this.categories[y].id &&
+    //     this.tipetiket[i].checklist == true
+    //   ) {
+    //     this.categories[y].checklist = true;
+    //     kategori=this.categories[y].category;
+    //   }
+    //   if (
+    //     this.tipetiket[i].id_category == this.categories[y].id &&
+    //     this.tipetiket[i].checklist == false
+    //   ) {
+    //     this.categories[y].checklist = false;
+    //   }
+    // }
+
+    if(this.tipetiket[j][i].checklist==true)
+    {this.tipetiket[j][i].checklist=false;
+      
     }
-    for (var y = 0; y < this.categories.length; y++) {
-      if (
-        this.tipetiket[i].id_category == this.categories[y].id &&
-        this.tipetiket[i].checklist == true
-      ) {
-        this.categories[y].checklist = true;
-      }
-      if (
-        this.tipetiket[i].id_category == this.categories[y].id &&
-        this.tipetiket[i].checklist == false
-      ) {
-        this.categories[y].checklist = false;
-      }
+    else {
+      this.tipetiket[j][i].checklist=true;
+      
     }
-    console.log("checklist?:", signTicket + this.ticketStatus[i] + price);
-    if (this.ticketStatus[i] == true) {
+    console.log("isi dari kategori",this.kater); 
+    console.log("checklist?:", kategori+ signTicket + this.ticketStatus[i] + price +this.tipetiket[0][0].checklist);
+    if (this.tipetiket[j][i].checklist == true) {
       this.totalPrice += parseInt(price);
       this.enable = true;
     } else {
@@ -112,12 +133,34 @@ export class RegistrasieventPage {
     console.log("total biaya : ", this.totalPrice);
   }
   next() {
-    console.log("total biaya : ", this.ticketStatus);
+    var z=0;
+    for(var j=0; j<this.tipetiket.length;j++){
+      for(var i=0; i<this.tipetiket[j].length;i++){
+        if(this.tipetiket[j][i].checklist == true){
+          this.tipe[z]={ tipe:this.tipetiket[j][i].type ,
+          kater:this.tipetiket[j][i].id_category};
+          z++;
+          console.log("tipe tiket:",this.tipetiket[j][i].type);
+    //       // this.tipe[this.z].kategori=this.shadowPayment.tipetiket[j][i].type;
+
+        }
+       }
+    }
+    for(var j=0; j<this.categories.length;j++){
+      for(var i=0; i<this.tipe.length;i++){
+          if(this.categories[j].id==this.tipe[i].kater){
+          this.tipe[i].kater = this.categories[j].category;
+          this.tipe[i].min = this.categories[j].min_person;
+          this.tipe[i].max = this.categories[j].max_person;}
+      }
+    }
+    console.log("tipe tiket:",this.tipe);
     this.navCtrl.push(DatapesertaPage, {
       biayaTotal: this.totalPrice,
       categories: this.categories,
       tipetiket: this.tipetiket,
-      event: this.event
+      event: this.event,
+      tipe : this.tipe
     });
   }
 }

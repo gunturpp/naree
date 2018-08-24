@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { KonfirmasipendaftaranPage } from "../konfirmasipendaftaran/konfirmasipendaftaran";
-
+import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 /**
  * Generated class for the DatapesertaPage page.
  *
@@ -21,30 +21,74 @@ export class DatapesertaPage {
   user: any;
   totalBiaya: any;
   member = [];
+  a = [];
+  b =[];
+  nama_tim=[];
+  name_a = [];
+  name_b = [];
+  telFormGroup: FormGroup;
   name_member = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  tipe: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+   
+  }
 
   ionViewDidLoad() {
     this.categories = this.navParams.get("categories");
     this.totalBiaya = this.navParams.get("biayaTotal");
     this.event = this.navParams.get("event");
     this.tipetiket = this.navParams.get("tipetiket");
+    this.tipe = this.navParams.get("tipe");
     
-    for (var x = 0; x < this.categories.length; x++) {
+    for (var x = 0; x < this.tipe.length; x++) {
       let num = 1;
-      for (var y = 0; y < this.categories[x].max_person; y++) {
-        this.member[y] = num;
-        this.name_member[y] = "isi username";
+      this.nama_tim[x]=null;
+      this.b = [];
+      this.name_b = [];
+      for (var y = 0; y < this.tipe[x].max; y++) {
+        this.b[y] = num;
+        this.name_b[y] = null;
         num++;
         console.log(
-          "ionViewDidLoad DatapesertaPage",
-          this.categories[x].max_person
+          "b:",
+          this.b
         );
       }
+      this.member[x] = this.b;
+        this.name_member[x] = this.name_b;
+        console.log(
+              "isi name 1",
+              this.member
+            );
     }
-    console.log("tipetiket", this.tipetiket);
+    
+    console.log(
+      "isi name 1",
+      this.member
+    );
+    // for (var x = 0; x < this.tipe.length; x++) {
+    //   let num = 1;
+    //   this.a=[]
+    //   this.name_a=[]
+    //   for (var y = 0; y < this.tipe[x].max; y++) {
+    //     this.a[y] = num;
+    //     this.name_a[y] = null;
+    //     num++;
+    //     console.log(
+    //       "isi name",
+    //       this.a
+    //     );
+    //   }
+    //   this.b[x]= this.a;
+    //   this.name_b[x]= this.name_a;
+    //   console.log(
+    //     "isi name 1",
+    //     this.b
+    //   );
+    // }
+    console.log("tipetiket", this.tipe);
     console.log("categories", this.categories);
-    console.log("id_event", this.event.id);
+    console.log("b", this.b);
     this.getCurrentUser();
     console.log(this.getCurrentUser());
   }
@@ -62,12 +106,14 @@ export class DatapesertaPage {
     // console.log("biodata8", this.user.);
     this.navCtrl.push(KonfirmasipendaftaranPage, {
       shadowPayment: {
+        tipe : this.tipe,
         id_event: parseInt(this.event.id),
+        tipetiket : this.tipetiket,
         totalBiaya: this.totalBiaya,
-        team: this.user.team,
+        team: this.nama_tim,
         username: this.user.username,
         name_event: this.event.name_event,
-        categories: this.categories,
+        // categories: this.categories,
         name_member: { username: this.name_member },
         no_hp: this.user.no_hp,
         email: this.user.email

@@ -19,14 +19,14 @@
 
 <ion-content class="back">
     <ion-card padding color="tittle">
-        <p class="judul"> Bboy Shane Indonesia Tour 2018</p>
+        <p class="judul">{{event}}</p>
     </ion-card>
     <ion-card style="padding: 10px 10px 10px 10px;" padding>
         <p class="tittle" style="text-align: center;padding-top: 0px;">Total Harga Tiket</p>
-        <p class="harga">Rp 100.000,-</p>
+        <p class="harga">{{harga | currency:"Rp"}}</p>
     </ion-card>
     <ion-card padding>
-        <p class="konteks"> Lakukan pembayaran sesuai dengan total harga tiket yang dipesan melalui transfer sebelum <br><span style="color: #95171A">Sabtu, 4 juni 2018 pukul 02.44</span><br> ke salah satu rekening dibawah ini.</p>
+        <p class="konteks"> Lakukan pembayaran sesuai dengan total harga tiket yang dipesan melalui transfer sebelum <br><span style="color: #95171A">{{selisih}}</span><br> ke salah satu rekening dibawah ini.</p>
     </ion-card>
 
 
@@ -67,6 +67,6 @@
         </p>
     </ion-card>
 
-    <button ion-button full class="lanjutkan" (click)='next()'>Upload Bukti Pembayaran</button>
+    <button ion-button full class="lanjutkan" (click)='uploadPicture()'>Upload Bukti Pembayaran</button>
 
 </ion-content>

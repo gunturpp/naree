@@ -11,7 +11,7 @@ import {
   LoadingController
 } from "ionic-angular";
 let getApiNews = "https://nareeapp.com/api/get-news";
-import { AuthHttp, JwtHelper } from "angular2-jwt";
+// import { AuthHttp, JwtHelper } from "angular2-jwt";
 
 @Component({
   selector: "page-home",
