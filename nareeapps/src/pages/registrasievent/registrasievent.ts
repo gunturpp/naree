@@ -28,6 +28,7 @@ export class RegistrasieventPage {
   apiTicket = "https://nareeapp.com/api/get-tickettype/"; // + id_event
   categories= [];
   kater=[];
+  data:any;
   allTicket:any;
   ticketA: any;
   constructor(
@@ -46,13 +47,17 @@ export class RegistrasieventPage {
     for (var i = 0; i < this.categories.length; i++) {
       this.categories[i].checklist = false;
     }
+
     for (let i = 0; i < this.categories.length; i++) {
       this.getApiTicket(this.categories[i].id).then(data => {
-        for(var z=0; z<3;z++) {
+    // console.log("ada isi",this.categories[i].id);
+    // console.log("ada isi",data.length);
+        this.data= data;
+        for(var z=0; z<this.data.length;z++) {
         data[z].checklist = false;
-          
         }
         this.tipetiket[i] = data;
+    console.log("ada isi", this.tipetiket[i]);
         this.ticketStatus[i] = false;
         // this.tipetiket[i].checklist = false;
         // this.ticketA.push(this.tipetiket[i]);

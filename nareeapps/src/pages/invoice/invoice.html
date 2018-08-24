@@ -47,19 +47,19 @@
             <div>
                 <p class="tittle">Data Peserta {{b.kater}}</p>
                 <ion-row *ngIf="b.max != '1'">
-                    <ion-col col-5>Nama Tim</ion-col>
-                    <ion-col col-7>{{detail.team[j]}}</ion-col>
+                    <ion-col col-5 class="isi" style="padding: 0px;">Nama Tim</ion-col>
+                    <ion-col col-7 class="isi" style="padding: 0px;">{{detail.team[j]}}</ion-col>
                 </ion-row>
                 <div *ngFor="let members of  detail.member.username[j]; let i = index">
                     <ion-row *ngIf="b.max != '1'">
-                        <ion-col col-5 *ngIf="[i] == '0'">Anggota 1</ion-col>
-                        <ion-col col-5 *ngIf="[i] > '0'&& members != null  && members != ''  ">Anggota {{i+1}}</ion-col>
-                        <ion-col col-7 *ngIf="[i] == '0'">{{currentUser.username}}</ion-col>
-                        <ion-col col-7 *ngIf="[i] >  '0'&& members != null && members != '' ">{{members}}</ion-col>
+                        <ion-col col-5 class="isi" style="padding: 0px;" *ngIf="[i] == '0'">Anggota 1</ion-col>
+                        <ion-col col-5 class="isi" style="padding: 0px;" *ngIf="[i] > '0'&& members != null  && members != ''  ">Anggota {{i+1}}</ion-col>
+                        <ion-col col-7 class="isi" style="padding: 0px;" *ngIf="[i] == '0'">{{currentUser.username}}</ion-col>
+                        <ion-col col-7 class="isi" style="padding: 0px;" *ngIf="[i] >  '0'&& members != null && members != '' ">{{members}}</ion-col>
                     </ion-row>
                     <ion-row *ngIf="b.max == '1' && [i] == '0'">
-                        <ion-col col-5>Username</ion-col>
-                        <ion-col col-7>{{currentUser.username}}</ion-col>
+                        <ion-col class="isi" style="padding: 0px;" col-5>Username</ion-col>
+                        <ion-col class="isi" style="padding: 0px;" col-7>{{currentUser.username}}</ion-col>
                     </ion-row>
                 </div>
             </div>
@@ -71,8 +71,12 @@
         <p class="tittle">Data Peserta 1vs1 Openstyle Battle</p>
         <p class="isi">Username <span>dennyspooki</span></p> -->
     </ion-card>
-    <button *ngIf="enable" full class="lanjutkan" (click)='next()'>Bayar Tiket</button>
-    <button ion-button full class="lanjutkan" (click)='cancel()'>Batalkan Pendaftaran</button>
-    <button *ngIf="!enable" disabled ion-button full class="lanjutkan" (click)='next()'>Bayar Tiket</button>
-    <button disabled ion-button full class="lanjutkan" (click)='cancel()'>Batalkan Pendaftaran</button>
+    <ng-container *ngIf="enable">
+        <button ion-button full class="lanjutkan" (click)='next()'>Bayar Tiket</button>
+        <button ion-button full class="lanjutkan" (click)='cancel()'>Batalkan Pendaftaran</button>
+    </ng-container>
+    <ng-container *ngIf="!enable">
+        <button disabled ion-button full class="lanjutkan" (click)='next()'>Bayar Tiket</button>
+        <button disabled ion-button full class="lanjutkan" (click)='cancel()'>Batalkan Pendaftaran</button>
+    </ng-container>
 </ion-content>

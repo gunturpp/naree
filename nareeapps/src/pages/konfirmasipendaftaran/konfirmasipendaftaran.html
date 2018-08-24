@@ -27,12 +27,12 @@
     <ion-card padding style="padding-top:0px; ">
         <p class="tittle">Data Informasi</p>
         <ion-row>
-            <ion-col col-5>No. Telepon</ion-col>
-            <ion-col col-7>{{shadowPayment.no_hp}}</ion-col>
+            <ion-col col-5 class="isi" style="padding: 0px;">No. Telepon</ion-col>
+            <ion-col col-7 class="isi" style="padding: 0px;">{{shadowPayment.no_hp}}</ion-col>
         </ion-row>
         <ion-row>
-            <ion-col col-5>Email</ion-col>
-            <ion-col col-7>{{shadowPayment.email}}</ion-col>
+            <ion-col col-5 class="isi" style="padding: 0px;">Email</ion-col>
+            <ion-col col-7 class="isi" style="padding: 0px;">{{shadowPayment.email}}</ion-col>
         </ion-row>
         <!-- <p class="isi">No. Telepon {{shadowPayment.no_hp}}</p>
         <p class="isi">Email
@@ -42,19 +42,19 @@
             <div>
                 <p class="tittle">Data Peserta {{b.kater}}</p>
                 <ion-row *ngIf="b.max != '1'">
-                    <ion-col col-5>Nama Tim</ion-col>
-                    <ion-col col-7>{{shadowPayment.team[j]}}</ion-col>
+                    <ion-col col-5 class="isi" style="padding: 0px;">Nama Tim</ion-col>
+                    <ion-col col-7 class="isi" style="padding: 0px;">{{shadowPayment.team[j]}}</ion-col>
                 </ion-row>
                 <div *ngFor="let members of  shadowPayment.name_member.username[j]; let i = index">
                     <ion-row *ngIf="b.max != '1'">
-                        <ion-col col-5 *ngIf="[i] == '0'">Anggota 1</ion-col>
-                        <ion-col col-5 *ngIf="[i] > '0'&& members != null  && members != ''  ">Anggota {{i+1}}</ion-col>
-                        <ion-col col-7 *ngIf="[i] == '0'">{{shadowPayment.username}}</ion-col>
-                        <ion-col col-7 *ngIf="[i] >  '0'&& members != null && members != '' ">{{members}}</ion-col>
+                        <ion-col col-5 class="isi" style="padding: 0px;" *ngIf="[i] == '0'">Anggota 1</ion-col>
+                        <ion-col col-5 class="isi" style="padding: 0px;" *ngIf="[i] > '0'&& members != null  && members != ''  ">Anggota {{i+1}}</ion-col>
+                        <ion-col col-7 class="isi" style="padding: 0px;" *ngIf="[i] == '0'">{{shadowPayment.username}}</ion-col>
+                        <ion-col col-7 class="isi" style="padding: 0px;" *ngIf="[i] >  '0'&& members != null && members != '' ">{{members}}</ion-col>
                     </ion-row>
                     <ion-row *ngIf="b.max == '1' && [i] == '0'">
-                        <ion-col col-5>Username</ion-col>
-                        <ion-col col-7>{{shadowPayment.username}}</ion-col>
+                        <ion-col col-5 class="isi" style="padding: 0px;">Username</ion-col>
+                        <ion-col col-7 class="isi" style="padding: 0px;">{{shadowPayment.username}}</ion-col>
                     </ion-row>
                 </div>
             </div>
