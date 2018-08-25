@@ -53,6 +53,11 @@ page-event {
         height: 18px;
         font-size: 1.2rem;
         font-weight: 600;
+        white-space: pre-line;
+        display: block;
+    }
+    .tanggal1 {
+        display: block;
     }
     .hiden {
         min-width: 0;
@@ -65,7 +70,8 @@ page-event {
     .all-event {
         background-color: gray;
     }
-    .all-event, .special-event {
+    .all-event,
+    .special-event {
         padding: 10px;
         margin: 2%;
         color: #fff;

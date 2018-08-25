@@ -70,11 +70,6 @@ export class PembayaranPage {
     else(this.selisih='0:00:00');
   }.bind(this),1000)
   }
-  startTimer(){
-    
-  }
-
-
   showConfirm() {
     let confirm = this.alertCtrl.create({
       title: "Foto Telah di Upload",
@@ -181,5 +176,23 @@ export class PembayaranPage {
         loading.dismiss();
         this.navCtrl.push(CheckinEventPage);
       });
+  }
+
+  ionViewDidLeave(){
+    if(this.selisih=="0:00:00"){
+      let headers = new Headers({
+        Authorization: "Bearer " + localStorage.getItem("token")
+      });
+      let options = new RequestOptions({ headers: headers });
+      let masuk = {
+        id: this.id,
+        status:"cancel"
+      };
+      this.http
+      .put("https://nareeapp.com/api/payment/" + this.id + "/nota-update", masuk,options).subscribe(user => {
+      let response = user;
+      console.log("ress", response);
+      });
+    }
   }
 }
