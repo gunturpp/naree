@@ -31,7 +31,8 @@ export class PembayaranPage {
   time: any;
   selisih: any;
   id: any;
-
+  end: moment.Moment;
+  timer=0;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams ,
@@ -48,13 +49,26 @@ export class PembayaranPage {
     this.id = this.navParams.get("id");
     this.harga = this.navParams.get("harga");
     this.time =  this.navParams.get("time");
-    this.time =moment(this.time).add(6, 'hour')
-    this.selisih =moment(this.time).format('dddd,D MMMM YYYY [pukul] h:mm');
-    
+    this.end =moment(this.time).add(6, 'hour')
+    // var now = moment(new Date()); //todays date
+    // var duration = moment.duration(this.end.diff(now));
+    //  this.selisih =moment(this.time).format('dddd,D MMMM YYYY [pukul] h:mm');
+    // this.selisih=duration;
+    // console.log(duration)
     // date('Y-m-d', strtotime($request->start))
     // this.selisih= date('Y-m-d', strtotime($request->start))
    console.log("time",this.selisih);
-
+   this.selisih='0:00:00';
+   var intervalVar = setInterval(function(){
+    var now = moment(new Date()); //todays date
+    var a = moment.duration(this.end.diff(now));
+    var seconds = moment.duration(a).seconds();
+    var minutes = moment.duration(a).minutes();
+    var hours = Math.trunc(moment.duration(a).asHours());
+    if(seconds>=0)
+    this.selisih=hours+':'+minutes+':'+seconds;
+    else(this.selisih='0:00:00');
+  }.bind(this),1000)
   }
   showConfirm() {
     let confirm = this.alertCtrl.create({
@@ -80,6 +94,7 @@ export class PembayaranPage {
         mediaType: this.camera.MediaType.PICTURE,
         encodingType: this.camera.EncodingType.PNG,
         saveToPhotoAlbum: true,
+        correctOrientation: true,
         targetWidth: 600,
         targetHeight: 600
       })
@@ -98,9 +113,11 @@ export class PembayaranPage {
   getPhotoFromGallery() {
     this.camera
       .getPicture({
+        quality: 100,
         destinationType: this.camera.DestinationType.DATA_URL,
         sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
         targetWidth: 600,
+        correctOrientation: true,
         targetHeight: 600
       })
       .then(
@@ -162,5 +179,23 @@ export class PembayaranPage {
         loading.dismiss();
         this.navCtrl.push(CheckinEventPage);
       });
+  }
+
+  ionViewDidLeave(){
+    if(this.selisih=="0:00:00"){
+      let headers = new Headers({
+        Authorization: "Bearer " + localStorage.getItem("token")
+      });
+      let options = new RequestOptions({ headers: headers });
+      let masuk = {
+        id: this.id,
+        status:"cancel"
+      };
+      this.http
+      .put("https://nareeapp.com/api/payment/" + this.id + "/nota-update", masuk,options).subscribe(user => {
+      let response = user;
+      console.log("ress", response);
+      });
+    }
   }
 }

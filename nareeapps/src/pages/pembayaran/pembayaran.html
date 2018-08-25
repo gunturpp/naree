@@ -9,7 +9,7 @@
     <ion-navbar color="primary">
         <ion-title>
             <ion-row justify-content-center>
-                <ion-col col-7>
+                <ion-col col-8>
                     Invoice E-Ticket
                 </ion-col>
             </ion-row>
@@ -26,47 +26,45 @@
         <p class="harga">{{harga | currency:"Rp"}}</p>
     </ion-card>
     <ion-card padding>
-        <p class="konteks"> Lakukan pembayaran sesuai dengan total harga tiket yang dipesan melalui transfer sebelum <br><span style="color: #95171A">{{selisih}}</span><br> ke salah satu rekening dibawah ini.</p>
+        <p class="konteks"> Lakukan pembayaran sesuai dengan total harga tiket yang dipesan melalui transfer sebelum <br><span style="color: #95171A;font-size: 2.8rem;line-height: 1.2;">{{selisih}}</span><br> ke salah satu rekening dibawah ini.</p>
     </ion-card>
-
-
     <ion-card style="margin-bottom: 5px;">
         <ion-item>
             <img item-start style="width: 100px;padding-left: 0px;height: 35px;" src="assets/imgs/aset-3.png">
-            <p class="tittle" style="padding-top: 0;">08126701241 </p>
-            <p style="font-weight: bold; color: black;"> atas nama Denny Fadli Fitrianto</p>
+            <p class="tittle" style="padding-top: 0;">5140333621 </p>
+            <p style="font-weight: bold; color: black;"> atas nama Denny Fadli F</p>
         </ion-item>
     </ion-card>
     <ion-card style="margin-bottom: 5px;">
         <ion-item>
             <img item-start style="width: 100px;padding-left: 0px;height: 35px;" src="assets/imgs/aset-4.png">
-            <p class="tittle" style="padding-top: 0;">08126701241</p>
+            <p class="tittle" style="padding-top: 0;">0269691795</p>
             <p style="font-weight: bold; color: black;"> atas nama Denny Fadli Fitrianto</p>
 
         </ion-item>
     </ion-card>
-    <ion-card style="margin-bottom: 5px;">
+    <!-- <ion-card style="margin-bottom: 5px;">
         <ion-item>
             <img item-start style="width: 100px;padding-left: 0px;height: 35px;" src="assets/imgs/aset-5.png">
             <p class="tittle" style="padding-top: 0;">08126701241</p>
             <p style="font-weight: bold; color: black;"> atas nama Denny Fadli Fitrianto</p>
 
         </ion-item>
-    </ion-card>
+    </ion-card> -->
     <ion-card style="margin-bottom: 12px;">
         <ion-item>
-            <img item-start style="width: 100px;padding-left: 0px;height: 35px;" src="assets/imgs/aset-6.png">
-            <p class="tittle" style="padding-top: 0;">08126701241</p>
+            <img item-start style="width: 100px;padding-left: 0px;height: 55px;" src="assets/imgs/aset-6.png">
+            <p class="tittle" style="padding-top: 0;">1680-01-000010-53-9</p>
             <p style="font-weight: bold; color: black;"> atas nama Denny Fadli Fitrianto</p>
 
         </ion-item>
     </ion-card>
     <ion-card padding>
         <p class="konteks">
-            Setelah melakukan pembayaran melalui transfer, foto struk transfernya (jika melalui ATM) / screenshot buktitransfernya (jika melalui M-Banking),lalu upload melalui tombol dibawah ini.
+            Setelah melakukan pembayaran melalui transfer, foto struk transfernya (jika melalui ATM) / screenshot bukti transfernya (jika melalui M-Banking),lalu upload melalui tombol dibawah ini.
         </p>
     </ion-card>
 
-    <button ion-button full class="lanjutkan" (click)='uploadPicture()'>Upload Bukti Pembayaran</button>
+    <button ion-button [disabled]="selisih=='0:00:00'" full class="lanjutkan" (click)='uploadPicture()'>Upload Bukti Pembayaran</button>
 
 </ion-content>

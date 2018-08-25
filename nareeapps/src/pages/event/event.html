@@ -89,12 +89,10 @@
                     <img class="poster-event" src="https://nareeapp.com/{{evSpecial.poster}}" />
                 </ion-col>
                 <ion-col text-nowrap class="hiden">
-                    <p text-wrap class="judul">{{evSpecial.name_event}}</p>
+                    <p style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" class="judul">{{evSpecial.name_event}}</p>
                     <!-- <button ion-button color="primary" small style="font-size:12px;">{{event.dance_type}}</button> -->
                     <div class="btn-event">{{evSpecial.dance_type}}</div>
-                    <br><br>
-                    <p class="tanggal">{{evSpecial.location}}, {{evSpecial.province}}</p>
-                    <p class="tanggal">{{evSpecial.date_event| date: 'dd MMMM yyyy'}}</p>
+                    <p class="tanggal">{{evSpecial.location}}, {{evSpecial.province}}<span class="tanggal1">{{evSpecial.date_event| date: 'dd MMMM yyyy'}}</span></p>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -108,12 +106,12 @@
                     <img class="poster-event" src="https://nareeapp.com/{{event.poster}}" />
                 </ion-col>
                 <ion-col text-nowrap class="hiden">
-                    <p text-wrap class="judul">{{event.name_event}}</p>
+                    <p style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" class="judul">{{event.name_event}}</p>
                     <!-- <button ion-button color="primary" small style="font-size:12px;">{{event.dance_type}}</button> -->
                     <div class="btn-event">{{event.dance_type}}</div>
-                    <br><br>
-                    <p class="tanggal">{{event.location}}, {{event.province}}</p>
-                    <p class="tanggal">{{event.date_event| date: 'dd MMMM yyyy'}}</p>
+                    <p class="tanggal">{{event.location}}, {{event.province}}<span class="tanggal1">{{event.date_event| date: 'dd MMMM yyyy'}}</span></p>
+                    <!-- <br><br> -->
+
                 </ion-col>
             </ion-row>
         </ion-grid>

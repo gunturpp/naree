@@ -22,6 +22,7 @@ export class DatapesertaPage {
   totalBiaya: any;
   member = [];
   a = [];
+  angka:number;
   b =[];
   nama_tim=[];
   name_a = [];
@@ -29,8 +30,11 @@ export class DatapesertaPage {
   telFormGroup: FormGroup;
   name_member = [];
   tipe: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-   
+  constructor(public navCtrl: NavController, public navParams: NavParams,private formBuilder: FormBuilder) {
+    this.telFormGroup = new FormGroup({
+      'namatim': new FormControl('', Validators.required),
+      'anggota': new FormControl('', Validators.required),     
+  });
   }
 
   ionViewDidLoad() {
@@ -93,11 +97,11 @@ export class DatapesertaPage {
     console.log(this.getCurrentUser());
   }
   next() {
-    console.log("biodata", this.totalBiaya);
+    console.log("biodata", this.telFormGroup.value);
     console.log("biodata1", this.user.team);
     console.log("biodata2", this.user.username);
     console.log("biodata3", this.user.email);
-    console.log("biodata4", this.user.no_hp);
+    console.log("biodata4", this.nama_tim);
     for (var y = 0; y < this.name_member.length; y++) {
       console.log("nama member", y + this.name_member[y]);
     }
@@ -123,4 +127,6 @@ export class DatapesertaPage {
   getCurrentUser() {
     return (this.user = JSON.parse(localStorage.getItem("currentUser")));
   }
+  onSubmit(values){
+console.log("ini kelar",this.telFormGroup.value)  }
 }
