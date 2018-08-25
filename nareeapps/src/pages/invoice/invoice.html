@@ -33,8 +33,8 @@
         <p class="konteks">{{input.total_price| currency:"Rp"}}</p>
         <p class="tittle">Status</p>
         <button style="text-transform: none;" ion-button small color="primary" *ngIf="input.status == 'waiting'">Belum Bayar</button>
-        <button style="text-transform: none;" ion-button small color="primary" *ngIf="input.status == 'process'">Sedang Diverifikasi</button>
-        <button style="text-transform: none;" ion-button small color="primary" *ngIf="input.status == 'confirmed'">Registrasi Berhasil</button>
+        <button style="text-transform: none;" ion-button small class="processCss" *ngIf="input.status == 'process'">Sedang Diverifikasi</button>
+        <button style="text-transform: none;" ion-button small class="confirmedCss" color="primary" *ngIf="input.status == 'confirmed'">Registrasi Berhasil</button>
         <p class="tittle"> Tipe Tiket</p>
         <div *ngFor="let a of detail.kategori;">
             <p class="isi">{{a.tipe}} - {{a.kater}}</p>

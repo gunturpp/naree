@@ -50,25 +50,28 @@ export class PembayaranPage {
     this.harga = this.navParams.get("harga");
     this.time =  this.navParams.get("time");
     this.end =moment(this.time).add(6, 'hour')
-    var now = moment(new Date()); //todays date
-    var duration = moment.duration(this.end.diff(now));
+    // var now = moment(new Date()); //todays date
+    // var duration = moment.duration(this.end.diff(now));
     //  this.selisih =moment(this.time).format('dddd,D MMMM YYYY [pukul] h:mm');
-    this.selisih=duration;
-    console.log(duration)
+    // this.selisih=duration;
+    // console.log(duration)
     // date('Y-m-d', strtotime($request->start))
     // this.selisih= date('Y-m-d', strtotime($request->start))
    console.log("time",this.selisih);
-    this.startTimer();
+   this.selisih='0:00:00';
+   var intervalVar = setInterval(function(){
+    var now = moment(new Date()); //todays date
+    var a = moment.duration(this.end.diff(now));
+    var seconds = moment.duration(a).seconds();
+    var minutes = moment.duration(a).minutes();
+    var hours = Math.trunc(moment.duration(a).asHours());
+    if(seconds>=0)
+    this.selisih=hours+':'+minutes+':'+seconds;
+    else(this.selisih='0:00:00');
+  }.bind(this),1000)
   }
   startTimer(){
-    var intervalVar = setInterval(function(){
-      var now = moment(new Date()); //todays date
-      var a = moment.duration(this.end.diff(now));
-      var seconds = moment.duration(a).seconds();
-      var minutes = moment.duration(a).minutes();
-      var hours = Math.trunc(moment.duration(a).asHours());
-      this.selisih=hours+':'+minutes+':'+seconds;
-    }.bind(this),1000)
+    
   }
 
 

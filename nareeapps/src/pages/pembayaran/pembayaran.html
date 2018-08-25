@@ -67,6 +67,6 @@
         </p>
     </ion-card>
 
-    <button ion-button full class="lanjutkan" (click)='uploadPicture()'>Upload Bukti Pembayaran</button>
+    <button ion-button [disabled]="selisih=='0:00:00'" full class="lanjutkan" (click)='uploadPicture()'>Upload Bukti Pembayaran</button>
 
 </ion-content>

@@ -55,13 +55,16 @@ page-invoice {
         background-color: orange;
     }
     .waitingCss {
-        background-color: red;
+        background-color: #95171a;
+        width: 27vw;
     }
     .processCss {
-        background-color: yellow;
+        background-color: rgb(199, 199, 15);
+        width: 39vw;
     }
     .confirmedCss {
         background-color: green;
+        width: 39vw;
     }
     ion-col {
         padding-top: 0px;
