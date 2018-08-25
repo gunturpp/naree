@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { LoadingController, NavController, NavParams, } from "ionic-angular";
 import { DatapesertaPage } from "../datapeserta/datapeserta";
 import { Http, RequestOptions, Headers } from "@angular/http";
 
@@ -34,12 +34,16 @@ export class RegistrasieventPage {
   constructor(
     private http: Http,
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    private loadCtrl: LoadingController,
   ) {}
 
   ionViewDidLoad() {
     this.isChecked = false;
-    
+    let loading = this.loadCtrl.create({
+      content: "Tunggu sebentar..."
+    });
+    loading.present();
     // all categories by event
     this.event = this.navParams.get("event");
     this.categories = this.navParams.get("categories");
@@ -57,7 +61,7 @@ export class RegistrasieventPage {
         data[z].checklist = false;
         }
         this.tipetiket[i] = data;
-    console.log("ada isi", this.tipetiket[i]);
+        console.log("ada isi", this.tipetiket[i]);
         this.ticketStatus[i] = false;
         // this.tipetiket[i].checklist = false;
         // this.ticketA.push(this.tipetiket[i]);
@@ -65,10 +69,9 @@ export class RegistrasieventPage {
       });
       this.myDate=new Date().toISOString();
       this.hari = this.myDate.split("T")[0];
-     
     console.log("hari ini",this.hari);
     }
-    
+    loading.dismiss();
     console.log("tipetikettzzz: ", this.tipetiket);
     // tipe 1
     // tipe 2

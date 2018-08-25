@@ -30,6 +30,7 @@
         <p class="tittle" style="padding-top: 0px;"> Registration Code</p>
         <p class="konteks">{{input.invoice}}</p>
         <p class="tittle">Total Harga</p>
+        <img style="float:right; margin-right: 5px;height: 45vw;width: 30vw" *ngIf="input.nota" src="https://nareeapp.com{{input.nota}}" />
         <p class="konteks">{{input.total_price| currency:"Rp"}}</p>
         <p class="tittle">Status</p>
         <button style="text-transform: none;" ion-button small color="primary" *ngIf="input.status == 'waiting'">Belum Bayar</button>

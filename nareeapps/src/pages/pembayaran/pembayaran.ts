@@ -94,6 +94,7 @@ export class PembayaranPage {
         mediaType: this.camera.MediaType.PICTURE,
         encodingType: this.camera.EncodingType.PNG,
         saveToPhotoAlbum: true,
+        correctOrientation: true,
         targetWidth: 600,
         targetHeight: 600
       })
@@ -112,9 +113,11 @@ export class PembayaranPage {
   getPhotoFromGallery() {
     this.camera
       .getPicture({
+        quality: 100,
         destinationType: this.camera.DestinationType.DATA_URL,
         sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
         targetWidth: 600,
+        correctOrientation: true,
         targetHeight: 600
       })
       .then(
