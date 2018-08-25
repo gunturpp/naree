@@ -74,6 +74,14 @@ Route::put('kehadiran/update', 'KehadiranController@update');
 Route::get('kehadiran/show', 'KehadiranController@show');
 Route::get('kehadiran/edit', 'KehadiranController@edit');
 
+// Kehadiran
+Route::get('/kehadiran', 'PaymentController@index')->name('payment-event.index');
+Route::post('payment/store', 'PaymentController@store');
+Route::delete('payment/destroy', 'PaymentController@destroy');
+Route::put('payment/update', 'PaymentController@update');
+Route::get('payment/show', 'PaymentController@show');
+Route::get('payment/edit', 'PaymentController@edit');
+
 // // resources
 Route::resource('news','NewsController');
 Route::resource('event','EventController');
@@ -81,3 +89,4 @@ Route::resource('advertisement','AdvertisementController');
 Route::resource('feeback','FeedbackController');
 Route::resource('achievement','AchievementController');
 Route::resource('kehadiran','KehadiranController');
+Route::resource('payment','PaymentController');

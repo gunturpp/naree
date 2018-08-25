@@ -167,6 +167,15 @@
           </span> -->
         </a>
       </li>
+      
+      <li>
+        <a href="{{ url('payment') }}">
+          <i class="fa fa-th"></i> <span>Payment Status</span>
+          <!-- <span class="pull-right-container">
+            <small class="label pull-right bg-green">new</small>
+          </span> -->
+        </a>
+      </li>
 
   </section>
   <!-- /.sidebar -->
