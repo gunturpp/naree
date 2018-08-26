@@ -33,7 +33,12 @@ export class InvoicePage {
   }
 
   ionViewDidLoad() {
-   
+    let tabs = document.querySelectorAll('.show-tabbar');
+    if (tabs !== null) {
+        Object.keys(tabs).map((key) => {
+            tabs[key].style.display = 'none';
+        });
+    }
     let loading = this.loadCtrl.create({
       content: "Tunggu sebentar..."
     });
@@ -108,6 +113,12 @@ export class InvoicePage {
           let response = user;
           console.log("ress", response);
           this.navCtrl.setRoot(EventPage);
+        let tabs = document.querySelectorAll('.show-tabbar');
+        if (tabs !== null) {
+            Object.keys(tabs).map((key) => {
+                tabs[key].style.display = 'flex';
+            });
+            }
           });
           }
         }
@@ -118,6 +129,13 @@ export class InvoicePage {
   }
   dismiss(){
     this.navCtrl.setRoot(EventPage);
+      let tabs = document.querySelectorAll('.show-tabbar');
+  if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+          tabs[key].style.display = 'flex';
+      });
+
+  }
   }
 }
 // let headers = new Headers({

@@ -37,8 +37,14 @@ export class RegistrasieventPage {
     public navParams: NavParams,
     private loadCtrl: LoadingController,
   ) {}
-
+ 
   ionViewDidLoad() {
+        let tabs = document.querySelectorAll('.show-tabbar');
+    if (tabs !== null) {
+        Object.keys(tabs).map((key) => {
+            tabs[key].style.display = 'none';
+        });
+    }
     this.isChecked = false;
     let loading = this.loadCtrl.create({
       content: "Tunggu sebentar..."
@@ -140,8 +146,18 @@ export class RegistrasieventPage {
     }
     console.log("total biaya : ", this.totalPrice);
   }
+  balik(){
+    this.navCtrl.pop();
+      let tabs = document.querySelectorAll('.show-tabbar');
+  if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+          tabs[key].style.display = 'flex';
+      });
+  }
+  }
   next() {
     var z=0;
+    this.tipe=[];
     for(var j=0; j<this.tipetiket.length;j++){
       for(var i=0; i<this.tipetiket[j].length;i++){
         if(this.tipetiket[j][i].checklist == true){

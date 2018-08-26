@@ -1,11 +1,19 @@
 <ion-header>
-    <ion-navbar color="primary">
-        <ion-title class="ikon">
-            Pilih Tiket
+    <ion-navbar color="primary" hideBackButton>
+        <ion-buttons left>
+            <button ion-button icon-only (click)="balik()">
+                        <ion-icon style="font-size: 3.2rem;margin-left: 3px;" name="ios-undo"></ion-icon>
+                    </button>
+        </ion-buttons>
+        <ion-title>
+            <ion-row justify-content-center>
+                <ion-col col-6>
+                    Pilih Tiket
+                </ion-col>
+            </ion-row>
         </ion-title>
     </ion-navbar>
 </ion-header>
-
 
 <ion-content class="back">
     <ion-card *ngIf="event" style="background-color: #999999">
@@ -26,7 +34,7 @@
                     <ion-col col-6 *ngIf="dataTiket.type ==  'On The Spot'">{{dataTiket.type}}(<span style="color:#95171A">No Exp</span>)
                         <br>({{dataTiket.period_end|date: 'dd MMMM yyyy'}})</ion-col>
                     <ion-col col-4>{{dataTiket.price | number}}</ion-col>
-                    <ion-col col-2 *ngIf="dataTiket.type !=  'On The Spot'">
+                    <ion-col col-2 *ngIf="dataTiket.type != 'On The Spot'">
                         <ion-checkbox *ngIf="hari <= dataTiket.period_end && hari >= dataTiket.period_start" [(ngModel)]="ticketStatus[j][i]" (ionChange)="checklist(dataCategory.category,dataTiket.type,j,i,dataTiket.price)" item-right color="dark" style="padding-inline-end: 20px;"></ion-checkbox>
                     </ion-col>
                 </ion-row>

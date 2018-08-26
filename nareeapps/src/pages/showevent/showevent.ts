@@ -305,7 +305,7 @@ export class ShoweventPage {
   checkin() {
     console.log("kategorisModal", this.kategoris.categories);
     console.log("data", this.data);
-    this.navCtrl.setRoot(RegistrasieventPage, {
+    this.navCtrl.push(RegistrasieventPage, {
       categories: this.kategoris.categories,
       event: this.data
     });

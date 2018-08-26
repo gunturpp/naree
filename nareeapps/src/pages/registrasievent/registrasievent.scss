@@ -8,7 +8,9 @@ page-registrasievent {
         text-align: center;
         font-weight: 500;
         padding: 10px;
-
+        .back-button-icon {
+            font-size: 3.2rem;
+        }
     }
     .back {
         background-color: #e8e9ea;
@@ -92,5 +94,10 @@ page-registrasievent {
         button {
             margin-bottom: 0px;
         }
+    }
+    .back-button-icon {
+        font-size: 3.2rem;
+        padding-left: 0px;
+        margin-left: 3px;
     }
 }

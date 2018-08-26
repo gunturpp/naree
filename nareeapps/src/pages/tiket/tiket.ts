@@ -25,6 +25,7 @@ export class TiketPage {
   ) {}
 
   ionViewDidLoad() {
+
     console.log("ionViewDidLoad TiketPage");
     this.user = JSON.parse(localStorage.getItem("currentUser"));
     this.getTicketListByCurrentUser().then(payment => {
