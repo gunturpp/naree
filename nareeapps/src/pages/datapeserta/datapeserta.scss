@@ -1,50 +1,54 @@
 page-datapeserta {
-  .background {
-    background-color: #e8e9ea;
-  }
-  .back-card {
-    padding-block-start: 5px;
-    // padding-block-end: 10px;
-    margin-block-start: 1px;
-    margin-block-end: 1px;
-  }
-  .back-kategori {
-    padding-block-start: 5px;
-    // padding-block-end: 15px;
-    margin-block-start: 1px;
-    margin-block-end: 10px;
-  }
-  .cssCategory {
-    background-color: #999999;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-  }
-
-  .judul {
-    width: 53%;
-  }
-  .judul2 {
-    width: 30%;
-  }
-  .judul,
-  .judul2 {
-    size: 12px;
-    color: #95171a;
-    // padding-inline-start: 20px;
-    padding-inline-end: 5px;
-    font-weight: bold;
-  }
-  .lanjutkan {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-transform: none;
-    font-size: 2rem;
-    margin-bottom: 0px;
-  }
-  .footer {
-    button {
-      margin-bottom: 0px;
+    .background {
+        background-color: #e8e9ea;
     }
-  }
+    .back-card {
+        padding-block-start: 5px;
+        // padding-block-end: 10px;
+        margin-block-start: 1px;
+        margin-block-end: 1px;
+    }
+    .back-kategori {
+        padding-block-start: 5px;
+        // padding-block-end: 15px;
+        margin-block-start: 1px;
+        margin-block-end: 10px;
+    }
+    .cssCategory {
+        background-color: #999999;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+    }
+    .judul {
+        width: 53%;
+    }
+    .judul2 {
+        width: 30%;
+    }
+    .judul,
+    .judul2 {
+        size: 12px;
+        color: #95171a;
+        // padding-inline-start: 20px;
+        padding-inline-end: 5px;
+        font-weight: bold;
+    }
+    .lanjutkan {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        text-transform: none;
+        font-size: 2rem;
+        margin-bottom: 0px;
+    }
+    .footer {
+        button {
+            margin-bottom: 0px;
+        }
+    }
+    .back-button-icon {
+        font-size: 3.2rem;
+        margin-left: 3px;
+        padding-left: 0px;
+    }
 }

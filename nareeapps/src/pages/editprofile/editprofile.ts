@@ -123,6 +123,7 @@ export class EditprofilePage {
         // console.log("ini hasilnya" + JSON.stringify(this.user));
         // console.log("user profile" ,this.user.province.value);
         this.province = { text: this.prov, value: this.prov };
+        console.log("nongol nih");
         if (response.status == "200") {
           this.users = response.data; //ini disimpen ke variabel pasien diatas itu ,, yang udah di delacre
         }

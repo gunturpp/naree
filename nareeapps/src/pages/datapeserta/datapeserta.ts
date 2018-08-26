@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { KonfirmasipendaftaranPage } from "../konfirmasipendaftaran/konfirmasipendaftaran";
 import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { RegistrasieventPage } from "../registrasievent/registrasievent";
 /**
  * Generated class for the DatapesertaPage page.
  *
@@ -36,7 +37,25 @@ export class DatapesertaPage {
       'anggota': new FormControl('', Validators.required),     
   });
   }
+//   ngAfterViewInit() {
+//     let tabs = document.querySelectorAll('.show-tabbar');
+//     if (tabs !== null) {
+//         Object.keys(tabs).map((key) => {
+//             tabs[key].style.display = 'none';
+//         });
+//     }
+    
+// }
 
+// ionViewWillLeave() {
+//   let tabs = document.querySelectorAll('.show-tabbar');
+//   if (tabs !== null) {
+//       Object.keys(tabs).map((key) => {
+//           tabs[key].style.display = 'flex';
+//       });
+
+//   }
+// }
   ionViewDidLoad() {
     this.categories = this.navParams.get("categories");
     this.totalBiaya = this.navParams.get("biayaTotal");
@@ -96,6 +115,7 @@ export class DatapesertaPage {
     this.getCurrentUser();
     console.log(this.getCurrentUser());
   }
+
   next() {
     console.log("biodata", this.telFormGroup.value);
     console.log("biodata1", this.user.team);
@@ -127,6 +147,5 @@ export class DatapesertaPage {
   getCurrentUser() {
     return (this.user = JSON.parse(localStorage.getItem("currentUser")));
   }
-  onSubmit(values){
-console.log("ini kelar",this.telFormGroup.value)  }
+
 }

@@ -8,7 +8,7 @@
     <ion-navbar color="primary">
         <ion-title>
             <ion-row justify-content-center>
-                <ion-col col-5>
+                <ion-col col-4>
                     Tiket
                 </ion-col>
             </ion-row>
@@ -23,6 +23,26 @@
     </ion-card>
     <ng-container *ngFor="let ev of events;let i = index">
         <ng-container *ngFor="let pay of payments">
+            <ion-card *ngIf="pay.status == 'cancel'" style="margin-top: 5px;">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-4>
+                            <img class="poster-event" src="https://nareeapp.com/{{ev.poster}}" />
+                        </ion-col>
+                        <ion-col>
+                            <ion-card-title class="judul1" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
+                                {{ev.name_event}}
+                            </ion-card-title>
+                            <p style="font-weight: bold;margin-top: 10px;margin-bottom: 10px;"> SILAHKAN DAFTAR KEMBALI </p>
+                            <!-- <p style="font-weight: bold;"> {{ev.location}}, {{ev.province}}</p> -->
+                            <button class="cancelCss" *ngIf="ev.id == pay.id_event && pay.status == 'cancel'">Cancel</button>
+                            <button class="waitingCss" *ngIf="ev.id == pay.id_event && pay.status == 'waiting'">Belum Bayar</button>
+                            <button class="processCss" *ngIf="ev.id == pay.id_event && pay.status == 'process'">Sedang Diverifikasi</button>
+                            <button class="confirmedCss" *ngIf="ev.id == pay.id_event && pay.status == 'confirmed'">Registrasi Berhasil</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card>
             <ion-card *ngIf="pay.status != 'cancel'" style="margin-top: 5px;">
                 <ion-grid>
                     <ion-row>
@@ -30,7 +50,7 @@
                             <img class="poster-event" src="https://nareeapp.com/{{ev.poster}}" />
                         </ion-col>
                         <ion-col (click)="openModal(pay)">
-                            <ion-card-title class="judul1">
+                            <ion-card-title class="judul1" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
                                 {{ev.name_event}}
                             </ion-card-title>
                             <p style="font-weight: bold;"> {{ev.date_event|date: 'dd MMMM yyyy'}}</p>
@@ -43,6 +63,7 @@
                     </ion-row>
                 </ion-grid>
             </ion-card>
+
         </ng-container>
     </ng-container>
 </ion-content>

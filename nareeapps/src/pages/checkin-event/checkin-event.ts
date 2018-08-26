@@ -58,6 +58,13 @@ export class CheckinEventPage {
         // show popup when levelup
         localStorage.setItem("expHistory", JSON.stringify(this.riwayat));
       });
+        let tabs = document.querySelectorAll('.show-tabbar');
+  if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+          tabs[key].style.display = 'flex';
+      });
+
+  }
     this.navCtrl.setRoot(TabsPage);
   }
 }

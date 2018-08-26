@@ -37,7 +37,9 @@ export class EventPage {
     public modalCtrl: ModalController,
     public alerCtrl: AlertController
   ) {}
+  
   ionViewDidLoad() {
+  
     this.profile = localStorage.getItem("currentUser");
     // console.log("current user :", this.profile);
     this.token = localStorage.getItem("token");
