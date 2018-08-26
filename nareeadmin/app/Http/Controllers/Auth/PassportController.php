@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\UploadedFile;
-use Carbon\Carbon;
+use y\y;
 
 // use Symfony\Component\HttpFoundation\File\UploadedFile;
 use DB;
@@ -339,7 +339,7 @@ class PassportController extends Controller
 			$events = Event::Where('name_event')->orderBy('date_event','asc')->get();
 		else
 		  //  filter event by today and future
-			$events = Event::where('date_event', '>=', Carbon::now('+7')->toDateString())->where('type', '=', 'normal')->orderBy('date_event', 'asc')->get();
+			$events = Event::where('date_event', '>=', y::now('+7')->toDateString())->where('type', '=', 'normal')->orderBy('date_event', 'asc')->get();
 		$status=true;
 		return compact('status','events');
 	}
@@ -349,7 +349,7 @@ class PassportController extends Controller
 			$events = Event::Where('name_event')->orderBy('date_event','asc')->get();
 		else
 		  //  filter event by today and future
-			$events = Event::where('date_event', '>=', Carbon::now('+7')->toDateString())->where('type', '=', 'special')->orderBy('date_event', 'asc')->get();
+			$events = Event::where('date_event', '>=', y::now('+7')->toDateString())->where('type', '=', 'special')->orderBy('date_event', 'asc')->get();
 		$status=true;
 		return compact('status','events');
 	}
