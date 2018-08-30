@@ -4,27 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Advertisement extends Model
+class AdvertisementCategory extends Model
 {
-    protected $table = 'advertisements';
-    // protected $table = 'advertisements';
+    protected $table = 'advertisement_category';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-       'title',
-       'company_name',
-       'category',
-       'url',
-       'company_contact',
-       'poster',
-       'period_start',
-       'period_end',
-       'price',
-       'status',
-       'province',
+        'category_ads'
     ];
 
     /**

@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Admin;
 use App\Advertisement;
+use App\Province;
+use App\AdvertisementCategory;
+use Carbon\Carbon;
 
 class AdvertisementController extends Controller
 {
@@ -25,15 +28,23 @@ class AdvertisementController extends Controller
     public function index()
     {	
         $user = Auth::user();
-		if($user->role=='admin'){
+        $today = Carbon::now();
+        if($user->role=='admin'){
 			$advertisements = DB::table('advertisements')->count();
         }
         else {
             return 'kamu bukan staff naree';
         }
-        // $newss = News::latest()->paginate(5);
+        
         $advertisements = DB::table('advertisements')->latest()->paginate(5);
-        return view('advertisement.index',compact('advertisements', 'admins'))
+        for($i=0;$i<count($advertisements);$i++) {
+            // day off now to end
+            $period_end[$i] = Carbon::parse($advertisements[$i]->period_end);
+            $advertisements[$i]->created_at = $period_end[$i]->diffInDays($today);
+            
+        }
+        $categories = AdvertisementCategory::all();
+        return view('advertisement.index',compact('advertisements', 'admins','categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
@@ -45,9 +56,10 @@ class AdvertisementController extends Controller
      */
     public function create()
     {
-        return view('advertisement.create');
+        $province = Province::pluck('name', 'id');
+        $category = AdvertisementCategory::pluck('category_ads','id');
+        return view('advertisement.create', compact('province','category'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -58,15 +70,17 @@ class AdvertisementController extends Controller
     {
         $user = Auth::user();
         request()->validate([
-            'title' => 'required',
-            'duration' => 'required',
+            'title' => 'required|max:100',
+            'company_name' => 'required|max:100',
+            'category' => 'required',
+            'company_contact' => 'required|max:100',
+            'period_start' => 'required',
+            'period_end' => 'required',
             'price' => 'required',
-            'status' => 'required'
-
+            'province' => 'required|max:30',
             ]);
-            $data = $request->only('title','duration','price','status');
+            $data = $request->only('title','company_name','category','url','company_contact','period_start','period_end','price','status','province');
             
-            // $data = $request->except(['image']);
             $poster = "";
             if ($request->hasFile('poster')){ //has file itu meminta nama databasenya bukan classnya
                 $ip = request()->ip();
@@ -100,7 +114,6 @@ class AdvertisementController extends Controller
         $advertisements = Advertisement::find($id);
         return view('advertisement.show',compact('advertisements'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -110,7 +123,9 @@ class AdvertisementController extends Controller
     public function edit($id)
     {
         $advertisements = Advertisement::find($id);
-        return view('advertisement.edit',compact('advertisements'));
+        $province = Province::pluck('name', 'id');
+        $category = AdvertisementCategory::pluck('category_ads','id');
+        return view('advertisement.edit',compact('advertisements','province','category'));
     }
 
     /**
@@ -124,15 +139,17 @@ class AdvertisementController extends Controller
     {
         $user = Auth::user();
         request()->validate([
-            'title' => 'required',
-            'duration' => 'required',
+            'title' => 'required|max:100',
+            'category' => 'required',
+            'company_name' => 'required|max:100',
+            'company_contact' => 'required|max:100',
+            'period_start' => 'required',
+            'period_end' => 'required',
             'price' => 'required',
-            'status' => 'required'
-
+            'province' => 'required|max:30',
             ]);
-            $data = $request->only('title','duration','price','status');
-            
-            // $data = $request->except(['image']);
+            $data = $request->only('title','company_name','category','url','company_contact','period_start','period_end','price','status','province');            
+
             $poster = "";
             if ($request->hasFile('poster')){ //has file itu meminta nama databasenya bukan classnya
                 $ip = request()->ip();

@@ -37,25 +37,36 @@
                 <tr>
                     <th>No</th>
                     <th>Title</th>
-                    <th>status</th>
-                    <th>duration</th>
-                    <th>created_at</th>
-                    <th width="280px">Action</th>
+                    <th>Category</th>
+                    <th>Poster</th>
+                    <th>Status</th>
+                    <th>Duration</th>
+                    <th>End date</th>
+                    {{-- <th width="280px">Action</th> --}}
                 </tr>
             @foreach($advertisements as $advertisement)
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $advertisement->title}}</td>
-                <td><img src="{{ $advertisement -> poster }}" style="height:50px;width:50px;text-align:center"></td>
-                <td>{{ $advertisement->status}}</td>
-                <td>{{ $advertisement->duration}}</td>
-                <td>{{ $advertisement->created_at}}</td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('advertisement.show',$advertisement->id) }}">Show</a>
-                    <a class="btn btn-primary" href="{{ route('advertisement.edit',$advertisement->id) }}">Edit</a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['advertisement.destroy', $advertisement->id],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
+                    <?php 
+                    if($advertisement->category == 1 ) { echo $categories[0]->category_ads; }
+                    if($advertisement->category == 2 ) { echo $categories[1]->category_ads; }
+                    ?>
+                </td>
+                <td><img src="{{ $advertisement -> poster }}" style="height:50px;width:50px;text-align:center"></td>
+                <td><?php if($advertisement->status == 1) {echo 'Aktif';}
+                          else {echo 'Tidak aktif';}
+                ?>
+                </td>
+                <td>{{ $advertisement->created_at}} hari lagi</td>
+                <td>{{ $advertisement->period_end}}</td>
+                <td>
+                    {{-- <a class="btn btn-info" href="{{ route('advertisement.show',$advertisement->id) }}">Show</a> --}}
+                    {{-- <a class="btn btn-primary" href="{{ route('advertisement.edit',$advertisement->id) }}">Edit</a> --}}
+                    {{-- {!! Form::open(['method' => 'DELETE','route' => ['advertisement.destroy', $advertisement->id],'style'=>'display:inline']) !!} --}}
+                    {{-- {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!} --}}
+                    {{-- {!! Form::close() !!} --}}
                 </td>
             </tr>
             @endforeach

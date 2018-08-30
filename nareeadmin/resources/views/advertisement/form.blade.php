@@ -15,8 +15,50 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Duration :</strong>
-            {!! Form::text('duration', null, array('placeholder' => 'cukup ketik angka, misal : 1','class' => 'form-control')) !!}
+            <strong>Category :</strong>
+            {{ Form::select('category', $category, null, ['class' => 'form-control']) }}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Period Start :</strong>
+            {!! Form::date('period_start', null, array('placeholder' => 'Period start','class' => 'form-control')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Period End :</strong>
+            {!! Form::date('period_end', null, array('placeholder' => 'Period end','class' => 'form-control')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Company name :</strong>
+            {!! Form::text('company_name', null, array('placeholder' => 'Company Name','class' => 'form-control')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Company contact :</strong>
+            {!! Form::text('company_contact', '+62', array('placeholder' => 'Company Name','class' => 'form-control')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Url direct :</strong>
+            {!! Form::text('url', null, array('placeholder' => 'http://www.website.com','class' => 'form-control')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Province :</strong>
+            {{ Form::select('province', $province, null, ['class' => 'form-control']) }}
         </div>
     </div>
 
