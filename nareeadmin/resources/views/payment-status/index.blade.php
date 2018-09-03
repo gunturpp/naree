@@ -17,6 +17,19 @@
  
     <section class="content">
         <div class="row">
+            <div style="background-color:#3c8dbc; padding:20px;color:#ffffff">
+                <h4>User registered : <b>{{$registered}}</b><br>
+                    In waiting : <b>{{$inWaiting}}</b> | 
+                    In process: <b>{{$inProcess}}</b> | 
+                    In confirmed : <b>{{$inConfirmed}}</b><br><br>
+                    waiting price : <b>Rp{{ number_format($waitingPrice, 2, ',', '.') }}</b> | 
+                    process price : <b>Rp{{ number_format($processPrice, 2, ',', '.') }}</b> | 
+                    confirmed price : <b>Rp{{ number_format($confirmedPrice, 2, ',', '.') }}</b><br>
+
+                    Total price : <b>Rp{{ number_format($totalPrice, 2, ',', '.') }}</b><br>
+                </h4>
+            </div>
+
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
                     <h2>payment list</h2>

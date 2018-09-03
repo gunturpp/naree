@@ -41,11 +41,12 @@ class AdminController extends Controller
             $news = DB::table('news')->count();
             $advertisements = DB::table('advertisements')->count();
             $feedbacks = DB::table('feedbacks')->count();
+            $registered = DB::table('payments')->count();
         }
         else {
-            return 'kamu bukan admin :p';
+            return 'unauthorized';
             
         }
-        return view('dashboard', compact('userList','users','events','news','advertisements','feedbacks'));        
+        return view('dashboard', compact('userList','users','events','news','advertisements','feedbacks','registered'));        
     }
 }

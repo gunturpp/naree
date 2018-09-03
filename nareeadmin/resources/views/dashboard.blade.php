@@ -96,30 +96,29 @@
           </div>
         </div>
         <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>{{$registered}}</h3>
+
+              <p>Total register COTY</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
 
       </div>
       <!-- /.row -->
       <!-- Main row -->
       <div class="row" style="margin:auto; width:400px">
-          <h1 style="border-bottom:solid 1px;text-align:center">Create something here</h1>
-            <div class="inner" style="text-align:center">
-                <a class="btn btn-success" href="{{ route('event.create') }}"> Create New Event</a>
-            </div>
-            <br>
-            <div class="inner" style="text-align:center">
-                <a class="btn btn-success" href="{{ route('news.create') }}"> Create New News</a>
-            </div>
-            <br>
-            <div class="inner" style="text-align:center">
-                <a class="btn btn-success" href="{{ route('advertisement.create') }}"> Create New Advertise</a>
-            </div>
-            <br>
-            <div class="inner" style="text-align:center">
-              <a class="btn btn-success" href="{{ url('feedback') }}"> Look Feedback</a>
-            </div>
-
-      <!-- /.row (main row) -->
-      </div>
+           
+      
+      </div> <!-- /.row (main row) -->
       {{-- list user --}}
       <div style="padding:20px;margin:20px;border:solid;height:400px;overflow-y:scroll">
           <table class="table table-bordered">

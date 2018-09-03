@@ -176,7 +176,36 @@
           </span> -->
         </a>
       </li>
+      <br>
+      <div style="border:solid #ffffff 2px">
+      </div>
+      <br>
+      <li>
+        <a href="{{ route('event.create') }}">
+          <i class="fa fa-th"></i> <span>Create Event</span>
+          <!-- <span class="pull-right-container">
+            <small class="label pull-right bg-green">new</small>
+          </span> -->
+        </a>
+      </li>
 
+      <li>
+        <a href="{{ route('news.create') }}">
+          <i class="fa fa-th"></i> <span>Create News</span>
+          <!-- <span class="pull-right-container">
+            <small class="label pull-right bg-green">new</small>
+          </span> -->
+        </a>
+      </li>
+
+      <li>
+        <a href="{{ route('advertisement.create') }}">
+          <i class="fa fa-th"></i> <span>Create Advertisement</span>
+          <!-- <span class="pull-right-container">
+            <small class="label pull-right bg-green">new</small>
+          </span> -->
+        </a>
+      </li>
   </section>
   <!-- /.sidebar -->
 </aside>

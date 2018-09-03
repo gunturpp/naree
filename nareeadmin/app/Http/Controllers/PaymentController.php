@@ -24,6 +24,14 @@ class PaymentController extends Controller
      */
     public function index()
     {	
+        $waitingPrice = 0;
+        $processPrice = 0;
+        $confirmedPrice = 0;
+        $totalPrice = 0;
+        $inWaiting = 0;
+        $inProcess = 0;
+        $inConfirmed = 0;
+
         $user = Auth::user();
         $today     = Carbon::now();
 		if($user->role=='admin'){
@@ -43,7 +51,29 @@ class PaymentController extends Controller
             $allpayments[$i]->created_at = $today->diffForHumans($allpayments[$i]->created_at);
         }
         
-        return view('payment-status.index',compact('payments', 'allpayments', 'admins'))
+        $registered = DB::table('payments')->count();
+        $payment_select = DB::table('payments')->select('total_price','status')->get();
+        for($i=0; $i<$payment_select->count(); $i++) {
+            $totalPrice += $payment_select[$i]->total_price;
+
+            // sum status and price
+            if($payment_select[$i]->status == 'waiting') {
+                $inWaiting +=1;
+                $waitingPrice += $payment_select[$i]->total_price;
+            } else if($payment_select[$i]->status == 'process') {
+                $inProcess +=1;
+                $processPrice += $payment_select[$i]->total_price;
+            } else if($payment_select[$i]->status == 'confirmed') {
+                $inConfirmed +=1;
+                $confirmedPrice += $payment_select[$i]->total_price;
+            }
+        }
+        // dd($this->totalPrice);
+        return view('payment-status.index',
+        compact('payments', 'allpayments', 'admins','registered','totalPrice',
+        'inWaiting','inProcess','inConfirmed',
+        'waitingPrice','processPrice','confirmedPrice'
+        ))
         ->with('i', (request()->input('page', 1) - 1) * 5)
         ->with('j', (request()->input('page', 1) - 1) * 10);
     }
