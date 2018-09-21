@@ -38,6 +38,7 @@
                     <th>No</th>
                     <th>Title</th>
                     <th>Category</th>
+                    <th>Price</th>
                     <th>Poster</th>
                     <th>Status</th>
                     <th>Duration</th>
@@ -49,11 +50,12 @@
                 <td>{{ ++$i }}</td>
                 <td>{{ $advertisement->title}}</td>
                 <td>
-                    <?php 
+                    <?php
                     if($advertisement->category == 1 ) { echo $categories[0]->category_ads; }
                     if($advertisement->category == 2 ) { echo $categories[1]->category_ads; }
                     ?>
                 </td>
+                <td>{{ $advertisement->price}}</td>
                 <td><img src="{{ $advertisement -> poster }}" style="height:50px;width:50px;text-align:center"></td>
                 <td><?php if($advertisement->status == 1) {echo 'Aktif';}
                           else {echo 'Tidak aktif';}

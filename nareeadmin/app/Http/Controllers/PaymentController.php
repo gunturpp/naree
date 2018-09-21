@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use DB;
 use App\Admin;
+use App\Event;
 use App\Payment;
 use Carbon\Carbon;
 
@@ -22,8 +23,9 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {	
+    public function specialEventById($id) {
+        $event = Event::find($id);
+        
         $waitingPrice = 0;
         $processPrice = 0;
         $confirmedPrice = 0;
@@ -32,27 +34,21 @@ class PaymentController extends Controller
         $inProcess = 0;
         $inConfirmed = 0;
 
-        $user = Auth::user();
-        $today     = Carbon::now();
-		if($user->role=='admin'){
-			$payments = DB::table('payments')->count();
-        }
-        else {
-            return 'Sorry, you dont have permission';
-        }
-        $payments = DB::table('payments')->where('status','process')->latest()->paginate(5);
+        $today = Carbon::now();
+		
+        $payments = DB::table('payments')->where('id_event','=',$event->id)->where('status','process')->latest()->paginate(5);
         for($i=0;$i<count($payments);$i++) {
             // change from created_at to now
             $payments[$i]->created_at = $today->diffForHumans($payments[$i]->created_at);
         }
-        $allpayments = DB::table('payments')->latest()->paginate(10);
+        $allpayments = DB::table('payments')->where('id_event','=',$event->id)->latest()->paginate(10);
         for($i=0;$i<count($allpayments);$i++) {
             // change from created_at to now
             $allpayments[$i]->created_at = $today->diffForHumans($allpayments[$i]->created_at);
         }
         
-        $registered = DB::table('payments')->count();
-        $payment_select = DB::table('payments')->select('total_price','status')->get();
+        $registered = DB::table('payments')->where('id_event','=',$event->id)->count();
+        $payment_select = DB::table('payments')->where('id_event','=',$event->id)->select('total_price','status')->get();
         for($i=0; $i<$payment_select->count(); $i++) {
             $totalPrice += $payment_select[$i]->total_price;
 
@@ -69,13 +65,21 @@ class PaymentController extends Controller
             }
         }
         // dd($this->totalPrice);
-        return view('payment-status.index',
+        return view('payment-status.detail-payment',
         compact('payments', 'allpayments', 'admins','registered','totalPrice',
         'inWaiting','inProcess','inConfirmed',
         'waitingPrice','processPrice','confirmedPrice'
         ))
         ->with('i', (request()->input('page', 1) - 1) * 5)
         ->with('j', (request()->input('page', 1) - 1) * 10);
+    }
+    public function index()
+    {	
+        $allSpecialEvent = DB::table('events')->where('type','=','Special')
+        ->select('id','poster','name_event')->get();
+
+        return view('payment-status.index',
+        compact('allSpecialEvent'));
     }
 
     /**

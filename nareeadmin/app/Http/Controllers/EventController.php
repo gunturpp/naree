@@ -201,7 +201,7 @@ class EventController extends Controller
             'location' => 'required',
             'province' => 'required',
             'organizer' => 'required',
-            'poster' => 'required|mimes:jpeg,png,jpg|max:15000',
+            'poster' => 'mimes:jpeg,png,jpg|max:15000',
             'duration' => 'required',
             'long' => 'required',
             'lat' => 'required',

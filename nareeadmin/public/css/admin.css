@@ -1,0 +1,15 @@
+.event-card-list {
+  display: flex;
+  text-align: center;
+  margin: 10px;
+  padding: 20px;
+}
+
+@media only screen and (max-width: 640px) {
+    .event-card-list {
+        display: block;
+        text-align: center;
+        margin: 10px;
+        padding: 20px;
+      }
+}

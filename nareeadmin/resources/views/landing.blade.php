@@ -44,19 +44,24 @@
         <img class="content-a-img" src="{{asset('images/landingpage/detail.png')}}">
 
         <div class="container">
-            <div class="card-naree col-md-4 col-sm-12">
+            {{-- <div class="card-naree col-md-4 col-sm-12">
                 <img class="card-img" src="images/landingpage/fiturr1.png">
-                <h4 class="achievement">ACHIEVEMENT</h2>
+                <p class="achievement"><br>{{$allusers}}<br> DANCERS</p>
                 <h3 class="achievement-sub">Upload sertifikat prestasi tari mu di aplikasi Naree, bangun portfolio pencapaianmu dalam menari, dan jadilah penari terbaik di indonesia !</h3>           
+            </div> --}}
+            <div class="card-naree col-md-4 col-sm-12">
+                <img class="card-img" src="images/landingpage/fiturr4.png">
+                <p class="users"><br><b>{{$allusers}}</b><br> DANCERS</p>
+                <h3 class="users-sub">Penari-penari yang telah bergabung tersebar dibeberapa kota di Indonesia untuk mendapatkan informasi-informasi terkini di Naree.</h3>           
             </div>
             <div class="card-naree col-md-4 col-sm-12"> 
                 <img class="card-img" src="images/landingpage/fiturr2.png">
-                <h4 class="newspromo">NEWS & PROMO</h2>
+                <p class="newspromo"><br><b>{{$allnews}}</b><br> NEWS & PROMO</p>
                 <h3 class="newspromo-sub">Tingkatkan wawasan melalui artikel-artikel terbaru seputar dunia tari dan promosi-promosi khusus untuk para penari di aplikasi Naree.</h3>
             </div>
             <div class="card-naree col-md-4 col-sm-12"> 
-            <img class="card-img" src="images/landingpage/fiturr3.png">
-            <h4 class="event">EVENT</h2>
+                <img class="card-img" src="images/landingpage/fiturr3.png">
+                <p class="event"><br><b>{{$allevents}}</b><br> EVENT</p>
                 <h3 class="event-sub">Cari informasi seputar event-event tari ga perlu bingung lagi! Kamu bisa temukan berbagai informasi seputar event-event tari di aplikasi Naree.</h3>
             </div>
         </div>

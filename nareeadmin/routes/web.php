@@ -1,8 +1,10 @@
 <?php
-Route::get('/', function () {
-    return view('landing');
-    // return view('/dashboard/index');  
-});
+// Route::get('/', function () {
+//     return view('landing');
+//     // return view('/dashboard/index');  
+// });
+Route::get('/', 'HomeController@landing');
+
 Route::get('/loginadmin', function () {
     return view('/auth/admin-login');
     // return view('/dashboard/index');  
@@ -74,8 +76,9 @@ Route::put('kehadiran/update', 'KehadiranController@update');
 Route::get('kehadiran/show', 'KehadiranController@show');
 Route::get('kehadiran/edit', 'KehadiranController@edit');
 
-// Kehadiran
-Route::get('/kehadiran', 'PaymentController@index')->name('payment-event.index');
+// Payment
+Route::get('/payment', 'PaymentController@index')->name('payment-event.index');
+Route::get('payment/{id}', 'PaymentController@specialEventById');
 Route::post('payment/store', 'PaymentController@store');
 Route::delete('payment/destroy', 'PaymentController@destroy');
 Route::put('payment/update', 'PaymentController@update');
