@@ -1,0 +1,33 @@
+<!--
+  Generated template for the LeaderboardPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>leaderboard</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h4 class="periode"><b>Periode Oktober</b></h4>
+  <div *ngFor="let poin of point; let i = index">
+    <ion-item *ngIf="i > 0">
+      <div class="number">{{i}}</div>
+      <div *ngIf="i == 1" class="number first">{{i}}</div>
+      <div *ngIf="i == 2" class="number second">{{i}}</div>
+      <div *ngIf="i == 3" class="number third">{{i}}</div>
+
+      <ion-avatar item-end>
+        <img src="assets/imgs/level.jpg">
+      </ion-avatar>
+      <h2><b>{{point[i]}}</b> point</h2>
+      <h3>{{name[i]}}</h3>
+      <p>{{category[i]}}</p>
+    </ion-item>
+  </div>
+</ion-content>

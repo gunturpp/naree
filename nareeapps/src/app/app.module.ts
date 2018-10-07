@@ -10,6 +10,7 @@ import { File } from '@ionic-native/file';
 
 import { HttpClientModule } from '@angular/common/http';
 import { EventPage } from '../pages/event/event';
+import { LeaderboardPage } from '../pages/leaderboard/leaderboard';
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
 import { RewardPage } from '../pages/reward/reward';
@@ -50,6 +51,7 @@ import { PromotionsPage } from '../pages/promotions/promotions';
 @NgModule({
   declarations: [
     MyApp,
+    LeaderboardPage,
     AboutusPage,
     AchievementPage,
     KonfirmasipendaftaranPage,
@@ -94,6 +96,7 @@ import { PromotionsPage } from '../pages/promotions/promotions';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LeaderboardPage,
     AboutusPage,
     AchievementPage,
     ContactusPage,
