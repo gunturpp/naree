@@ -11,13 +11,27 @@
 </ion-header>
 
 <ion-content class="back">
-    <!-- <ion-slides autoplay="3000" loop (ionSlideAutoplayStop)="startloop()" pager>
-        <ion-slide *ngFor="let image of [1,2]">
-            <img data-src="assets/imgs/slide{{image}}.jpg" align-items: stretch>
-        </ion-slide> -->
-    <!-- </ion-slides> -->
-    <img src="assets/imgs/welcome32.jpg" align-items: stretch />
+    <ion-slides *ngIf="Ads && Ads.length" autoplay="3000" loop (ionSlideAutoplayStop)="startloop()" pager>
+        <div *ngFor="let Ad of Ads;">
+            <ion-slide *ngIf="Ad.category==1">
+                <img *ngIf="Ad.poster" src="https://nareeapp.com{{Ad.poster}}" align-items: stretch>
+                <!-- <img  *ngIf="input.nota" src="https://nareeapp.com{{input.nota}}" /> -->
+            </ion-slide>
+        </div>
+    </ion-slides>
+
+    <!-- <img src="assets/imgs/welcome32.jpg" align-items: stretch /> -->
     <!--width="80" height="80"-->
+    <ion-card (click)="iklan()" style="margin-top: 5px;background-color: #95171a;">
+        <!-- <img class="image-news" src="https://nareeapp.com/{{newss.image}}" /> -->
+        <ion-card-content>
+            <!-- <ion-card-title class="judul">
+                {{newss.judul_news}}
+            </ion-card-title> -->
+            <p style="text-align: center; color: white;font-size: 1.8rem;"> Temukan Promo Menarik Disini ! </p>
+            <!-- <ion-datetime color="primary" disabled displayFormat="MM/DD/YYYY" [(ngModel)]="newss.created_at"></ion-datetime> -->
+        </ion-card-content>
+    </ion-card>
 
     <ion-card *ngFor="let newss of news" (click)="openModal(newss)" style="margin-top: 5px;">
         <img class="image-news" src="https://nareeapp.com/{{newss.image}}" />
@@ -29,4 +43,5 @@
             <!-- <ion-datetime color="primary" disabled displayFormat="MM/DD/YYYY" [(ngModel)]="newss.created_at"></ion-datetime> -->
         </ion-card-content>
     </ion-card>
+
 </ion-content>

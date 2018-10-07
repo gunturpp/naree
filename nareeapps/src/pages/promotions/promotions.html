@@ -1,0 +1,36 @@
+<!--
+  Generated template for the PromotionsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary" hideBackButton>
+        <ion-buttons left>
+            <button ion-button icon-only (click)="balik()">
+                      <ion-icon style="font-size: 3.2rem;margin-left: 3px;" name="ios-undo"></ion-icon>
+                  </button>
+        </ion-buttons>
+        <ion-title>
+            <ion-row justify-content-center>
+                <ion-col col-6>
+                    Promotions
+                </ion-col>
+            </ion-row>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="back">
+    <div *ngFor="let Ad of advertisements;">
+        <!-- <a> -->
+        <ion-card *ngIf="Ad.category==2" class="iklan" color="primary">
+            <a href="{{Ad.url}}">
+                <img *ngIf="Ad.poster" src="https://nareeapp.com{{Ad.poster}}" />
+            </a>
+        </ion-card>
+    </div>
+</ion-content>

@@ -10,7 +10,10 @@ import {
   ViewController,
   LoadingController
 } from "ionic-angular";
+import { PromotionsPage } from "../promotions/promotions";
 let getApiNews = "https://nareeapp.com/api/get-news";
+let getApiAds = "https://nareeapp.com/api/get-advertisements";
+
 // import { AuthHttp, JwtHelper } from "angular2-jwt";
 
 @Component({
@@ -25,6 +28,7 @@ export class HomePage {
   profile: string;
   news: any;
   data: any;
+  Ads:any;
   tanggal: any;
   // posts: Observable<Array<Post>>;
   constructor(
@@ -32,14 +36,24 @@ export class HomePage {
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     private loadCtrl: LoadingController
-  ) {}
-  // ionViewWillLeave(){
-  //   this.slides.stopAutoplay();
-  // }
-  // ionViewDidEnter() {
-  //   this.slides.startAutoplay();
-  // }
+  ) {
+    
+  }
+  ionViewWillLeave(){
+    if(this.Ads)
+    this.slides.stopAutoplay();
+  }
+  ionViewDidEnter() {
+    if(this.Ads)
+    this.slides.startAutoplay();
+  }
+  
+  ionViewWillEnter(){
+    if(this.Ads)
+    this.slides.startAutoplay();
+  }
   ionViewDidLoad() {
+    
     this.profile = localStorage.getItem("currentUser");
     // console.log("current user :",this.profile);
     this.token = localStorage.getItem("token");
@@ -56,9 +70,19 @@ export class HomePage {
       newss => {
         let response = newss.json();
         this.news = response.news;
-        // this.data = this.news[0];
-        // console.log("news" + JSON.stringify(this.news));
+        this.http.get(getApiAds, options).subscribe(
+          Adss => {
+            let response = Adss.json();
+            this.Ads = response.advertisements;
+            console.log("ini udah ada adsnya",this.Ads);
+            // console.log("ini web",'https://www.nareeapp.com'+this.Ads[0].poster);
         loading.dismiss();
+          },
+          error => {
+            alert("Check your connection and try again");
+            console.log("error get data", error);
+          }
+        );
       },
       error => {
         alert("Check your connection and try again");
@@ -72,13 +96,22 @@ export class HomePage {
     this.navCtrl.push(NewsPage, { newss });
     // this.navCtrl.push(NewsPage,newss)
   }
-  //   startloop(){
-  //     this.slides.autoplay=3000;
-  // // console.log("katanya mulai");
-  //     //  this.slide.autoplayDisableOnInteraction=false;
-  //   this.slides.startAutoplay();
-  //   }
-  // navigateToDetail(id: number ){
-  //   this.navCtrl.push('NewsPage',{ id })
-  // }
+  iklan(){
+    this.navCtrl.push(PromotionsPage);
+    let tabs = document.querySelectorAll('.show-tabbar');
+    if (tabs !== null) {
+        Object.keys(tabs).map((key) => {
+            tabs[key].style.display = 'none';
+        });
+    }
+  }
+    startloop(){
+      this.slides.autoplay=3000;
+  // console.log("katanya mulai");
+      //  this.slide.autoplayDisableOnInteraction=false;
+    this.slides.startAutoplay();
+    }
+  navigateToDetail(id: number ){
+    this.navCtrl.push('NewsPage',{ id })
+  }
 }

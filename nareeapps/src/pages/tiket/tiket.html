@@ -29,10 +29,10 @@
                         <ion-col col-4>
                             <img class="poster-event" src="https://nareeapp.com/{{ev.poster}}" />
                         </ion-col>
-                        <ion-col>
-                            <ion-card-title class="judul1" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
+                        <ion-col text-nowrap class="hiden">
+                            <p class="judula" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
                                 {{ev.name_event}}
-                            </ion-card-title>
+                            </p>
                             <p style="font-weight: bold;margin-top: 10px;margin-bottom: 10px;"> SILAHKAN DAFTAR KEMBALI </p>
                             <!-- <p style="font-weight: bold;"> {{ev.location}}, {{ev.province}}</p> -->
                             <button class="cancelCss" *ngIf="ev.id == pay.id_event && pay.status == 'cancel'">Cancel</button>
@@ -49,8 +49,8 @@
                         <ion-col col-4>
                             <img class="poster-event" src="https://nareeapp.com/{{ev.poster}}" />
                         </ion-col>
-                        <ion-col (click)="openModal(pay)">
-                            <ion-card-title class="judul1" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
+                        <ion-col (click)="openModal(pay)" text-nowrap class="hiden">
+                            <ion-card-title class="judula" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
                                 {{ev.name_event}}
                             </ion-card-title>
                             <p style="font-weight: bold;"> {{ev.date_event|date: 'dd MMMM yyyy'}}</p>
