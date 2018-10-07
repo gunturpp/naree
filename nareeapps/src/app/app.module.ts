@@ -45,6 +45,7 @@ import { RegistrasieventPage } from '../pages/registrasievent/registrasievent';
 import { PembayaranPage }from '../pages/pembayaran/pembayaran';
 import { DatapesertaPage } from '../pages/datapeserta/datapeserta';
 import { KonfirmasipendaftaranPage } from '../pages/konfirmasipendaftaran/konfirmasipendaftaran';
+import { PromotionsPage } from '../pages/promotions/promotions';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { KonfirmasipendaftaranPage } from '../pages/konfirmasipendaftaran/konfir
     AboutusPage,
     AchievementPage,
     KonfirmasipendaftaranPage,
+    PromotionsPage,
     ContactusPage,
     EditprofilePage,
     MorePage,
@@ -110,6 +112,7 @@ import { KonfirmasipendaftaranPage } from '../pages/konfirmasipendaftaran/konfir
     LoginPage,
     InvoicePage,
     NewsPage,
+    PromotionsPage,
     TiketPage,    
     PembayaranPage,
     ShoweventPage,
